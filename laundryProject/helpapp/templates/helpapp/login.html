@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ログイン</title>
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body>
+    <form action="/Home/index.html" method="post">
+        <p>ID<input type="text" name="id" class="id"></p>
+        <p>PS<input type="password" name="pass" class="pass"></p>
+        <div class="button">
+            <a href="{% url 'bbs:nologin' %}">
+                <button type="button" class="noLoginButton">新規登録</button>
+            </a>
+                
+            </button>
+            <button type="submit"class="submit">ログイン</button>
+        </div>
+    </form>
+</body>
+</html>

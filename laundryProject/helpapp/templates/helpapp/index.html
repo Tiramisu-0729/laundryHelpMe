@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laundry HelpMe</title>
+    <link rel="stylesheet" href="{% static 'css/LaundryHelpMe.css' %}">
+</head>
+<body>
+    <div class="laundryHelpMe">
+        <div class="laundry">らんどり～</div>
+        <div class="helpMe">へるぷみ～</div>
+    </div>
+    <img src="{% static "pictures/img.png"%}" alt="">
+    <a href="{% url 'bbs:register' %}">
+        <button type="button" class="addButton">新規登録</button>
+    </a>
+    <a href="{% url 'bbs:login' %}">
+        <button type="button" class="loginButton">ログイン</button>
+    </a>
+    <a href="{% url 'bbs:nologin' %}">
+        <button type="button" class="noLoginButton">ログインせずに開始</button>
+    </a>
+</body>
+</html>

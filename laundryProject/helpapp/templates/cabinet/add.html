@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/assets/css/AddCloset.css">
+</head>
+<body>
+    <div class="header">
+        <div class="headline">
+            たんすに追加
+        </div>
+    </div>
+    <button type="button" onclick="history.back()" class="backButton">戻る</button>
+    <table>
+        <tr>
+            <td><img src="/pictures/" alt="" class="laundryTagImg"></td>
+            <td>
+                <label for="upload"></label><div class="mourningImg">服の画像<br>を選択</div></label>
+                <input id="upload" type="file" name="image" accept="accept=".png, .jpeg, .jpg">
+            </td>
+        </tr>
+    </table>
+    <div class="belt">
+        名前
+    </div>
+    <input type="text">
+    <div class="belt">
+        カテゴリ
+    </div>
+    <form action="?" method="">
+        <select name="category" id="categorySelect">
+            <option value="" selected>服のカテゴリを選択</option>
+            <option value="">Tシャツ</option>
+            <option value="">Yシャツ</option>
+            <option value="">ブラウス</option>
+            <option value="">カーディガン</option>
+            <option value="">ニット</option>
+            <option value="">パーカー</option>
+            <option value="">ジーンズ</option>
+            <option value="">パンツ</option>
+            <option value="">スカート</option>
+            <option value="">ワンピース</option>
+            <option value="">ジャケット</option>
+            <option value="">コート</option>
+        </select>
+        <div class="belt">
+            メモ
+        </div>
+        <textarea name="" id="" cols="30" rows="7"></textarea>
+        <button type="submit" formaction="/WashingMachine/index.html" class="laundryButton">
+            洗濯機に追加
+        </button>
+        <button type="submit" formaction="/Cabinet/index.html" class="closetButton">
+            たんすに追加
+        </button>
+    </form>
+    <footer class="footer">
+        <ul>
+            <li><a href="../Home/index.html"><img class="footer-picture" src="../pictures/camera.png"></a></li>
+            <li><a href="../WashingMachine/index.html"><img class="footer-picture" src="../pictures/WashingMachine.png"></a></li>
+            <li><a href="../Cabinet/index.html"><img class="footer-cabinet" src="../pictures/cabinet.png"></a></li>
+            <li><a href="../User/index.html"><img class="footer-picture" src="../pictures/user.png"></a></li>
+        </ul>
+    </footer>
+</body>
+</html>
