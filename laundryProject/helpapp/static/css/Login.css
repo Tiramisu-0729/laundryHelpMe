@@ -1,0 +1,43 @@
+body{
+    background-color: #EFEFEF;
+}
+p{
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 2%;
+}
+input{
+    margin-left: 5%;
+    padding: 5px;
+    font-size: 24px;
+    width: 80%;
+}
+.id{
+    margin-top: 40%;
+}
+.addButton{
+    width: 70%;
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-left: 15%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: 32px;
+    color: #6D6D6D;
+    font-weight: bold;
+    border: none;
+    background-color: #4BC9FF;
+}
+.submit{
+    width: 70%;
+    border-radius: 5px;
+    margin-top: 5%;
+    margin-left: 15%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: 32px;
+    color: #6D6D6D;
+    font-weight: bold;
+    border: none;
+    background-color: #FFF84B;
+}

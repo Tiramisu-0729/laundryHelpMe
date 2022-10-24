@@ -1,4 +1,12 @@
 from django import forms
+from .models import Cabinet
 
-class SearchForm(forms.Form):
-        keyword = forms.CharField(label='検索', max_length=100)
+class JudgeForm(forms.ModelForm):
+    class Meta:
+        model = Cabinet
+        fields = ['image']
+
+class CabinetForm(forms.ModelForm):
+    class Meta:
+        model = Cabinet
+        fields = ['image', 'category', 'memo']
