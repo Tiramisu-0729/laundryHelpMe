@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+
 body{
     background-color: #FDFDFD;
     margin: 0;
@@ -11,13 +13,18 @@ body{
     background-color: #97ECFC;
     width: 100%;
     float: left;
+    text-align: center;
 }
 .headline{
-    font-size: 32px;
+    font-size: 45px;
     font-weight: bold;
+    font-family: 'Caveat', cursive;
     height: 50px;
-    margin-top: 8%;
-    margin-left: 3%;
+    margin: 6% 0 3% 3%;
+    text-shadow:1px 1px 0 #FFF, -1px -1px 0 #FFF,
+              -1px 1px 0 #FFF, 1px -1px 0 #FFF,
+              0px 1px 0 #FFF,  0-1px 0 #FFF,
+              -1px 0 0 #FFF, 1px 0 0 #FFF;
 }
 
 /* footer */
@@ -44,22 +51,10 @@ body{
     width: 100%;
     margin-left: 3%;  
 }
-.footer-picture{
+.footer img{
     width: 50px;
     height: 50px;
 }
-.footer-timeline{
-    margin-left: 8%; 
-    margin-top: 6%;
-    width: 40px;
-    height: 40px;
-} 
-.footer-cabinet{
-    margin-left: 8%; 
-    margin-top: 10%;
-    width: 38px;
-    height: 38px;
-} 
 
 /* HOME */
 
@@ -236,4 +231,28 @@ body{
     border: none;
     background-color: #4BC9FF;
     margin-bottom: 90px;
+}
+
+/* timeline */
+.timeline {
+    height: 100%;
+    width: 100%;
+}
+
+.timeline img {
+    width: 20%;
+    height: 20%;
+    float: left;
+}
+
+.box {
+    height: 20%;
+    border: #111 solid 1px;
+    border-radius: 5px;
+    margin: 5%;
+}
+
+.box table tr td img{
+    width: 50%;
+    height: 50%;
 }

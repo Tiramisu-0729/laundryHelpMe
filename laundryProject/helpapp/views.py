@@ -18,7 +18,7 @@ def nologin(request):
 def home(request):
     user = request.user
     context = {
-        'message': '洗濯タグ判定 ',
+        'message': 'Judage',
         'user': user,
         'judage_form': JudgeForm(),
     }
@@ -26,20 +26,20 @@ def home(request):
     
 def washing_machine(request):
     context = {
-        'message': '洗濯機',
+        'message': 'Laundry',
     }
     return render(request, 'washing_machine/index.html',context)
 
 def cabinet(request):
     context = {
-        'message': 'タンス',
+        'message': 'Cabinet',
     }
     return render(request, 'cabinet/index.html', context)
 
 def cabinet_form(request):
     user = request.user
     context = {
-        'message': '追加',
+        'message': 'Add Cabinet',
         'user': user,
         'cabinet_form': CabinetForm(),
     }
@@ -57,13 +57,13 @@ def cabinet_add(request):
             cabinet.image = request.FILES['image']#保存先はmyapp＞upload_img>imgのなか
             cabinet.save()
             context = {
-                'message': '追加成功',
+                'message': 'Success',
             }
         return render(request, 'cabinet/index.html', context)
     else:
         user = request.user
         context = {
-            'message': '追加失敗',
+            'message': 'Error',
             'user': user,
             'cabinet_form': CabinetForm(),
         }
@@ -73,7 +73,7 @@ def cabinet_add(request):
 def user(request):
     user = request.user
     context = {
-        'message': 'ユーザー編集 ',
+        'message': 'User',
         'user': user,
     }
     return render(request, 'user/index.html', context)
