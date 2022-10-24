@@ -28,7 +28,7 @@ def washing_machine(request):
     context = {
         'message': '洗濯機',
     }
-    return render(request, 'washing_machine/index.html')
+    return render(request, 'washing_machine/index.html',context)
 
 def cabinet(request):
     context = {
