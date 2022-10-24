@@ -2,20 +2,14 @@
 {% load static %}<!-- 必須 -->
     {% block content %}
             <div class="content">
+                {% for cabinet in cabinets %}
                 <div class="item">
-                    画像
+                    <img src="{{ cabinet.image.url }}">
                 </div>
-                <div class="item">
-                    画像
-                </div>
-                <div class="item">
-                    画像
-                </div>
-                <div class="item">
-                    画像
-                </div>
+                {% endfor %}
             </div>
             <a href="{% url 'helpapp:cabinet_form' %}">
-                <button type="button" class="addButton">追加</button>
+                <button type="button" class="add">追加</button>
             </a>
     {% endblock %}
+ 

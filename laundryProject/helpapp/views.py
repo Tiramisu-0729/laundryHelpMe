@@ -1,3 +1,4 @@
+from unicodedata import category
 from .models import Cabinet, Categories
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import CabinetForm, JudgeForm
@@ -20,7 +21,7 @@ def home(request):
     context = {
         'message': '洗濯タグ判定 ',
         'user': user,
-        'judage_form': JudgeForm(),
+        'form': JudgeForm(),
     }
     return render(request, 'home/index.html', context)
     
@@ -31,8 +32,13 @@ def washing_machine(request):
     return render(request, 'washing_machine/index.html',context)
 
 def cabinet(request):
+    user = request.user
+    cabinets = Cabinet.objects.filter(author=user)
     context = {
-        'message': 'タンス',
+        'message' : 'タンス',
+        'cabinets' : cabinets,
+        'user' : user,
+        
     }
     return render(request, 'cabinet/index.html', context)
 
@@ -54,7 +60,7 @@ def cabinet_add(request):
             cabinet.author = request.user
             cabinet.category = Categories(request.POST['category'])#category型じゃないと怒られた
             cabinet.laundry_tag = "aaaaaaaaa"#判定結果
-            cabinet.image = request.FILES['image']#保存先はmyapp＞upload_img>imgのなか
+            cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
             cabinet.save()
             context = {
                 'message': '追加成功',
