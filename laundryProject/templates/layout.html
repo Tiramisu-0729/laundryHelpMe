@@ -1,0 +1,31 @@
+{% load static %}<!-- 必須 -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="headline">
+                {{message}}
+            </div>
+        </header>
+        {% block content %}
+        {% endblock %}
+        <footer class="footer">
+            <ul>
+                <li><a href="{% url 'helpapp:washing_machine' %}"><img class="footer-picture" src="{% static "pictures/WashingMachine.png"%}"></a></li>
+                <li><a href="{% url 'helpapp:cabinet' %}"><img class="footer-cabinet" src="{% static "pictures/cabinet.png"%}"></a></li>
+                <li><a href="{% url 'helpapp:home' %}"><img class="footer-picture" src="{% static "pictures/camera.png"%}"></a></li>
+                <li><a href="{% url 'helpapp:tips' %}"><img class="footer-tips" src="{% static "pictures/tips.png"%}"></a></li>
+                <li><a href="{% url 'helpapp:user' %}"><img class="footer-picture" src="{% static "pictures/user.png"%}"></a></li>
+            </ul>
+        </footer>
+    </div>
+</body>
+</html>

@@ -3,7 +3,7 @@
     {% block content %}
         <div class="content">
             <div class="upload">
-                <form action="{% url 'bbs:judge' %}" method="post" enctype="multipart/form-data">
+                <form action="{% url 'helpapp:judge' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <label for="id_image"><img src="{% static "pictures/img.png"%}" alt="" class="home_img"></label>
                     {{ upload_form.as_p }}

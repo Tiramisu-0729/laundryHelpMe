@@ -18,7 +18,7 @@
     <div class="belt">
         カテゴリ
     </div> -->
-    <form action="{% url 'bbs:cabinet_add' %}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'helpapp:cabinet_add' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ cabinet_form.as_p }}
         <input type="submit" class="submit" value="確定">
