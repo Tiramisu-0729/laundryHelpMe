@@ -84,8 +84,8 @@ def user(request):
     }
     return render(request, 'user/index.html', context)
 
-def tips(request):
-    return render(request, 'tips/index.html')
+def timeline(request):
+    return render(request, 'timeline/index.html')
 
 def judge(request):
     # if (request.method == 'POST'):
