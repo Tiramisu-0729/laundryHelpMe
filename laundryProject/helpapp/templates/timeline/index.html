@@ -1,5 +1,28 @@
 {% extends '../layout.html' %}
 {% load static %}<!-- 必須 -->
     {% block content %}
-        
+    <div class="timeline">
+        <h2>最新</h2>
+        <div class="box">
+            <img src="{% static "pictures/t-shirt.png"%}">
+            <table>
+                <tr>
+                    <td><img src="{% static "pictures/L7.png"%}"></td>
+                    <td><img src="{% static "pictures/B2.png"%}"></td>
+                    <td><img src="{% static "pictures/N6.png"%}"></td>
+                    <td><img src="{% static "pictures/I2.png"%}"></td>
+                    <td><img src="{% static "pictures/T2.png"%}"></td>
+                </tr>
+                <tr>
+                    <td><img src="{% static "pictures/D1.png"%}"></td>
+                    <td><img src="{% static "pictures/W1.png"%}"></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    
     {% endblock %}
