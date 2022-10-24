@@ -1,16 +1,6 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>タンス</title>
-    <link rel="stylesheet" href="../assets/css/Cabinet.css">
-</head>
-    <body>
-        <div class="container">
-            <header class="header">
-                <div class="title">タンス</div>
-            </header>
+{% extends '../layout.html' %}
+{% load static %}<!-- 必須 -->
+    {% block content %}
             <div class="content">
                 <div class="item">
                     画像
@@ -25,17 +15,7 @@
                     画像
                 </div>
             </div>
-            <button type="button" onclick="location.href='/Home/index.html                                              '" class="add">
-                服を新規追加
-            </button>
-            <footer class="footer">
-                <ul>
-                    <li><a href="../Home/index.html"><img class="footer-picture" src="../pictures/camera.png"></a></li>
-                    <li><a href="../WashingMachine/index.html"><img class="footer-picture" src="../pictures/WashingMachine.png"></a></li>
-                    <li><a href="../Cabinet/index.html"><img class="footer-cabinet" src="../pictures/cabinet.png"></a></li>
-                    <li><a href="../User/index.html"><img class="footer-picture" src="../pictures/user.png"></a></li>
-                </ul>
-            </footer>
-        </div>
-    </body>
-</html>
+            <a href="{% url 'bbs:cabinet_form' %}">
+                <button type="button" class="addButton">追加</button>
+            </a>
+    {% endblock %}

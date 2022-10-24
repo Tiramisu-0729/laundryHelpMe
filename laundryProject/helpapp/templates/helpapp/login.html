@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %}
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -13,13 +13,41 @@
         <p>ID<input type="text" name="id" class="id"></p>
         <p>PS<input type="password" name="pass" class="pass"></p>
         <div class="button">
-            <a href="{% url 'bbs:nologin' %}">
-                <button type="button" class="noLoginButton">新規登録</button>
-            </a>
-                
-            </button>
-            <button type="submit"class="submit">ログイン</button>
+            <input type="submit"class="submit" value="ログイン">
         </div>
     </form>
+</body>
+</html> -->
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" href="{% static 'css/login.css' %}"/>
+
+</head>
+<body>
+<h1>ログイン画面</h1>
+
+<div class="reg">
+  <form method="post" action="{% url 'login' %}">
+    {% csrf_token %}
+
+    <table class="reg_form">
+    <tr>
+    <td><label for="userid">ユーザーID:</label></td>
+    <td><input type="text" name="userid"></td>
+    <td><label for="password">パスワード：</label></td>
+    <td><input type="password" name="password"></td>
+    </tr>
+    </table>
+
+    <input type="submit" class="btn" value="Login">
+ </form>
+</div>
+   <a href="{% url 'register' %}">アカウントを作成</a>
+   </p>
 </body>
 </html>

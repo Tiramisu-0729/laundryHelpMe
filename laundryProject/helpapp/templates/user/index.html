@@ -1,26 +1,14 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="../assets/css/User.css">
-</head>
-<body>
-    <div class="container">
-        <header class="header">
-            <div class="headline">
-                ユーザー
-            </div>
-        </header>
-        <div class="content">
+{% extends '../layout.html' %}
+{% load static %}<!-- 必須 -->
+    {% block content %}
+        <div class="content">    
             <div class="user">
-                <img class="user-pic" src="../pictures/img.png" alt="">  
-                <span class="user-ID">ID:xxxxxxxx</span>
+                <img class="user-pic" src="" alt="">  
+                <span class="user-ID">ID:{{user}}</span>
                 <a href="#"><button class="edit-button">ユーザー情報を編集</button></a>
             </div>
             <br>
+            <p><a href='{% url "logout" %}'>ログアウト</a></p>
             <hr>
             <div class="detail">
                 <div class="sum">服の総数：</div>
@@ -57,15 +45,4 @@
                 </ol>
             </details>
         </div>
-        <footer class="footer">
-            <ul>
-                <li><a href="../WashingMachine/index.html"><img class="footer-picture" src="../pictures/WashingMachine.png"></a></li>
-                <li><a href="../Cabinet/index.html"><img class="footer-cabinet" src="../pictures/cabinet.png"></a></li>
-                <li><a href="../Home/index.html"><img class="footer-picture" src="../pictures/camera.png"></a></li>
-                <li><a href="../Home/index.html"><img class="footer-tips" src="../pictures/tips.png"></a></li>
-                <li><a href="../User/index.html"><img class="footer-picture" src="../pictures/user.png"></a></li>
-            </ul>
-        </footer>
-    </div>
-</body>
-</html>
+        {% endblock %}

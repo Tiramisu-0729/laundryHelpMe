@@ -14,10 +14,10 @@
         <div class="helpMe">へるぷみ～</div>
     </div>
     <img src="{% static "pictures/img.png"%}" alt="">
-    <a href="{% url 'bbs:register' %}">
+    <a href='{% url "accounts:signup" %}'>
         <button type="button" class="addButton">新規登録</button>
     </a>
-    <a href="{% url 'bbs:login' %}">
+    <a href='{% url "login" %}'>
         <button type="button" class="loginButton">ログイン</button>
     </a>
     <a href="{% url 'bbs:nologin' %}">
