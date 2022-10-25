@@ -174,7 +174,7 @@ body{
     color: #6D6D6D;
     font-weight: bold;
     border: none;
-    background-color: #FFF84B;
+    background-color: #fffa61;
     margin-bottom: 90px;
 }
 .result{
@@ -243,18 +243,24 @@ body{
     height: 100%;
     width: 100%;
 }
+/* 
+.timeline h2 {
+    margin: 3%;
+} */
 
 .timeline img {
     width: 20%;
     height: 20%;
     float: left;
+    margin-right: 5%;
 }
 
 .box {
     height: 20%;
     border: #111 solid 1px;
     border-radius: 5px;
-    margin: 5%;
+    margin: 2%;
+    padding: 5%;
 }
 
 .box table tr td img{
