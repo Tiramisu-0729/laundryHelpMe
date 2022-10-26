@@ -1,6 +1,9 @@
 body{
     background-color: #EFEFEF;
 }
+h1{
+    text-align: center;
+}
 p{
     font-size: 20px;
     font-weight: bold;
@@ -15,7 +18,7 @@ input{
 .id{
     margin-top: 40%;
 }
-.addButton{
+.add{
     width: 70%;
     border-radius: 5px;
     margin-top: 5%;
