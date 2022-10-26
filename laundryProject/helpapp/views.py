@@ -1,4 +1,6 @@
 from unicodedata import category
+
+from django.test import tag
 from .models import Cabinet, Categories
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import CabinetForm, JudgeForm
@@ -91,10 +93,10 @@ def user(request):
     return render(request, 'user/index.html', context)
 
 def timeline(request):
-    tag_list = 'LA','B3', 'T2', 'N6', 'D3', 'W4'
+    tag_list = ['LA','B3', 'T2', 'N6', 'D3', 'W4']
 
     context = {
-
+        'tag': tag_list,
     }
     return render(request, 'timeline/index.html', context)
 
