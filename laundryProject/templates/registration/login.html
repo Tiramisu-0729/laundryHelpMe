@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログイン</title>
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <title>Login</title>
+    <link rel="stylesheet" href="{% static 'css/Login.css' %}">
 </head>
 <body>
-<h1>ログイン</h1>
+<h1>Login</h1>
 <section class='common-form'>
     {% if form.errors %}
         <p class='error-msg'>Your username and password didn't match. Please try again.</p>
@@ -27,7 +27,10 @@
         {% csrf_token %}
         <input type='hidden' name='next' value='{{ next }}'/>
         {{ form.as_p }}
-        <button type='submit'>Login</button>
+        <a href='{% url "accounts:signup" %}'></a>
+            <button type="button" class="add">新規登録</button>
+        </a>
+        <button type='submit' class="submit">ログイン</button>
     </form>
 </section>
 </body>
