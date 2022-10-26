@@ -38,8 +38,6 @@ def cabinet(request):
         'message': 'Cabinet',
         'cabinets' : cabinets,
         'user' : user,
-        
-        
     }
     return render(request, 'cabinet/index.html', context)
 
@@ -76,6 +74,13 @@ def cabinet_add(request):
         }
     return render(request, 'cabinet/add.html', context)
 
+def cabinet_detail(request, pk):
+    cabinet = Cabinet.objects.get(pk=pk)
+    context = {
+        'message': 'Error',
+        'cabinet' : cabinet,
+    }
+    return render(request, 'cabinet/detail.html', context)
     
 def user(request):
     user = request.user
