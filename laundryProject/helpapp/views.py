@@ -91,7 +91,12 @@ def user(request):
     return render(request, 'user/index.html', context)
 
 def timeline(request):
-    return render(request, 'timeline/index.html')
+    tag_list = 'LA','B3', 'T2', 'N6', 'D3', 'W4'
+
+    context = {
+
+    }
+    return render(request, 'timeline/index.html', context)
 
 def judge(request):
     # if (request.method == 'POST'):
