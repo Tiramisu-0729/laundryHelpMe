@@ -1,9 +1,13 @@
+from distutils.command.upload import upload
+import os
 from unicodedata import category
 
 from django.test import tag
+from unittest import result
 from .models import Cabinet, Categories
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import CabinetForm, JudgeForm
+from django.core.files.storage import FileSystemStorage
 
 def helpapp(request):
     #ログインがあるか判別
@@ -79,7 +83,7 @@ def cabinet_add(request):
 def cabinet_detail(request, pk):
     cabinet = Cabinet.objects.get(pk=pk)
     context = {
-        'message': 'Error',
+        'message': cabinet.name,
         'cabinet' : cabinet,
     }
     return render(request, 'cabinet/detail.html', context)
@@ -101,6 +105,33 @@ def timeline(request):
     return render(request, 'timeline/index.html', context)
 
 def judge(request):
-    # if (request.method == 'POST'):
-        # upload_image = cabinet(image=request.POST, request.FILES['image']) 画像だけとりたいpath入らない
-    return render(request, 'washing_machine.html')
+    if request.method == "POST":
+        image = request.FILES['UploadImg']#保存先はupload_img＞upload_img>imgのなか
+        fs = FileSystemStorage()
+        file_data = fs.save(image.name, image)
+        file_url = fs.url(file_data)
+        print(file_url)
+        #AIで画像判定
+        #text 解析
+        result = "L8,B3,T3,N1,I4"#ここに結果を入れる
+        tag_list = result.split(',') 
+        context = {
+            'file_url' : file_url,
+            'message': 'result',
+            'tag_list': tag_list
+        }
+        return render(request, 'laundry_tag_check/index.html', context)
+    else:
+        user = request.user
+        context = {
+            'message': 'Error',
+            'user': user,
+            'form': JudgeForm(),
+        }
+    return render(request, 'home/index.html', context)
+    
+def judge_result(request):
+     #継承するfile_url = judge.file_url
+    #画像消す
+
+    return render(request, 'home/index.html')

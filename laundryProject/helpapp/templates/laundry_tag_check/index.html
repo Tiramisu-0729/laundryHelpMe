@@ -1,24 +1,12 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/assets/css/LaundryTagCheck.css">
-</head>
-<body>
-    <div class="header">
-        <div class="headline">
-            洗濯タグの確認
-        </div>
-    </div>
-    <button type="button" onclick="history.back()" class="backButton">戻る</button>
-    <img src="/pictures/img.png" alt="" class="laundryTagImg">
+{% extends '../layout.html' %}
+{% load static %}<!-- 必須 -->
+    {% block content %}
+    <div><button type="button" onclick="history.back()" class="backButton">戻る</button></div>
+    <div><img src="{{file_url}}" alt="" class="laundryTagImg"></div>
     <div class="belt">
         変更が必要な場合はマークをタップしてください
     </div>
-    <form action="/JudgmentResult/index.html" method="">
+    <form action="{% url 'helpapp:judge_result' %}" method="">
         <button class="button">
             <img src="/pictures/L1.png" alt="" class="L">
         </button>
@@ -158,14 +146,4 @@
         </button>
         <button type="submit" class="submit">OK</button>
     </form>
-    <footer class="footer">
-        <ul>
-            <li><a href="../WashingMachine/index.html"><img class="footer-picture" src="../pictures/WashingMachine.png"></a></li>
-            <li><a href="../Cabinet/index.html"><img class="footer-cabinet" src="../pictures/cabinet.png"></a></li>
-            <li><a href="../Home/index.html"><img class="footer-picture" src="../pictures/camera.png"></a></li>
-            <li><a href="../Home/index.html"><img class="footer-tips" src="../pictures/tips.png"></a></li>
-            <li><a href="../User/index.html"><img class="footer-picture" src="../pictures/user.png"></a></li>
-        </ul>
-    </footer>
-</body>
-</html>
+    {% endblock %}

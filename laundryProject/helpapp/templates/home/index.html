@@ -5,7 +5,7 @@
             <div class="upload">
                 <form action="{% url 'helpapp:judge' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <label for="id_image"><img src="{% static "pictures/img.png"%}" alt="" class="home_img"></label>
+                    <label for="id_UploadImg"><img src="{% static "pictures/img.png"%}" alt="" class="home_img"></label>
                     {{ form.as_p }}
                     <input type="submit" class="submit" value="アップロード">
                 </form>
