@@ -248,7 +248,7 @@ body{
     margin: 3%;
 } */
 
-.timeline img {
+#mainpic {
     width: 20%;
     height: 20%;
     float: left;
@@ -266,4 +266,9 @@ body{
 .box table tr td img{
     width: 50%;
     height: 50%;
+    margin: auto;
+}
+
+.tag {
+    text-align: center;
 }
