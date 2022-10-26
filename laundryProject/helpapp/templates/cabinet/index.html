@@ -4,7 +4,9 @@
             <div class="content">
                 {% for cabinet in cabinets %}
                 <div class="item">
-                    <img src="{{ cabinet.image.url }}">
+                    <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
+                        <img src="{{ cabinet.image.url }}">
+                    </a>
                 </div>
                 {% endfor %}
             </div>
