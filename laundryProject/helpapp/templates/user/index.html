@@ -1,48 +1,53 @@
 {% extends '../layout.html' %}
 {% load static %}<!-- 必須 -->
-    {% block content %}
-        <div class="content">    
-            <div class="user">
-                <img class="user-pic" src="" alt="">  
-                <span class="user-ID">ID:{{user}}</span>
-                <a href="#"><button class="edit-button">ユーザー情報を編集</button></a>
-            </div>
-            <br>
-            <p><a href='{% url "logout" %}'>ログアウト</a></p>
-            <hr>
-            <div class="detail">
-                <div class="sum">服の総数：</div>
-                <div class="date">登録日：</div>
-            </div>
-            <details class="info">
-                <summary>注意事項</summary>
-                <ol>
-                    <li>洋服に洗濯タグ(洗濯表示)がなければ<br>このサイトは使用できません</li><br>
-                    <li>たんす機能はログインしていなければ<br>使用することはできません</li><br>
-                    <li>以下の素材が含まれている洋服は<br>自宅で洗濯することはできません<br>
-                    <br>
-                    <font color="red">絹、レーヨン、キュプラ、<br>アセテート、皮革、毛皮用品</font></li><br>
-                    <li>以下の洋服はクリーニング店に<br>相談して下さい<br>
-                    <br>
-                    <font color="red">スーツ(ウォッシャブルを除く)、<br>ジャケット、コート、ネクタイ、和服</font></li><br>
-                    <li>自宅で洗濯する際には、色落ちなどを確認し<br>(色落ちする洋服は洗濯することができません)、自己責任で行ってください</li><br>
-                    <li>洗濯表示に注意事項が記載されている場合は、<br>それに従ってください</li><br>
-                </ol>
-            </details>
-            <details class="terms">
-                <summary>利用規約</summary>
-                <ol>
-                    <li>洋服に洗濯タグ(洗濯表示)がなければ<br>このサイトは使用できません</li>
-                    <li>たんす機能はログインしていなければ<br>使用することはできません</li>
-                    <li>以下の素材が含まれている洋服は<br>自宅で洗濯することはできません<br>
-                    <br>
-                    <font color="red">絹、レーヨン、キュプラ、<br>アセテート、皮革、毛皮用品</font></li>
-                    <li>以下の洋服はクリーニング店に<br>相談して下さい<br>
-                    <br>
-                    <font color="red">スーツ(ウォッシャブルを除く)、<br>ジャケット、コート、ネクタイ、和服</font></li>
-                    <li>自宅で洗濯する際には、色落ちなどを確認し<br>(色落ちする洋服は洗濯することができません)、<br>自己責任で行ってください</li>
-                    <li>洗濯表示に注意事項が記載されている場合は、<br>それに従ってください</li>
-                </ol>
-            </details>
+{% block link%}
+    <title>User</title>
+    <link rel="stylesheet" href="{% static 'css/User.css' %}">
+    <!-- <script src="{% static 'js/TimeLine.js' %}"></script> -->
+{% endblock %}
+{% block content %}
+    <div class="content">    
+        <div class="user">
+            <img class="user-pic" src="" alt="">  
+            <span class="user-ID">ID:{{user}}</span>
+            <a href="#"><button class="edit-button">ユーザー情報を編集</button></a>
         </div>
-        {% endblock %}
+        <br>
+        <p><a href='{% url "logout" %}'>ログアウト</a></p>
+        <hr>
+        <div class="detail">
+            <div class="sum">服の総数：</div>
+            <div class="date">登録日：</div>
+        </div>
+        <details class="info">
+            <summary>注意事項</summary>
+            <ol>
+                <li>洋服に洗濯タグ(洗濯表示)がなければ<br>このサイトは使用できません</li><br>
+                <li>たんす機能はログインしていなければ<br>使用することはできません</li><br>
+                <li>以下の素材が含まれている洋服は<br>自宅で洗濯することはできません<br>
+                <br>
+                <font color="red">絹、レーヨン、キュプラ、<br>アセテート、皮革、毛皮用品</font></li><br>
+                <li>以下の洋服はクリーニング店に<br>相談して下さい<br>
+                <br>
+                <font color="red">スーツ(ウォッシャブルを除く)、<br>ジャケット、コート、ネクタイ、和服</font></li><br>
+                <li>自宅で洗濯する際には、色落ちなどを確認し<br>(色落ちする洋服は洗濯することができません)、自己責任で行ってください</li><br>
+                <li>洗濯表示に注意事項が記載されている場合は、<br>それに従ってください</li><br>
+            </ol>
+        </details>
+        <details class="terms">
+            <summary>利用規約</summary>
+            <ol>
+                <li>洋服に洗濯タグ(洗濯表示)がなければ<br>このサイトは使用できません</li>
+                <li>たんす機能はログインしていなければ<br>使用することはできません</li>
+                <li>以下の素材が含まれている洋服は<br>自宅で洗濯することはできません<br>
+                <br>
+                <font color="red">絹、レーヨン、キュプラ、<br>アセテート、皮革、毛皮用品</font></li>
+                <li>以下の洋服はクリーニング店に<br>相談して下さい<br>
+                <br>
+                <font color="red">スーツ(ウォッシャブルを除く)、<br>ジャケット、コート、ネクタイ、和服</font></li>
+                <li>自宅で洗濯する際には、色落ちなどを確認し<br>(色落ちする洋服は洗濯することができません)、<br>自己責任で行ってください</li>
+                <li>洗濯表示に注意事項が記載されている場合は、<br>それに従ってください</li>
+            </ol>
+        </details>
+    </div>
+{% endblock %}

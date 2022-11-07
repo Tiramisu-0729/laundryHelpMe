@@ -1,40 +1,57 @@
 {% extends '../layout.html' %}
 {% load static %}<!-- 必須 -->
-    {% block content %}
-        <div class="content">
-            <div class="upload">
-                <form action="{% url 'helpapp:judge' %}" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <label for="id_UploadImg"><img src="{% static "pictures/img.png"%}" alt="" id="home_img"></label>
-                    {{ form.as_p }}
-                    <input type="submit" class="submit" value="アップロード">
-                </form>
-            </div>
+{% block link%}
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'css/Home.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="content">
+        <div class="upload">
+            <form action="{% url 'helpapp:judge' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="id_UploadImg"><img src="{% static "pictures/img.png"%}" alt="" id="home_img"></label>
+                {{ form.as_p }}
+                <input type="submit" class="submit" value="アップロード">
+            </form>
         </div>
-    {% endblock %}
-{% block extrajs %}
-    <script>
-        // 画像の変更
-        $(document).on('click', '#home_img', function() {
-            $('#id_UploadImg').click();
-        });
+    </div>
 
-        // 画像のプレビュー
-        $(document).on('change', ':file', function() {
-            var input = $(this),
-            numFiles = input.get(0).files ? input.get(0).files.length : 1,
-            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
-            input.parent().parent().next(':text').val(label);
-
-            var files = !!this.files ? this.files : [];
-            if (!files.length || !window.FileReader) return; 
-            if (/^image/.test( files[0].type)){
-                var reader = new FileReader();
-                reader.readAsDataURL(files[0]);
-                reader.onloadend = function(){
-                    $("#home_img").attr('src', this.result);
+    <!-- 画像のプレビュー -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('#id_UploadImg').change(function(){
+                //画像取得
+                const img = $('#id_UploadImg').prop('files')[0];
+                home_img.setAttribute('src', "/static/pictures/img.png");
+                const type = img.type;
+                
+                //画像かどうかチェック
+                if( !type.match(/^image/) ){
+                    alert('画像を選択してください');
+                    $(this).val('');
+                    return false;
                 }
-            }
-        });
-    </script>
+        
+                //FileReaderオブジェクトのインスタンス化
+                let reader = new FileReader();
+        
+                //画像の読み込み
+                reader.readAsDataURL(img);
+        
+                //読み込み失敗時
+                reader.onerror = function(){
+                    alert('ファイル読み取りに失敗しました');
+                    $(this).val('');
+                    return false;
+                }
+        
+                //画像を表示
+                reader.onload = function() {
+                    home_img.setAttribute('src', reader.result);
+                }
+        
+            });
+        })
+        </script>
 {% endblock %}

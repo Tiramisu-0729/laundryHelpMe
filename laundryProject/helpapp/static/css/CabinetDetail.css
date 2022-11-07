@@ -1,22 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+/* header */
 body{
-    background-color: #EFEFEF;
+    background-color: #FDFDFD;
     margin: 0;
     padding: 0;
+}
+.container{
     width: 100%;
     height: 100%;
 }
 .header{
-    background-color: #F2FDFF;
+    background-color: #97ECFC;
     width: 100%;
-    float: left;
+    height: 80px;
+    text-align: center;
 }
-.headline{
-    font-size: 32px;
+.header p{
+    padding-top: 20px;
+    font-size: 45px;
+    margin: 0;
     font-weight: bold;
-    height: 50px;
-    margin-top: 8%;
-    margin-left: 3%;
+    font-family: 'Caveat', cursive;
+    text-shadow:1px 1px 0 #FFF, -1px -1px 0 #FFF,
+              -1px 1px 0 #FFF, 1px -1px 0 #FFF,
+              0px 1px 0 #FFF,  0-1px 0 #FFF,
+              -1px 0 0 #FFF, 1px 0 0 #FFF;
 }
+
+/* footer */
+.footer{
+    height: 60px;
+    width: 100%;
+    border-top:2px solid gray;
+    position: fixed;
+    bottom: 0;
+    flex-direction: row;
+    justify-content: space-around;
+    background-color: #FFFFFF;
+}
+.footer ul{
+    padding: 0;
+    margin: auto ;
+    display: flex;
+}
+.footer li{
+    margin-top: 1.5%;
+    justify-content: center;
+    text-align: center;
+    list-style: none;
+    width: 100%;
+}
+.footer img{
+    width: 50px;
+    height: 50px;
+}
+
+
+/*cabinet_detail*/
 .backButton{
     margin-top: 2%;
     margin-left: 2%;
@@ -27,13 +67,16 @@ body{
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
-    float: left;
+    clear: both;
 }
 .laundryTagImg{
     width: 220px;
     height: 220px;
-    margin-top: 2%;
-    margin-left: 4%;
+    display: block;
+    margin: auto;
+    border-radius: 5px;
+    object-fit: cover;
+    
 }
 .belt{
     background-color: #F2FDFF;
@@ -94,42 +137,6 @@ body{
     background-color: #4BFF5D;
     margin-bottom: 90px;
 }
-.footer{
-    height: 60px;
-    width: 100%;
-    border-top:2px solid gray;
-    position: fixed;
-    bottom: 0;
-    flex-direction: row;
-    justify-content: space-around;
-    background-color: #FFFFFF;
+.tag {
+    text-align: center;
 }
-.footer ul{
-    padding: 0;
-    margin: auto ;
-    display: flex;
-}
-.footer li{
-    margin-top: 1%;
-    justify-content: center;
-    align-items: center;
-    list-style: none;
-    width: 100%;
-    margin-left: 4%;  
-}
-.footer-picture{
-    width: 50px;
-    height: 50px;
-}
-.footer-tips{
-    margin-left: 5%; 
-    margin-top: 6%;
-    width: 40px;
-    height: 40px;
-} 
-.footer-cabinet{
-    margin-left: 5%; 
-    margin-top: 6%;
-    width: 38px;
-    height: 38px;
-} 

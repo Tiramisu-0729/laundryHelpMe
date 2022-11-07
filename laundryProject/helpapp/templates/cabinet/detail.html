@@ -1,24 +1,29 @@
 {% extends '../layout.html' %}
 {% load static %}<!-- 必須 -->
-    {% block content %}
-    <div><button type="button" onclick="history.back()" class="backButton">戻る</button></div>
-    <div><img src="{{ cabinet.image.url }}" class="laundryTagImg"></div>
-    <div class="belt">
-        選択された洗濯表示
+{% block link%}
+    <title>Cabinet</title>
+    <link rel="stylesheet" href="{% static 'css/CabinetDetail.css' %}">
+    <!-- <script src="{% static 'js/TimeLine.js' %}"></script> -->
+{% endblock %}
+{% block content %}
+<div><button type="button" onclick="history.back()" class="backButton">戻る</button></div>
+<div><img src="{{ cabinet.image.url }}" class="laundryTagImg"></div>
+<div class="belt">
+    選択された洗濯表示
 
-    </div>
-    <div class="tag">
-        <div class="L"></div>
-        <div class="B"></div>
-        <div class="N"></div>
-        <div class="I"></div>
-        <div class="T"></div>
-    </div>
-    <div class="tag">
-        <div class="D"></div>
-        <div class="W"></div>
-    </div>
-    <div class="belt">
-        {{cabinet.memo}}
-    </div>
-    {% endblock %}
+</div>
+<div class="tag">
+    <div class="L"></div>
+    <div class="B"></div>
+    <div class="N"></div>
+    <div class="I"></div>
+    <div class="T"></div>
+</div>
+<div class="tag">
+    <div class="D"></div>
+    <div class="W"></div>
+</div>
+<div class="belt">
+    {{cabinet.memo}}
+</div>
+{% endblock %}

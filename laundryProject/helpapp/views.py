@@ -69,7 +69,8 @@ def cabinet_add(request):
             cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
             cabinet.save()
             context = {
-                'message': 'Success',
+                'message': 'Cabinet',
+                'i':1,
             }
         return render(request, 'cabinet/index.html', context)
     else:
