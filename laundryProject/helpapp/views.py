@@ -100,7 +100,7 @@ def timeline(request):
     tag_list = ['LA','B3', 'T2', 'N6', 'D3', 'W4']
 
     context = {
-        'tag': tag_list,
+        'tags': tag_list,
         'message': 'TimeLine',
     }
     return render(request, 'timeline/index.html', context)
