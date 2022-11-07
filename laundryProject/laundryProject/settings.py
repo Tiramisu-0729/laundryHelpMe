@@ -137,3 +137,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'upload_img/')
 
 MEDIA_URL = 'upload_img/'
+
+
+
+# セッションの有効期限（秒）
+
+SESSION_COOKIE_AGE = 604800 #一週間
