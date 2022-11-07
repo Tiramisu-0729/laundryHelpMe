@@ -1,11 +1,8 @@
 from distutils.command.upload import upload
 import os
 from unicodedata import category
-<<<<<<< Updated upstream
 
 from django.test import tag
-=======
->>>>>>> Stashed changes
 from unittest import result
 from .models import Cabinet, Categories
 from django.shortcuts import redirect, render, get_object_or_404
