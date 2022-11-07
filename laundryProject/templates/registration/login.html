@@ -23,15 +23,21 @@
             <p class='error-msg'>Please login to see this page.</p>
         {% endif %}
     {% endif %}
-    <form action='{% url "login" %}' method='post'>
-        {% csrf_token %}
-        <input type='hidden' name='next' value='{{ next }}'/>
-        {{ form.as_p }}
-        <a href='{% url "accounts:signup" %}'></a>
-            <button type="button" class="add">新規登録</button>
-        </a>
-        <button type='submit' class="submit">ログイン</button>
-    </form>
+    <div class="text">
+        <p>ID</p><br>
+        <p class="ps">PS</p>
+    </div>
+    <div class="form">
+        <form action='{% url "login" %}' method='post'>
+            {% csrf_token %}
+            <input type='hidden' name='next' value='{{ next }}'/>
+            {{ form.as_p }}
+            <a href='{% url "accounts:signup" %}'></a>
+                <button type="button" class="add">新規登録</button>
+            </a>
+            <button type='submit' class="submit">ログイン</button>
+        </form>
+    </div>
 </section>
 </body>
 </html>
