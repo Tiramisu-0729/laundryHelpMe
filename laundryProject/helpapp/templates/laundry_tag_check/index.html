@@ -7,143 +7,96 @@
         変更が必要な場合はマークをタップしてください
     </div>
     <form action="{% url 'helpapp:judge_result' %}" method="">
-        <button class="button">
-            <img src="/pictures/L1.png" alt="" class="L">
-        </button>
-        <button class="button">
-            <img src="/pictures/L2.png" alt="" class="L">
-        </button>
-        <button class="button">
-            <img src="/pictures/L3.png" alt="" class="L">
-        </button>
-        <button class="button">
-            <img src="/pictures/L4.png" alt="" class="L">
-        </button>
-        <button class="button">
-            <img src="/pictures/L5.png" alt="" class="L">
-        </button>
-        <br>
-        <button class="button">
-            <img src="/pictures/L6.png" alt="" class="L">
-        </button>
-        <button class="button">
-            <img src="/pictures/L7.png" alt="" class="L">
-        </button>
-        <button class="button">
-            <img src="/pictures/L8.png" alt="" class="L">
-        </button>
-        <button class="button">
-            <img src="/pictures/L9.png" alt="" class="L">
-        </button>
-        <button class="button">
-            <img src="/pictures/LA.png" alt="" class="L">
-        </button>
-        <br><button class="button">
-            <img src="/pictures/LB.png" alt="" class="L">
-        </button>
-        <button class="button">
-            <img src="/pictures/LC.png" alt="" class="L">
-        </button>
-        <button class="button">
-            <img src="/pictures/LD.png" alt="" class="L">
-        </button>
-        <button class="button">
-            <img src="/pictures/LE.png" alt="" class="L">
-        </button>
-        <br>
+        <div class="selection-group">
+            {% for tag in Laundry %}
+            <input id={{tag}} type="radio" name="Laundry" value={{tag}}>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                <img class="radio" src="{% static img%}">
+            </label>
+            {% endwith %}
+            {% endfor %}
+        </div>
+
         <hr size="5" color="F2FDFF">
-        </button>
-        <button class="button">
-            <img src="/pictures/B1.png" alt="" class="B">
-        </button>
-        <button class="button">
-            <img src="/pictures/B2.png" alt="" class="B">
-        </button>
-        <button class="button">
-            <img src="/pictures/B3.png" alt="" class="B">
-        </button>
-        <br>
+
+        <div class="selection-group">
+            {% for tag in Bleach %}
+            <input id={{tag}} type="radio" name="Bleach" value={{tag}}>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                <img class="radio" src="{% static img%}">
+            </label>
+            {% endwith %}
+            {% endfor %}
+        </div>
+
         <hr size="5" color="F2FDFF">
-        <button class="button">
-            <img src="/pictures/N1.png" alt="" class="N">
-        </button>
-        <button class="button">
-            <img src="/pictures/N6.png" alt="" class="N">
-        </button>
-        <button class="button">
-            <img src="/pictures/N2.png" alt="" class="N">
-        </button>
-        <button class="button">
-            <img src="/pictures/N5.png" alt="" class="N">
-        </button>
-        <button class="button">
-            <img src="/pictures/N3.png" alt="" class="L">
-        </button>
-        <br><button class="button">
-            <img src="/pictures/N7.png" alt="" class="N">
-        </button>
-        <button class="button">
-            <img src="/pictures/N4.png" alt="" class="N">
-        </button>
-        <button class="button">
-            <img src="/pictures/N8.png" alt="" class="N">
-        </button>
-        <br>
+
+        <div class="selection-group">
+            {% for tag in Nature %}
+            <input id={{tag}} type="radio" name="Nature" value={{tag}}>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                <img class="radio" src="{% static img%}">
+            </label>
+            {% endwith %}
+            {% endfor %}
+        </div>
+
         <hr size="5" color="F2FDFF">
-        <button class="button">
-            <img src="/pictures/I1.png" alt="" class="I">
-        </button>
-        <button class="button">
-            <img src="/pictures/I2.png" alt="" class="I">
-        </button>
-        <button class="button">
-            <img src="/pictures/I3.png" alt="" class="I">
-        </button>
-        <button class="button">
-            <img src="/pictures/I4.png" alt="" class="I">
-        </button>
-        <br>
+
+        <div class="selection-group">
+            {% for tag in Iron %}
+            <input id={{tag}} type="radio" name="Iron" value={{tag}}>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                <img class="radio" src="{% static img%}">
+            </label>
+            {% endwith %}
+            {% endfor %}
+        </div>
+
         <hr size="5" color="F2FDFF">
-        <button class="button">
-            <img src="/pictures/T1.png" alt="" class="T">
-        </button>
-        <button class="button">
-            <img src="/pictures/T2.png" alt="" class="T">
-        </button>
-        <button class="button">
-            <img src="/pictures/T3.png" alt="" class="T">
-        </button>
-        <br>
+
+        <div class="selection-group">
+            {% for tag in Tumble %}
+            <input id={{tag}} type="radio" name="Tumble" value={{tag}}>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                <img class="radio" src="{% static img%}">
+            </label>
+            {% endwith %}
+            {% endfor %}
+        </div>
+
         <hr size="5" color="F2FDFF">
-        <button class="button">
-            <img src="/pictures/D1.png" alt="" class="D">
-        </button>
-        <button class="button">
-            <img src="/pictures/D2.png" alt="" class="D">
-        </button>
-        <button class="button">
-            <img src="/pictures/D3.png" alt="" class="D">
-        </button>
-        <button class="button">
-            <img src="/pictures/D4.png" alt="" class="D">
-        </button>
-        <button class="button">
-            <img src="/pictures/D5.png" alt="" class="D">
-        </button>
-        <br>
+
+        <div class="selection-group">
+            {% for tag in Dry %}
+            <input id={{tag}} type="radio" name="Dry" value={{tag}}>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                <img class="radio" src="{% static img%}">
+            </label>
+            {% endwith %}
+            {% endfor %}
+        </div>
+
         <hr size="5" color="F2FDFF">
-        <button class="button">
-            <img src="/pictures/W1.png" alt="" class="W">
-        </button>
-        <button class="button">
-            <img src="/pictures/W2.png" alt="" class="W">
-        </button>
-        <button class="button">
-            <img src="/pictures/W3.png" alt="" class="W">
-        </button>
-        <button class="button">
-            <img src="/pictures/W4.png" alt="" class="W">
-        </button>
-        <button type="submit" class="submit">OK</button>
+
+        <div class="selection-group">
+            {% for tag in Wet %}
+            <input id={{tag}} type="radio" name="Wet" value={{tag}}>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                <img class="radio" src="{% static img%}">
+            </label>
+            {% endwith %}
+            {% endfor %}
+        </div>
+
+        
+        <input type="submit" value="OK" class="submit"></input>
     </form>
     {% endblock %}

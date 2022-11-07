@@ -7,4 +7,7 @@ class JudgeForm(forms.Form):
 class CabinetForm(forms.ModelForm):
     class Meta:
         model = Cabinet
-        fields = ['image', 'category', 'memo']
+        fields = ['image','name' ,'category', 'memo']
+        widgets = {
+            'memo': forms.Textarea
+        }

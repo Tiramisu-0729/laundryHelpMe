@@ -5,10 +5,36 @@
             <div class="upload">
                 <form action="{% url 'helpapp:judge' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <label for="id_UploadImg"><img src="{% static "pictures/img.png"%}" alt="" class="home_img"></label>
+                    <label for="id_UploadImg"><img src="{% static "pictures/img.png"%}" alt="" id="home_img"></label>
                     {{ form.as_p }}
                     <input type="submit" class="submit" value="アップロード">
                 </form>
             </div>
         </div>
     {% endblock %}
+{% block extrajs %}
+    <script>
+        // 画像の変更
+        $(document).on('click', '#home_img', function() {
+            $('#id_UploadImg').click();
+        });
+
+        // 画像のプレビュー
+        $(document).on('change', ':file', function() {
+            var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+            input.parent().parent().next(':text').val(label);
+
+            var files = !!this.files ? this.files : [];
+            if (!files.length || !window.FileReader) return; 
+            if (/^image/.test( files[0].type)){
+                var reader = new FileReader();
+                reader.readAsDataURL(files[0]);
+                reader.onloadend = function(){
+                    $("#home_img").attr('src', this.result);
+                }
+            }
+        });
+    </script>
+{% endblock %}

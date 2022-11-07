@@ -17,4 +17,5 @@ urlpatterns = [
     path("cabinet_form",views.cabinet_form, name="cabinet_form"),
     path("cabinet_add",views.cabinet_add, name="cabinet_add"),
     path("cabinet_detail/<int:pk>/",views.cabinet_detail, name="cabinet_detail"),
+    path("laundry_tag_check",views.laundry_tag_check, name="laundry_tag_check"),
 ]
