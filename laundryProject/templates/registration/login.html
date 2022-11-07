@@ -32,7 +32,7 @@
             {% csrf_token %}
             <input type='hidden' name='next' value='{{ next }}'/>
             {{ form.as_p }}
-            <a href='{% url "accounts:signup" %}'></a>
+            <a href='{% url "accounts:signup" %}'>
                 <button type="button" class="add">新規登録</button>
             </a>
             <button type='submit' class="submit">ログイン</button>
