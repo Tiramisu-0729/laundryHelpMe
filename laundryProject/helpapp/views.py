@@ -1,4 +1,5 @@
 from distutils.command.upload import upload
+import json
 import os
 import pandas as pd
 from django.urls import reverse
@@ -153,7 +154,7 @@ def laundry_tag_check(request):
             'Tumble' : ['T1', 'T2', 'T3'],
             'Dry' : ['D1', 'D2', 'D3', 'D4', 'D5'],
             'Wet' : ['W1', 'W2', 'W3', 'W4' ],
-            'results': results
+            'results': json.dumps(results),
         }
     return render(request, 'laundry_tag_check/index.html', context)
     
