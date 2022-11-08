@@ -102,4 +102,13 @@
     </div>
     <input type="submit" value="OK" class="submit"></input>
 </form>
+<script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+    const results = eval({{ results|safe }});
+    for (const tag of results) {
+        console.log(tag);
+        var element = document.getElementById(tag) ;
+        element.checked = true ;
+    }
+</script>
 {% endblock %}
