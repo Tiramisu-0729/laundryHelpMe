@@ -1,10 +1,8 @@
 from distutils.command.upload import upload
 import os
+import pandas as pd
 from django.urls import reverse
 from urllib.parse import urlencode
-from unicodedata import category
-from django.test import tag
-from unittest import result
 from .models import Cabinet, Categories
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import CabinetForm, JudgeForm
@@ -64,8 +62,10 @@ def cabinet_add(request):
             cabinet = Cabinet()
             print(request)
             cabinet.author = request.user
+            cabinet.name = request.POST['name']
+            cabinet.memo = request.POST['memo']
             cabinet.category = Categories(request.POST['category'])#category型じゃないと怒られた
-            cabinet.laundry_tag = "aaaaaaaaa"#判定結果
+            cabinet.laundry_tag = request.POST['laundry_tag']#判定結果
             cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
             cabinet.save()
             context = {
@@ -99,11 +99,21 @@ def user(request):
     return render(request, 'user/index.html', context)
 
 def timeline(request):
-    tag_list = ['LA','B3', 'T2', 'N6', 'D3', 'W4']
-
+    user = request.user
+    cabinets = Cabinet.objects.filter(author=user).order_by('-id')
+    cnt = 0
+    TimeLineCab = []
+    tag_list = []
+    for cab in cabinets :
+        if 10 < cnt:
+            break
+        cab.laundry_tag = cab.laundry_tag.split(',')
+        cnt += 1
+        TimeLineCab.append(cab)
     context = {
-        'tags': tag_list,
+        'tag_list': tag_list,
         'message': 'TimeLine',
+        'cabinets' : TimeLineCab,
     }
     return render(request, 'timeline/index.html', context)
 

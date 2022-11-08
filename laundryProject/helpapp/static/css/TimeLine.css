@@ -1,0 +1,41 @@
+/* timeline */
+.timeline {
+    height: 100%;
+    width: 100%;
+}
+
+.timeline h2 {
+    margin: 3%;
+}
+
+#mainpic {
+    width: 25%;
+    height: 25%;
+    float: left;
+    margin-right: 5%;
+}
+
+.box {
+    height: 20%;
+    border: #111 solid 1px;
+    border-radius: 5px;
+    margin: 2%;
+    padding: 5%;
+}
+
+.box img{
+    width: 16%;
+    height: 16%;
+    padding: 2%;
+}
+
+.tag {
+    /* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
+    display: flex;
+
+    /* 横並びに表示する */
+    flex-direction: row;
+
+    /* 画面幅に収まらない場合は折り返す */
+    flex-wrap: wrap;
+}
