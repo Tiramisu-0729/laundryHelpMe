@@ -1,7 +1,8 @@
 from distutils.command.upload import upload
 import os
+from django.urls import reverse
+from urllib.parse import urlencode
 from unicodedata import category
-
 from django.test import tag
 from unittest import result
 from .models import Cabinet, Categories
@@ -68,7 +69,8 @@ def cabinet_add(request):
             cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
             cabinet.save()
             context = {
-                'message': 'Success',
+                'message': 'Cabinet',
+                'i':1,
             }
         return render(request, 'cabinet/index.html', context)
     else:
@@ -107,32 +109,46 @@ def timeline(request):
 
 def judge(request):
     if request.method == "POST":
-        image = request.FILES['UploadImg']#保存先はupload_img＞upload_img>imgのなか
+        image = request.FILES['UploadImg']#保存先はupload_imgのなか　いったん保存
         fs = FileSystemStorage()
         file_data = fs.save(image.name, image)
         file_url = fs.url(file_data)
-        print(file_url)
         #AIで画像判定
-        #text 解析
+        #判定結果 解析
         result = "L8,B3,T3,N1,I4"#ここに結果を入れる
-        tag_list = result.split(',') 
-        context = {
-            'file_url' : file_url,
-            'message': 'result',
-            'tag_list': tag_list
-        }
-        return render(request, 'laundry_tag_check/index.html', context)
+        result = result.split(',') 
+        redirect_url = reverse('helpapp:laundry_tag_check')
+        parameters = urlencode({'file_url': file_url, 'result' : result})
+        url = f'{redirect_url}?{parameters}'
+        return redirect(url)
     else:
         user = request.user
         context = {
-            'message': 'Error',
+            'message': 'judge',
             'user': user,
             'form': JudgeForm(),
         }
     return render(request, 'home/index.html', context)
+
+def laundry_tag_check(request):
+    file_url = request.GET.get('file_url') # param1の値を取得
+    results = request.GET.get('result') # param2の値を取得
+    context = {
+            'file_url' : file_url,
+            'message': 'result',
+            'Laundry': ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'LA', 'LB', 'LC', 'L1', 'LD', 'LE'],
+            'Bleach' : ['B1', 'B2', 'B3'],
+            'Nature' : ['N1', 'N2', 'N3', 'N4', 'N5', 'N6', 'N7', 'N8'],
+            'Iron' : ['I1', 'I2', 'I3', 'I4'],
+            'Tumble' : ['T1', 'T2', 'T3'],
+            'Dry' : ['D1', 'D2', 'D3', 'D4', 'D5'],
+            'Wet' : ['W1', 'W2', 'W3', 'W4' ],
+            'results': results
+        }
+    return render(request, 'laundry_tag_check/index.html', context)
     
 def judge_result(request):
-     #継承するfile_url = judge.file_url
+    #継承するfile_url = judge.file_url
     #画像消す
 
     return render(request, 'home/index.html')

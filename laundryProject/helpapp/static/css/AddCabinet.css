@@ -54,37 +54,23 @@ body{
     width: 50px;
     height: 50px;
 }
-/* washing_machine */
-.quantity{
-    width: 35px;
-    height: 35px;
-    margin-right: 3%;
-    margin-top: 3%;
-    background-color: #FF2121ed;
-    border-radius: 50%;
-    text-align: center;
-    float: right;
+/* AddCabinet */
+.backButton{
+    margin-top: 2%;
+    margin-left: 2%;
+    border-radius: 5px;
     font-size: 20px;
+    padding: 2px 10px;
+    color: #6D6D6D;
     font-weight: bold;
+    border: none;
+    background-color: #4BC9FF;
+    clear: both;
 }
-.quantity p{
-    margin-top: 3px;
-    color: #FFFFFF;
-}
-
-.item{
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    border: solid 1px black;
-    margin: 3%;
-    float: left;
-}s
-.add{
-    width: 80%;
+.submit{
+    width: 50%;
     border-radius: 5px;
     margin-top: 10%;
-    margin-left: 10%;
     padding-top: 2%;
     padding-bottom: 2%;
     font-size: 32px;
@@ -92,47 +78,9 @@ body{
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
-    margin-bottom: 90px;
+    margin-bottom: 70px;
+}
 
-}
-.judge{
-    width: 80%;
-    border-radius: 5px;
-    margin-top: 8%;
-    margin-left: 10%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    font-size: 32px;
-    color: #6D6D6D;
-    font-weight: bold;
-    border: none;
-    background-color: #fffa61;
-    margin-bottom: 90px;
-}
-.result{
-    float: left;
-    width: 100%;
-    height: 5%;
-    background-color: #F2FDFF;
-    margin-top: 4%;
-    margin-bottom: 4%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    font-size: 32px;
-    font-weight: bold;
-}
-.finish{
-    clear: both;
-    width: 80%;
-    border-radius: 5px;
-    margin-top: 4%;
-    margin-left: 10%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    font-size: 32px;
-    color: #6D6D6D;
-    font-weight: bold;
-    border: none;
-    background-color: #4BC9FF;
-    margin-bottom: 90px;
+.OK{
+    text-align: center;
 }

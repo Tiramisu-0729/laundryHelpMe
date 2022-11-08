@@ -1,5 +1,10 @@
 {% extends '../layout.html' %}
 {% load static %}<!-- 必須 -->
+{% block link%}
+    <title>WashingMachine</title>
+    <link rel="stylesheet" href="{% static 'css/WashingMachine.css' %}">
+    <!-- <script src="{% static 'js/TimeLine.js' %}"></script> -->
+{% endblock %}
     {% block content %}
             <div class="quantity"><p>2</p></div>
             <div class="content">

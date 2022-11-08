@@ -1,5 +1,10 @@
 {% extends '../layout.html' %}
 {% load static %}<!-- 必須 -->
+{% block link%}
+    <title>Cabinet</title>
+    <link rel="stylesheet" href="{% static 'css/AddCabinet.css' %}">
+    <!-- <script src="{% static 'js/TimeLine.js' %}"></script> -->
+{% endblock %}
     {% block content %}
     <button type="button" onclick="history.back()" class="backButton">戻る</button><br>
     <!-- <table>
@@ -21,7 +26,7 @@
     <form action="{% url 'helpapp:cabinet_add' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ cabinet_form.as_p }}
-        <input type="submit" class="submit" value="確定">
+        <div class="OK"><input type="submit" class="submit" value="確定"></div>
     </form>
     <!-- <form action="?" method="">
         <select name="category" id="categorySelect">

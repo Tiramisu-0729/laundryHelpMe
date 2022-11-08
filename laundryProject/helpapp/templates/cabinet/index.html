@@ -1,17 +1,24 @@
 {% extends '../layout.html' %}
 {% load static %}<!-- 必須 -->
-    {% block content %}
-            <div class="content">
-                {% for cabinet in cabinets %}
-                <div class="item">
-                    <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
-                        <img src="{{ cabinet.image.url }}">
-                    </a>
-                </div>
-                {% endfor %}
-            </div>
-            <a href="{% url 'helpapp:cabinet_form' %}">
-                <button type="button" class="add">追加</button>
+{% block link%}
+    <title>Cabinet</title>
+    <link rel="stylesheet" href="{% static 'css/Cabinet.css' %}">
+    {% if i == "1" %}
+        <script src="{% static 'js/Cabinet.js' %}"></script>
+    {%endif%}
+{% endblock %}
+{% block content %}
+    <div class="content">
+        {% for cabinet in cabinets %}
+        <div class="item">
+            <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
+                <img src="{{ cabinet.image.url }}">
             </a>
-    {% endblock %}
+        </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'helpapp:cabinet_form' %}">
+        <button type="button" class="add">追加</button>
+    </a>
+{% endblock %}
  

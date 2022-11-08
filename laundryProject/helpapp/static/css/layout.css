@@ -44,12 +44,11 @@ body{
     display: flex;
 }
 .footer li{
-    margin-top: 1%;
+    margin-top: 1.5%;
     justify-content: center;
-    align-items: center;
+    text-align: center;
     list-style: none;
     width: 100%;
-    margin-left: 3%;  
 }
 .footer img{
     width: 50px;
@@ -60,16 +59,18 @@ body{
 
 
 .upload{
-    width: 270px;
-    height: 270px;
+    width: 200px;
+    height: 200px;
     margin: 0 auto;
 }
 .upload p{
     display: none;
 }
 
-.home_img{
-    margin-top: 5%;
+#home_img{
+    width: 200px;
+    height: 200px;
+    margin: 5% auto;
 }
 .content{
     width: 100%;
@@ -78,10 +79,9 @@ body{
 
 
 .submit{
-    width: 80%;
+    width: 100%;
     border-radius: 5px;
     margin-top: 10%;
-    margin-left: 10%;
     padding-top: 2%;
     padding-bottom: 2%;
     font-size: 32px;
@@ -287,7 +287,6 @@ body{
     margin: auto;
     border-radius: 5px;
     object-fit: cover;
-    
 }
 .belt{
     background-color: #F2FDFF;
@@ -351,3 +350,24 @@ body{
 .tag {
     text-align: center;
 }
+
+/* laundryTagCheck */
+.radio{
+    background-color: #FFFFFF;
+    width: 60px;
+    height: 60px;
+    margin: 3px;
+    padding: 4px;
+    border: solid 1px #f5f5f5;
+}
+.selection-group input[type="radio"] {
+    display: none;
+  }
+  
+.selection-group input[type="radio"]:checked + label img {
+    background: lightyellow;
+}
+.selection-group{
+    text-align: center;
+}
+    

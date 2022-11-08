@@ -1,15 +1,24 @@
 {% extends '../layout.html' %}
 {% load static %}<!-- 必須 -->
+    {% block link%}
+        <title>TimeLine</title>
+        <link rel="stylesheet" href="{% static 'css/layout.css' %}">
+        <script src="{% static 'js/TimeLine.js' %}"></script>
+    {% endblock %}
+
     {% block content %}
-    <div class="timeline">
-        <h2>最新</h2>
-        {% for tag in tags %}
+        <div class="timeline">
+            <h2>最新</h2>
             <div class="box">
                 <img id="mainpic" src="{% static "pictures/t-shirt.png"%}">
                 <div class="tag">
                     <table>
                         <tr>
-                            <td><img src="{% static "pictures/{{tag}}.png"%}"></td>
+                            <!-- Javascriptで出力する -->
+                            {% for tag in tags %}
+                                <td><img src="{% static "pictures/{{tag}}.png"%}"></td>
+                                
+                            {% endfor %}
                             <td><img src="{% static "pictures/T2.png"%}"></td>
                             <td><img src="{% static "pictures/N6.png"%}"></td>
                             <td><img src="{% static "pictures/I2.png"%}"></td>
@@ -24,8 +33,5 @@
                     </table>
                 </div>
             </div>
-        {% endfor %}
-    </div>
-
-    
+        </div>
     {% endblock %}
