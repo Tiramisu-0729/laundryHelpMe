@@ -6,3 +6,12 @@ h1{
     font-size: 42px;
     font-weight: bold;
 }
+.helptext{
+    display: none;
+}
+ul{
+    display: none;
+}
+label{
+    display: none;
+}
