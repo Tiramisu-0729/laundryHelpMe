@@ -9,16 +9,26 @@
     <div class="content">    
         <div class="user">
             <img class="user-pic" src="" alt="">  
-            <span class="user-ID">ID:{{user}}</span>
+            <span class="user-ID">ID：{{user}}</span>
             <a href="#"><button class="edit-button">ユーザー情報を編集</button></a>
         </div>
-        <br>
-        <p><a href='{% url "logout" %}'>ログアウト</a></p>
+        <p class="logout"><a href='{% url "logout" %}'>ログアウト</a></p>
         <hr>
         <div class="detail">
             <div class="sum">服の総数：</div>
-            <div class="date">登録日：</div>
+            <div class="date">　登録日：</div>
         </div>
+        <div class="belt">
+            洗濯表示
+        </div>
+        <details>
+            <summary>洗濯処理</summary>
+            <table>
+                <tr>
+                    <td><img src="{% static "pictures/img.png"%}"></td>
+                </tr>
+            </table>
+        </details>
         <details class="info">
             <summary>注意事項</summary>
             <ol>
