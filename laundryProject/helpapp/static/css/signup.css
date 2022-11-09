@@ -1,8 +1,16 @@
 body{
     background-color: #FDFDFD;
+    font-size: 18px;
 }
 h1{
     text-align: center;
     font-size: 42px;
     font-weight: bold;
+}
+label, span{
+    /* display: none; */
+}
+input{
+    width: 60%;
+    padding: 5px 5px;
 }
