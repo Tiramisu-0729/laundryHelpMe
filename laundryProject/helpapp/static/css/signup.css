@@ -1,5 +1,6 @@
 body{
     background-color: #FDFDFD;
+    font-size: 18px;
 }
 h1{
     text-align: center;
@@ -14,4 +15,8 @@ ul{
 }
 label{
     display: none;
+}
+input{
+    width: 60%;
+    padding: 5px 5px;
 }
