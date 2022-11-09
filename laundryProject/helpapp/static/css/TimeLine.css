@@ -2,6 +2,7 @@
 .timeline {
     height: 100%;
     width: 100%;
+    margin-bottom: 80px;
 }
 
 .timeline h2 {
@@ -11,13 +12,14 @@
 #mainpic {
     width: 25%;
     height: 25%;
+    object-fit: cover;
     float: left;
     margin-right: 5%;
 }
 
 .box {
     height: 20%;
-    border: #111 solid 1px;
+    border: #87d1e0 solid 2px;
     border-radius: 5px;
     margin: 2%;
     padding: 5%;
@@ -38,4 +40,5 @@
 
     /* 画面幅に収まらない場合は折り返す */
     flex-wrap: wrap;
+    
 }

@@ -106,7 +106,7 @@ def timeline(request):
     TimeLineCab = []
     tag_list = []
     for cab in cabinets :
-        if 10 < cnt:
+        if 9 < cnt:
             break
         cab.laundry_tag = cab.laundry_tag.split(',')
         cnt += 1
