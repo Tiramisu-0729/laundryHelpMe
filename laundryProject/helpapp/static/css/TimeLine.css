@@ -10,11 +10,11 @@
 }
 
 #mainpic {
-    width: 25%;
-    height: 25%;
-    object-fit: cover;
+    width: 23vmin;
+    height: 23vmin;
     float: left;
     margin-right: 5%;
+    padding: 0;
 }
 
 .box {
@@ -40,5 +40,4 @@
 
     /* 画面幅に収まらない場合は折り返す */
     flex-wrap: wrap;
-    
 }

@@ -45,13 +45,16 @@ button{
     font-weight: bold;
     border: none;
 }
-.add{
-    background-color: #4BC9FF;
-}
 .submit{
     margin-top: 8%;
     background-color: #FFF84B;
 }
 .errorlist{
     display: none;
+    background-color: #4BC9FF;
+}
+.link{
+    font-size: 24px;
+    text-align: center;
+    margin-top: 15%;
 }

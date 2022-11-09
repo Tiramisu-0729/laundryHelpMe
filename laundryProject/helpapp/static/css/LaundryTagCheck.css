@@ -62,3 +62,8 @@
     margin-bottom: 20px;
     text-align: center;
 }
+
+hr {
+    border: 5px #94daf8 solid;
+    margin: 5% 3%;
+}

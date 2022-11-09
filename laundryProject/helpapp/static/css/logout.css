@@ -36,10 +36,15 @@ p{
               0px 1px 0 #FFF,  0-1px 0 #FFF,
               -1px 0 0 #FFF, 1px 0 0 #FFF;
 }
+p{
+    text-align: center;
+}
 .text{
-    margin-bottom: 10%;
-    font-size: 18px;
+    margin-top: 10%;
+    margin-bottom: 15%;
+    font-size: 20px;
+    line-height: 2em;
 }
 a{
-    font-size: 18px;
+    font-size: 20px;
 }
