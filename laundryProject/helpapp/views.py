@@ -123,6 +123,7 @@ def judge(request):
         fs = FileSystemStorage()
         file_data = fs.save(image.name, image)
         file_url = fs.url(file_data)
+        request.session['file_url'] = file_url
         #AIで画像判定
         #判定結果 解析
         result = "L8,B3,T3,N1,I4"#ここに結果を入れる
@@ -145,7 +146,7 @@ def laundry_tag_check(request):
     results = request.GET.get('result') # param2の値を取得
     context = {
             'file_url' : file_url,
-            'message': 'result',
+            'message': 'select',
             'Laundry': ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'LA', 'LB', 'LC', 'L1', 'LD', 'LE'],
             'Bleach' : ['B1', 'B2', 'B3'],
             'Nature' : ['N1', 'N2', 'N3', 'N4', 'N5', 'N6', 'N7', 'N8'],
@@ -158,7 +159,22 @@ def laundry_tag_check(request):
     return render(request, 'laundry_tag_check/index.html', context)
     
 def judge_result(request):
-    #継承するfile_url = judge.file_url
-    #画像消す
+    if request.method == "POST":
+        results = []
+        names=['Laundry','Bleach','Nature','Iron','Tumble','Dry','Wet']
+        for name in names:
+            if request.POST.get(name) == None:
+                print("none")
+            else:
+                results.append(request.POST.get(name))
+                print(results)
+        file_url = request.session['file_url']
+        context = {
+            'message': 'result',
+            'file_url' : file_url,
+            'results' : results,
+        }
+    
+    #ディレクトリ削除shutil.rmtree()
 
-    return render(request, 'home/index.html')
+    return render(request, 'laundry_tag_check/result.html', context)

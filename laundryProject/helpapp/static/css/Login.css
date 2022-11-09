@@ -7,12 +7,12 @@ h1{
     font-weight: bold;
 }
 label{
-    display: none;
+    font-size: 24px;
+    font-weight: bold;
 }
 .text{
     float: left;
-    font-size: 24px;
-    font-weight: bold;
+    
     margin-top: -2%;
     margin-left: 2%;
 }
@@ -47,6 +47,10 @@ button{
 }
 .submit{
     margin-top: 8%;
+    background-color: #FFF84B;
+}
+.errorlist{
+    display: none;
     background-color: #4BC9FF;
 }
 .link{
