@@ -1,7 +1,6 @@
 from distutils.command.upload import upload
 import json
 import os
-import pandas as pd
 from django.urls import reverse
 from urllib.parse import urlencode
 from .models import Cabinet, Categories
