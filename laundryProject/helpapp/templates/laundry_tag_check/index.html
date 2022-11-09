@@ -11,7 +11,8 @@
 <div class="belt">
     変更が必要な場合はマークをタップしてください
 </div>
-<form action="{% url 'helpapp:judge_result' %}" method="">
+<form action="{% url 'helpapp:judge_result' %}" method="POST">
+    {% csrf_token %}
     <div class="selection-group">
         {% for tag in Laundry %}
         <input id={{tag}} type="radio" name="Laundry" value={{tag}}>
@@ -102,6 +103,7 @@
     </div>
     <input type="submit" value="OK" class="submit"></input>
 </form>
+
 <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
     const results = eval({{ results|safe }});

@@ -1,5 +1,6 @@
 body{
-  background-color: #EFEFEF;
+  background-color: #FDFDFD;
+  text-align: center;
 }
 .laundryHelpMe{
   margin-top: 20%;
@@ -7,19 +8,17 @@ body{
   font-weight: bold;
 }
 .laundry{
-  margin-left: 10%;
+  margin-left: -10%;
 }
 .helpMe{
-  margin-left: 33%;
+  margin-left: 10%;
 }
 img{
   width: 270px;
   height: 270px;
-  margin-top: 10%;
-  margin-left: 14%;
 }
 button{
-  width: 90%;
+  width: 70%;
   border-radius: 5px;
   margin-top: 5%;
   margin-left: 5%;

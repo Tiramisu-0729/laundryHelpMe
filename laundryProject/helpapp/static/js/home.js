@@ -29,6 +29,6 @@ $(function(){
         reader.onload = function() {
             home_img.setAttribute('src', reader.result);
         }
-
+        
     });
 })
