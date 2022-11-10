@@ -7,18 +7,23 @@
 {% block content %}
 <div><button type="button" onclick="history.back()" class="backButton">戻る</button></div>
 <div><img src="{{file_url}}" class="laundryTagImg"></div>
-<div class="belt">
-    選択された洗濯表示
 
+<div class="result"><p>{{result}}</p></div>
+<div class="details">
+    <details>
+        <summary class="belt">詳細</summary>
+            {% for tag in tags %}
+            <div class="tag">
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                <img class="img" src="{% static img%}">
+                {% endwith %}
+            </div>
+            {% endfor %}
+    </details>
+<hr>
 </div>
-<div class="tag">
-    {% for result in results %}
-        {% with img="/pictures/"|add:result|add:".png" %}
-        <img class="radio" src="{% static img%}">
-    {% endwith %}
-    {% endfor %}
-</div>
-<div class="belt">
-    {{cabinet.memo}}
-</div>
+<a href='{% url "helpapp:home" %}'>
+    <button type="button" class="finish">完了</button>
+</a>
+
 {% endblock %}

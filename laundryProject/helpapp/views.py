@@ -65,7 +65,7 @@ def cabinet_add(request):
             cabinet.name = request.POST['name']
             cabinet.memo = request.POST['memo']
             cabinet.category = Categories(request.POST['category'])#category型じゃないと怒られた
-            cabinet.laundry_tag = request.POST['laundry_tag']#判定結果
+            cabinet.laundry_tag = request.POST['laundry_tag']#判定結果sessionとか
             cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
             cabinet.save()
             context = {
@@ -160,19 +160,25 @@ def laundry_tag_check(request):
     
 def judge_result(request):
     if request.method == "POST":
-        results = []
+        tags = []
         names=['Laundry','Bleach','Nature','Iron','Tumble','Dry','Wet']
         for name in names:
             if request.POST.get(name) == None:
                 print("none")
             else:
-                results.append(request.POST.get(name))
-                print(results)
+                tags.append(request.POST.get(name))
+        if tags[0] == "LE":
+            result = "洗えません"
+        elif tags[0] == "LD":
+            result = "手洗い"
+        else:
+            result ="洗えます"
         file_url = request.session['file_url']
         context = {
             'message': 'result',
+            'result' : result,
             'file_url' : file_url,
-            'results' : results,
+            'tags' : tags,
         }
     
     #ディレクトリ削除shutil.rmtree()
