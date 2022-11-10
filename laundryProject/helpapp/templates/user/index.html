@@ -18,11 +18,11 @@
             <div class="sum">服の総数：</div>
             <div class="date">　登録日：</div>
         </div>
-        <div class="belt">
+        <div class="washingDisplay">
             洗濯表示
         </div>
         <details>
-            <summary>洗濯処理</summary>
+            <summary class="washingProcess">洗濯処理</summary>
             <table>
                 <tr>
                     <td><img src="{% static "pictures/L1.png"%}"></td>
@@ -90,7 +90,7 @@
             </table>
         </details>
         <details>
-            <summary>漂白処理</summary>
+            <summary class="bleachingProcess">漂白処理</summary>
             <table>
                 <tr>
                     <td><img src="{% static "pictures/B1.png"%}"></td>
@@ -109,7 +109,7 @@
             </table>
         </details>
         <details>
-            <summary>タンブル乾燥</summary>
+            <summary class="tumbleDrying">タンブル乾燥</summary>
             <table>
                 <tr>
                     <td><img src="{% static "pictures/T1.png"%}"></td>
@@ -127,157 +127,136 @@
             </table>
         </details>
         <details>
-            <summary>自然乾燥</summary>
+            <summary class="naturalDrying">自然乾燥</summary>
             <table>
                 <tr>
                     <td><img src="{% static "pictures/N1.png"%}"></td>
-                    <td>つり干し乾燥がよい</td>
+                    <td>つり干し乾燥がよい。</td>
                     <td><img src="{% static "pictures/601.png"%}"></td>
                 </tr>
                 <tr>
                     <td><img src="{% static "pictures/N6.png"%}"></td>
-                    <td>日陰でのつり干し乾燥がよい</td>
+                    <td>日陰でのつり干し乾燥がよい。</td>
                     <td><img src="{% static "pictures/602.png"%}"></td>
                 </tr>
                 <tr>
                     <td><img src="{% static "pictures/N2.png"%}"></td>
-                    <td>ぬれつり干し乾燥がよい</td>
+                    <td>ぬれつり干し乾燥がよい。</td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/N7.png"%}"></td>
+                    <td>日陰でのぬれつり干し乾燥がよい。</td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/N3.png"%}"></td>
+                    <td>平干し乾燥がよい。</td>
+                    <td><img src="{% static "pictures/603.png"%}"></td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/N7.png"%}"></td>
+                    <td>日陰での平干し乾燥がよい。</td>
+                    <td><img src="{% static "pictures/604.png"%}"></td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/N4.png"%}"></td>
+                    <td>ぬれ平干し乾燥がよい。</td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/N8.png"%}"></td>
+                    <td>日陰でのぬれ平干し乾燥がよい。</td>
                 </tr>
             </table>
         </details>
         <details>
-            <summary>アイロン仕上げ</summary>
+            <summary class="ironFinish">アイロン仕上げ</summary>
             <table>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/I1.png"%}"></td>
+                    <td>底面温度200°Cを限度として<br>アイロン仕上げ処理ができる。</td>
+                    <td><img src="{% static "pictures/301.png"%}"></td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/I2.png"%}"></td>
+                    <td>底面温度150°Cを限度として<br>アイロン仕上げ処理ができる。</td>
+                    <td><img src="{% static "pictures/302.png"%}"></td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/I3.png"%}"></td>
+                    <td>底面温度110°Cを限度として<br>アイロン仕上げ処理ができる。</td>
+                    <td><img src="{% static "pictures/303.png"%}"></td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/I4.png"%}"></td>
+                    <td>アイロン仕上げ処理はできない。</td>
+                    <td><img src="{% static "pictures/304.png"%}"></td>
                 </tr>
             </table>
         </details>
         <details>
-            <summary>ドライクリーニング</summary>
+            <summary class="dryCleaning">ドライクリーニング</summary>
             <table>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/D1.png"%}"></td>
+                    <td>パークロロエチレン及び記号Fの欄に規定の溶剤での通常のドライクリーニング処理ができる。</td>
+                    <td><img src="{% static "pictures/401.png"%}"></td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/D2.png"%}"></td>
+                    <td>パークロロエチレン及び記号Fの欄に規定の溶剤での弱いドライクリーニング処理ができる。</td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/D3.png"%}"></td>
+                    <td>石油系溶剤(蒸留温度150°C～210°C、引火点38°C～)での通常のドライクリーニング処理ができる。</td>
+                    <td><img src="{% static "pictures/402.png"%}"></td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/D4.png"%}"></td>
+                    <td>石油系溶剤(蒸留温度150°C～210°C、引火点38°C～)での弱いドライクリーニング処理ができる。</td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/D5.png"%}"></td>
+                    <td>ドライクリーニング処理ができない。</td>
+                    <td><img src="{% static "pictures/403.png"%}"></td>
                 </tr>
             </table>
+            <p class="attention">※<font color="red">ドライクリーニング処理はタンブル乾燥を含む。</font></p>
         </details>
         <details>
-            <summary>ウエットクリーニング</summary>
+            <summary class="wetCleaning">ウエットクリーニング</summary>
             <table>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/W1.png"%}"></td>
+                    <td>通常のウエットクリーニング処理ができる。</td>
+                    <td><img src="{% static "pictures/white.png"%}"></td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/W2.png"%}"></td>
+                    <td>弱いウエットクリーニング処理ができる。</td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/W3.png"%}"></td>
+                    <td>非常に弱いウエットクリーニング処理ができる。</td>
                 </tr>
                 <tr>
-                    <td><img src="{% static "pictures/img.png"%}"></td>
-                    <td></td>
-                    <td></td>
+                    <td><img src="{% static "pictures/W4.png"%}"></td>
+                    <td>ウエットクリーニング処理はできない。</td>
                 </tr>
             </table>
         </details>
-        <details class="info">
-            <summary>注意事項</summary>
+        <details class="down">
+            <summary class="info">注意事項</summary>
             <ol>
                 <li>洋服に洗濯タグ(洗濯表示)がなければ<br>このサイトは使用できません</li><br>
-                <li>たんす機能はログインしていなければ<br>使用することはできません</li><br>
-                <li>以下の素材が含まれている洋服は<br>自宅で洗濯することはできません<br>
+                <li>たんす機能はログインしていなければ<br>使用できません</li><br>
+                <li>洗濯タグは正しい向きで撮影してください</li><br>
+                <li>以下の素材が含まれている洋服は<br>自宅では洗濯できません<br>
                 <br>
                 <font color="red">絹、レーヨン、キュプラ、<br>アセテート、皮革、毛皮用品</font></li><br>
-                <li>以下の洋服はクリーニング店に<br>相談して下さい<br>
+                <li>以下の洋服はクリーニング店に相談して下さい<br>
                 <br>
                 <font color="red">スーツ(ウォッシャブルを除く)、<br>ジャケット、コート、ネクタイ、和服</font></li><br>
-                <li>自宅で洗濯する際には、色落ちなどを確認し<br>(色落ちする洋服は洗濯することができません)、自己責任で行ってください</li><br>
+                <li>自宅で洗濯する際には、色落ちなどを確認し<br>(色落ちする洋服は洗濯できません)、<br>自己責任で行ってください</li><br>
                 <li>洗濯表示に注意事項が記載されている場合は、<br>それに従ってください</li><br>
-            </ol>
-        </details>
-        <details class="terms">
-            <summary>利用規約</summary>
-            <ol>
-                <li>洋服に洗濯タグ(洗濯表示)がなければ<br>このサイトは使用できません</li>
-                <li>たんす機能はログインしていなければ<br>使用することはできません</li>
-                <li>以下の素材が含まれている洋服は<br>自宅で洗濯することはできません<br>
-                <br>
-                <font color="red">絹、レーヨン、キュプラ、<br>アセテート、皮革、毛皮用品</font></li>
-                <li>以下の洋服はクリーニング店に<br>相談して下さい<br>
-                <br>
-                <font color="red">スーツ(ウォッシャブルを除く)、<br>ジャケット、コート、ネクタイ、和服</font></li>
-                <li>自宅で洗濯する際には、色落ちなどを確認し<br>(色落ちする洋服は洗濯することができません)、<br>自己責任で行ってください</li>
-                <li>洗濯表示に注意事項が記載されている場合は、<br>それに従ってください</li>
             </ol>
         </details>
     </div>

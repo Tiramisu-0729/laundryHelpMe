@@ -1,5 +1,7 @@
-
 /* user */
+body{
+    font-size: 18px;
+}
 .user{
     font-size: 20px;
 }
@@ -43,39 +45,62 @@ hr{
 .sum{
     margin-bottom: 0.5em;
 }
-details{
-    font-size: 18px;
-}
-.belt{
-    font-size: 18px;
-    background-color: gray;
+.washingDisplay{
+    background-color: #CBF9FF;
     padding: 2% 8%;
     margin-bottom: 3%;
 }
 summary{
-    background-color: gray;
     padding: 2% 3%;
     margin-bottom: 3%;
+}
+.washingProcess{
+    background-color: #CCCBFF;
+}
+.bleachingProcess{
+    background-color: #FEFFCB;
+}
+.tumbleDrying{
+    background-color: #FFCBFA;
+}
+.naturalDrying{
+    background-color: #CBFFD6;
+}
+.ironFinish{
+    background-color: #FFCBCB;
+}
+.dryCleaning{
+    background-color: #FFEDCB;
+}
+.wetCleaning{
+    background-color: #CBD3FF;
 }
 img{
     width: 60px;
     height: 60px;
 }
 table{
-    border: solid 3px black;
+    border: solid 3px rgb(97, 97, 97);
     border-collapse: collapse;
     margin: 5% 5%;
 }
 tr,td{
-    border: solid 2px black;
+    border: solid 2px rgb(201, 201, 201);
 }
 td{
     font-size: 14px;
     padding: 10px 10px;
 }
+.attention{
+    font-size: 16px;
+    margin-left: 3%;
+}
 ol{
     font-size: 16px;
 }
-.terms{
-    margin-bottom: 70px;
+.down{
+    margin-bottom: 60px;
+}
+.info{
+    background-color: #FFABAB;
 }
