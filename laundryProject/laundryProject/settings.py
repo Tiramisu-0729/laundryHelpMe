@@ -134,7 +134,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # アップロード画像の保存先
-MEDIA_ROOT = os.path.join(BASE_DIR, 'upload_img/tag')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'upload_img/')
 
 MEDIA_URL = 'upload_img/'
 
