@@ -49,6 +49,14 @@ body{
     list-style: none;
     width: 100%;
 }
+
+.footer li:hover {
+    text-align: center;
+    list-style: none;
+    width: 100%;
+    background-color: #e2e2e2;
+}
+
 .footer img{
     line-height: 15vw;
     width: 13.5vmin;
