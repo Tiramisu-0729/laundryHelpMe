@@ -1,6 +1,7 @@
 from distutils.command.upload import upload
 import json
 import os
+from django.test import tag
 from django.urls import reverse
 from urllib.parse import urlencode
 import torch
@@ -10,6 +11,7 @@ from .models import Cabinet, Categories
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import CabinetForm, JudgeForm
 from django.core.files.storage import FileSystemStorage
+from django.views.generic import TemplateView
 
 def helpapp(request):
     #ログインがあるか判別
@@ -33,11 +35,11 @@ def home(request):
     }
     return render(request, 'home/index.html', context)
     
-def washing_machine(request):
+def washer(request):
     context = {
         'message': 'Laundry',
     }
-    return render(request, 'washing_machine/index.html',context)
+    return render(request, 'washer/index.html',context)
 
 def cabinet(request):
     user = request.user
@@ -68,7 +70,7 @@ def cabinet_add(request):
             cabinet.name = request.POST['name']
             cabinet.memo = request.POST['memo']
             cabinet.category = Categories(request.POST['category'])#category型じゃないと怒られた
-            cabinet.laundry_tag = request.POST['laundry_tag']#判定結果sessionとか
+            cabinet.laundry_tag = request.session['tags']#判定結果sessionとか
             cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
             cabinet.save()
             context = {
@@ -187,6 +189,8 @@ def judge_result(request):
             result = "手洗い"
         else:
             result ="洗えます"
+        dbtag = ",".join(tags)
+        request.session['tags'] = dbtag
         file_url = request.session['file_url']
         context = {
             'message': 'result',
@@ -195,7 +199,7 @@ def judge_result(request):
             'tags' : tags,
         }
     
-    #ディレクトリ削除shutil.rmtree()
+    #ディレクトリ削除os.remove('target.txt')
 
     return render(request, 'laundry_tag_check/result.html', context)
 
@@ -221,3 +225,12 @@ def testYolo(request):
         'tags': tags,
     }
     return render(request, 'testYolo/test.html', context)
+    
+class IndexView(TemplateView):
+    template_name = 'user/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        words = ['1', '2', '3', '4', '5', '6']
+        context["washingDisplay"] = words
+        return context
