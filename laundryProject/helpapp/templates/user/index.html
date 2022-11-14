@@ -1,5 +1,6 @@
 {% extends '../layout.html' %}
 {% load static %}<!-- 必須 -->
+{% load mathfilters %}
 {% block link%}
     <title>User</title>
     <link rel="stylesheet" href="{% static 'css/User.css' %}">
@@ -18,12 +19,22 @@
             <div class="sum">服の総数：</div>
             <div class="date">　登録日：</div>
         </div>
+        {% for item in washingDisplay %}
+                    {% comment %} {% with index=forloop.counter0 %} <!-- index を取得 -->
+                        {% if index|mod:3 == 0 %} <tr> {% endif %} {% endcomment %}
+                            {% comment %} <td> {% endcomment %}
+                                {{item}}
+                            {% comment %} </td> {% endcomment %}
+                        {% comment %} {% if index|mod:3 == 2 %} </tr> {% endif %}
+                    {% endwith %} {% endcomment %}
+                {% endfor %}
         <div class="washingDisplay">
             洗濯表示
         </div>
         <details>
             <summary class="washingProcess">洗濯処理</summary>
             <table>
+                
                 <tr>
                     <td><img src="{% static "pictures/L1.png"%}"></td>
                     <td>液温は95°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。</td>
@@ -252,10 +263,10 @@
                 <li>以下の素材が含まれている洋服は<br>自宅では洗濯できません<br>
                 <br>
                 <font color="red">絹、レーヨン、キュプラ、<br>アセテート、皮革、毛皮用品</font></li><br>
-                <li>以下の洋服はクリーニング店に相談して下さい<br>
+                <li>以下の洋服はクリーニング店に<br>相談してください<br>
                 <br>
                 <font color="red">スーツ(ウォッシャブルを除く)、<br>ジャケット、コート、ネクタイ、和服</font></li><br>
-                <li>自宅で洗濯する際には、色落ちなどを確認し<br>(色落ちする洋服は洗濯できません)、<br>自己責任で行ってください</li><br>
+                <li>自宅で洗濯する際には、色落ちなどを確認し<br>(色落ちする洋服は洗濯できません)、<br>自己責任でおこなってください</li><br>
                 <li>洗濯表示に注意事項が記載されている場合は、<br>それに従ってください</li><br>
             </ol>
         </details>
