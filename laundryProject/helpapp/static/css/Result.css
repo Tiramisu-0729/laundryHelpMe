@@ -24,6 +24,8 @@
 }
 .details{
     background-color: #EEEEEE;
+    padding-bottom: 5px;
+    margin-bottom: 7px;
 }
 .result{
     font-size: 45px;
@@ -41,16 +43,17 @@
     font-size: 16px;
 }
 .tag{
+    display: flex;
+    align-items: center;
     background-color: #FFFFFF;
     margin: 5px;
-    border:solid 1px #6D6D6D;
-    border-radius: 5px;
+    border-radius: 3%;
 
 }
 .img{
     background-color: #FFFFFF;
-    width: 60px;
-    height: 60px;
+    width: 18vw;
+    height: 18vw;
 }
 
 .bigBelt{
@@ -86,6 +89,7 @@
     background-color: #4BFF5D;
     margin-bottom: 90px;
 }
-.tag {
-    text-align: center;
+.red{
+    color: red;
+    font: bold;
 }

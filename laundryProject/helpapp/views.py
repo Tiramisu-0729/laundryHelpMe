@@ -1,6 +1,7 @@
 from distutils.command.upload import upload
 import json
 import os
+from django.test import tag
 from django.urls import reverse
 from urllib.parse import urlencode
 from .models import Cabinet, Categories
@@ -30,11 +31,11 @@ def home(request):
     }
     return render(request, 'home/index.html', context)
     
-def washing_machine(request):
+def washer(request):
     context = {
         'message': 'Laundry',
     }
-    return render(request, 'washing_machine/index.html',context)
+    return render(request, 'washer/index.html',context)
 
 def cabinet(request):
     user = request.user
@@ -65,7 +66,7 @@ def cabinet_add(request):
             cabinet.name = request.POST['name']
             cabinet.memo = request.POST['memo']
             cabinet.category = Categories(request.POST['category'])#category型じゃないと怒られた
-            cabinet.laundry_tag = request.POST['laundry_tag']#判定結果sessionとか
+            cabinet.laundry_tag = request.session['tags']#判定結果sessionとか
             cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
             cabinet.save()
             context = {
@@ -126,7 +127,7 @@ def judge(request):
         request.session['file_url'] = file_url
         #AIで画像判定
         #判定結果 解析
-        result = "L8,B3,T3,N1,I4"#ここに結果を入れる
+        result = "L8,B3,T3,N1,I4,L1"#ここに結果を入れる
         result = result.split(',') 
         redirect_url = reverse('helpapp:laundry_tag_check')
         parameters = urlencode({'file_url': file_url, 'result' : result})
@@ -173,6 +174,8 @@ def judge_result(request):
             result = "手洗い"
         else:
             result ="洗えます"
+        dbtag = ",".join(tags)
+        request.session['tags'] = dbtag
         file_url = request.session['file_url']
         context = {
             'message': 'result',
@@ -181,6 +184,6 @@ def judge_result(request):
             'tags' : tags,
         }
     
-    #ディレクトリ削除shutil.rmtree()
+    #ディレクトリ削除os.remove('target.txt')
 
     return render(request, 'laundry_tag_check/result.html', context)
