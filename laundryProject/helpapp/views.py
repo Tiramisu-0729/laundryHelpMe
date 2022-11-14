@@ -7,6 +7,7 @@ from .models import Cabinet, Categories
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import CabinetForm, JudgeForm
 from django.core.files.storage import FileSystemStorage
+from django.views.generic import TemplateView
 
 def helpapp(request):
     #ログインがあるか判別
@@ -184,3 +185,12 @@ def judge_result(request):
     #ディレクトリ削除shutil.rmtree()
 
     return render(request, 'laundry_tag_check/result.html', context)
+
+class IndexView(TemplateView):
+    template_name = '/helpapp/templates/user/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        words = ['1', '2', '3', '4', '5', '6']
+        context["washingDisplay"] = words
+        return context
