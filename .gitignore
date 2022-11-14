@@ -1,0 +1,3 @@
+upload_img/
+helpapp/__pycache__/*.pyc
+*.pyc

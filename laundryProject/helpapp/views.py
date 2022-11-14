@@ -130,8 +130,8 @@ def judge(request):
         file_url = fs.url(file_data)
         request.session['file_url'] = file_url
         #AIで画像判定
-        path_hubconfig = "laundryHelpMe/laundryProject/yolo"
-        path_weightfile = "laundryHelpMe/laundryProject/yolo/729x300_yolov5m_best.pt" 
+        path_hubconfig = "yolo"
+        path_weightfile = "yolo/729x300_yolov5m_best.pt" 
         model = torch.hub.load(path_hubconfig, 'custom',path=path_weightfile, source='local')
         results = model(file_url.lstrip("/"))
 
@@ -207,8 +207,8 @@ import torch
 from django.shortcuts import render
 
 def testYolo(request):
-    path_hubconfig = "laundryHelpMe/laundryProject/yolo"
-    path_weightfile = "laundryHelpMe/laundryProject/yolo/729x300_yolov5m_best.pt" 
+    path_hubconfig = "yolo"
+    path_weightfile = "yolo/729x300_yolov5m_best.pt" 
     img_path = '/upload_img/4018.jpg'
     model = torch.hub.load(path_hubconfig, 'custom',path=path_weightfile, source='local')
     results = model(img_path.lstrip("/"))
