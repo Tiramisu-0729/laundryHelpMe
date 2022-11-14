@@ -1,0 +1,13 @@
+{% extends '../layout.html' %}
+{% load static %}<!-- 必須 -->
+{% block link%}
+    <title>Test</title>
+    <link rel="stylesheet" href="{% static 'css/Home.css' %}">
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
+{% endblock %}
+{% block content %}
+    {{message}}<br><hr>
+    {{results}}<br><hr>
+    {{tags}}<br><hr>
+
+{% endblock %}

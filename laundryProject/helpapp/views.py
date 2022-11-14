@@ -3,6 +3,9 @@ import json
 import os
 from django.urls import reverse
 from urllib.parse import urlencode
+import torch
+from django.shortcuts import render
+
 from .models import Cabinet, Categories
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import CabinetForm, JudgeForm
@@ -125,9 +128,20 @@ def judge(request):
         file_url = fs.url(file_data)
         request.session['file_url'] = file_url
         #AIで画像判定
+        path_hubconfig = "yolo"
+        path_weightfile = "yolo/729x300_yolov5m_best.pt" 
+        model = torch.hub.load(path_hubconfig, 'custom',path=path_weightfile, source='local')
+        results = model(file_url.lstrip("/"))
+
         #判定結果 解析
-        result = "L8,B3,T3,N1,I4"#ここに結果を入れる
-        result = result.split(',') 
+        datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
+        result=[]
+        for data in datas :
+            if data[4] > 0.5:
+                result.append(data[6]) 
+        
+        # result = "L8,B3,T3,N1,I4"#ここに結果を入れる
+        # result = result.split(',') 
         redirect_url = reverse('helpapp:laundry_tag_check')
         parameters = urlencode({'file_url': file_url, 'result' : result})
         url = f'{redirect_url}?{parameters}'
@@ -184,3 +198,26 @@ def judge_result(request):
     #ディレクトリ削除shutil.rmtree()
 
     return render(request, 'laundry_tag_check/result.html', context)
+
+import torch
+from django.shortcuts import render
+
+def testYolo(request):
+    path_hubconfig = "yolo"
+    path_weightfile = "yolo/729x300_yolov5m_best.pt" 
+    img_path = '/upload_img/4018.jpg'
+    model = torch.hub.load(path_hubconfig, 'custom',path=path_weightfile, source='local')
+    results = model(img_path.lstrip("/"))
+    datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
+    tags=[]
+    for data in datas :
+        if data[4] > 0.5:
+            tags.append(data[6]) 
+    context = {
+        'message': 'test',
+        'model': model,
+        'results': results,
+        'xyxy': results.pandas().xyxy[0].to_json(orient="values"),
+        'tags': tags,
+    }
+    return render(request, 'testYolo/test.html', context)
