@@ -187,7 +187,7 @@ def judge_result(request):
     return render(request, 'laundry_tag_check/result.html', context)
 
 class IndexView(TemplateView):
-    template_name = '/helpapp/templates/user/index.html'
+    template_name = 'user/index.html'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
