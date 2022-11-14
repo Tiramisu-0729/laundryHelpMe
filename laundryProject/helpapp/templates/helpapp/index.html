@@ -13,14 +13,14 @@
     <div class="laundryHelpMe">
         <div class="laundry">らんどり～</div>
         <div class="helpMe">へるぷみ～</div>
-    </div>
-    <img src="{% static "pictures/img.png"%}" alt="">
+    </div><br>
+    <img src="{% static "pictures/img.png"%}" alt=""><br>
     <a href='{% url "accounts:signup" %}'>
         <button type="button" class="addButton">新規登録</button>
-    </a>
+    </a><br>
     <a href='{% url "login" %}'>
         <button type="button" class="loginButton">ログイン</button>
-    </a>
+    </a><br>
     <a href="{% url 'helpapp:nologin' %}">
         <button type="button" class="noLoginButton">ログインせずに開始</button>
     </a>
