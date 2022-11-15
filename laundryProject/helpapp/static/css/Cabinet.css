@@ -35,3 +35,8 @@
     height: 100%;
     width: 100%;
 }
+.none{
+    font-size: 20px;
+    text-align: center;
+    font: bold;
+}

@@ -23,8 +23,16 @@
     border-radius: 5px;
     margin: 2%;
     padding: 5%;
+    animation: faden 2s cubic-bezier(0.33, 1, 0.68, 1) 1 forwards;
 }
-
+@keyframes faden {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
 .box img{
     width: 16%;
     height: 16%;
@@ -40,4 +48,9 @@
 
     /* 画面幅に収まらない場合は折り返す */
     flex-wrap: wrap;
+}
+.none{
+    font-size: 20px;
+    text-align: center;
+    font: bold;
 }

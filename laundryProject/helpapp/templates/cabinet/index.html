@@ -17,7 +17,8 @@
         </div>
         {% endfor %}
     </div>
-    <a href="{% url 'helpapp:home' %}">
+    <div class="none">{{none}}</div>
+    <a href="{% url 'helpapp:cabinet_judge' %}">
         <button type="button" class="add">追加</button>
     </a>
 {% endblock %}

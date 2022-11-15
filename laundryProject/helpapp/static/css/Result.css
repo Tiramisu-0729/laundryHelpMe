@@ -66,7 +66,7 @@
     font-size: 40px;
     font-weight: bold;
 }
-.addWashing, .addCloset, .finish{
+.add_washer, .add_cabinet, .finish{
     width: 70%;
     border-radius: 5px;
     margin-top: 4%;
@@ -78,11 +78,11 @@
     font-weight: bold;
     border: none;
 }
-.addWashing{
+.add_washer{
     background-color: #4BC9FF;
     margin-top: 5%;
 }
-.addCloset{
+.add_cabinet{
     background-color: #FFF84B;
 }
 .finish{

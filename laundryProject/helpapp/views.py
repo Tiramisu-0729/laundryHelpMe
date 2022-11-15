@@ -27,32 +27,58 @@ def nologin(request):
     return render(request, 'helpapp/nologin.html')
 
 def home(request):
-    user = request.user
-    context = {
-        'message': 'Judage',
-        'user': user,
-        'form': JudgeForm(),
-    }
-    return render(request, 'home/index.html', context)
+    if request.user.is_authenticated :
+        user = request.user
+        context = {
+            'message': 'Judage',
+            'user': user,
+            'form': JudgeForm(),
+        }
+        return render(request, 'home/index.html', context)
+    else :
+        return render(request, 'helpapp/index.html')
+    
     
 def washer(request):
-    context = {
-        'message': 'Laundry',
-    }
-    return render(request, 'washer/index.html',context)
+    if request.user.is_authenticated :
+        context = {
+            'message': 'washer',
+        }
+        return render(request, 'washer/index.html',context)
+    else :
+        return render(request, 'helpapp/index.html')
 
 def cabinet(request):
-    user = request.user
-    cabinets = Cabinet.objects.filter(author=user)
-    context = {
-        'message': 'Cabinet',
-        'cabinets' : cabinets,
-        'user' : user,
-    }
-    return render(request, 'cabinet/index.html', context)
+    if request.user.is_authenticated :
+        user = request.user
+        cabinets = Cabinet.objects.filter(author=user)
+        none = ""
+        if not(cabinets.exists):
+            none = "タンスに登録してください"
+        context = {
+            'message': 'Cabinet',
+            'cabinets' : cabinets,
+            'user' : user,
+            'none':none
+        }
+        return render(request, 'cabinet/index.html', context)
+    else :
+        return render(request, 'helpapp/index.html')
+
+def cabinet_judge(request):
+    if request.user.is_authenticated :
+        user = request.user
+        context = {
+            'message': 'Cabinet',
+            'cabinet_message' : '洗濯タグを撮影してください',
+            'user': user,
+            'form': JudgeForm(),
+        }
+        return render(request, 'home/index.html', context)
+    else :
+        return render(request, 'helpapp/index.html')
 
 def cabinet_form(request):
-    user = request.user
     context = {
         'message': 'Add Cabinet',
         'user': user,
@@ -73,11 +99,7 @@ def cabinet_add(request):
             cabinet.laundry_tag = request.session['tags']#判定結果sessionとか
             cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
             cabinet.save()
-            context = {
-                'message': 'Cabinet',
-                'i':1,
-            }
-        return render(request, 'cabinet/index.html', context)
+        return redirect('/helpapp/cabinet')
     else:
         user = request.user
         context = {
@@ -104,23 +126,30 @@ def user(request):
     return render(request, 'user/index.html', context)
 
 def timeline(request):
-    user = request.user
-    cabinets = Cabinet.objects.filter(author=user).order_by('-id')
-    cnt = 0
-    TimeLineCab = []
-    tag_list = []
-    for cab in cabinets :
-        if 19 < cnt:
-            break
-        cab.laundry_tag = cab.laundry_tag.split(',') #cabinetのlaundry_tagを「，」で区切って配列化
-        cnt += 1
-        TimeLineCab.append(cab)
-    context = {
-        'tag_list': tag_list,
-        'message': 'TimeLine',
-        'cabinets' : TimeLineCab,
-    }
-    return render(request, 'timeline/index.html', context)
+    if request.user.is_authenticated :
+        user = request.user
+        cabinets = Cabinet.objects.filter(author=user).order_by('-id')
+        cnt = 0
+        TimeLineCab = []
+        tag_list = []
+        for cab in cabinets :
+            if 19 < cnt:
+                break
+            cab.laundry_tag = cab.laundry_tag.split(',') #cabinetのlaundry_tagを「，」で区切って配列化
+            cnt += 1
+            TimeLineCab.append(cab)
+        none=""
+        if not(cabinets.exists):
+            none = "タンスに登録してください"
+        context = {
+            'tag_list': tag_list,
+            'message': 'TimeLine',
+            'cabinets' : TimeLineCab,
+            'none' : none
+        }
+        return render(request, 'timeline/index.html', context)
+    else :
+        return render(request, 'helpapp/index.html')
 
 def judge(request):
     if request.method == "POST":

@@ -26,15 +26,16 @@
     </details>
 </div>
 
-<a href='{% url "helpapp:home" %}'>
-    <button type="button" class="finish">完了</button>
-</a>
 <a href="{% url 'helpapp:cabinet_form' %}">
     <button type="button" class="add_cabinet">タンスに追加</button>
 </a>
 <a href="{% url 'helpapp:cabinet_form' %}">
-    <button type="button" class="add">Add washer</button>
+    <button type="button" class="add_washer">Add washer</button>
 </a>
+<a href='{% url "helpapp:home" %}'>
+    <button type="button" class="finish">完了</button>
+</a>
+
 <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
     const tags = eval({{ tags|safe }});
