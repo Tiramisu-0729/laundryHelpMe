@@ -24,6 +24,7 @@
     margin: 2%;
     padding: 5%;
     animation: faden 2s cubic-bezier(0.33, 1, 0.68, 1) 1 forwards;
+    min-height: 10vh;
 }
 @keyframes faden {
     0%{

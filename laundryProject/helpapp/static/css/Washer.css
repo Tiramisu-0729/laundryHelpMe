@@ -17,14 +17,15 @@
     color: #FFFFFF;
 }
 
+
 .item{
-    width: 100px;
-    height: 100px;
+    width: 29vmin;
+    height: 29vmin;
     text-align: center;
-    border: solid 1px black;
-    margin: 3%;
+    border-radius: 3px;
+    margin: 2%;
     float: left;
-}s
+}
 .add{
     width: 80%;
     border-radius: 5px;

@@ -41,12 +41,45 @@ def home(request):
     
 def washer(request):
     if request.user.is_authenticated :
+        washers = request.session.get('washers')
         context = {
-            'message': 'washer',
+            'message': 'Washer',
+            'washers' : washers
         }
         return render(request, 'washer/index.html',context)
     else :
         return render(request, 'helpapp/index.html')
+
+def washer_add(request):
+    if request.user.is_authenticated :
+        user = request.user
+        cabs = Cabinet.objects.filter(author=user)
+        cabinets =[]
+        for cabinet in cabs :
+            tags = cabinet.laundry_tag.split(',')
+            if not(tags[0] == 'LD' or tags[0] == 'LE'):
+                cabinets.append(cabinet)
+        context = {
+            'message': 'Washer',
+            'cabinets' : cabinets,
+            'user' : user,
+        }
+        return render(request, 'washer/add.html',context)
+    else :
+        return render(request, 'helpapp/index.html')
+
+def washer_judge(request):
+    if request.user.is_authenticated :
+        washers = request.session.get('washers')
+        context = {
+            'message': 'Washer',
+            'washers': washers,
+            'form': JudgeForm(),
+        }
+        return render(request, 'home/index.html', context)
+    else :
+        return render(request, 'helpapp/index.html')
+
 
 def cabinet(request):
     if request.user.is_authenticated :
@@ -91,12 +124,11 @@ def cabinet_add(request):
         form = CabinetForm(request.POST)
         if form.is_valid():#formの内容が正しければ
             cabinet = Cabinet()
-            print(request)
             cabinet.author = request.user
             cabinet.name = request.POST['name']
             cabinet.memo = request.POST['memo']
             cabinet.category = Categories(request.POST['category'])#category型じゃないと怒られた
-            cabinet.laundry_tag = request.session['tags']#判定結果sessionとか
+            cabinet.laundry_tag = request.session.get('tags')#判定結果sessionとか
             cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
             cabinet.save()
         return redirect('/helpapp/cabinet')
@@ -111,7 +143,9 @@ def cabinet_add(request):
 
 def cabinet_detail(request, pk):
     cabinet = Cabinet.objects.get(pk=pk)
+    tags = cabinet.laundry_tag.split(',')
     context = {
+        'tags' : tags,
         'message': cabinet.name,
         'cabinet' : cabinet,
     }
@@ -220,7 +254,7 @@ def judge_result(request):
             result ="洗えます"
         dbtag = ",".join(tags)
         request.session['tags'] = dbtag
-        file_url = request.session['file_url']
+        file_url = request.session.get('file_url')
         context = {
             'message': 'result',
             'result' : result,
