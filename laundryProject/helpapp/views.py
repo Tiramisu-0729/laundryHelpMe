@@ -253,5 +253,6 @@ def testYolo(request):
         'results': results,
         'xyxy': results.pandas().xyxy[0].to_json(orient="values"),
         'tags': tags,
+        'datas': datas,
     }
     return render(request, 'testYolo/test.html', context)
