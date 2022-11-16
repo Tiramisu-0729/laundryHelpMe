@@ -156,6 +156,7 @@ def user(request):
     context = {
         'message': 'User',
         'user': user,
+        'washingDisplays': ['L1.png', '液温は95°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="{% static "pictures/101.png"%}">']
     }
     return render(request, 'user/index.html', context)
 
@@ -286,14 +287,6 @@ def testYolo(request):
         'results': results,
         'xyxy': results.pandas().xyxy[0].to_json(orient="values"),
         'tags': tags,
+        'datas': datas,
     }
     return render(request, 'testYolo/test.html', context)
-    
-class IndexView(TemplateView):
-    template_name = 'user/index.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        words = ['1', '2', '3', '4', '5', '6']
-        context["washingDisplay"] = words
-        return context
