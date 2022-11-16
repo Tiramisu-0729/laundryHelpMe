@@ -19,22 +19,21 @@
             <div class="sum">服の総数：</div>
             <div class="date">　登録日：</div>
         </div>
-        {% for item in washingDisplay %}
-                    {% comment %} {% with index=forloop.counter0 %} <!-- index を取得 -->
-                        {% if index|mod:3 == 0 %} <tr> {% endif %} {% endcomment %}
-                            {% comment %} <td> {% endcomment %}
-                                {{item}}
-                            {% comment %} </td> {% endcomment %}
-                        {% comment %} {% if index|mod:3 == 2 %} </tr> {% endif %}
-                    {% endwith %} {% endcomment %}
-                {% endfor %}
         <div class="washingDisplay">
             洗濯表示
         </div>
         <details>
             <summary class="washingProcess">洗濯処理</summary>
             <table>
-                
+                {% for washingDisplay in washingDisplays %}
+                    {% with index=forloop.counter0 %} <!-- index を取得 -->
+                        {% if index|mod:3 == 0 %} <tr> {% endif %}
+                            <td>
+                                {{washingDisplay|safe}}
+                            </td>
+                        {% if index|mod:3 == 2 %} </tr> {% endif %}
+                    {% endwith %}
+                {% endfor %}
                 <tr>
                     <td><img src="{% static "pictures/L1.png"%}"></td>
                     <td>液温は95°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。</td>
