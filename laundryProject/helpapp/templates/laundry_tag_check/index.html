@@ -112,5 +112,50 @@
         var element = document.getElementById(tag) ;
         element.checked = true ;
     }
+    //ラジオボタン取得
+    const radioBtns = Array.prototype.slice.call(document.querySelectorAll('input[type="radio"]'),0);
+    //ラジオボタンが存在する場合は処理する
+    if(radioBtns.length !== 0) {
+    //ラジオボタンごとの設定
+    radioBtns.forEach(function(radioBtn,index){
+        //ラジオボタン識別番号設定
+        radioBtn.radioIndex = index;
+        //チェックフラグ設定
+        if(radioBtn.checked) {
+        radioBtn.checkFlg = true;
+        } else {
+        radioBtn.checkFlg = false;
+        }
+        //クリックイベント設定
+        radioBtn.addEventListener('click',  function() {
+        //番号を取得
+        const thisIndex = this.radioIndex;
+        //同じグループのラジオボタンを取得
+        const group = Array.prototype.slice.call(document.querySelectorAll('input[type="radio"][name="'+radioBtn.name+'"]'),0);
+        //未チェックの場合
+        if(!this.checkFlg) {
+            //チェックフラグオン（checkedはJSで書かずともtrueになるので省略）
+            this.checkFlg = true;
+            //チェックした要素以外のフラグをfalseに
+            group.forEach(function(elm){
+            if(elm.checkFlg && elm.radioIndex !== thisIndex) {
+                elm.checkFlg = false;
+            }
+            });
+        } else {
+            //既にチェックしている場合（リセット処理）
+            group.forEach(function(elm){
+            //チェックフラグがtrueかつ識別番号が一致するradio要素
+            if(elm.checkFlg && elm.radioIndex === thisIndex) {
+                //チェックフラグfalse
+                elm.checkFlg = false;
+                //ラジオボタンのチェック解除
+                elm.checked = false;
+            }
+            });
+        }
+        });
+    });
+    }
 </script>
 {% endblock %}

@@ -1,43 +1,40 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="/assets/css/AddWasher.css">
-</head>
-<body>
-    <div class="container">
-        <header class="header">
-            <div class="title">タンス</div>
-        </header>
-        <button type="button" onclick="history.back()" class="backButton">戻る</button>
-        <div class="content">
-            <form action="/WashingMachine/index.html">
-                <div class="item">
-                    <input type="checkbox">画像
-                </div>
-                <div class="item">
-                    <input type="checkbox">画像
-                </div>
-                <div class="item">
-                    <input type="checkbox">画像
-                </div>
-                <div class="item">
-                    <input type="checkbox">画像
-                </div>
-                <button type="submit" class="add">追加</button>
-            </form>
-        </div>
-        <footer class="footer">
-            <ul>
-                <li><a href="../Home/index.html"><img class="footer-picture" src="../pictures/camera.png"></a></li>
-                <li><a href="../washer/index.html"><img class="footer-picture" src="../pictures/WashingMachine.png"></a></li>
-                <li><a href="../Cabinet/index.html"><img class="footer-cabinet" src="../pictures/cabinet.png"></a></li>
-                <li><a href="../User/index.html"><img class="footer-picture" src="../pictures/user.png"></a></li>
-            </ul>
-        </footer>
+{% extends '../layout.html' %}
+{% load static %}<!-- 必須 -->
+{% block link%}
+    <title>Cabinet</title>
+    <link rel="stylesheet" href="{% static 'css/Washer_add.css' %}">
+{% endblock %}
+{% block content %}
+<select class="form-control" id="sample" onchange="viewChange();">
+    <option value="select1">one</option>
+    <option value="select2">two</option>
+    <option value="select3">three</option>
+</select>
+    <div class="content">
+        <form action="{% url 'helpapp:judge_result' %}" method="POST">
+            {% for cabinet in cabinets %}
+            <div class="item">
+                <input id={{cabinet.id}} type="checkbox" name="Wet" value={{cabinet.id}}>
+                <label for={{cabinet.id}}>
+                    <img class="check" src="{{ cabinet.image.url }}">
+                </label>
+            </div>
+            {% endfor %}
+        </form>
+        
     </div>
-</body>
-</html>
+    <a href="{% url 'helpapp:washer_add' %}">
+        <button type="button" class="add">追加</button>
+    </a>
+    
+{% endblock %}
+
+<script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+    const results = eval({{ results|safe }});
+    for (const tag of results) {
+        console.log(tag);
+        var element = document.getElementById(tag) ;
+        element.checked = true ;
+    }
+</script>

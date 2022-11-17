@@ -24,8 +24,8 @@
 }
 .details{
     background-color: #EEEEEE;
-    padding-bottom: 5px;
-    margin-bottom: 7px;
+    padding-bottom: 1%;
+    margin-bottom: 5%;
 }
 .result{
     font-size: 45px;
@@ -46,7 +46,7 @@
     display: flex;
     align-items: center;
     background-color: #FFFFFF;
-    margin: 5px;
+    margin: 1.5%;
     border-radius: 3%;
 
 }
