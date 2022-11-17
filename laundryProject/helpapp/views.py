@@ -156,7 +156,73 @@ def user(request):
     context = {
         'message': 'User',
         'user': user,
-        'washingDisplays': ['L1.png', '液温は95°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="{% static "pictures/101.png"%}">']
+        'washingProcesses': [
+            '<img src="/static/pictures/L1.png"', '液温は95°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/101.png"',
+            '<img src="/static/pictures/L2.png"', '液温は70°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/L3.png"', '液温は60°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/102.png"',
+            '<img src="/static/pictures/L4.png"', '液温は60°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/L5.png"', '液温は50°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/L6.png"', '液温は50°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/L7.png"', '液温は40°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/103.png"', 
+            '<img src="/static/pictures/L8.png"', '液温は40°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/104.png"', 
+            '<img src="/static/pictures/L9.png"', '液温は40°Cを限度とし、<br>洗濯機で非常に弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/LA.png"', '液温は30°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/LB.png"', '液温は30°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/105.png"', 
+            '<img src="/static/pictures/LC.png"', '液温は30°Cを限度とし、<br>洗濯機で非常に弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/LD.png"', '液温は40°Cを限度とし、<br>手洗いによる洗濯処理ができる。', '<img src="/static/pictures/106.png"', 
+            '<img src="/static/pictures/LE.png"', '洗濯処理はできない。', '<img src="/static/pictures/107.png"'
+        ],
+        'bleachingProcesses': [
+            '<img src="/static/pictures/B1.png"', '塩素系及び酸素系漂白剤による漂白処理ができる。', '<img src="/static/pictures/201.png"',
+            '<img src="/static/pictures/B2.png"', '酸素系漂白剤による漂白処理ができるが、<br>塩素系漂白剤による漂白処理はできない。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/B3.png"', '漂白処理はできない。', '<img src="/static/pictures/202.png"'
+        ],
+        'tumbleDrys': [
+            '<img src="/static/pictures/T1.png"', '洗濯処理後のタンブル乾燥処理ができる。<br>高温乾燥：排気温度の上限は最高80°C', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/T2.png"', '洗濯処理後のタンブル乾燥処理ができる。<br>低温乾燥：排気温度の上限は最高60°C', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/T3.png"', '洗濯処理後のタンブル乾燥処理はできない。', '<img src="/static/pictures/white.png"'
+        ],
+        'naturalDrys': [
+            '<img src="/static/pictures/N1.png"', 'つり干し乾燥がよい。', '<img src="/static/pictures/601.png"',
+            '<img src="/static/pictures/N6.png"', '日陰でのつり干し乾燥がよい。', '<img src="/static/pictures/602.png"',
+            '<img src="/static/pictures/N2.png"', 'ぬれつり干し乾燥がよい。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/N5.png"', '日陰でのぬれつり干し乾燥がよい。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/N3.png"', '平干し乾燥がよい。', '<img src="/static/pictures/603.png"',
+            '<img src="/static/pictures/N7.png"', '日陰での平干し乾燥がよい。', '<img src="/static/pictures/604.png"',
+            '<img src="/static/pictures/N4.png"', 'ぬれ平干し乾燥がよい。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/N8.png"', '日陰でのぬれ平干し乾燥がよい。', '<img src="/static/pictures/white.png"'
+        ],
+        'ironFinishs': [
+            '<img src="/static/pictures/I1.png"', '底面温度200°Cを限度として<br>アイロン仕上げ処理ができる。', '<img src="/static/pictures/301.png"',
+            '<img src="/static/pictures/I2.png"', '底面温度150°Cを限度として<br>アイロン仕上げ処理ができる。', '<img src="/static/pictures/302.png"',
+            '<img src="/static/pictures/I3.png"', '底面温度110°Cを限度として<br>アイロン仕上げ処理ができる。', '<img src="/static/pictures/303.png"',
+            '<img src="/static/pictures/I4.png"', 'アイロン仕上げ処理はできない。', '<img src="/static/pictures/304.png"'
+        ],
+        'dryCleanings': [
+            '<img src="/static/pictures/D1.png"', 'パークロロエチレン及び記号Fの欄に規定の溶剤での通常のドライクリーニング処理ができる。', '<img src="/static/pictures/401.png"',
+            '<img src="/static/pictures/D2.png"', 'パークロロエチレン及び記号Fの欄に規定の溶剤での弱いドライクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/D3.png"', '石油系溶剤(蒸留温度150°C～210°C、引火点38°C～)での通常のドライクリーニング処理ができる。', '<img src="/static/pictures/402.png"',
+            '<img src="/static/pictures/D4.png"', '石油系溶剤(蒸留温度150°C～210°C、引火点38°C～)での弱いドライクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/D5.png"', 'ドライクリーニング処理ができない。', '<img src="/static/pictures/403.png"'
+        ],
+        'wetCleanings': [
+            '<img src="/static/pictures/W1.png"', '通常のウエットクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/W2.png"', '弱いウエットクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/W3.png"', '非常に弱いウエットクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
+            '<img src="/static/pictures/W4.png"', 'ウエットクリーニング処理はできない。', '<img src="/static/pictures/white.png"'
+        ],
+        'list': 
+            '<ol>'
+                '<li>洋服に洗濯タグ(洗濯表示)がなければ<br>このサイトは使用できません</li><br>'
+                '<li>たんす機能はログインしていなければ<br>使用できません</li><br>'
+                '<li>洗濯タグは正しい向きで撮影してください</li><br>'
+                '<li>以下の素材が含まれている洋服は<br>自宅では洗濯できません<br><br>'
+                '<font color="red">絹、レーヨン、キュプラ、<br>アセテート、皮革、毛皮用品</font></li><br>'
+                '<li>以下の洋服はクリーニング店に<br>相談してください<br><br>'
+                '<font color="red">スーツ(ウォッシャブルを除く)、<br>ジャケット、コート、ネクタイ、和服</font></li><br>'
+                '<li>自宅で洗濯する際には、色落ちなどを確認し<br>(色落ちする洋服は洗濯できません)、<br>自己責任でおこなってください</li><br>'
+                '<li>洗濯表示に注意事項が記載されている場合は、<br>それに従ってください</li><br>'
+            '</ol>'
     }
     return render(request, 'user/index.html', context)
 
