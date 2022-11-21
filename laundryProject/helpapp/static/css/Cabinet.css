@@ -29,3 +29,45 @@
     height: 29vmin; 
     object-fit: cover;
 }
+.hidden{
+    display: none;
+}
+
+
+
+.content{
+    text-align: center;
+    display:flex
+}
+.checkbox{
+    width: 29vmin;
+    height: 29vmin;
+    border: solid 1px #f5f5f5;
+    margin: 1.5% ;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.checkbox img{
+    width: 27vmin; 
+    height: 27vmin; 
+    object-fit: cover;
+}
+.img{
+    margin: auto;
+}
+.checkbox input[type="checkbox"] {
+    display: none;
+}
+label{
+    width: 29vmin;
+    height: 29vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  
+.checkbox input[type="checkbox"]:checked+label {
+    background: rgba(0, 119, 255, 0.7);
+}

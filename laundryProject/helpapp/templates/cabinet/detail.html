@@ -27,5 +27,11 @@
     <div class="memo">
         <p>{{cabinet.memo}}</p>
     </div>
+    <div class="delete">
+        <a href="{% url 'helpapp:cabinet_delete' cabinet.pk%}">
+            <button type="button" class="delete_button">削除</button>
+        </a>
+    </div>
+    
 </div>
 {% endblock %}

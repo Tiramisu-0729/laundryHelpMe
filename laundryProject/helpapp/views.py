@@ -6,6 +6,7 @@ from tabnanny import check
 from django.test import tag
 from django.urls import reverse
 from urllib.parse import urlencode
+from requests import delete
 import torch
 from django.shortcuts import render
 
@@ -26,19 +27,17 @@ def register(request):
     return render(request, 'helpapp/register.html')
 
 def nologin(request):
-    return render(request, 'helpapp/nologin.html')
+    return render(request, 'helpapp/index.html')
 
 def home(request):
-    if request.user.is_authenticated :
-        user = request.user
-        context = {
-            'message': 'Judage',
-            'user': user,
-            'form': JudgeForm(),
-        }
-        return render(request, 'home/index.html', context)
-    else :
-        return redirect('/helpapp/')
+    user = request.user
+    context = {
+        'ON' : json.dumps('home'),
+        'message': 'Judage',
+        'user': user,
+        'form': JudgeForm(),
+    }
+    return render(request, 'home/index.html', context)
     
     
 def washer(request):
@@ -49,6 +48,7 @@ def washer(request):
             for tag in tags:
                 washers.append(Cabinet.objects.get(pk=tag))
         context = {
+            'ON' : json.dumps('washer'),
             'message': 'Washer',
             'washers' : washers
         }
@@ -66,6 +66,7 @@ def washer_add(request):
             if not(tags[0] == 'LD' or tags[0] == 'LE'):
                 cabinets.append(cabinet)
         context = {
+            'ON' : json.dumps('washer'),
             'message': 'Washer',
             'cabinets' : cabinets,
             'user' : user,
@@ -85,7 +86,7 @@ def washer_add_redirect(request):
                     washers.append(value)
             else:
                 washers = checks_value
-            request.session['washers'] = (washers) #えらる
+            request.session['washers'] = (washers) 
         return redirect('/helpapp/washer')
     else :
         return redirect('/helpapp/')
@@ -95,6 +96,7 @@ def washer_judge(request):
     if request.user.is_authenticated :
         washers = request.session.get('washers')
         context = {
+            'ON' : json.dumps('washer'),
             'message': 'Washer',
             'washers': washers,
             'form': JudgeForm(),
@@ -112,6 +114,7 @@ def cabinet(request):
         if not(cabinets.exists):
             none = "タンスに登録してください"
         context = {
+            'ON' : json.dumps('cabinet'),
             'message': 'Cabinet',
             'cabinets' : cabinets,
             'user' : user,
@@ -125,6 +128,7 @@ def cabinet_judge(request):
     if request.user.is_authenticated :
         user = request.user
         context = {
+            'ON' : json.dumps('cabinet'),
             'message': 'Cabinet',
             'cabinet_message' : '洗濯タグを撮影してください',
             'user': user,
@@ -135,12 +139,16 @@ def cabinet_judge(request):
         return redirect('/helpapp/')
 
 def cabinet_form(request):
-    context = {
-        'message': 'Add Cabinet',
-        'user': user,
-        'cabinet_form': CabinetForm(),
-    }
-    return render(request, 'cabinet/add.html', context)
+    if request.user.is_authenticated :
+        context = {
+            'ON' : json.dumps('cabinet'),
+            'message': 'Add Cabinet',
+            'user': user,
+            'cabinet_form': CabinetForm(),
+        }
+        return render(request, 'cabinet/add.html', context)
+    else :
+        return redirect('/helpapp/')
 
 def cabinet_add(request):
     if request.method == "POST":
@@ -154,6 +162,7 @@ def cabinet_add(request):
             cabinet.laundry_tag = request.session.get('tags')#判定結果sessionとか
             cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
             cabinet.save()
+            
         return redirect('/helpapp/cabinet')
     else:
         user = request.user
@@ -164,90 +173,102 @@ def cabinet_add(request):
         }
     return render(request, 'cabinet/add.html', context)
 
+
+
 def cabinet_detail(request, pk):
     cabinet = Cabinet.objects.get(pk=pk)
     tags = cabinet.laundry_tag.split(',')
     context = {
+        'ON' : json.dumps('cabinet'),
         'tags' : tags,
         'message': cabinet.name,
         'cabinet' : cabinet,
     }
     return render(request, 'cabinet/detail.html', context)
+
+def cabinet_delete(request, pk):
+    cabinet = Cabinet.objects.get(pk=pk)
+    cabinet.delete()
+    return redirect('/helpapp/cabinet')
     
 def user(request):
-    user = request.user
-    context = {
-        'message': 'User',
-        'user': user,
-        'washingProcesses': [
-            '<img src="/static/pictures/L1.png"', '液温は95°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/101.png"',
-            '<img src="/static/pictures/L2.png"', '液温は70°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/L3.png"', '液温は60°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/102.png"',
-            '<img src="/static/pictures/L4.png"', '液温は60°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/L5.png"', '液温は50°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/L6.png"', '液温は50°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/L7.png"', '液温は40°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/103.png"', 
-            '<img src="/static/pictures/L8.png"', '液温は40°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/104.png"', 
-            '<img src="/static/pictures/L9.png"', '液温は40°Cを限度とし、<br>洗濯機で非常に弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/LA.png"', '液温は30°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/LB.png"', '液温は30°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/105.png"', 
-            '<img src="/static/pictures/LC.png"', '液温は30°Cを限度とし、<br>洗濯機で非常に弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/LD.png"', '液温は40°Cを限度とし、<br>手洗いによる洗濯処理ができる。', '<img src="/static/pictures/106.png"', 
-            '<img src="/static/pictures/LE.png"', '洗濯処理はできない。', '<img src="/static/pictures/107.png"'
-        ],
-        'bleachingProcesses': [
-            '<img src="/static/pictures/B1.png"', '塩素系及び酸素系漂白剤による漂白処理ができる。', '<img src="/static/pictures/201.png"',
-            '<img src="/static/pictures/B2.png"', '酸素系漂白剤による漂白処理ができるが、<br>塩素系漂白剤による漂白処理はできない。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/B3.png"', '漂白処理はできない。', '<img src="/static/pictures/202.png"'
-        ],
-        'tumbleDrys': [
-            '<img src="/static/pictures/T1.png"', '洗濯処理後のタンブル乾燥処理ができる。<br>高温乾燥：排気温度の上限は最高80°C', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/T2.png"', '洗濯処理後のタンブル乾燥処理ができる。<br>低温乾燥：排気温度の上限は最高60°C', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/T3.png"', '洗濯処理後のタンブル乾燥処理はできない。', '<img src="/static/pictures/white.png"'
-        ],
-        'naturalDrys': [
-            '<img src="/static/pictures/N1.png"', 'つり干し乾燥がよい。', '<img src="/static/pictures/601.png"',
-            '<img src="/static/pictures/N6.png"', '日陰でのつり干し乾燥がよい。', '<img src="/static/pictures/602.png"',
-            '<img src="/static/pictures/N2.png"', 'ぬれつり干し乾燥がよい。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/N5.png"', '日陰でのぬれつり干し乾燥がよい。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/N3.png"', '平干し乾燥がよい。', '<img src="/static/pictures/603.png"',
-            '<img src="/static/pictures/N7.png"', '日陰での平干し乾燥がよい。', '<img src="/static/pictures/604.png"',
-            '<img src="/static/pictures/N4.png"', 'ぬれ平干し乾燥がよい。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/N8.png"', '日陰でのぬれ平干し乾燥がよい。', '<img src="/static/pictures/white.png"'
-        ],
-        'ironFinishs': [
-            '<img src="/static/pictures/I1.png"', '底面温度200°Cを限度として<br>アイロン仕上げ処理ができる。', '<img src="/static/pictures/301.png"',
-            '<img src="/static/pictures/I2.png"', '底面温度150°Cを限度として<br>アイロン仕上げ処理ができる。', '<img src="/static/pictures/302.png"',
-            '<img src="/static/pictures/I3.png"', '底面温度110°Cを限度として<br>アイロン仕上げ処理ができる。', '<img src="/static/pictures/303.png"',
-            '<img src="/static/pictures/I4.png"', 'アイロン仕上げ処理はできない。', '<img src="/static/pictures/304.png"'
-        ],
-        'dryCleanings': [
-            '<img src="/static/pictures/D1.png"', 'パークロロエチレン及び記号Fの欄に規定の溶剤での通常のドライクリーニング処理ができる。', '<img src="/static/pictures/401.png"',
-            '<img src="/static/pictures/D2.png"', 'パークロロエチレン及び記号Fの欄に規定の溶剤での弱いドライクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/D3.png"', '石油系溶剤(蒸留温度150°C～210°C、引火点38°C～)での通常のドライクリーニング処理ができる。', '<img src="/static/pictures/402.png"',
-            '<img src="/static/pictures/D4.png"', '石油系溶剤(蒸留温度150°C～210°C、引火点38°C～)での弱いドライクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/D5.png"', 'ドライクリーニング処理ができない。', '<img src="/static/pictures/403.png"'
-        ],
-        'wetCleanings': [
-            '<img src="/static/pictures/W1.png"', '通常のウエットクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/W2.png"', '弱いウエットクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/W3.png"', '非常に弱いウエットクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
-            '<img src="/static/pictures/W4.png"', 'ウエットクリーニング処理はできない。', '<img src="/static/pictures/white.png"'
-        ],
-        'list': 
-            '<ol>'
-                '<li>洋服に洗濯タグ(洗濯表示)がなければ<br>このサイトは使用できません</li><br>'
-                '<li>たんす機能はログインしていなければ<br>使用できません</li><br>'
-                '<li>洗濯タグは正しい向きで撮影してください</li><br>'
-                '<li>以下の素材が含まれている洋服は<br>自宅では洗濯できません<br><br>'
-                '<font color="red">絹、レーヨン、キュプラ、<br>アセテート、皮革、毛皮用品</font></li><br>'
-                '<li>以下の洋服はクリーニング店に<br>相談してください<br><br>'
-                '<font color="red">スーツ(ウォッシャブルを除く)、<br>ジャケット、コート、ネクタイ、和服</font></li><br>'
-                '<li>自宅で洗濯する際には、色落ちなどを確認し<br>(色落ちする洋服は洗濯できません)、<br>自己責任でおこなってください</li><br>'
-                '<li>洗濯表示に注意事項が記載されている場合は、<br>それに従ってください</li><br>'
-            '</ol>'
-    }
-    return render(request, 'user/index.html', context)
+    if request.user.is_authenticated :
+        user = request.user
+        context = {
+            'ON' : json.dumps('user'),
+            'message': 'User',
+            'user': user,
+            'washingProcesses': [
+                '<img src="/static/pictures/L1.png"', '液温は95°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/101.png"',
+                '<img src="/static/pictures/L2.png"', '液温は70°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/L3.png"', '液温は60°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/102.png"',
+                '<img src="/static/pictures/L4.png"', '液温は60°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/L5.png"', '液温は50°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/L6.png"', '液温は50°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/L7.png"', '液温は40°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/103.png"', 
+                '<img src="/static/pictures/L8.png"', '液温は40°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/104.png"', 
+                '<img src="/static/pictures/L9.png"', '液温は40°Cを限度とし、<br>洗濯機で非常に弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/LA.png"', '液温は30°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/LB.png"', '液温は30°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/105.png"', 
+                '<img src="/static/pictures/LC.png"', '液温は30°Cを限度とし、<br>洗濯機で非常に弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/LD.png"', '液温は40°Cを限度とし、<br>手洗いによる洗濯処理ができる。', '<img src="/static/pictures/106.png"', 
+                '<img src="/static/pictures/LE.png"', '洗濯処理はできない。', '<img src="/static/pictures/107.png"'
+            ],
+            'bleachingProcesses': [
+                '<img src="/static/pictures/B1.png"', '塩素系及び酸素系漂白剤による漂白処理ができる。', '<img src="/static/pictures/201.png"',
+                '<img src="/static/pictures/B2.png"', '酸素系漂白剤による漂白処理ができるが、<br>塩素系漂白剤による漂白処理はできない。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/B3.png"', '漂白処理はできない。', '<img src="/static/pictures/202.png"'
+            ],
+            'tumbleDrys': [
+                '<img src="/static/pictures/T1.png"', '洗濯処理後のタンブル乾燥処理ができる。<br>高温乾燥：排気温度の上限は最高80°C', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/T2.png"', '洗濯処理後のタンブル乾燥処理ができる。<br>低温乾燥：排気温度の上限は最高60°C', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/T3.png"', '洗濯処理後のタンブル乾燥処理はできない。', '<img src="/static/pictures/white.png"'
+            ],
+            'naturalDrys': [
+                '<img src="/static/pictures/N1.png"', 'つり干し乾燥がよい。', '<img src="/static/pictures/601.png"',
+                '<img src="/static/pictures/N6.png"', '日陰でのつり干し乾燥がよい。', '<img src="/static/pictures/602.png"',
+                '<img src="/static/pictures/N2.png"', 'ぬれつり干し乾燥がよい。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/N5.png"', '日陰でのぬれつり干し乾燥がよい。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/N3.png"', '平干し乾燥がよい。', '<img src="/static/pictures/603.png"',
+                '<img src="/static/pictures/N7.png"', '日陰での平干し乾燥がよい。', '<img src="/static/pictures/604.png"',
+                '<img src="/static/pictures/N4.png"', 'ぬれ平干し乾燥がよい。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/N8.png"', '日陰でのぬれ平干し乾燥がよい。', '<img src="/static/pictures/white.png"'
+            ],
+            'ironFinishs': [
+                '<img src="/static/pictures/I1.png"', '底面温度200°Cを限度として<br>アイロン仕上げ処理ができる。', '<img src="/static/pictures/301.png"',
+                '<img src="/static/pictures/I2.png"', '底面温度150°Cを限度として<br>アイロン仕上げ処理ができる。', '<img src="/static/pictures/302.png"',
+                '<img src="/static/pictures/I3.png"', '底面温度110°Cを限度として<br>アイロン仕上げ処理ができる。', '<img src="/static/pictures/303.png"',
+                '<img src="/static/pictures/I4.png"', 'アイロン仕上げ処理はできない。', '<img src="/static/pictures/304.png"'
+            ],
+            'dryCleanings': [
+                '<img src="/static/pictures/D1.png"', 'パークロロエチレン及び記号Fの欄に規定の溶剤での通常のドライクリーニング処理ができる。', '<img src="/static/pictures/401.png"',
+                '<img src="/static/pictures/D2.png"', 'パークロロエチレン及び記号Fの欄に規定の溶剤での弱いドライクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/D3.png"', '石油系溶剤(蒸留温度150°C～210°C、引火点38°C～)での通常のドライクリーニング処理ができる。', '<img src="/static/pictures/402.png"',
+                '<img src="/static/pictures/D4.png"', '石油系溶剤(蒸留温度150°C～210°C、引火点38°C～)での弱いドライクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/D5.png"', 'ドライクリーニング処理ができない。', '<img src="/static/pictures/403.png"'
+            ],
+            'wetCleanings': [
+                '<img src="/static/pictures/W1.png"', '通常のウエットクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/W2.png"', '弱いウエットクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/W3.png"', '非常に弱いウエットクリーニング処理ができる。', '<img src="/static/pictures/white.png"',
+                '<img src="/static/pictures/W4.png"', 'ウエットクリーニング処理はできない。', '<img src="/static/pictures/white.png"'
+            ],
+            'list': 
+                '<ol>'
+                    '<li>洋服に洗濯タグ(洗濯表示)がなければ<br>このサイトは使用できません</li><br>'
+                    '<li>たんす機能はログインしていなければ<br>使用できません</li><br>'
+                    '<li>洗濯タグは正しい向きで撮影してください</li><br>'
+                    '<li>以下の素材が含まれている洋服は<br>自宅では洗濯できません<br><br>'
+                    '<font color="red">絹、レーヨン、キュプラ、<br>アセテート、皮革、毛皮用品</font></li><br>'
+                    '<li>以下の洋服はクリーニング店に<br>相談してください<br><br>'
+                    '<font color="red">スーツ(ウォッシャブルを除く)、<br>ジャケット、コート、ネクタイ、和服</font></li><br>'
+                    '<li>自宅で洗濯する際には、色落ちなどを確認し<br>(色落ちする洋服は洗濯できません)、<br>自己責任でおこなってください</li><br>'
+                    '<li>洗濯表示に注意事項が記載されている場合は、<br>それに従ってください</li><br>'
+                '</ol>'
+        }
+        return render(request, 'user/index.html', context)
+    else :
+        return redirect('/helpapp/')
 
 def timeline(request):
     if request.user.is_authenticated :
@@ -266,6 +287,7 @@ def timeline(request):
         if not(cabinets.exists):
             none = "タンスに登録してください"
         context = {
+            'ON' : json.dumps('timeline'),
             'tag_list': tag_list,
             'message': 'TimeLine',
             'cabinets' : TimeLineCab,
@@ -304,6 +326,7 @@ def judge(request):
     else:
         user = request.user
         context = {
+            'ON' : json.dumps('home'),
             'message': 'judge',
             'user': user,
             'form': JudgeForm(),
@@ -314,17 +337,18 @@ def laundry_tag_check(request):
     file_url = request.GET.get('file_url') # param1の値を取得
     results = request.GET.get('result') # param2の値を取得
     context = {
-            'file_url' : file_url,
-            'message': 'select',
-            'Laundry': ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'LA', 'LB', 'LC', 'L1', 'LD', 'LE'],
-            'Bleach' : ['B1', 'B2', 'B3'],
-            'Nature' : ['N1', 'N2', 'N3', 'N4', 'N5', 'N6', 'N7', 'N8'],
-            'Iron' : ['I1', 'I2', 'I3', 'I4'],
-            'Tumble' : ['T1', 'T2', 'T3'],
-            'Dry' : ['D1', 'D2', 'D3', 'D4', 'D5'],
-            'Wet' : ['W1', 'W2', 'W3', 'W4' ],
-            'results': json.dumps(results),
-        }
+        'ON' : json.dumps('home'),
+        'file_url' : file_url,
+        'message': 'select',
+        'Laundry': ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'LA', 'LB', 'LC', 'L1', 'LD', 'LE'],
+        'Bleach' : ['B1', 'B2', 'B3'],
+        'Nature' : ['N1', 'N2', 'N3', 'N4', 'N5', 'N6', 'N7', 'N8'],
+        'Iron' : ['I1', 'I2', 'I3', 'I4'],
+        'Tumble' : ['T1', 'T2', 'T3'],
+        'Dry' : ['D1', 'D2', 'D3', 'D4', 'D5'],
+        'Wet' : ['W1', 'W2', 'W3', 'W4' ],
+        'results': json.dumps(results),
+    }
     return render(request, 'laundry_tag_check/index.html', context)
     
 def judge_result(request):
@@ -346,6 +370,7 @@ def judge_result(request):
         request.session['tags'] = dbtag
         file_url = request.session.get('file_url')
         context = {
+            'ON' : json.dumps('home'),
             'message': 'result',
             'result' : result,
             'file_url' : file_url,

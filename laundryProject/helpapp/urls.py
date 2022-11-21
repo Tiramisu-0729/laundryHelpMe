@@ -22,6 +22,7 @@ urlpatterns = [
     path("washer_add_redirect",views.washer_add_redirect, name="washer_add_redirect"),
     path("washer_judge",views.washer_judge, name="washer_judge"),
     path("laundry_tag_check",views.laundry_tag_check, name="laundry_tag_check"),
+    path("cabinet_delete/<int:pk>/",views.cabinet_delete, name="cabinet_delete"),
     path("test",views.testYolo, name="test"),
     
 ]

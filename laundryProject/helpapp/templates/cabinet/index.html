@@ -3,12 +3,10 @@
 {% block link%}
     <title>Cabinet</title>
     <link rel="stylesheet" href="{% static 'css/Cabinet.css' %}">
-    {% if i == "1" %}
-        <script src="{% static 'js/Cabinet.js' %}"></script>
-    {%endif%}
+    <script src="{% static 'js/Cabinet.js' %}"></script>
 {% endblock %}
 {% block content %}
-    <div class="content">
+    <div id="content">
         {% for cabinet in cabinets %}
         <div class="item">
             <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
@@ -17,8 +15,28 @@
         </div>
         {% endfor %}
     </div>
+    <button id="edit">edit</button>
     <div class="none">{{none}}</div>
-    <a href="{% url 'helpapp:cabinet_judge' %}">
+    
+    <div id="check" class="hidden">
+        <form action="" method="POST">
+            {% csrf_token %}
+            {% for cabinet in cabinets %}
+                <div class="checkbox">
+                    <input id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
+                    <label for={{cabinet.id}}>
+                        <img class="img" src="{{ cabinet.image.url }}">
+                    </label>
+                </div>
+            {% endfor %}
+            <div class="btnarea">
+                <button class="submit" data-action="{% url 'helpapp:home'%}">削除</button>
+                <button class="submit" data-action="{% url 'helpapp:home'%}">追加</button>
+                <p>送信データ　：　<input type="text" name="li1" value=""></p>
+            </div>
+        </form>
+    </div>
+    <a href="{% url 'helpapp:cabinet_judge'%}">
         <button type="button" class="add">追加</button>
     </a>
 {% endblock %}
