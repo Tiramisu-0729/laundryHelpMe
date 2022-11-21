@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="{% static 'css/Result.css' %}">
 {% endblock %}
 {% block content %}
-<div><button type="button" onclick="history.back()" class="backButton">戻る</button></div>
-<div><img src="{{file_url}}" class="laundryTagImg"></div>
+<button type="button" onclick="history.back()" class="backButton">戻る</button>
+<img src="{{file_url}}" class="laundryTagImg">
 
 <div class="result"><p>{{result}}</p></div>
 <div class="details">
@@ -19,8 +19,7 @@
                     <img class="img" src="{% static img%}">
                     {% endwith %}
                 </div>
-                <div id={{tag}}>
-                </div>
+                <div class="text"><div id={{tag}}></div></div>
             </div>
             {% endfor %}
     </details>
@@ -30,7 +29,7 @@
     <button type="button" class="add_cabinet">タンスに追加</button>
 </a>
 <a href="{% url 'helpapp:cabinet_form' %}">
-    <button type="button" class="add_washer">Add washer</button>
+    <button type="button" class="add_washer">洗濯機に追加</button>
 </a>
 <a href='{% url "helpapp:home" %}'>
     <button type="button" class="finish">完了</button>
@@ -43,74 +42,74 @@
         let text = document.getElementById(tag); //宣言
         switch (tag){
         case 'L1':
-            text.innerHTML=('温度は<span class="red">95度</span>を限度とし、洗濯機で洗濯ができる');
+            text.innerHTML=('温度は<span class="red">95度</span>を限度とし、<br>洗濯機で洗濯ができる');
             break;
         case 'L2':
-            text.innerHTML=('温度は<span class="red">70度</span>を限度とし、洗濯機で洗濯ができる');
+            text.innerHTML=('温度は<span class="red">70度</span>を限度とし、<br>洗濯機で洗濯ができる');
             break;
         case 'L3':
-            text.innerHTML=('温度は<span class="red">60度</span>を限度とし、洗濯機で洗濯ができる');
+            text.innerHTML=('温度は<span class="red">60度</span>を限度とし、<br>洗濯機で洗濯ができる');
             break;
         case 'L4':
-            text.innerHTML=('温度は<span class="red">60度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる');
+            text.innerHTML=('温度は<span class="red">60度</span>を限度とし、<br>洗濯機で<span class="red">弱い</span>洗濯ができる');
             break;
         case 'L5':
-            text.innerHTML=('温度は<span class="red">50度</span>を限度とし、洗濯機で洗濯ができる');
+            text.innerHTML=('温度は<span class="red">50度</span>を限度とし、<br>洗濯機で洗濯ができる');
             break;
         case 'L6':
-            text.innerHTML=('温度は<span class="red">50度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる');
+            text.innerHTML=('温度は<span class="red">50度</span>を限度とし、<br>洗濯機で<span class="red">弱い</span>洗濯ができる');
             break;
         case 'L7':
-            text.innerHTML=('温度は<span class="red">40度</span>を限度とし、洗濯機で洗濯ができる');
+            text.innerHTML=('温度は<span class="red">40度</span>を限度とし、<br>洗濯機で洗濯ができる');
             break;
         case 'L8':
             console.log("でた")
-            text.innerHTML=('温度は<span class="red">40度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる');
+            text.innerHTML=('温度は<span class="red">40度</span>を限度とし、<br>洗濯機で<span class="red">弱い</span>洗濯ができる');
             break;
         case 'L9':
-            text.innerHTML=('温度は<span class="red">40度</span>を限度とし、洗濯機で<span class="red">非常に弱い</span>洗濯ができる');
+            text.innerHTML=('温度は<span class="red">40度</span>を限度とし、<br>洗濯機で<span class="red">非常に弱い</span>洗濯ができる');
             break;
         case 'LA':
-            text.innerHTML=('温度は<span class="red">30度</span>を限度とし、洗濯機で洗濯ができる');
+            text.innerHTML=('温度は<span class="red">30度</span>を限度とし、<br>洗濯機で洗濯ができる');
             break;
         case 'LB':
-            text.innerHTML=('温度は<span class="red">30度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる');
+            text.innerHTML=('温度は<span class="red">30度</span>を限度とし、<br>洗濯機で<span class="red">弱い</span>洗濯ができる');
             break;
         case 'LC':
-            text.innerHTML=('温度は<span class="red">30度</span>を限度とし、洗濯機で<span class="red">非常に弱い</span>洗濯ができる');
+            text.innerHTML=('温度は<span class="red">30度</span>を限度とし、<br>洗濯機で<span class="red">非常に弱い</span>洗濯ができる');
             break;
         case 'LD':
-            text.innerHTML=('温度は<span class="red">40度</span>を限度とし、手洗いができる');
+            text.innerHTML=('温度は<span class="red">40度</span>を限度とし手洗いができる');
             break;
         case 'LE':
             text.innerHTML=('家庭での<span class="red">洗濯禁止</span>');
             break;
         case 'B1':
-            text.innerHTML=('塩素系及び酸素系の漂白剤を使用して漂白ができる');
+            text.innerHTML=('塩素系及び酸素系の漂白剤を<br>使用して漂白ができる');
             break;
         case 'B2':
-            text.innerHTML=('酸素系漂白剤の使用はできるが塩素系漂白剤は<span class="red">使用禁止</span>');
+            text.innerHTML=('酸素系漂白剤の使用はできるが、<br>塩素系漂白剤は<span class="red">使用禁止</span>');
             break;
         case 'B3':
             text.innerHTML=('塩素系および酸素系漂白剤の<span class="red">使用禁止</span>');
             break;
         case 'T1':
-            text.innerHTML=('タンブル乾燥ができる(排気温度上限<span class="red">80度</span>)');
+            text.innerHTML=('タンブル乾燥ができる<br>(排気温度上限<span class="red">80度</span>)');
             break;
         case 'T2':
-            text.innerHTML=('低い温度でタンブル乾燥ができる(排気温度上限<span class="red">60度</span>)');
+            text.innerHTML=('低い温度でタンブル乾燥ができる<br>(排気温度上限<span class="red">60度</span>)');
             break;
         case 'T3':
             text.innerHTML=('タンブル乾燥<span class="red">禁止</span>');
             break;
         case 'I1':
-            text.innerHTML=('底面温度<span class="red">200度</span>を限度にとしてアイロン仕上げができる');
+            text.innerHTML=('底面温度<span class="red">200度</span>を限度として<br>アイロン仕上げができる');
             break;
         case 'I2':
-            text.innerHTML=('底面温度<span class="red">150度</span>を限度にとしてアイロン仕上げができる');
+            text.innerHTML=('底面温度<span class="red">150度</span>を限度として<br>アイロン仕上げができる');
             break;
         case 'I3':
-            text.innerHTML=('底面温度<span class="red">110度</span>を限度にとして<span class="red">スチームなし</span>でアイロン仕上げができる');
+            text.innerHTML=('底面温度<span class="red">110度</span>を限度として<br><span class="red">スチームなし</span>でアイロン仕上げができる');
             break;
         case 'I4':
             text.innerHTML=('アイロン仕上げが<span class="red">禁止</span>');

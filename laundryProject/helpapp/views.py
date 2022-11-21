@@ -304,7 +304,7 @@ def judge(request):
     else:
         user = request.user
         context = {
-            'message': 'judge',
+            'message': 'Judge',
             'user': user,
             'form': JudgeForm(),
         }
@@ -315,7 +315,7 @@ def laundry_tag_check(request):
     results = request.GET.get('result') # param2の値を取得
     context = {
             'file_url' : file_url,
-            'message': 'select',
+            'message': 'Select',
             'Laundry': ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'LA', 'LB', 'LC', 'L1', 'LD', 'LE'],
             'Bleach' : ['B1', 'B2', 'B3'],
             'Nature' : ['N1', 'N2', 'N3', 'N4', 'N5', 'N6', 'N7', 'N8'],
@@ -346,7 +346,7 @@ def judge_result(request):
         request.session['tags'] = dbtag
         file_url = request.session.get('file_url')
         context = {
-            'message': 'result',
+            'message': 'Result',
             'result' : result,
             'file_url' : file_url,
             'tags' : tags,
