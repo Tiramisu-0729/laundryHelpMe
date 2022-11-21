@@ -29,14 +29,3 @@
     height: 29vmin; 
     object-fit: cover;
 }
-
-/* timeline */
-.timeline {
-    height: 100%;
-    width: 100%;
-}
-.none{
-    font-size: 20px;
-    text-align: center;
-    font: bold;
-}

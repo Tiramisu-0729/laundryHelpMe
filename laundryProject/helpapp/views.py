@@ -1,6 +1,8 @@
 from distutils.command.upload import upload
 import json
 import os
+from sndhdr import whathdr
+from tabnanny import check
 from django.test import tag
 from django.urls import reverse
 from urllib.parse import urlencode
@@ -36,19 +38,23 @@ def home(request):
         }
         return render(request, 'home/index.html', context)
     else :
-        return render(request, 'helpapp/index.html')
+        return redirect('/helpapp/')
     
     
 def washer(request):
     if request.user.is_authenticated :
-        washers = request.session.get('washers')
+        washers =[]
+        if 'washers' in request.session:
+            tags = request.session.get('washers')
+            for tag in tags:
+                washers.append(Cabinet.objects.get(pk=tag))
         context = {
             'message': 'Washer',
             'washers' : washers
         }
         return render(request, 'washer/index.html',context)
     else :
-        return render(request, 'helpapp/index.html')
+        return redirect('/helpapp/')
 
 def washer_add(request):
     if request.user.is_authenticated :
@@ -66,7 +72,24 @@ def washer_add(request):
         }
         return render(request, 'washer/add.html',context)
     else :
-        return render(request, 'helpapp/index.html')
+        return redirect('/helpapp/')
+
+def washer_add_redirect(request):
+    if request.user.is_authenticated :
+        # del request.session['washers']
+        if request.method == "POST":
+            checks_value = request.POST.getlist('check')
+            washers = request.session.get('washers')
+            if washers != None:
+                for value in checks_value:
+                    washers.append(value)
+            else:
+                washers = checks_value
+            request.session['washers'] = (washers) #えらる
+        return redirect('/helpapp/washer')
+    else :
+        return redirect('/helpapp/')
+
 
 def washer_judge(request):
     if request.user.is_authenticated :
@@ -78,7 +101,7 @@ def washer_judge(request):
         }
         return render(request, 'home/index.html', context)
     else :
-        return render(request, 'helpapp/index.html')
+        return redirect('/helpapp/')
 
 
 def cabinet(request):
@@ -96,7 +119,7 @@ def cabinet(request):
         }
         return render(request, 'cabinet/index.html', context)
     else :
-        return render(request, 'helpapp/index.html')
+        return redirect('/helpapp/')
 
 def cabinet_judge(request):
     if request.user.is_authenticated :
@@ -109,7 +132,7 @@ def cabinet_judge(request):
         }
         return render(request, 'home/index.html', context)
     else :
-        return render(request, 'helpapp/index.html')
+        return redirect('/helpapp/')
 
 def cabinet_form(request):
     context = {
@@ -184,7 +207,7 @@ def timeline(request):
         }
         return render(request, 'timeline/index.html', context)
     else :
-        return render(request, 'helpapp/index.html')
+        return redirect('/helpapp/')
 
 def judge(request):
     if request.method == "POST":

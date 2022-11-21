@@ -1,6 +1,6 @@
 
 /* washing_machine */
-.quantity{
+/* .quantity{
     width: 35px;
     height: 35px;
     margin-right: 3%;
@@ -15,7 +15,7 @@
 .quantity p{
     margin-top: 3px;
     color: #FFFFFF;
-}
+} */
 
 
 .item{
@@ -26,6 +26,12 @@
     margin: 2%;
     float: left;
 }
+.item img{
+    width: 29vmin; 
+    height: 29vmin; 
+    object-fit: cover;
+}
+
 .add{
     width: 80%;
     border-radius: 5px;

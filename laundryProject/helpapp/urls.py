@@ -19,7 +19,9 @@ urlpatterns = [
     path("cabinet_add",views.cabinet_add, name="cabinet_add"),
     path("cabinet_detail/<int:pk>/",views.cabinet_detail, name="cabinet_detail"),
     path("washer_add",views.washer_add, name="washer_add"),
+    path("washer_add_redirect",views.washer_add_redirect, name="washer_add_redirect"),
     path("washer_judge",views.washer_judge, name="washer_judge"),
     path("laundry_tag_check",views.laundry_tag_check, name="laundry_tag_check"),
     path("test",views.testYolo, name="test"),
+    
 ]

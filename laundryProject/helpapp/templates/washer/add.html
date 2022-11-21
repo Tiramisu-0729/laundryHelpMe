@@ -5,31 +5,29 @@
     <link rel="stylesheet" href="{% static 'css/Washer_add.css' %}">
 {% endblock %}
 {% block content %}
-<select class="form-control" id="sample" onchange="viewChange();">
+<!-- <select class="form-control" id="sample" onchange="viewChange();">
     <option value="select1">one</option>
     <option value="select2">two</option>
     <option value="select3">three</option>
-</select>
+</select> -->
     <div class="content">
-        <form action="{% url 'helpapp:judge_result' %}" method="POST">
+        <form action="{% url 'helpapp:washer_add_redirect' %}" method="POST">
+            {% csrf_token %}
             {% for cabinet in cabinets %}
             <div class="item">
-                <input id={{cabinet.id}} type="checkbox" name="Wet" value={{cabinet.id}}>
+                <input id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
                 <label for={{cabinet.id}}>
                     <img class="check" src="{{ cabinet.image.url }}">
                 </label>
             </div>
             {% endfor %}
+            <input type="submit" class="add" value="追加">
         </form>
-        
     </div>
-    <a href="{% url 'helpapp:washer_add' %}">
-        <button type="button" class="add">追加</button>
-    </a>
     
 {% endblock %}
 
-<script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
+<!-- <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
     const results = eval({{ results|safe }});
     for (const tag of results) {
@@ -37,4 +35,4 @@
         var element = document.getElementById(tag) ;
         element.checked = true ;
     }
-</script>
+</script> -->

@@ -11,8 +11,8 @@
     <div class="content">
         {% for washer in washers %}
         <div class="item">
-            <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
-                <img src="{{ cabinet.image.url }}">
+            <a href='{% url "helpapp:cabinet_detail" washer.pk %}'>
+                <img src="{{ washer.image.url }}">
             </a>
         </div>
         {% endfor %}
