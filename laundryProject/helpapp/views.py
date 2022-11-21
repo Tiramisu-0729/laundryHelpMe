@@ -30,14 +30,16 @@ def nologin(request):
     return render(request, 'helpapp/index.html')
 
 def home(request):
-    user = request.user
-    context = {
-        'ON' : json.dumps('home'),
-        'message': 'Judage',
-        'user': user,
-        'form': JudgeForm(),
-    }
-    return render(request, 'home/index.html', context)
+    if request.user.is_authenticated :
+        user = request.user
+        context = {
+            'message': 'Judge',
+            'user': user,
+            'form': JudgeForm(),
+        }
+        return render(request, 'home/index.html', context)
+    else :
+        return redirect('/helpapp/')
     
     
 def washer(request):

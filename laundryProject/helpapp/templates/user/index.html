@@ -11,9 +11,9 @@
         <div class="user">
             <img class="user-pic" src="" alt="">  
             <span class="user-ID">ID：{{user}}</span>
-            <a href="#"><button class="edit-button">ユーザー情報を編集</button></a>
+            <a href="#"><button class="edit-button">編集</button></a>
         </div>
-        <p class="logout"><a href='{% url "logout" %}'>ログアウト</a></p>
+        <br>
         <hr>
         <div class="detail">
             <div class="sum">服の総数：</div>
@@ -121,9 +121,11 @@
                 {% endfor %}
             </table>
         </details>
-        <details class="down">
+        <details>
             <summary class="info">注意事項</summary>
             {{list|safe}}
         </details>
+        <hr>
+        <p class="logout"><a href='{% url "logout" %}'>ログアウト</a></p>
     </div>
 {% endblock %}

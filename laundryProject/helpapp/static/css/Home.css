@@ -1,19 +1,16 @@
-
-
 .upload{
-    width: 300px;
-    height: 300px;
+    /* width: 300px;
+    height: 300px; */
     margin: 0 auto;
     text-align: center;
 }
 .upload p{
     display: none;
 }
-
 #home_img{
     width: 250px;
     height: 250px;
-    margin: 5% auto;
+    margin: 13% auto 5%;
     object-fit: cover;
 }
 .content{
@@ -28,8 +25,11 @@
 
 .submit{
     width: 75%;
+}
+button{
+    width: 70%;
     border-radius: 5px;
-    margin-top: 10%;
+    margin: 5% 15% 90px;
     padding-top: 2%;
     padding-bottom: 2%;
     font-size: 32px;
@@ -37,5 +37,4 @@
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
-    margin-bottom: 70px;
 }

@@ -10,10 +10,9 @@
     float: left;
 }
 .add{
-    width: 80%;
+    width: 70%;
     border-radius: 5px;
-    margin-top: 10%;
-    margin-left: 10%;
+    margin: 8% 15% 90px;
     padding-top: 2%;
     padding-bottom: 2%;
     font-size: 32px;
@@ -22,7 +21,6 @@
     border: none;
     clear: both;
     background-color: #4BC9FF;
-    margin-bottom: 90px;
 }
 .item img{
     width: 29vmin; 
@@ -70,4 +68,7 @@ label{
   
 .checkbox input[type="checkbox"]:checked+label {
     background: rgba(0, 119, 255, 0.7);
+}
+.header{
+    margin-bottom: 2%;
 }

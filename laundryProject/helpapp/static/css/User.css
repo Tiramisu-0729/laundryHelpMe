@@ -2,6 +2,9 @@
 body{
     font-size: 18px;
 }
+.container{
+    margin-bottom: 70px;
+}
 .user{
     font-size: 20px;
 }
@@ -10,31 +13,32 @@ body{
     height: 100px;
     width: 100px;
     border-radius: 50%;
-    margin: 3%;
-    margin-right: 10%;
+    margin: 3% 5% 3% 3%;
 }
 .user-ID{
-    width: 50%;
     float: left;
-    margin:0 auto;
-    margin-top: 8%;
+    margin: 5% 3% 0 0;
 }
 .edit-button{
-    width: 55%;
-    margin: 0 auto;
-    margin-top: 5%;
-    padding: 7px 0;
+    width: 40%;
+    margin: 5% 10% 0;
+    padding: 5px 0;
     border-radius: 20px;
     border: none;
     background-color: #D9D9D9;
+    font-size: 16px;
 }
 .logout{
-    text-align: right;
-    font-size: 18px;
-    margin-right: 8%;
+    text-align: center;
+    font-size: 16px;
+    margin: 0;
+}
+a{
+    text-decoration: none;
 }
 hr{
-    margin: 5% 2%;
+    margin: 0 2% 5%;
+    clear: both;
 }
 .detail {
     font-size: 18px;
@@ -97,9 +101,6 @@ td{
 }
 ol{
     font-size: 16px;
-}
-.down{
-    margin-bottom: 60px;
 }
 .info{
     background-color: #FFABAB;

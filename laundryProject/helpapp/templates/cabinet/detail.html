@@ -9,16 +9,12 @@
 <div class="content">
     <div><button type="button" onclick="history.back()" class="backButton">戻る</button></div>
     <div><img src="{{ cabinet.image.url }}" class="laundryTagImg"></div>
-    <div class="belt">
-        tags
-    </div>
+    <div class="belt">洗濯表示</div>
     <div class="tag">
         {% for tag in tags %}
-            <div>
-                {% with img="/pictures/"|add:tag|add:".png" %}
+            {% with img="/pictures/"|add:tag|add:".png" %}
                 <img class="radio" src="{% static img%}">
-                {% endwith %}
-            </div>
+            {% endwith %}
         {% endfor %}
     </div>
     <div class="belt">
