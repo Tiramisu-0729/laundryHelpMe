@@ -32,7 +32,7 @@ def home(request):
     if request.user.is_authenticated :
         user = request.user
         context = {
-            'message': 'Judage',
+            'message': 'Judge',
             'user': user,
             'form': JudgeForm(),
         }

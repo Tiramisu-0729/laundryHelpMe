@@ -1,7 +1,7 @@
 {% extends '../layout.html' %}
 {% load static %}<!-- 必須 -->
 {% block link%}
-    <title>Home</title>
+    <title>judge</title>
     <link rel="stylesheet" href="{% static 'css/Home.css' %}">
     <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="{% static 'js/Home.js' %}"></script>
@@ -14,7 +14,7 @@
                 {% csrf_token %}
                 <label for="id_UploadImg"><img src="{% static "pictures/img.png"%}" alt="" id="home_img"></label>
                 {{ form.as_p }}
-                <input type="submit" class="submit" value="アップロード">
+                <button type="submit">アップロード</button>
             </form>
         </div>
     </div>
