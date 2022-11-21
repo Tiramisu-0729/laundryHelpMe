@@ -33,6 +33,7 @@ def home(request):
     if request.user.is_authenticated :
         user = request.user
         context = {
+            'ON' : json.dumps('home'),
             'message': 'Judge',
             'user': user,
             'form': JudgeForm(),
