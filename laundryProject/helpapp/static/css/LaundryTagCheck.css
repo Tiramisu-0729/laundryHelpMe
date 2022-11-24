@@ -21,9 +21,9 @@
 }
 .radio{
     background-color: #FFFFFF;
-    width: 14vmin;
-    height: 14vmin;
-    margin: 1.15vmin;
+    width: 13.5vmin;
+    height: 13.5vmin;
+    margin: 1vmin;
     padding: 1vmin;
     border: solid 1px #f5f5f5;
     border-radius: 3px;
@@ -37,6 +37,7 @@
 }
 .selection-group{
     text-align: center;
+    padding: 0 1.5%;
 }
 .submit{
     bottom: 0;
@@ -55,7 +56,8 @@
     margin-bottom: 90px;
 }
 .belt{
-    background-color: #e1faff;
+    background-color: #F2FDFF;
+    /* background-color: #CBF9FF; */
     height: 30px;
     padding: 5px;
     margin: 3% 0;
