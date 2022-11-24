@@ -342,7 +342,7 @@ def laundry_tag_check(request):
     context = {
         'ON' : json.dumps('home'),
         'file_url' : file_url,
-        'message': 'select',
+        'message': 'Select',
         'Laundry': ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'LA', 'LB', 'LC', 'L1', 'LD', 'LE'],
         'Bleach' : ['B1', 'B2', 'B3'],
         'Nature' : ['N1', 'N2', 'N3', 'N4', 'N5', 'N6', 'N7', 'N8'],
@@ -374,7 +374,7 @@ def judge_result(request):
         file_url = request.session.get('file_url')
         context = {
             'ON' : json.dumps('home'),
-            'message': 'result',
+            'message': 'Result',
             'result' : result,
             'file_url' : file_url,
             'tags' : tags,
@@ -399,7 +399,7 @@ def testYolo(request):
         if data[4] > 0.5:
             tags.append(data[6]) 
     context = {
-        'message': 'test',
+        'message': 'Test',
         'model': model,
         'results': results,
         'xyxy': results.pandas().xyxy[0].to_json(orient="values"),
