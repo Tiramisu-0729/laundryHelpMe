@@ -2,4 +2,4 @@ upload_img/
 helpapp/__pycache__/*.pyc
 *.pyc
 yolo/
-settings.py
+settings_secret.py
