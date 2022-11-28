@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="{% static 'css/AddCabinet.css' %}">
     <!-- <script src="{% static 'js/TimeLine.js' %}"></script> -->
 {% endblock %}
-    {% block content %}
-    <button type="button" onclick="history.back()" class="backButton">戻る</button><br>
+{% block content %}
+    {% comment %} <button type="button" onclick="history.back()" class="backButton">戻る</button><br> {% endcomment %}
     <!-- <table>
         <tr>
             <td><img src="/pictures/" alt="" class="laundryTagImg"></td>
@@ -55,4 +55,4 @@
             たんすに追加
         </button>
     </form> -->
-    {% endblock %}
+{% endblock %}

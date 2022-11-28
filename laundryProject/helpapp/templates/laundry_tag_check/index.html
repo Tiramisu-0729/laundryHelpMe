@@ -6,8 +6,7 @@
     <!-- <script src="{% static 'js/TimeLine.js' %}"></script> -->
 {% endblock %}
 {% block content %}
-<div><button type="button" onclick="history.back()" class="backButton">戻る</button></div>
-<div><img src="{{file_url}}" alt="" class="laundryTagImg"></div>
+<img src="{{file_url}}" alt="" class="laundryTagImg">
 <div class="belt">
     変更が必要な場合はマークをタップしてください
 </div>
@@ -23,9 +22,7 @@
         {% endwith %}
         {% endfor %}
     </div>
-
     <hr>
-
     <div class="selection-group">
         {% for tag in Bleach %}
         <input id={{tag}} type="radio" name="Bleach" value={{tag}}>
@@ -36,9 +33,7 @@
         {% endwith %}
         {% endfor %}
     </div>
-
     <hr>
-
     <div class="selection-group">
         {% for tag in Nature %}
         <input id={{tag}} type="radio" name="Nature" value={{tag}}>
@@ -49,9 +44,7 @@
         {% endwith %}
         {% endfor %}
     </div>
-
     <hr>
-
     <div class="selection-group">
         {% for tag in Iron %}
         <input id={{tag}} type="radio" name="Iron" value={{tag}}>
@@ -62,9 +55,7 @@
         {% endwith %}
         {% endfor %}
     </div>
-
     <hr>
-
     <div class="selection-group">
         {% for tag in Tumble %}
         <input id={{tag}} type="radio" name="Tumble" value={{tag}}>
@@ -75,9 +66,7 @@
         {% endwith %}
         {% endfor %}
     </div>
-
     <hr>
-
     <div class="selection-group">
         {% for tag in Dry %}
         <input id={{tag}} type="radio" name="Dry" value={{tag}}>
@@ -88,9 +77,7 @@
         {% endwith %}
         {% endfor %}
     </div>
-
     <hr>
-
     <div class="selection-group">
         {% for tag in Wet %}
         <input id={{tag}} type="radio" name="Wet" value={{tag}}>
@@ -101,8 +88,11 @@
         {% endwith %}
         {% endfor %}
     </div>
-    <input type="submit" value="OK" class="submit"></input>
-</form>
+    <div class="button">
+        <input type="submit" value="OK" class="submit"></input>
+        {% comment %} <button type="button" onclick="history.back()" class="backButton">戻る</button> {% endcomment %}
+    </div>
+    </form>
 
 <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">

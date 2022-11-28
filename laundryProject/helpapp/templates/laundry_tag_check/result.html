@@ -6,7 +6,7 @@
     
 {% endblock %}
 {% block content %}
-<button type="button" onclick="history.back()" class="backButton">戻る</button>
+{% comment %} <button type="button" onclick="history.back()" class="backButton">戻る</button> {% endcomment %}
 <img src="{{file_url}}" class="laundryTagImg">
 
 <div class="result"><p>{{result}}</p></div>
@@ -27,10 +27,10 @@
 </div>
 
 <a href="{% url 'helpapp:cabinet_form' %}">
-    <button type="button" class="add_cabinet">タンスに追加</button>
+    <button type="button" class="add_washer">洗濯機に追加</button>
 </a>
 <a href="{% url 'helpapp:cabinet_form' %}">
-    <button type="button" class="add_washer">洗濯機に追加</button>
+    <button type="button" class="add_cabinet">タンスに追加</button>
 </a>
 <a href='{% url "helpapp:home" %}'>
     <button type="button" class="finish">完了</button>

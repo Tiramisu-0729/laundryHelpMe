@@ -8,7 +8,7 @@ body{
     border-radius: 5px;
     font-size: 20px;
     padding: 2px 10px;
-    color: #6D6D6D;
+    color: #fff;
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
@@ -18,10 +18,9 @@ body{
     width: 50vmin;
     height: 50vmin;
     display: block;
-    margin: auto;
+    margin: 5% auto 5%;
     border-radius: 5px;
     object-fit: cover;
-    
 }
 .belt{
     /* background-color: #F2FDFF; */
@@ -51,16 +50,15 @@ body{
     height: 64px;
 }
 .memo{
-    margin: 3% 2%;
-    border: #eeeeee solid 1px;
+    margin: 3% 3%;
+    /* border: #eeeeee solid 1px; */
     border-radius: 5px;
 }
 .delete{
     text-align: center;
 }
 .delete_button{
-    margin-top: 10%;
-    margin-bottom: 18vmin;
+    margin: 20% 2% 65px;
     width: 30vw;
     height: 13vmin;
     border-radius: 5px;
@@ -70,10 +68,6 @@ body{
     border: none;
     background-color: #ff4b4b;
     clear: both;
-
-    margin: 3% 2% 65px;
-    border: solid 1px #cccccc;
-    border-radius: 5px;
 }
 p{
     margin: 0;
