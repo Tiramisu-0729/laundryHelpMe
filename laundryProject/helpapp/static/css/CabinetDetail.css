@@ -51,7 +51,9 @@ body{
     height: 64px;
 }
 .memo{
-    margin: 5%;
+    margin: 3% 2%;
+    border: #eeeeee solid 1px;
+    border-radius: 5px;
 }
 .delete{
     text-align: center;
