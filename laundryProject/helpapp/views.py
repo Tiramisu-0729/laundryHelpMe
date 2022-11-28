@@ -1,8 +1,10 @@
 from distutils.command.upload import upload
 import json
 import os
+import re
 from sndhdr import whathdr
 from tabnanny import check
+from unicodedata import category
 from django.test import tag
 from django.urls import reverse
 from urllib.parse import urlencode
@@ -49,7 +51,8 @@ def washer(request):
         if 'washers' in request.session:
             tags = request.session.get('washers')
             for tag in tags:
-                washers.append(Cabinet.objects.get(pk=tag))
+                if Cabinet.objects.filter(pk=tag).exists():
+                    washers.append(Cabinet.objects.get(pk=tag))
         context = {
             'ON' : json.dumps('washer'),
             'message': 'Washer',
@@ -113,15 +116,22 @@ def cabinet(request):
     if request.user.is_authenticated :
         user = request.user
         cabinets = Cabinet.objects.filter(author=user)
+        i=0
+        for cabinet in cabinets:
+            tags = cabinet.laundry_tag.split(',')
+            cabinets[i].laundry_tag = tags[0]
+            i+=1
         none = ""
         if not(cabinets.exists):
             none = "タンスに登録してください"
+        categories=["tops", "bottoms","outer","inner","other"]
         context = {
             'ON' : json.dumps('cabinet'),
             'message': 'Cabinet',
             'cabinets' : cabinets,
             'user' : user,
-            'none':none
+            'none':none,
+            'categories':categories
         }
         return render(request, 'cabinet/index.html', context)
     else :
@@ -193,6 +203,18 @@ def cabinet_delete(request, pk):
     cabinet = Cabinet.objects.get(pk=pk)
     cabinet.delete()
     return redirect('/helpapp/cabinet')
+
+def cabinets_delete(request):
+    if request.user.is_authenticated :
+        # del request.session['washers']
+        if request.method == "POST":
+            checks_value = request.POST.getlist('check')
+            for value in checks_value:
+                cabinet = Cabinet.objects.get(pk=value)
+                cabinet.delete()
+        return redirect('/helpapp/cabinet')
+    else :
+        return redirect('/helpapp/')
     
 def user(request):
     if request.user.is_authenticated :
@@ -342,7 +364,7 @@ def laundry_tag_check(request):
     context = {
         'ON' : json.dumps('home'),
         'file_url' : file_url,
-        'message': 'select',
+        'message': 'Select',
         'Laundry': ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'LA', 'LB', 'LC', 'L1', 'LD', 'LE'],
         'Bleach' : ['B1', 'B2', 'B3'],
         'Nature' : ['N1', 'N2', 'N3', 'N4', 'N5', 'N6', 'N7', 'N8'],
@@ -374,7 +396,7 @@ def judge_result(request):
         file_url = request.session.get('file_url')
         context = {
             'ON' : json.dumps('home'),
-            'message': 'result',
+            'message': 'Result',
             'result' : result,
             'file_url' : file_url,
             'tags' : tags,
@@ -399,7 +421,7 @@ def testYolo(request):
         if data[4] > 0.5:
             tags.append(data[6]) 
     context = {
-        'message': 'test',
+        'message': 'Test',
         'model': model,
         'results': results,
         'xyxy': results.pandas().xyxy[0].to_json(orient="values"),

@@ -1,12 +1,13 @@
-
 .content{
     text-align: center;
-    display:flex
+    display:flex;
+    /* margin-top: 1.5%; */
+    margin-top: 3%;
 }
 .item{
     width: 29vmin;
     height: 29vmin;
-    border: solid 1px #f5f5f5;
+    border: solid 1px #f0f0f0;
     margin: 1.5% ;
     float: left;
     display: flex;
@@ -14,8 +15,8 @@
     justify-content: center;
 }
 .item img{
-    width: 27vmin; 
-    height: 27vmin; 
+    width: 25vmin; 
+    height: 25vmin; 
     object-fit: cover;
 }
 .check{
@@ -31,7 +32,20 @@ label{
     align-items: center;
     justify-content: center;
 }
-  
 .item input[type="checkbox"]:checked+label {
-    background: rgba(0, 119, 255, 0.7);
+    background: rgba(60, 151, 255, 0.7);
+    border-radius: 5px;
+}
+.add{
+    width: 70%;
+    border-radius: 5px;
+    margin-top: 10%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+    font-size: 32px;
+    color: #6D6D6D;
+    font-weight: bold;
+    border: none;
+    background-color: #4BC9FF;
+    margin-bottom: 90px;
 }

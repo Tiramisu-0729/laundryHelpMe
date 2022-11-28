@@ -4,11 +4,9 @@
     width: 100%;
     margin-bottom: 80px;
 }
-
 .timeline h2 {
     margin: 3%;
 }
-
 #mainpic {
     width: 24vmin;
     height: 24vmin;
@@ -16,7 +14,6 @@
     margin-right: 5%;
     padding: 0;
 }
-
 .box {
     min-height: 90px;
     border: #87d1e0 solid 2px;
@@ -39,7 +36,6 @@
     height: 16%;
     padding: 2%;
 }
-
 .tag {
     /* この要素はflexコンテナとなり、子要素は自動的にflexアイテムとなる */
     display: flex;

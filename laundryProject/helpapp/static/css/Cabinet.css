@@ -1,13 +1,17 @@
 
 /* cabinet */
-
+.nuv{
+    margin: 2%;
+}
 .item{
-    width: 29vmin;
-    height: 29vmin;
+    width: 28vmin;
+    height: 28vmin;
     text-align: center;
     border-radius: 3px;
+    border: solid 1px #f0f0f0;
     margin: 2%;
     float: left;
+    position: relative;
 }
 .add{
     width: 70%;
@@ -23,15 +27,17 @@
     background-color: #4BC9FF;
 }
 .item img{
-    width: 29vmin; 
-    height: 29vmin; 
+    width: 28vmin; 
+    height: 28vmin; 
     object-fit: cover;
 }
 .hidden{
     display: none;
 }
 
-
+#edit{
+    float: right;
+}
 
 .content{
     text-align: center;
@@ -40,16 +46,17 @@
 .checkbox{
     width: 29vmin;
     height: 29vmin;
-    border: solid 1px #f5f5f5;
+    border: solid 1px #f0f0f0;
     margin: 1.5% ;
     float: left;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 .checkbox img{
-    width: 27vmin; 
-    height: 27vmin; 
+    width: 25vmin; 
+    height: 25vmin; 
     object-fit: cover;
 }
 .img{
@@ -67,8 +74,31 @@ label{
 }
   
 .checkbox input[type="checkbox"]:checked+label {
-    background: rgba(0, 119, 255, 0.7);
+    background: rgba(0, 110, 255, 0.329);
 }
-.header{
-    margin-bottom: 2%;
+
+.how{
+    text-align: center;
+    margin: 0;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font: 3%;
+    color: white;
+    width: 70%;    
+}
+.LD{
+    background-color: #63f70065;
+}
+.LE{
+    background-color: #ff000065;
+}
+.able{
+    background-color: #00d9ff65;
+}
+#delete{
+    
+}
+#add_washer{
+
 }
