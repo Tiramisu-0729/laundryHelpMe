@@ -1,6 +1,7 @@
 from distutils.command.upload import upload
 import json
 import os
+import re
 from sndhdr import whathdr
 from tabnanny import check
 from unicodedata import category
@@ -50,7 +51,8 @@ def washer(request):
         if 'washers' in request.session:
             tags = request.session.get('washers')
             for tag in tags:
-                washers.append(Cabinet.objects.get(pk=tag))
+                if Cabinet.objects.filter(pk=tag).exists():
+                    washers.append(Cabinet.objects.get(pk=tag))
         context = {
             'ON' : json.dumps('washer'),
             'message': 'Washer',
