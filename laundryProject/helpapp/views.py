@@ -3,6 +3,7 @@ import json
 import os
 from sndhdr import whathdr
 from tabnanny import check
+from unicodedata import category
 from django.test import tag
 from django.urls import reverse
 from urllib.parse import urlencode
@@ -113,15 +114,22 @@ def cabinet(request):
     if request.user.is_authenticated :
         user = request.user
         cabinets = Cabinet.objects.filter(author=user)
+        i=0
+        for cabinet in cabinets:
+            tags = cabinet.laundry_tag.split(',')
+            cabinets[i].laundry_tag = tags[0]
+            i+=1
         none = ""
         if not(cabinets.exists):
             none = "タンスに登録してください"
+        categories=["tops", "bottoms","outer","inner","other"]
         context = {
             'ON' : json.dumps('cabinet'),
             'message': 'Cabinet',
             'cabinets' : cabinets,
             'user' : user,
-            'none':none
+            'none':none,
+            'categories':categories
         }
         return render(request, 'cabinet/index.html', context)
     else :
@@ -193,6 +201,18 @@ def cabinet_delete(request, pk):
     cabinet = Cabinet.objects.get(pk=pk)
     cabinet.delete()
     return redirect('/helpapp/cabinet')
+
+def cabinets_delete(request):
+    if request.user.is_authenticated :
+        # del request.session['washers']
+        if request.method == "POST":
+            checks_value = request.POST.getlist('check')
+            for value in checks_value:
+                cabinet = Cabinet.objects.get(pk=value)
+                cabinet.delete()
+        return redirect('/helpapp/cabinet')
+    else :
+        return redirect('/helpapp/')
     
 def user(request):
     if request.user.is_authenticated :
