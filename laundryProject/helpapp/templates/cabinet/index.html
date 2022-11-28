@@ -7,17 +7,17 @@
     <script src="{% static 'js/Cabinet.js' %}"></script>
 {% endblock %}
 {% block content %}
-<div class="nuv">
-    <select id="categories" onchange="viewChange();">
-        <option value="all" selected>all</option>
-        {% for category in categories%}
-            <option value="{{category}}" >{{category}}</option>
-        {% endfor %}
-    </select>
-    <button id="edit">edit</button> 
-</div>
+    <div class="nuv">
+        <select id="categories" onchange="viewChange();">
+            <option value="all" selected>all</option>
+            {% for category in categories%}
+                <option value="{{category}}" >{{category}}</option>
+            {% endfor %}
+        </select>
+        <button id="edit">edit</button> 
+    </div>
     <div id="content">
-        <div class="all">
+        <div class="main all">
             {% for cabinet in cabinets %}
                 {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
                     <div class="item">
@@ -44,7 +44,7 @@
             {% endfor %}
         </div>
         {% for category in categories%}
-            <div class="{{category}}" style="display: none;">
+            <div class="main {{category}}" style="display: none;">
                 {% for cabinet in cabinets %}
                     {% if cabinet.category|stringformat:"s" == category %}
                         {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
@@ -80,9 +80,9 @@
     <!-- チェックボックス -->
 
     <div id="check" class="hidden">
-        <form action="" method="POST">
+        <form action="{% url 'helpapp:cabinets_delete'%}" method="POST">
             {% csrf_token %}
-            <div class="all">
+            <div class="all main">
                 {% for cabinet in cabinets %}
                 {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
                     <div class="checkbox">
@@ -113,7 +113,7 @@
             </div>
 
             {% for category in categories %}    
-            <div class="{{category}}" style="display: none;">
+            <div class="main {{category}}" style="display: none;">
                 {% for cabinet in cabinets %}
                     {% if cabinet.category|stringformat:"s" == category %}
                         {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
@@ -145,10 +145,8 @@
                 {% endfor %}
             </div>
             {% endfor %}
-
-            <div class="btnarea">
-                <button id="delete" class="submit" data-action="{% url 'helpapp:home'%}">削除</button>
-                <button id="add_washer" class="submit" data-action="{% url 'helpapp:user'%}">追加</button>
+            <div class="btn">
+                <input id="delete" type="submit" value="削除">
             </div>
         </form>
     </div>

@@ -96,15 +96,11 @@ td{
     font-weight: bold;
     border: none;
 }
-.addWashing{
-    background-color: #4BC9FF;
-    margin-top: 5%;
-}
 .addCloset{
     background-color: #FFF84B;
 }
 .finish{
-    background-color: #4BFF5D;
+    background-color: #4BC9FF;
     margin-bottom: 90px;
 }
 

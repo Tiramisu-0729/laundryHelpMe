@@ -29,38 +29,46 @@ def register(request):
     return render(request, 'helpapp/register.html')
 
 def nologin(request):
-    return render(request, 'helpapp/index.html')
+    context = {
+        'ON' : json.dumps('home'),
+        'message': 'Judge',
+        'form': JudgeForm(),
+    }
+    return render(request, 'home/index.html', context)
 
 def home(request):
-    if request.user.is_authenticated :
-        user = request.user
-        context = {
-            'ON' : json.dumps('home'),
-            'message': 'Judge',
-            'user': user,
-            'form': JudgeForm(),
-        }
-        return render(request, 'home/index.html', context)
-    else :
-        return redirect('/helpapp/')
+    context = {
+        'ON' : json.dumps('home'),
+        'message': 'Judge',
+        'form': JudgeForm(),
+    }
+    return render(request, 'home/index.html', context)
     
     
 def washer(request):
     if request.user.is_authenticated :
         washers =[]
+        tags=[]
+        i=0
         if 'washers' in request.session:
-            tags = request.session.get('washers')
-            for tag in tags:
-                if Cabinet.objects.filter(pk=tag).exists():
-                    washers.append(Cabinet.objects.get(pk=tag))
+            IDs = request.session.get('washers')
+            for id in IDs:
+                if Cabinet.objects.filter(pk=id).exists():
+                    washers.append(Cabinet.objects.get(pk=id))
+            for washer in washers:
+                tags = washer.laundry_tag.split(',')
+                washers[i].laundry_tag = tags[0]
+                i+=1
+        categories=["tops", "bottoms","outer","inner","other"]
         context = {
+            'categories' : categories,
             'ON' : json.dumps('washer'),
             'message': 'Washer',
             'washers' : washers
         }
         return render(request, 'washer/index.html',context)
     else :
-        return redirect('/helpapp/')
+        return redirect('/accounts/login/')
 
 def washer_add(request):
     if request.user.is_authenticated :
@@ -79,7 +87,7 @@ def washer_add(request):
         }
         return render(request, 'washer/add.html',context)
     else :
-        return redirect('/helpapp/')
+        return redirect('/accounts/login/')
 
 def washer_add_redirect(request):
     if request.user.is_authenticated :
@@ -95,22 +103,46 @@ def washer_add_redirect(request):
             request.session['washers'] = (washers) 
         return redirect('/helpapp/washer')
     else :
-        return redirect('/helpapp/')
-
+        return redirect('/accounts/login/')
 
 def washer_judge(request):
     if request.user.is_authenticated :
-        washers = request.session.get('washers')
-        context = {
-            'ON' : json.dumps('washer'),
-            'message': 'Washer',
-            'washers': washers,
-            'form': JudgeForm(),
-        }
-        return render(request, 'home/index.html', context)
+        if 'washers' in request.session:
+            washers=[]
+            IDs = request.session.get('washers')
+            for id in IDs:#washersを取り出す
+                if Cabinet.objects.filter(pk=id).exists():
+                    washers.append(Cabinet.objects.get(pk=id))
+            comp = 1
+            for washer in washers:
+                tags = washer.laundry_tag.split(',')
+                if int(str(tags[0][1]), 16) > int(comp ,16):#一番条件が厳しいタグの判定
+                    #comp=tags[0][1]
+                    print(str(tags[0][1]))
+            context = {
+                'washers' : washers,
+                'comp' : comp,
+                'ON' : json.dumps('washer'),
+                'message': 'Washer',
+            }
+            return render(request, 'washer/result.html', context)
+        return redirect('/helpapp/washer/')
     else :
-        return redirect('/helpapp/')
+        return redirect('/accounts/login/')
 
+def washers_delete(request):
+    if request.user.is_authenticated :
+        # del request.session['washers']
+        if request.method == "POST":
+            checks_value = request.POST.getlist('check')
+            washers = request.session.get('washers')
+            for value in checks_value:
+                if value in washers:
+                    washers.remove(value)
+            request.session['washers'] = washers
+        return redirect('/helpapp/washer')
+    else :
+        return redirect('/accounts/login/')
 
 def cabinet(request):
     if request.user.is_authenticated :
@@ -135,7 +167,7 @@ def cabinet(request):
         }
         return render(request, 'cabinet/index.html', context)
     else :
-        return redirect('/helpapp/')
+        return redirect('/accounts/login/')
 
 def cabinet_judge(request):
     if request.user.is_authenticated :
@@ -149,7 +181,7 @@ def cabinet_judge(request):
         }
         return render(request, 'home/index.html', context)
     else :
-        return redirect('/helpapp/')
+        return redirect('/accounts/login/')
 
 def cabinet_form(request):
     if request.user.is_authenticated :
@@ -161,7 +193,7 @@ def cabinet_form(request):
         }
         return render(request, 'cabinet/add.html', context)
     else :
-        return redirect('/helpapp/')
+        return redirect('/accounts/login/')
 
 def cabinet_add(request):
     if request.method == "POST":
@@ -214,7 +246,7 @@ def cabinets_delete(request):
                 cabinet.delete()
         return redirect('/helpapp/cabinet')
     else :
-        return redirect('/helpapp/')
+        return redirect('/accounts/login/')
     
 def user(request):
     if request.user.is_authenticated :
@@ -293,8 +325,7 @@ def user(request):
         }
         return render(request, 'user/index.html', context)
     else :
-        return redirect('/helpapp/')
-
+        return redirect('/accounts/login/')
 def timeline(request):
     if request.user.is_authenticated :
         user = request.user
@@ -320,7 +351,7 @@ def timeline(request):
         }
         return render(request, 'timeline/index.html', context)
     else :
-        return redirect('/helpapp/')
+        return redirect('/accounts/login/')
 
 def judge(request):
     if request.method == "POST":
@@ -365,7 +396,7 @@ def laundry_tag_check(request):
         'ON' : json.dumps('home'),
         'file_url' : file_url,
         'message': 'Select',
-        'Laundry': ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'LA', 'LB', 'LC', 'L1', 'LD', 'LE'],
+        'Laundry': ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'LA', 'LB', 'LC', 'LD', 'LE'],
         'Bleach' : ['B1', 'B2', 'B3'],
         'Nature' : ['N1', 'N2', 'N3', 'N4', 'N5', 'N6', 'N7', 'N8'],
         'Iron' : ['I1', 'I2', 'I3', 'I4'],

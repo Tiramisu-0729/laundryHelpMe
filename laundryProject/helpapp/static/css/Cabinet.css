@@ -1,6 +1,7 @@
 
 /* cabinet */
 .nuv{
+    height: 4vh;
     margin: 2%;
 }
 .item{
@@ -34,11 +35,6 @@
 .hidden{
     display: none;
 }
-
-#edit{
-    float: right;
-}
-
 .content{
     text-align: center;
     display:flex
@@ -96,9 +92,37 @@ label{
 .able{
     background-color: #00d9ff65;
 }
-#delete{
-    
-}
-#add_washer{
 
+#edit{
+    float: right;
+    width: 15vw;
+    height: 4vh;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #6D6D6D;
+    font-weight: bold;
+    border: none;
+    background-color: #4BC9FF;
+}
+#categories{
+    height: 4vh;
+    width: 30vw;
+}
+#delete{
+    margin: 10vh 0 5vh 0;
+    width: 70vw;
+    height: 7vh;
+    border-radius: 5px;
+    font-size: 32px;
+    color: #6D6D6D;
+    font-weight: bold;
+    border: none;
+    clear: both;
+    background-color: #ff4b4b;
+}
+.btn{
+    text-align: center;
+}
+.main{
+    overflow:hidden
 }

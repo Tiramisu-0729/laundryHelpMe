@@ -9,11 +9,6 @@ window.onload = function(){
     edit.addEventListener('click', () => {
         check.classList.toggle('hidden');
         content.classList.toggle('hidden');
-        if (title.innerHTML === "Cabinet") {
-            title.innerHTML = "Edit";
-          } else {
-            title.innerHTML = "Cabinet";
-          }
     });
 
 

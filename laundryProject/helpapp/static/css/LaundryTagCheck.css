@@ -20,6 +20,7 @@
     object-fit: cover;
 }
 .radio{
+    box-shadow: 1px 1px 1px 0px #999;
     background-color: #FFFFFF;
     width: 13.5vmin;
     height: 13.5vmin;
@@ -32,7 +33,7 @@
     display: none;
 }
 .selection-group input[type="radio"]:checked + label img {
-    background: lightyellow;
+    background: #4bc9ff9a;
     border-radius: 3px;
 }
 .selection-group{
@@ -55,11 +56,10 @@
     background-color: #4BC9FF;
     margin-bottom: 90px;
 }
-.belt{
-    background-color: #F2FDFF;
-    /* background-color: #CBF9FF; */
+.msg{
     height: 30px;
     padding: 5px;
+    font-weight: bold;
     margin: 3% 0;
     text-align: center;
 }

@@ -8,9 +8,11 @@
 {% block content %}
 <div><button type="button" onclick="history.back()" class="backButton">戻る</button></div>
 <div><img src="{{file_url}}" alt="" class="laundryTagImg"></div>
-<div class="belt">
+<div class="msg">
     変更が必要な場合はマークをタップしてください
 </div>
+    
+
 <form action="{% url 'helpapp:judge_result' %}" method="POST">
     {% csrf_token %}
     <div class="selection-group">
