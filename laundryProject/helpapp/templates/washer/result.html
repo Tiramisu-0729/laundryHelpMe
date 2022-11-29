@@ -2,17 +2,40 @@
 {% load static %}<!-- 必須 -->
 {% block link%}
     <title>result</title>
-    <link rel="stylesheet" href="{% static 'css/Result.css' %}">
-    
+    <link rel="stylesheet" href="{% static 'css/WasherResult.css' %}">
 {% endblock %}
 {% block content %}
-<button type="button" onclick="history.back()" class="backButton">戻る</button>
-{% for washer in washers %}
-<div class="pictures">
-    <img src="{{washer.img.url}}" class="laundryTagImg">
+<div class="content">
+    <h2>洗濯物</h2>
+    <div class="scroll">
+        {% for washer in washers %}
+            <div class="pictures">
+                <img src="{{washer.image.url}}" class="washer_img">
+            </div>
+        {% endfor %}
+    </div>
+    <hr>
+    <div class="cards">
+        <div class="card">
+        
+        </div>
+        <div class="card">
+            
+    
+        </div>
+        <div class="card">
+            
+    
+        </div>
+    </div>
+    
+
+    {{comp.L}}
+    {{comp.B}}
+    {{comp.T}}
+
 </div>
-{% endfor %}
-{{comp}}
+
 
 
 {% endblock %}

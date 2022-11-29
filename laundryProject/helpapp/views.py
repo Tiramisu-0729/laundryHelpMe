@@ -113,12 +113,19 @@ def washer_judge(request):
             for id in IDs:#washersを取り出す
                 if Cabinet.objects.filter(pk=id).exists():
                     washers.append(Cabinet.objects.get(pk=id))
-            comp = 1
+            comp = {'L': "1", 'B': "1", 'T' : "1"}
             for washer in washers:
                 tags = washer.laundry_tag.split(',')
-                if int(str(tags[0][1]), 16) > int(comp ,16):#一番条件が厳しいタグの判定
-                    #comp=tags[0][1]
-                    print(str(tags[0][1]))
+                for tag in tags:
+                    if tag[0] == "L":
+                        if int(tag[1], 16) > int(comp["L"] ,16):#一番条件が厳しいタグの判定
+                            comp["L"]=tag[1]
+                    elif tag[0] == "B":
+                        if int(tag[1], 16) > int(comp["B"] ,16):#一番条件が厳しいタグの判定
+                            comp["B"]=tag[1]
+                    elif tag[0] == "T":
+                        if int(tag[1], 16) > int(comp["T"] ,16):#一番条件が厳しいタグの判定
+                            comp["T"]=tag[1]
             context = {
                 'washers' : washers,
                 'comp' : comp,
