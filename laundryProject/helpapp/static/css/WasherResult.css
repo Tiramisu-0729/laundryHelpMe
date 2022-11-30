@@ -61,6 +61,7 @@ h2{
     border: solid 1px #e2e2e2;
     margin: 1%;
     border-radius: 5%;
+    align-items: center;
 }
 .belt{
     background-color: #94daf8;
@@ -73,19 +74,12 @@ h2{
 }
 .tag{
     display: flex;
+    justify-content: center;
     align-items: center;
-    background-color: #FFFFFF;
-    margin: 2%;
-    padding-right: 2%;
-    border-radius: 3%;
 }
-.img{
-    background-color: #FFFFFF;
-    width: 18vw;
-    height: 18vw;
-}
-.tag_img{
-    margin: 1.5% 3% 0 2%;
+.tag_img{   
+    width: 11vmin;
+    height: 11vmin;
 }
 .bigBelt{
     background-color: #F2FDFF;
@@ -131,3 +125,4 @@ hr {
     border: 1px #e2e2e2 solid;
     margin: 3%;
 }
+.
