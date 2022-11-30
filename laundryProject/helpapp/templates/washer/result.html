@@ -10,7 +10,9 @@
     <div class="scroll">
         {% for washer in washers %}
             <div class="pictures">
+                <a href='{% url "helpapp:cabinet_detail" washer.pk %}'>
                 <img src="{{washer.image.url}}" class="washer_img">
+                </a>
             </div>
         {% endfor %}
     </div>
@@ -32,13 +34,15 @@
     </div>
 </div>
 <hr>
+<div class="button">
+    <a href='{% url "helpapp:washer" %}'>
+        <button type="button" class="finish">完了</button>
+    </a>
+    <a href="{% url 'helpapp:washer_clear' %}">
+        <button type="button" class="washer_clear">洗濯機を空にする</button>
+    </a>
+</div>
 
-<a href='{% url "helpapp:washer" %}'>
-    <button type="button" class="finish">完了</button>
-</a>
-<a href="{% url 'helpapp:washer_clear' %}">
-    <button type="button" class="washer_clear">洗濯機を空にする</button>
-</a>
 
 
 <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
