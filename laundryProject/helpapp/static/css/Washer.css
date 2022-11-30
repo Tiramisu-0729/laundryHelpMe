@@ -1,4 +1,3 @@
-
 /* cabinet */
 .nuv{
     height: 4vh;
@@ -10,11 +9,11 @@
     text-align: center;
     border-radius: 3px;
     border: solid 1px #f0f0f0;
+    border-radius: 3px;
     margin: 2%;
     float: left;
     position: relative;
 }
-
 .item img{
     width: 28vmin; 
     height: 28vmin; 
@@ -28,10 +27,11 @@
     display:flex
 }
 .checkbox{
-    width: 29vmin;
-    height: 29vmin;
+    width: 28vmin;
+    height: 28vmin;
     border: solid 1px #f0f0f0;
-    margin: 1.5% ;
+    border-radius: 3px;
+    margin: 2% ;
     float: left;
     display: flex;
     align-items: center;
@@ -39,8 +39,8 @@
     position: relative;
 }
 .checkbox img{
-    width: 25vmin; 
-    height: 25vmin; 
+    width: 28vmin; 
+    height: 28vmin; 
     object-fit: cover;
 }
 .img{
@@ -56,11 +56,10 @@ label{
     align-items: center;
     justify-content: center;
 }
-  
 .checkbox input[type="checkbox"]:checked+label {
-    background: rgba(0, 110, 255, 0.329);
+    border: solid 2px royalblue;
+    border-radius: 3px;
 }
-
 .how{
     text-align: center;
     margin: 0;
@@ -80,14 +79,13 @@ label{
 .able{
     background-color: #00d9ff65;
 }
-
 #edit{
     float: right;
     width: 15vw;
     height: 4vh;
     border-radius: 5px;
     font-size: 15px;
-    color: #6D6D6D;
+    color: #fff;
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
@@ -114,31 +112,17 @@ label{
 .main{
     overflow:hidden
 }
-
 .add{
     width: 70%;
     border-radius: 5px;
-    margin: 8% 15% 90px;
+    margin: 10% 15% 10%;
     padding-top: 2%;
     padding-bottom: 2%;
     font-size: 32px;
-    color: #6D6D6D;
-    font-weight: bold;
-    border: none;
-    /* color: #6D6D6D; */
-    font-weight: bold;
-    border: none;
-}
-.add{
-    margin: 10% 15% 10%;
     background-color: #4BC9FF;
     color: #fff;
-}
-.judge{
-    margin-left: 15%;
-    background-color: #fffa61;
-    color: #6D6D6D;
-    margin-bottom: 90px;
+    font-weight: bold;
+    border: none;
 }
 .result{
     float: left;
@@ -156,12 +140,11 @@ label{
     clear: both;
     background-color: #4BC9FF;
 }
-
 .judge{
     background-color: #fffa61;
     width: 70%;
     border-radius: 5px;
-    margin: 0 15% 90px;
+    margin: 0 15% 25%;
     padding-top: 2%;
     padding-bottom: 2%;
     font-size: 32px;

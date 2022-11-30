@@ -56,7 +56,8 @@
     background-color: #4BC9FF;
 }
 .button{
-    margin-bottom: 90px;
+    /* margin-bottom: 90px; */
+    margin-bottom: 25%;
 }
 .msg{
     height: 30px;
