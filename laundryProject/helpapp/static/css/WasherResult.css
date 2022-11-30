@@ -63,15 +63,7 @@ h2{
     border-radius: 5%;
     align-items: center;
 }
-.belt{
-    background-color: #94daf8;
-    color: #6D6D6D;
-    font-weight: bold;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    padding-left: 4%;
-    font-size: 16px;
-}
+
 .tag{
     display: flex;
     justify-content: center;
@@ -81,41 +73,19 @@ h2{
     width: 11vmin;
     height: 11vmin;
 }
-.bigBelt{
-    background-color: #F2FDFF;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    padding-left: 6%;
-    font-size: 40px;
-    font-weight: bold;
-}
-.add_washer, .add_cabinet, .finish{
-    width: 70%;
-    border-radius: 5px;
-    margin-left: 15%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    font-size: 32px;
-    font-weight: bold;
-    border: none;
-}
-.add_washer{
-    background-color: #4BC9FF;
-    color: #fff;
-    margin-top: 5%;
-}
-.add_cabinet{
-    background-color: #FFF84B;
-    color: #6D6D6D;
-    margin-top: 10%;
-    margin-bottom: 10%;
+.button{
+    text-align: center;
 }
 .finish{
+    margin-bottom: 10vh;
+    width: 50vw;
+    height: 13vmin;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
     background-color: #4BFF5D;
     color: #6D6D6D;
-    margin-bottom: 90px;
 }
 .red{
     color: red;
@@ -125,4 +95,15 @@ hr {
     border: 1px #e2e2e2 solid;
     margin: 3%;
 }
-.
+.washer_clear{
+    margin-bottom: 10vh;
+    width: 50vw;
+    height: 13vmin;
+    border-radius: 5px;
+    font-size: 20px;
+    color: #6D6D6D;
+    font-weight: bold;
+    border: none;
+    background-color: #ff4b4b;
+    clear: both;
+}

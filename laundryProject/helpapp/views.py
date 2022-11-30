@@ -458,7 +458,7 @@ from django.shortcuts import render
 def testYolo(request):
     path_hubconfig = "yolo"
     path_weightfile = "yolo/729x300_yolov5m_best.pt" 
-    img_path = '/upload_img/4018.jpg'
+    img_path = '/upload_img/4008.jpg'
     model = torch.hub.load(path_hubconfig, 'custom',path=path_weightfile, source='local')
     results = model(img_path.lstrip("/"))
     datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))

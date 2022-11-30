@@ -2,20 +2,12 @@ window.onload = function(){
     const edit = document.getElementById('edit');
     const check = document.getElementById('check');
     const content = document.getElementById('content');
-    var title = document.getElementById("title");
   
 
     //チェックボックス表示切替
     edit.addEventListener('click', () => {
         check.classList.toggle('hidden');
         content.classList.toggle('hidden');
-    });
-
-
-    //form送信先設定
-    $('.submit').click(function() {
-        $(this).parents().parents('form').attr('action', $(this).data('action'));
-        $(this).parents().parents('form').submit();
     });
 
     //チェックボックスの同期
@@ -30,7 +22,7 @@ window.onload = function(){
     });
 };
 
-// カテゴリー変更   allは出たけどTOPS出なかった
+// カテゴリー変更 
 function viewChange(){
     if(document.getElementById('categories')){
         id = document.getElementById('categories').value;

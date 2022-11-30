@@ -48,10 +48,10 @@ body {
 .add{
     bottom: 0;
     clear: both;
-    width: 80%;
+    width: 70%;
     border-radius: 5px;
     margin-top: 10%;
-    margin-left: 10%;
+    margin-left: 15%;
     padding-top: 2%;
     padding-bottom: 2%;
     font-size: 32px;
@@ -59,7 +59,7 @@ body {
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
-    margin-bottom: 90px;
+    margin-bottom: 25%;
 }
 .footer-picture{
     width: 50px;

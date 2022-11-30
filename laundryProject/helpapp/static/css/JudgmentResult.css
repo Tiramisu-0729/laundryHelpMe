@@ -101,7 +101,8 @@ td{
 }
 .finish{
     background-color: #4BC9FF;
-    margin-bottom: 90px;
+    /* margin-bottom: 90px; */
+    margin-bottom: 25%;
 }
 .footer{
     height: 60px;
