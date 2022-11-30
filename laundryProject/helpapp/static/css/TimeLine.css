@@ -16,12 +16,21 @@
 }
 .box {
     min-height: 90px;
-    border: #87d1e0 solid 2px;
+    border: solid 2px;
     border-radius: 5px;
     margin: 2%;
     padding: 3%;
     animation: faden 2s cubic-bezier(0.33, 1, 0.68, 1) 1 forwards;
     min-height: 10vh;
+}
+#LD{
+    border-color: #63f70085;
+}
+#LE{
+    border-color: #ff000085;
+}
+#able{
+    border-color: #00d9ff85;
 }
 /* @keyframes faden {
     0%{

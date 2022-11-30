@@ -11,7 +11,51 @@
             <h2>最新</h2>
             <div class="none">{{none}}</div>
             {% for cabinet in cabinets %}
-                <div class="box">
+                {% if cabinet.laundry_tag.0|stringformat:"s" in "LD" %}
+                    <div class="box" id="LD">
+                        <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
+                            <img id="mainpic" src="{{ cabinet.image.url }}">
+                            <div class="tag">
+                                {% for tag in cabinet.laundry_tag %}
+                                    {% with img="/pictures/"|add:tag|add:".png" %}
+                                        <img src="{% static img%}">
+                                    {% endwith %}
+                                {% endfor %}
+                            </div>
+                        </a>
+                    </div>
+                {% elif cabinet.laundry_tag.0|stringformat:"s" in "LE" %}
+                    <div class="box" id="LE">
+                        <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
+                            <img id="mainpic" src="{{ cabinet.image.url }}">
+                            <div class="tag">
+                                {% for tag in cabinet.laundry_tag %}
+                                    {% with img="/pictures/"|add:tag|add:".png" %}
+                                        <img src="{% static img%}">
+                                    {% endwith %}
+                                {% endfor %}
+                            </div>
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="box" id="able">
+                        <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
+                            <img id="mainpic" src="{{ cabinet.image.url }}">
+                            <div class="tag">
+                                {% for tag in cabinet.laundry_tag %}
+                                    {% with img="/pictures/"|add:tag|add:".png" %}
+                                        <img src="{% static img%}">
+                                    {% endwith %}
+                                {% endfor %}
+                            </div>
+                        </a>
+                    </div>
+                {% endif %}
+
+
+
+
+                {% comment %} <div class="box">
                     <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
                         <img id="mainpic" src="{{ cabinet.image.url }}">
                         <div class="tag">
@@ -22,7 +66,7 @@
                             {% endfor %}
                         </div>
                     </a>
-                </div>
+                </div> {% endcomment %}
             {% endfor %}
         </div>
     {% endblock %}
