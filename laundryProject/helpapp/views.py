@@ -113,19 +113,19 @@ def washer_judge(request):
             for id in IDs:#washersを取り出す
                 if Cabinet.objects.filter(pk=id).exists():
                     washers.append(Cabinet.objects.get(pk=id))
-            comp = {'L': "1", 'B': "1", 'T' : "1"}
+            comp = ["L1", "B1", "T1"]
             for washer in washers:
                 tags = washer.laundry_tag.split(',')
                 for tag in tags:
                     if tag[0] == "L":
-                        if int(tag[1], 16) > int(comp["L"] ,16):#一番条件が厳しいタグの判定
-                            comp["L"]=tag[1]
+                        if int(tag[1], 16) > int(comp[0][1] ,16):#一番条件が厳しいタグの判定
+                            comp[0]=tag
                     elif tag[0] == "B":
-                        if int(tag[1], 16) > int(comp["B"] ,16):#一番条件が厳しいタグの判定
-                            comp["B"]=tag[1]
+                        if int(tag[1], 16) > int(comp[1][1] ,16):#一番条件が厳しいタグの判定
+                            comp[1]=tag
                     elif tag[0] == "T":
-                        if int(tag[1], 16) > int(comp["T"] ,16):#一番条件が厳しいタグの判定
-                            comp["T"]=tag[1]
+                        if int(tag[1], 16) > int(comp[2][1] ,16):#一番条件が厳しいタグの判定
+                            comp[2]=tag
             context = {
                 'washers' : washers,
                 'comp' : comp,
@@ -147,6 +147,14 @@ def washers_delete(request):
                 if value in washers:
                     washers.remove(value)
             request.session['washers'] = washers
+        return redirect('/helpapp/washer')
+    else :
+        return redirect('/accounts/login/')
+
+
+def washer_clear(request):
+    if request.user.is_authenticated :
+        del request.session['washers']
         return redirect('/helpapp/washer')
     else :
         return redirect('/accounts/login/')
@@ -450,7 +458,7 @@ from django.shortcuts import render
 def testYolo(request):
     path_hubconfig = "yolo"
     path_weightfile = "yolo/729x300_yolov5m_best.pt" 
-    img_path = '/upload_img/4018.jpg'
+    img_path = '/upload_img/4008.jpg'
     model = torch.hub.load(path_hubconfig, 'custom',path=path_weightfile, source='local')
     results = model(img_path.lstrip("/"))
     datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))

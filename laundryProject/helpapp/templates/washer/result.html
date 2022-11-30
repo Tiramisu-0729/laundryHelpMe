@@ -10,32 +10,172 @@
     <div class="scroll">
         {% for washer in washers %}
             <div class="pictures">
+                <a href='{% url "helpapp:cabinet_detail" washer.pk %}'>
                 <img src="{{washer.image.url}}" class="washer_img">
+                </a>
             </div>
         {% endfor %}
     </div>
     <hr>
     <div class="cards">
-        <div class="card">
-        
-        </div>
-        <div class="card">
-            
-    
-        </div>
-        <div class="card">
-            
-    
-        </div>
+        {% for tag in comp %}
+            <div class="card">
+                <div class="tag">
+                    {% with img="/pictures/"|add:tag|add:".png" %}
+                    <img class="tag_img" src="{% static img%}">
+                    {% endwith %}
+                </div>
+                <hr>
+                <div id="{{tag}}">
+
+                </div>
+            </div>
+        {% endfor %}
     </div>
-    
-
-    {{comp.L}}
-    {{comp.B}}
-    {{comp.T}}
-
+</div>
+<hr>
+<div class="button">
+    <a href='{% url "helpapp:washer" %}'>
+        <button type="button" class="finish">完了</button>
+    </a>
+    <a href="{% url 'helpapp:washer_clear' %}">
+        <button type="button" class="washer_clear">洗濯機を空にする</button>
+    </a>
 </div>
 
 
 
+<script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
+<script type="text/javascript">
+    const comp = eval({{ comp|safe }});
+    for (const tag of comp) {
+        let text = document.getElementById(tag); //宣言
+        switch (tag){
+        case 'L1':
+            text.innerHTML=('温度は<span class="red">95度</span>を限度とし、<br>洗濯機で洗濯ができる');
+            break;
+        case 'L2':
+            text.innerHTML=('温度は<span class="red">70度</span>を限度とし、<br>洗濯機で洗濯ができる');
+            break;
+        case 'L3':
+            text.innerHTML=('温度は<span class="red">60度</span>を限度とし、<br>洗濯機で洗濯ができる');
+            break;
+        case 'L4':
+            text.innerHTML=('温度は<span class="red">60度</span>を限度とし、<br>洗濯機で<span class="red">弱い</span>洗濯ができる');
+            break;
+        case 'L5':
+            text.innerHTML=('温度は<span class="red">50度</span>を限度とし、<br>洗濯機で洗濯ができる');
+            break;
+        case 'L6':
+            text.innerHTML=('温度は<span class="red">50度</span>を限度とし、<br>洗濯機で<span class="red">弱い</span>洗濯ができる');
+            break;
+        case 'L7':
+            text.innerHTML=('温度は<span class="red">40度</span>を限度とし、<br>洗濯機で洗濯ができる');
+            break;
+        case 'L8':
+            text.innerHTML=('温度は<span class="red">40度</span>を限度とし、<br>洗濯機で<span class="red">弱い</span>洗濯ができる');
+            break;
+        case 'L9':
+            text.innerHTML=('温度は<span class="red">40度</span>を限度とし、<br>洗濯機で<span class="red">非常に弱い</span>洗濯ができる');
+            break;
+        case 'LA':
+            text.innerHTML=('温度は<span class="red">30度</span>を限度とし、<br>洗濯機で洗濯ができる');
+            break;
+        case 'LB':
+            text.innerHTML=('温度は<span class="red">30度</span>を限度とし、<br>洗濯機で<span class="red">弱い</span>洗濯ができる');
+            break;
+        case 'LC':
+            text.innerHTML=('温度は<span class="red">30度</span>を限度とし、<br>洗濯機で<span class="red">非常に弱い</span>洗濯ができる');
+            break;
+        case 'LD':
+            text.innerHTML=('温度は<span class="red">40度</span>を限度とし手洗いができる');
+            break;
+        case 'LE':
+            text.innerHTML=('家庭での<span class="red">洗濯禁止</span>');
+            break;
+        case 'B1':
+            text.innerHTML=('塩素系及び酸素系の漂白剤を<br>使用して漂白ができる');
+            break;
+        case 'B2':
+            text.innerHTML=('酸素系漂白剤の使用はできるが、<br>塩素系漂白剤は<span class="red">使用禁止</span>');
+            break;
+        case 'B3':
+            text.innerHTML=('塩素系および酸素系漂白剤の<span class="red">使用禁止</span>');
+            break;
+        case 'T1':
+            text.innerHTML=('タンブル乾燥ができる<br>(排気温度上限<span class="red">80度</span>)');
+            break;
+        case 'T2':
+            text.innerHTML=('低い温度でタンブル乾燥ができる<br>(排気温度上限<span class="red">60度</span>)');
+            break;
+        case 'T3':
+            text.innerHTML=('タンブル乾燥<span class="red">禁止</span>');
+            break;
+        case 'I1':
+            text.innerHTML=('底面温度<span class="red">200度</span>を限度として<br>アイロン仕上げができる');
+            break;
+        case 'I2':
+            text.innerHTML=('底面温度<span class="red">150度</span>を限度として<br>アイロン仕上げができる');
+            break;
+        case 'I3':
+            text.innerHTML=('底面温度<span class="red">110度</span>を限度として<br><span class="red">スチームなし</span>でアイロン仕上げができる');
+            break;
+        case 'I4':
+            text.innerHTML=('アイロン仕上げが<span class="red">禁止</span>');
+            break;
+        case 'N1':
+            text.innerHTML=('つり干しが良い');
+            break;
+        case 'N2':
+            text.innerHTML=('ぬれつり干しが良い');
+            break;
+        case 'N3':
+            text.innerHTML=('平干しが良い');
+            break;
+        case 'N4':
+            text.innerHTML=('ぬれ平干しが良い');
+            break;
+        case 'N5':
+            text.innerHTML=('日陰のぬれつり干しが良い');
+            break;
+        case 'N6':
+            text.innerHTML=('日陰のつり干しが良い');
+            break;
+        case 'N7':
+            text.innerHTML=('日陰の平干しが良い');
+            break;
+        case 'N8':
+            text.innerHTML=('日陰のぬれ平干しが良い');
+            break;
+        case 'D1':
+            text.innerHTML=('バークロロエチレン及び石油系洗剤によるドライクリーニングができる');
+            break;
+        case 'D2':
+            text.innerHTML=('バークロロエチレン及び石油系洗剤による<span class="red">弱い</span>ドライクリーニングができる');
+            break;
+        case 'D3':
+            text.innerHTML=('石油系洗剤によるドライクリーニングができる');
+            break;
+        case 'D4':
+            text.innerHTML=('石油系洗剤による<span class="red">弱い</span>ドライクリーニングができる');
+            break;
+        case 'D5':
+            text.innerHTML=('ドライクリーニング<span class="red">禁止</span>');
+            break;
+        case 'W1':
+            text.innerHTML=('ウェットクリーニングができる');
+            break;
+        case 'W2':
+            text.innerHTML=('<span class="red">弱い</span>操作によるウェットクリーニングができる');
+            break;
+        case 'W3':
+            text.innerHTML=('<span class="red">非常に弱い</span>操作によるウェットクリーニングができる');
+            break;
+        case 'W4':
+            text.innerHTML=('ウェットクリーニング<span class="red">禁止</span>');
+            break;
+        default:
+        }
+    }
+</script>
 {% endblock %}

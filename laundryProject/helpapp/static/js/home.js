@@ -31,4 +31,16 @@ $(function(){
         }
         
     });
+    const submit = document.getElementById('submit');
+    submit.addEventListener('click', () => {
+        var elements = document.getElementsByClassName('content');
+            for(i=0;i<elements.length;i++){
+                elements[i].style.display = "none";
+            }
+        var elements = document.getElementsByClassName('loading');
+            for(i=0;i<elements.length;i++){
+                elements[i].style.display = "flex";
+            }
+    });
+
 })
