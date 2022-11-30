@@ -32,7 +32,7 @@
     display: none;
 }
 .selection-group input[type="radio"]:checked + label img {
-    background: royalblue;
+    background: rgba(65, 105, 225, 0.726);
     border-radius: 3px;
 }
 .selection-group{
