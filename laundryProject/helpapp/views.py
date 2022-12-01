@@ -271,20 +271,20 @@ def user(request):
             'message': 'User',
             'user': user,
             'washingProcesses': [
-                '<img src="/static/pictures/L1.png"', '液温は95°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/101.png"',
+                '<img src="/static/pictures/L1.png"', '液温は95°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/101.svg"',
                 '<img src="/static/pictures/L2.png"', '液温は70°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/white.png"',
-                '<img src="/static/pictures/L3.png"', '液温は60°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/102.png"',
+                '<img src="/static/pictures/L3.png"', '液温は60°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/102.svg"',
                 '<img src="/static/pictures/L4.png"', '液温は60°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
                 '<img src="/static/pictures/L5.png"', '液温は50°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/white.png"',
                 '<img src="/static/pictures/L6.png"', '液温は50°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
-                '<img src="/static/pictures/L7.png"', '液温は40°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/103.png"', 
-                '<img src="/static/pictures/L8.png"', '液温は40°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/104.png"', 
+                '<img src="/static/pictures/L7.png"', '液温は40°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/103.svg"', 
+                '<img src="/static/pictures/L8.png"', '液温は40°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/104.svg"', 
                 '<img src="/static/pictures/L9.png"', '液温は40°Cを限度とし、<br>洗濯機で非常に弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
                 '<img src="/static/pictures/LA.png"', '液温は30°Cを限度とし、<br>洗濯機で通常の洗濯処理ができる。', '<img src="/static/pictures/white.png"',
-                '<img src="/static/pictures/LB.png"', '液温は30°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/105.png"', 
+                '<img src="/static/pictures/LB.png"', '液温は30°Cを限度とし、<br>洗濯機で弱い洗濯処理ができる。', '<img src="/static/pictures/105.svg"', 
                 '<img src="/static/pictures/LC.png"', '液温は30°Cを限度とし、<br>洗濯機で非常に弱い洗濯処理ができる。', '<img src="/static/pictures/white.png"',
-                '<img src="/static/pictures/LD.png"', '液温は40°Cを限度とし、<br>手洗いによる洗濯処理ができる。', '<img src="/static/pictures/106.png"', 
-                '<img src="/static/pictures/LE.png"', '洗濯処理はできない。', '<img src="/static/pictures/107.png"'
+                '<img src="/static/pictures/LD.png"', '液温は40°Cを限度とし、<br>手洗いによる洗濯処理ができる。', '<img src="/static/pictures/106.svg"', 
+                '<img src="/static/pictures/LE.png"', '洗濯処理はできない。', '<img src="/static/pictures/107.svg"'
             ],
             'bleachingProcesses': [
                 '<img src="/static/pictures/B1.png"', '塩素系及び酸素系漂白剤による漂白処理ができる。', '<img src="/static/pictures/201.png"',
