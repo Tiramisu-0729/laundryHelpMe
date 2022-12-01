@@ -1,5 +1,6 @@
 {% extends '../layout.html' %}
 {% load static %}<!-- 必須 -->
+{% load mathfilters %}
 {% block link%}
     <title>result</title>
     <link rel="stylesheet" href="{% static 'css/WasherResult.css' %}">
@@ -17,20 +18,20 @@
         {% endfor %}
     </div>
     <hr>
-    <div class="cards">
+    {% comment %} <div class="cards"> {% endcomment %}
+        <table>
         {% for tag in comp %}
-            <div class="card">
-                <div class="tag">
+            {% comment %} <div class="card">
+                <div class="tag"> {% endcomment %}
                     {% with img="/pictures/"|add:tag|add:".png" %}
-                    <img class="tag_img" src="{% static img%}">
+                    <tr><td><img class="tag_img" src="{% static img%}"></td>
                     {% endwith %}
-                </div>
-                <hr>
-                <div id="{{tag}}">
-
-                </div>
-            </div>
+                {% comment %} </div>
+                <hr> {% endcomment %}
+                <td><div id="{{tag}}"></div></td></tr>
+            {% comment %} </div> {% endcomment %}
         {% endfor %}
+        </table>
     </div>
 </div>
 <hr>
