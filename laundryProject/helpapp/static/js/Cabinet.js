@@ -5,19 +5,43 @@ window.onload = function(){
   
 
     //チェックボックス表示切替
-    edit.addEventListener('click', () => {
+    edit.addEventListener('click', () => {  //editがクリックされたら
         check.classList.toggle('hidden');
         content.classList.toggle('hidden');
-    });
-
-    //チェックボックスの同期
-    $("input[type='checkbox']").on('change', function(){                 //チェックボックス（type='checkbox'）の値が変更されたとき・・・
-        cbv = $(this).val();                                               //クリックされたチェックボックスのvalue値を変数に格納
-        if( $(this).prop('checked')){                                      //もしクリックされたチェックボックスがチェックされていたら・・・
-            $("input:checkbox[value='" + cbv + "']").prop('checked',true);   //同じvalueを持つチェックボックスは全部チェックを入れる
+        if (edit.innerText == 'edit'){
+            edit.innerText = 'cancel' ;
         }
         else{
+            edit.innerText = 'edit' ;
+        }
+        
+    });
+
+    
+    $("input[type='checkbox']").on('change', function(){                 //チェックボックス（type='checkbox'）の値が変更されたとき・・・
+        const check = document.form1.check;
+        cnt = 0;
+        arr=[];
+        for (let i = 0; i < check.length; i++) {
+            if (check[i].checked) {
+                arr.push(check[i].value);
+            }
+        }
+        const newArr = Array.from(new Set(arr));
+        
+
+        //チェックボックスの同期
+        cbv = $(this).val();                                               //クリックされたチェックボックスのvalue値を変数に格納
+
+
+        if( $(this).prop('checked')){                                      //もしクリックされたチェックボックスがチェックされていたら・・・
+            $("input:checkbox[value='" + cbv + "']").prop('checked',true);   //同じvalueを持つチェックボックスは全部チェックを入れる
+            document.querySelector('#delete').value ='(' + newArr.length + ')' + '削除';
+        }
+        else{
+            i = newArr.length - 1;
             $("input:checkbox[value='" + cbv + "']").prop('checked',false);  //逆にチェックが外れていたら全部チェックを外す。
+            document.querySelector('#delete').value ='(' + i + ')' + '削除';
         }
     });
 };
