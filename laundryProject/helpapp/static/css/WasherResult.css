@@ -40,24 +40,27 @@ h2{
     color: #4BC9FF;
     text-align: center;
 }
-.cards{
-    display: flex;
-    text-align: center;
-}
-.card{
-    width: 30vw;
-    height: 25vh;
-    border: solid 1px #e2e2e2;
-    margin: 1%;
-    border-radius: 5%;
-}
-.tag{
-    display: flex;
-    justify-content: center;
-}
 .tag_img{   
-    width: 11vmin;
-    height: 11vmin;
+    width: 14vmin;
+    height: 14vmin;
+    vertical-align: middle;
+}
+table{
+    width: 94%;
+    border: solid 3px rgb(180, 180, 180);
+    border-collapse: collapse;
+    margin: 4% 3%;
+}
+tr,td{
+    border: solid 2px rgb(200, 200, 200);
+}
+td{
+    font-size: 16px;
+    padding: 5px 10px;
+}
+tr td:nth-of-type(1){
+    width: 14vmin;
+    height: 14vmin;
 }
 .button{
     text-align: center;
@@ -70,8 +73,8 @@ h2{
     font-size: 32px;
     font-weight: bold;
     border: none;
-    background-color: #4BFF5D;
-    color: #6D6D6D;
+    background-color: #4BC9FF;
+    color: #fff;
     padding: 2% 0;
 }
 .red{
