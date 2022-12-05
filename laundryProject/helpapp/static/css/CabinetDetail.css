@@ -51,14 +51,13 @@ body{
 }
 .memo{
     margin: 3% 3%;
-    /* border: #eeeeee solid 1px; */
-    border-radius: 5px;
+    overflow-wrap: break-word;
 }
 .delete{
     text-align: center;
 }
 .delete_button{
-    margin: 20% 2% 65px;
+    margin: 20% 2% 25%;
     width: 30vw;
     height: 13vmin;
     border-radius: 5px;

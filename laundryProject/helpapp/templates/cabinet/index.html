@@ -80,13 +80,13 @@
     <!-- チェックボックス -->
 
     <div id="check" class="hidden">
-        <form action="{% url 'helpapp:cabinets_delete'%}" method="POST">
+        <form name="form1" action="{% url 'helpapp:cabinets_delete'%}" method="POST">
             {% csrf_token %}
             <div class="all main">
                 {% for cabinet in cabinets %}
                 {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
                     <div class="checkbox">
-                        <input id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
+                        <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
                         <label for={{cabinet.id}}>
                             <img class="img" src="{{ cabinet.image.url }}">
                             <p class="how LD">手洗い</p>
@@ -94,7 +94,7 @@
                     </div>
                 {% elif cabinet.laundry_tag|stringformat:"s" in "LE" %}
                     <div class="checkbox">
-                        <input id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
+                        <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
                         <label for={{cabinet.id}}>
                             <img class="img" src="{{ cabinet.image.url }}">
                             <p class="how LE">洗えない</p>
@@ -102,7 +102,7 @@
                     </div>
                 {% else %}
                     <div class="checkbox">
-                        <input id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
+                        <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
                         <label for={{cabinet.id}}>
                             <img class="img" src="{{ cabinet.image.url }}">
                             <p class="how able">洗える</p>
@@ -118,7 +118,7 @@
                     {% if cabinet.category|stringformat:"s" == category %}
                         {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
                             <div class="checkbox">
-                                <input id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
+                                <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
                                 <label for={{cabinet.id}}>
                                     <img class="img" src="{{ cabinet.image.url }}">
                                     <p class="how LD">手洗い</p>
@@ -126,7 +126,7 @@
                             </div>
                         {% elif cabinet.laundry_tag|stringformat:"s" in "LE" %}
                             <div class="checkbox">
-                                <input id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
+                                <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
                                 <label for={{cabinet.id}}>
                                     <img class="img" src="{{ cabinet.image.url }}">
                                     <p class="how LE">洗えない</p>
@@ -134,7 +134,7 @@
                             </div>
                         {% else %}
                             <div class="checkbox">
-                                <input id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
+                                <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
                                 <label for={{cabinet.id}}>
                                     <img class="img" src="{{ cabinet.image.url }}">
                                     <p class="how able">洗える</p>

@@ -3,56 +3,27 @@
 {% block link%}
     <title>Cabinet</title>
     <link rel="stylesheet" href="{% static 'css/AddCabinet.css' %}">
-    <!-- <script src="{% static 'js/TimeLine.js' %}"></script> -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="{% static 'js/Add_cabinet.js' %}"></script>
 {% endblock %}
 {% block content %}
-    {% comment %} <button type="button" onclick="history.back()" class="backButton">戻る</button><br> {% endcomment %}
-    <!-- <table>
-        <tr>
-            <td><img src="/pictures/" alt="" class="laundryTagImg"></td>
-            <td>
-                <label for="upload"></label><div class="mourningImg">服の画像<br>を選択</div></label>
-                <input id="upload" type="file" name="image" accept="accept=".png, .jpeg, .jpg">
-            </td>
-        </tr>
-    </table>
-    <div class="belt">
-        名前
-    </div>
-    <input type="text">
-    <div class="belt">
-        カテゴリ
-    </div> -->
+<div class="content">
     <form action="{% url 'helpapp:cabinet_add' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
+        <!-- <label for="id_image">
+            <img class="img" src="{% static 'pictures/img.png' %}" alt="">
+        </label> -->
         {{ cabinet_form.as_p }}
-        <div class="OK"><input type="submit" class="submit" value="確定"></div>
+        <button type="submit" id="submit">確定</button>
     </form>
-    <!-- <form action="?" method="">
-        <select name="category" id="categorySelect">
-            <option value="" selected>服のカテゴリを選択</option>
-            <option value="">Tシャツ</option>
-            <option value="">Yシャツ</option>
-            <option value="">ブラウス</option>
-            <option value="">カーディガン</option>
-            <option value="">ニット</option>
-            <option value="">パーカー</option>
-            <option value="">ジーンズ</option>
-            <option value="">パンツ</option>
-            <option value="">スカート</option>
-            <option value="">ワンピース</option>
-            <option value="">ジャケット</option>
-            <option value="">コート</option>
-        </select>
-        <div class="belt">
-            メモ
-        </div>
-        <textarea name="" id="" cols="30" rows="7"></textarea>
-        <button type="submit" formaction="/WashingMachine/index.html" class="laundryButton">
-            洗濯機に追加
-        </button>
-        <button type="submit" formaction="/Cabinet/index.html" class="closetButton">
-            たんすに追加
-        </button>
-    </form> -->
+</div>
+<script type="text/javascript"">
+    document.querySelector('[for="id_image"]').innerHTML ="<img id='image' src='{% static 'pictures/img.png' %}' alt=''>";
+    document.getElementById('id_image').style.display="none"
+    document.querySelector('[for="id_name"]').innerText = 'Name:';
+    document.querySelector('[for="id_memo"]').innerText = 'Memo:';
+    document.querySelector('[for="id_memo"]').style.float="left"
+    document.querySelector('[for="id_category"]').style.float="left"
+    document.querySelector('[for="id_name"]').style.float="left"
+</script>
 {% endblock %}

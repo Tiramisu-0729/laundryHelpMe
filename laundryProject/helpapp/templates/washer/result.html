@@ -1,5 +1,6 @@
 {% extends '../layout.html' %}
 {% load static %}<!-- 必須 -->
+{% load mathfilters %}
 {% block link%}
     <title>result</title>
     <link rel="stylesheet" href="{% static 'css/WasherResult.css' %}">
@@ -17,21 +18,14 @@
         {% endfor %}
     </div>
     <hr>
-    <div class="cards">
+    <table>
         {% for tag in comp %}
-            <div class="card">
-                <div class="tag">
-                    {% with img="/pictures/"|add:tag|add:".png" %}
-                    <img class="tag_img" src="{% static img%}">
-                    {% endwith %}
-                </div>
-                <hr>
-                <div id="{{tag}}">
-
-                </div>
-            </div>
+            {% with img="/pictures/"|add:tag|add:".png" %}
+                <tr><td><img class="tag_img" src="{% static img%}"></td>
+            {% endwith %}
+            <td><div id="{{tag}}"></div></td></tr>
         {% endfor %}
-    </div>
+    </table>
 </div>
 <hr>
 <div class="button">
@@ -88,7 +82,7 @@
             text.innerHTML=('温度は<span class="red">30度</span>を限度とし、<br>洗濯機で<span class="red">非常に弱い</span>洗濯ができる');
             break;
         case 'LD':
-            text.innerHTML=('温度は<span class="red">40度</span>を限度とし手洗いができる');
+            text.innerHTML=('温度は<span class="red">40度</span>を限度とし<br>手洗いができる');
             break;
         case 'LE':
             text.innerHTML=('家庭での<span class="red">洗濯禁止</span>');
@@ -100,7 +94,7 @@
             text.innerHTML=('酸素系漂白剤の使用はできるが、<br>塩素系漂白剤は<span class="red">使用禁止</span>');
             break;
         case 'B3':
-            text.innerHTML=('塩素系および酸素系漂白剤の<span class="red">使用禁止</span>');
+            text.innerHTML=('塩素系および酸素系漂白剤の<br><span class="red">使用禁止</span>');
             break;
         case 'T1':
             text.innerHTML=('タンブル乾燥ができる<br>(排気温度上限<span class="red">80度</span>)');
@@ -121,7 +115,7 @@
             text.innerHTML=('底面温度<span class="red">110度</span>を限度として<br><span class="red">スチームなし</span>でアイロン仕上げができる');
             break;
         case 'I4':
-            text.innerHTML=('アイロン仕上げが<span class="red">禁止</span>');
+            text.innerHTML=('アイロン仕上げ<span class="red">禁止</span>');
             break;
         case 'N1':
             text.innerHTML=('つり干しが良い');
@@ -148,10 +142,10 @@
             text.innerHTML=('日陰のぬれ平干しが良い');
             break;
         case 'D1':
-            text.innerHTML=('バークロロエチレン及び石油系洗剤によるドライクリーニングができる');
+            text.innerHTML=('バークロロエチレン及び石油系洗剤による<br>ドライクリーニングができる');
             break;
         case 'D2':
-            text.innerHTML=('バークロロエチレン及び石油系洗剤による<span class="red">弱い</span>ドライクリーニングができる');
+            text.innerHTML=('バークロロエチレン及び石油系洗剤による<br><span class="red">弱い</span>ドライクリーニングができる');
             break;
         case 'D3':
             text.innerHTML=('石油系洗剤によるドライクリーニングができる');

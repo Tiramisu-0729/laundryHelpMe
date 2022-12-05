@@ -10,7 +10,7 @@
     border-radius: 3px;
     border: solid 1px #f0f0f0;
     border-radius: 3px;
-    margin: 2%;
+    margin: 2.2%;
     float: left;
     position: relative;
 }
@@ -31,7 +31,7 @@
     height: 28vmin;
     border: solid 1px #f0f0f0;
     border-radius: 3px;
-    margin: 2% ;
+    margin: 2.2%;
     float: left;
     display: flex;
     align-items: center;
@@ -47,11 +47,14 @@
     margin: auto;
 }
 .checkbox input[type="checkbox"] {
-    display: none;
+    z-index: 1;
+    float: left;
+    margin-right: -18%;
+    margin-top: -70%;
 }
 label{
-    width: 29vmin;
-    height: 29vmin;
+    width: 28vmin;
+    height: 28vmin;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -95,19 +98,22 @@ label{
     width: 30vw;
 }
 #delete{
-    margin: 10vh 0 5vh 0;
-    width: 70vw;
+    width: 100vw;
     height: 7vh;
     border-radius: 5px;
     font-size: 32px;
     color: #6D6D6D;
     font-weight: bold;
     border: none;
-    clear: both;
-    background-color: #ff4b4b;
+    background-color: red;
 }
 .btn{
     text-align: center;
+    position: fixed;
+    bottom: 15vmin;
+    height: 15vmin;
+    width: 100%;
+    background-color: red;
 }
 .main{
     overflow:hidden

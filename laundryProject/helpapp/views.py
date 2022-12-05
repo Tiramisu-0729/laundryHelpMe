@@ -406,7 +406,7 @@ def judge_result(request):
     #ディレクトリ削除os.remove('target.txt')
 
     return render(request, 'laundry_tag_check/result.html', context)
-    
+
 def testYolo(request):
     path_hubconfig = "yolo"
     path_weightfile = "yolo/729x300_yolov5m_best.pt" 
