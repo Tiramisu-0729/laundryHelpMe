@@ -4,14 +4,15 @@
     margin: 2%;
 }
 .item{
-    width: 28vmin;
-    height: 28vmin;
+    width: 20vmin;
+    height: 20vmin;
     text-align: center;
     border-radius: 3px;
-    border: solid 1px #f0f0f0;
-    margin: 2%;
+    border: solid 1px #e7e7e7;
+    margin: 2.2%;
     float: left;
     position: relative;
+    box-shadow: 0 2px 2px -1px #6D6D6D;
 }
 .add{
     width: 70%;
@@ -27,8 +28,8 @@
     background-color: #4BC9FF;
 }
 .item img{
-    width: 28vmin; 
-    height: 28vmin; 
+    width: 20vmin; 
+    height: 20vmin; 
     object-fit: cover;
 }
 .hidden{
@@ -39,19 +40,20 @@
     display:flex
 }
 .checkbox{
-    width: 28vmin;
-    height: 28vmin;
-    border: solid 1px #f0f0f0;
-    margin: 2%;
+    width: 20vmin;
+    height: 20vmin;
+    border: solid 1px #e7e7e7;
+    margin: 2.2%;
     float: left;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
+    box-shadow: 0 2px 2px -1px #6D6D6D;
 }
 .checkbox img{
-    width: 28vmin; 
-    height: 28vmin; 
+    width: 20vmin; 
+    height: 20vmin; 
     object-fit: cover;
 }
 .img{
@@ -61,8 +63,8 @@
     display: none;
 }
 label{
-    width: 29vmin;
-    height: 29vmin;
+    width: 20vmin;
+    height: 20vmin;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -73,14 +75,14 @@ label{
     border-radius: 3px;
 }
 .how{
+    width: 100%;
     text-align: center;
     margin: 0;
     position: absolute;
     bottom: 0;
     right: 0;
     font: 3%;
-    color: white;
-    width: 70%;    
+    color: white; 
 }
 .LD{
     background-color: #63f70065;
@@ -89,7 +91,7 @@ label{
     background-color: #ff000065;
 }
 .able{
-    background-color: #00d9ff65;
+    background-color: #00d9ff90;
 }
 #edit{
     float: right;
