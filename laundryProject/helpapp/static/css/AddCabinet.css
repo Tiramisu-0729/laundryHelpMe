@@ -2,41 +2,48 @@
 /* header */
 body{
     margin: 0;
+    font-size: 16px;
 }
 .content{
-    margin: 5%;
     text-align: center;
 }
+#image{
+    width: 55vw;
+    height: 55vw;
+    margin: 5% 0 0;
+}
 p{
-    margin: 10%;
+    margin-bottom: 7%;
+}
+label{
+    margin-left: 3%;
 }
 #id_name{
-    width:58vw;
+    width:64vw;
+    margin-left: 3vw;
+    padding: 5px 5px;
 }
 #id_category{
-    width:58vw;
+    width:68vw;
+    margin-left: -3vw;
+    padding: 5px 0;
 }
 #id_memo{
-    width:58vw;
+    width:65vw;
     height: 10vh;
+    margin-left: 3vw;
+    padding: 5px 5px;
 }
 #submit{
     width: 70%;
-    border-radius: 5px;
     padding-top: 2%;
     padding-bottom: 2%;
+    margin-top: 10%;
+    margin-bottom: 25%;
     font-size: 32px;
     color: #fff;
     font-weight: bold;
+    border-radius: 5px;
     border: none;
     background-color: #4BC9FF;
-    margin-bottom: 14vh;
-}
-.OK{
-    text-align: center;
-}
-
-#image{
-    width: 70vw;
-    height: 70vw;
 }
