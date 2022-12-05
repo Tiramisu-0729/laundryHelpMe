@@ -80,13 +80,13 @@
     <!-- チェックボックス -->
 
     <div id="check" class="hidden">
-        <form action="{% url 'helpapp:washers_delete'%}" method="POST">
+        <form name="form1" action="{% url 'helpapp:washers_delete'%}" method="POST">
             {% csrf_token %}
             <div class="all main">
                 {% for washer in washers %}
                 {% if washer.laundry_tag|stringformat:"s" in "LD" %}
                     <div class="checkbox">
-                        <input id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
+                        <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
                         <label for={{washer.id}}>
                             <img class="img" src="{{ washer.image.url }}">
                             <p class="how LD">手洗い</p>
@@ -94,7 +94,7 @@
                     </div>
                 {% elif washer.laundry_tag|stringformat:"s" in "LE" %}
                     <div class="checkbox">
-                        <input id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
+                        <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
                         <label for={{washer.id}}>
                             <img class="img" src="{{ washer.image.url }}">
                             <p class="how LE">洗えない</p>
@@ -102,7 +102,7 @@
                     </div>
                 {% else %}
                     <div class="checkbox">
-                        <input id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
+                        <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
                         <label for={{washer.id}}>
                             <img class="img" src="{{ washer.image.url }}">
                             <p class="how able">洗える</p>
@@ -118,7 +118,7 @@
                     {% if washer.category|stringformat:"s" == category %}
                         {% if washer.laundry_tag|stringformat:"s" in "LD" %}
                             <div class="checkbox">
-                                <input id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
+                                <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
                                 <label for={{washer.id}}>
                                     <img class="img" src="{{ washer.image.url }}">
                                     <p class="how LD">手洗い</p>
@@ -126,7 +126,7 @@
                             </div>
                         {% elif washer.laundry_tag|stringformat:"s" in "LE" %}
                             <div class="checkbox">
-                                <input id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
+                                <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
                                 <label for={{washer.id}}>
                                     <img class="img" src="{{ washer.image.url }}">
                                     <p class="how LE">洗えない</p>
@@ -134,7 +134,7 @@
                             </div>
                         {% else %}
                             <div class="checkbox">
-                                <input id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
+                                <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
                                 <label for={{washer.id}}>
                                     <img class="img" src="{{ washer.image.url }}">
                                     <p class="how able">洗える</p>
