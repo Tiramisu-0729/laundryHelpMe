@@ -8,7 +8,7 @@
 {% block content %}
     <div class="content">    
         <div class="user">
-            <img class="user-pic" src="/upload_img/icon/icon2.jpg" alt="user_icon">  
+            <img class="user-pic" src="{{ profile.image.url }}" alt="user_icon">  
             <span class="user-ID">ID：{{user}}</span>
             <a href="#"><button class="edit-button">編集</button></a>
         </div>
