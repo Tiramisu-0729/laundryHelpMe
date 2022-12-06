@@ -69,7 +69,6 @@ TEMPLATES = [
         },
     },
 ]
-
 WSGI_APPLICATION = 'laundryProject.wsgi.application'
 LOGIN_REDIRECT_URL = '/helpapp/home'
 

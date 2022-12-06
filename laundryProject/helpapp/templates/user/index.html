@@ -4,12 +4,11 @@
 {% block link%}
     <title>User</title>
     <link rel="stylesheet" href="{% static 'css/User.css' %}">
-    <!-- <script src="{% static 'js/TimeLine.js' %}"></script> -->
 {% endblock %}
 {% block content %}
     <div class="content">    
         <div class="user">
-            <img class="user-pic" src="" alt="">  
+            <img class="user-pic" src="/upload_img/icon/icon2.jpg" alt="user_icon">  
             <span class="user-ID">ID：{{user}}</span>
             <a href="#"><button class="edit-button">編集</button></a>
         </div>
@@ -20,104 +19,90 @@
             <div class="date">　登録日：</div>
         </div>
         <div class="washingDisplay">
-            洗濯表示
+            ◎ 洗濯表示
         </div>
         <details>
-            <summary class="washingProcess">洗濯処理</summary>
+            <summary id="tes" class="washingProcess">洗濯処理</summary>
             <table>
-                {% for washingProcess in washingProcesses %}
-                    {% with index=forloop.counter0 %} <!-- index を取得 -->
-                        {% if index|mod:3 == 0 %} <tr> {% endif %}
-                            <td>
-                                {{washingProcess|safe}}
-                            </td>
-                        {% if index|mod:3 == 2 %} </tr> {% endif %}
-                    {% endwith %}
+                {% for datas in washingProcesses %}
+                    <tr>
+                        {% for data in datas %}
+                            <td> {{data|safe}} </td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
             </table>
         </details>
         <details>
-            <summary class="bleachingProcess">漂白処理</summary>
+            <summary id="tes" class="bleachingProcess">漂白処理</summary>
             <table>
-                {% for bleachingProcess in bleachingProcesses %}
-                    {% with index=forloop.counter0 %} <!-- index を取得 -->
-                        {% if index|mod:3 == 0 %} <tr> {% endif %}
-                            <td>
-                                {{bleachingProcess|safe}}
-                            </td>
-                        {% if index|mod:3 == 2 %} </tr> {% endif %}
-                    {% endwith %}
+                {% for datas in bleachingProcesses %}
+                    <tr>
+                        {% for data in datas %}
+                            <td> {{data|safe}} </td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
             </table>
         </details>
         <details>
-            <summary class="tumbleDrying">タンブル乾燥</summary>
+            <summary id="tes" class="tumbleDrying">タンブル乾燥</summary>
             <table>
-                {% for tumbleDry in tumbleDrys %}
-                    {% with index=forloop.counter0 %} <!-- index を取得 -->
-                        {% if index|mod:3 == 0 %} <tr> {% endif %}
-                            <td>
-                                {{tumbleDry|safe}}
-                            </td>
-                        {% if index|mod:3 == 2 %} </tr> {% endif %}
-                    {% endwith %}
+                {% for datas in tumbleDrys %}
+                    <tr>
+                        {% for data in datas %}
+                            <td> {{data|safe}} </td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
             </table>
         </details>
         <details>
-            <summary class="naturalDrying">自然乾燥</summary>
+            <summary id="tes" class="naturalDrying">自然乾燥</summary>
             <table>
-                {% for naturalDry in naturalDrys %}
-                    {% with index=forloop.counter0 %} <!-- index を取得 -->
-                        {% if index|mod:3 == 0 %} <tr> {% endif %}
-                            <td>
-                                {{naturalDry|safe}}
-                            </td>
-                        {% if index|mod:3 == 2 %} </tr> {% endif %}
-                    {% endwith %}
+                {% for datas in naturalDrys %}
+                    <tr>
+                        {% for data in datas %}
+                            <td> {{data|safe}} </td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
             </table>
         </details>
         <details>
-            <summary class="ironFinish">アイロン仕上げ</summary>
+            <summary id="tes" class="ironFinish">アイロン仕上げ</summary>
             <table>
-                {% for ironFinish in ironFinishs %}
-                    {% with index=forloop.counter0 %} <!-- index を取得 -->
-                        {% if index|mod:3 == 0 %} <tr> {% endif %}
-                            <td>
-                                {{ironFinish|safe}}
-                            </td>
-                        {% if index|mod:3 == 2 %} </tr> {% endif %}
-                    {% endwith %}
+                {% for datas in ironFinishs %}
+                    <tr>    
+                        {% for data in datas %}
+                            <td> {{data|safe}} </td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
             </table>
         </details>
         <details>
-            <summary class="dryCleaning">ドライクリーニング</summary>
+            <summary id="tes" class="dryCleaning">ドライクリーニング</summary>
             <table>
-                {% for dryCleaning in dryCleanings %}
-                    {% with index=forloop.counter0 %} <!-- index を取得 -->
-                        {% if index|mod:3 == 0 %} <tr> {% endif %}
-                            <td>
-                                {{dryCleaning|safe}}
-                            </td>
-                        {% if index|mod:3 == 2 %} </tr> {% endif %}
-                    {% endwith %}
+                {% for datas in dryCleanings %}
+                    <tr>
+                        {% for data in datas %}
+                            <td> {{data|safe}} </td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
             </table>
             <p class="attention">※<font color="red">ドライクリーニング処理はタンブル乾燥を含む。</font></p>
         </details>
         <details>
-            <summary class="wetCleaning">ウエットクリーニング</summary>
+            <summary id="tes" class="wetCleaning">ウエットクリーニング</summary>
             <table>
-                {% for wetCleaning in wetCleanings %}
-                    {% with index=forloop.counter0 %} <!-- index を取得 -->
-                        {% if index|mod:3 == 0 %} <tr> {% endif %}
-                            <td>
-                                {{wetCleaning|safe}}
-                            </td>
-                        {% if index|mod:3 == 2 %} </tr> {% endif %}
-                    {% endwith %}
+                {% for datas in wetCleanings %}
+                    <tr>
+                        {% for data in datas %}
+                            <td> {{data|safe}} </td>
+                        {% endfor %}
+                    </tr>
                 {% endfor %}
             </table>
         </details>

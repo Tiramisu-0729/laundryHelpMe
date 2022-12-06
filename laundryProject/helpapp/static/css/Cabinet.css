@@ -8,11 +8,10 @@
     height: 20vmin;
     text-align: center;
     border-radius: 3px;
-    border: solid 1px #e7e7e7;
+    border: solid 1px #f0f0f0;
     margin: 2.2%;
     float: left;
     position: relative;
-    box-shadow: 0 2px 2px -1px #6D6D6D;
 }
 .add{
     width: 70%;
@@ -88,13 +87,13 @@ label{
     color: white; 
 }
 .LD{
-    background-color: #63f70065;
+    background-color: #63f70095;
 }
 .LE{
-    background-color: #ff000065;
+    background-color: #ff000095;
 }
 .able{
-    background-color: #00d9ff90;
+    background-color: #00d9ff95;
 }
 #edit{
     float: right;
@@ -111,26 +110,23 @@ label{
     height: 4vh;
     width: 30vw;
 }
+.select{
+    display: none;
+}
 #delete{
     width: 100vw;
     height: 7vh;
-    border-radius: 5px;
     font-size: 32px;
     color: #6D6D6D;
     font-weight: bold;
     border: none;
-    background-color: red;
+    background-color: #ff4b4b;
 }
 .btn{
     text-align: center;
     position: fixed;
     bottom: 15vmin;
     height: 15vmin;
-    width: 100%;
-    background-color: red;
-}
-.btn{
-    text-align: center;
 }
 .main{
     overflow:hidden
