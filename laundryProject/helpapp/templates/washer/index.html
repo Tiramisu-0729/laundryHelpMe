@@ -19,56 +19,36 @@
     <div id="content">
         <div class="main all">
             {% for washer in washers %}
-                {% if washer.laundry_tag|stringformat:"s" in "LD" %}
-                    <div class="item">
-                        <a href='{% url "helpapp:cabinet_detail" washer.pk %}'>
-                            <img src="{{ washer.image.url }}">
+                <div class="item">
+                    <a href='{% url "helpapp:cabinet_detail" washer.pk %}'>
+                        <img src="{{ washer.image.url }}">
+                        {% if washer.laundry_tag|stringformat:"s" in "LD" %}
                             <p class="how LD">手洗い</p>
-                        </a>
-                    </div>
-                {% elif washer.laundry_tag|stringformat:"s" in "LE" %}
-                    <div class="item">
-                        <a href='{% url "helpapp:cabinet_detail" washer.pk %}'>
-                            <img src="{{ washer.image.url }}">
+                        {% elif washer.laundry_tag|stringformat:"s" in "LE" %}
                             <p class="how LE">洗えない</p>
-                        </a>
-                    </div>
-                {% else %}
-                    <div class="item">
-                        <a href='{% url "helpapp:cabinet_detail" washer.pk %}'>
-                            <img src="{{ washer.image.url }}">
+                        {% else %}
                             <p class="how able">洗える</p>
-                        </a>
-                    </div>
-                {% endif %}
+                        {% endif %}
+                    </a>
+                </div>
             {% endfor %}
         </div>
         {% for category in categories%}
             <div class="main {{category}}" style="display: none;">
                 {% for washer in washers %}
                     {% if washer.category|stringformat:"s" == category %}
-                        {% if washer.laundry_tag|stringformat:"s" in "LD" %}
-                            <div class="item">
-                                <a href='{% url "helpapp:cabinet_detail" washer.pk %}'>
-                                    <img src="{{ washer.image.url }}">
+                        <div class="item">
+                            <a href='{% url "helpapp:cabinet_detail" washer.pk %}'>
+                                <img src="{{ washer.image.url }}">
+                                {% if washer.laundry_tag|stringformat:"s" in "LD" %}
                                     <p class="how LD">手洗い</p>
-                                </a>
-                            </div>
-                        {% elif washer.laundry_tag|stringformat:"s" in "LE" %}
-                            <div class="item">
-                                <a href='{% url "helpapp:cabinet_detail" washer.pk %}'>
-                                    <img src="{{ washer.image.url }}">
+                                {% elif washer.laundry_tag|stringformat:"s" in "LE" %}
                                     <p class="how LE">洗えない</p>
-                                </a>
-                            </div>
-                        {% else %}
-                            <div class="item">
-                                <a href='{% url "helpapp:cabinet_detail" washer.pk %}'>
-                                    <img src="{{ washer.image.url }}">
+                                {% else %}
                                     <p class="how able">洗える</p>
-                                </a>
-                            </div>
-                        {% endif %}
+                                {% endif %}
+                            </a>
+                        </div>
                     {% endif %}
                 {% endfor %}
             </div>
@@ -84,31 +64,19 @@
             {% csrf_token %}
             <div class="all main">
                 {% for washer in washers %}
-                {% if washer.laundry_tag|stringformat:"s" in "LD" %}
                     <div class="checkbox">
                         <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
                         <label for={{washer.id}}>
                             <img class="img" src="{{ washer.image.url }}">
-                            <p class="how LD">手洗い</p>
+                            {% if washer.laundry_tag|stringformat:"s" in "LD" %}
+                                <p class="how LD">手洗い</p>
+                            {% elif washer.laundry_tag|stringformat:"s" in "LE" %}
+                                <p class="how LE">洗えない</p>
+                            {% else %}
+                                <p class="how able">洗える</p>
+                            {% endif %}
                         </label>
                     </div>
-                {% elif washer.laundry_tag|stringformat:"s" in "LE" %}
-                    <div class="checkbox">
-                        <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
-                        <label for={{washer.id}}>
-                            <img class="img" src="{{ washer.image.url }}">
-                            <p class="how LE">洗えない</p>
-                        </label>
-                    </div>
-                {% else %}
-                    <div class="checkbox">
-                        <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
-                        <label for={{washer.id}}>
-                            <img class="img" src="{{ washer.image.url }}">
-                            <p class="how able">洗える</p>
-                        </label>
-                    </div>
-                {% endif %}
                 {% endfor %}
             </div>
 
@@ -116,31 +84,19 @@
             <div class="main {{category}}" style="display: none;">
                 {% for washer in washers %}
                     {% if washer.category|stringformat:"s" == category %}
-                        {% if washer.laundry_tag|stringformat:"s" in "LD" %}
-                            <div class="checkbox">
-                                <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
-                                <label for={{washer.id}}>
-                                    <img class="img" src="{{ washer.image.url }}">
+                        <div class="checkbox">
+                            <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
+                            <label for={{washer.id}}>
+                                <img class="img" src="{{ washer.image.url }}">
+                                {% if washer.laundry_tag|stringformat:"s" in "LD" %}
                                     <p class="how LD">手洗い</p>
-                                </label>
-                            </div>
-                        {% elif washer.laundry_tag|stringformat:"s" in "LE" %}
-                            <div class="checkbox">
-                                <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
-                                <label for={{washer.id}}>
-                                    <img class="img" src="{{ washer.image.url }}">
+                                {% elif washer.laundry_tag|stringformat:"s" in "LE" %}
                                     <p class="how LE">洗えない</p>
-                                </label>
-                            </div>
-                        {% else %}
-                            <div class="checkbox">
-                                <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
-                                <label for={{washer.id}}>
-                                    <img class="img" src="{{ washer.image.url }}">
+                                {% else %}
                                     <p class="how able">洗える</p>
-                                </label>
-                            </div>
-                        {% endif %}
+                                {% endif %}
+                            </label>
+                        </div>
                     {% endif %}
                 {% endfor %}
             </div>

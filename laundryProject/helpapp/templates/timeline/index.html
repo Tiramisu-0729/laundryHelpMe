@@ -51,22 +51,6 @@
                         </a>
                     </div>
                 {% endif %}
-
-
-
-
-                {% comment %} <div class="box">
-                    <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
-                        <img id="mainpic" src="{{ cabinet.image.url }}">
-                        <div class="tag">
-                            {% for tag in cabinet.laundry_tag %}
-                                {% with img="/pictures/"|add:tag|add:".png" %}
-                                    <img src="{% static img%}">
-                                {% endwith %}
-                            {% endfor %}
-                        </div>
-                    </a>
-                </div> {% endcomment %}
             {% endfor %}
         </div>
     {% endblock %}
