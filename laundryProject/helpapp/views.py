@@ -1,9 +1,10 @@
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render
-from .models import Cabinet, Categories
-from django.shortcuts import redirect, render
-from .forms import CabinetForm, JudgeForm
+
+from .models import Cabinet, Categories, Profile
+from django.shortcuts import redirect, render, get_object_or_404
+from .forms import CabinetForm, JudgeForm, ProfileForm
 from django.core.files.storage import FileSystemStorage
 import csv
 import torch
@@ -259,7 +260,7 @@ def user(request):
         STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
 
         user = request.user
-        washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, dryCleanings, wetCleanings, list = [],[],[],[],[],[],[],[] #初期化
+        washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, dryCleanings, wetCleanings, list = [],[],[],[],[],[],[],[]
         # CSV読み込み
         with open(STATIC_ROOT + '/csv/washingProcesses.csv',encoding="utf-8") as f:
             for row in csv.reader(f):
@@ -285,9 +286,11 @@ def user(request):
         f = open(STATIC_ROOT + '/csv/list.txt', 'r', encoding='UTF-8')
         list = f.read()
         f.close
+        profile = request.get.filter(user=user)
         context = {
             'ON' : json.dumps('user'),
             'message': 'User',
+            'profile' : profile,
             'user': user,
             'washingProcesses': washingProcesses,
             'bleachingProcesses': bleachingProcesses,
@@ -407,6 +410,35 @@ def judge_result(request):
     
     #ディレクトリ削除os.remove('target.txt')
     return render(request, 'laundry_tag_check/result.html', context)
+
+def profile_add(request):
+    if request.method == "POST":
+        user = request.user
+        form = ProfileForm(request.POST)
+        if form.is_valid():#formの内容が正しければ
+            #削除
+            profile = Profile.objects.filter(user=user)
+            if(profile.exists()):
+                profile.delete()
+            profileNew = Profile()
+            profileNew.user = user
+            profileNew.image = request.FILES['image']
+            profileNew.save()
+            context = {
+                'message': '追加成功',
+            }
+        return render(request, 'cabinet/index.html', context)
+    else:
+        user = request.user
+        context = {
+            'message': '追加失敗',
+            'user': user,
+            'cabinet_form': CabinetForm(),
+        }
+    return render(request, 'cabinet/add.html', context)
+
+import torch
+from django.shortcuts import render
 
 def testYolo(request):
     path_hubconfig = "yolo"
