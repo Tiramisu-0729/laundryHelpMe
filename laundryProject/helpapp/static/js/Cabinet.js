@@ -17,7 +17,6 @@ window.onload = function(){
         
     });
 
-    
     $("input[type='checkbox']").on('change', function(){                 //チェックボックス（type='checkbox'）の値が変更されたとき・・・
         const check = document.form1.check;
         cnt = 0;
@@ -48,164 +47,38 @@ window.onload = function(){
 
 // カテゴリー変更 
 function viewChange(){
+    categories = ['all', 'tops', 'bottoms', 'outer', 'inner', 'other'];
     if(document.getElementById('categories')){
         id = document.getElementById('categories').value;
-        if(id == 'all'){
-            var elements = document.getElementsByClassName('all');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "";
-            }
-            var elements = document.getElementsByClassName('tops');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('bottoms');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('outer');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('inner');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('other');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-        }
-        else if(id == 'tops'){
-            var elements = document.getElementsByClassName('all');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('tops');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "";
-            }
-            var elements = document.getElementsByClassName('bottoms');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('outer');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('inner');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('other');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
+        for(category in categories){
+            if(id == category){
+                var elements = document.getElementsByClassName('all');
+                for(i=0;i<elements.length;i++){
+                    elements[i].style.display = "";
+                }
+                var elements = document.getElementsByClassName('tops');
+                for(i=0;i<elements.length;i++){
+                    elements[i].style.display = "none";
+                }
+                var elements = document.getElementsByClassName('bottoms');
+                for(i=0;i<elements.length;i++){
+                    elements[i].style.display = "none";
+                }
+                var elements = document.getElementsByClassName('outer');
+                for(i=0;i<elements.length;i++){
+                    elements[i].style.display = "none";
+                }
+                var elements = document.getElementsByClassName('inner');
+                for(i=0;i<elements.length;i++){
+                    elements[i].style.display = "none";
+                }
+                var elements = document.getElementsByClassName('other');
+                for(i=0;i<elements.length;i++){
+                    elements[i].style.display = "none";
+                }
             }
         }
-        else if(id == 'bottoms'){
-            var elements = document.getElementsByClassName('all');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('tops');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('bottoms');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "";
-            }
-            var elements = document.getElementsByClassName('outer');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('inner');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('other');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-        }
-        else if(id == 'outer'){
-            var elements = document.getElementsByClassName('all');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('tops');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('bottoms');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('outer');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "";
-            }
-            var elements = document.getElementsByClassName('inner');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('other');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-        }
-        else if(id == 'inner'){
-            var elements = document.getElementsByClassName('all');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('tops');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('bottoms');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('outer');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('inner');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "";
-            }
-            var elements = document.getElementsByClassName('other');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-        }
-        else if(id == 'other'){
-            var elements = document.getElementsByClassName('all');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('tops');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('bottoms');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('outer');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('inner');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "none";
-            }
-            var elements = document.getElementsByClassName('other');
-            for(i=0;i<elements.length;i++){
-                elements[i].style.display = "";
-            }
-        }
+        
     }
 
 window.onload = viewChange;

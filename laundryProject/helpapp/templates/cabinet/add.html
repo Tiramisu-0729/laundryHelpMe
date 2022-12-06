@@ -10,9 +10,6 @@
 <div class="content">
     <form action="{% url 'helpapp:cabinet_add' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <!-- <label for="id_image">
-            <img class="img" src="{% static 'pictures/img.png' %}" alt="">
-        </label> -->
         {{ cabinet_form.as_p }}
         <button type="submit" id="submit">確定</button>
     </form>
@@ -20,8 +17,9 @@
 <script type="text/javascript"">
     document.querySelector('[for="id_image"]').innerHTML ="<img id='image' src='{% static 'pictures/img.png' %}' alt=''>";
     document.getElementById('id_image').style.display="none"
-    document.querySelector('[for="id_name"]').innerText = 'Name:';
-    document.querySelector('[for="id_memo"]').innerText = 'Memo:';
+    document.querySelector('[for="id_name"]').innerText = 'Name';
+    document.querySelector('[for="id_category"]').innerText = 'Category';
+    document.querySelector('[for="id_memo"]').innerText = 'Memo';
     document.querySelector('[for="id_memo"]').style.float="left"
     document.querySelector('[for="id_category"]').style.float="left"
     document.querySelector('[for="id_name"]').style.float="left"

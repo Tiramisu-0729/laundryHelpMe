@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Categories(models.Model):
     name = models.CharField(max_length=255)
@@ -22,3 +23,10 @@ class Cabinet(models.Model):
     
     def __str__(self):
         return str(self.author)
+
+class Profile(models.Model):
+    user = models.OneToOneField(
+        User, 
+        on_delete=models.CASCADE,
+    )
+    image = models.ImageField(upload_to='icon/', default='static/upload_img/icon/image.jpg')

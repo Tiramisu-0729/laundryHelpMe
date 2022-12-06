@@ -1,5 +1,5 @@
 from django import forms
-from .models import Cabinet
+from .models import Cabinet,Profile
 
 class JudgeForm(forms.Form):
     UploadImg = forms.FileField()
@@ -11,3 +11,8 @@ class CabinetForm(forms.ModelForm):
         widgets = {
             'memo': forms.Textarea
         }
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image']
