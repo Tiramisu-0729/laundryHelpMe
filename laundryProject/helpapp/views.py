@@ -304,6 +304,7 @@ def user(request):
         return render(request, 'user/index.html', context)
     else :
         return redirect('/accounts/login/')
+
 def timeline(request):
     if request.user.is_authenticated :
         user = request.user
@@ -436,6 +437,7 @@ def profile_add(request):
             'cabinet_form': CabinetForm(),
         }
     return render(request, 'cabinet/add.html', context)
+
 
 import torch
 from django.shortcuts import render
