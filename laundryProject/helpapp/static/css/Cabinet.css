@@ -4,8 +4,8 @@
     margin: 2%;
 }
 .item{
-    width: 20vmin;
-    height: 20vmin;
+    width: 28vmin;
+    height: 28vmin;
     text-align: center;
     border-radius: 3px;
     border: solid 1px #f0f0f0;
@@ -27,8 +27,8 @@
     background-color: #4BC9FF;
 }
 .item img{
-    width: 20vmin; 
-    height: 20vmin; 
+    width: 28vmin; 
+    height: 28vmin; 
     object-fit: cover;
 }
 .hidden{
@@ -39,8 +39,8 @@
     display:flex
 }
 .checkbox{
-    width: 20vmin;
-    height: 20vmin;
+    width: 28vmin;
+    height: 28vmin;
     border: solid 1px #e7e7e7;
     margin: 2.2%;
     float: left;
@@ -48,11 +48,11 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    box-shadow: 0 2px 2px -1px #6D6D6D;
+    box-shadow: 0 2px 2px 1px #a7a7a7;
 }
 .checkbox img{
-    width: 20vmin; 
-    height: 20vmin; 
+    width: 28vmin; 
+    height: 28vmin; 
     object-fit: cover;
 }
 .img{
@@ -65,14 +65,13 @@
     margin-top: -70%;
 }
 label{
-    width: 20vmin;
-    height: 20vmin;
+    width: 28vmin;
+    height: 28vmin;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .checkbox input[type="checkbox"]:checked+label {
-    /* background: rgba(0, 110, 255, 0.329); */
     border: solid 2px royalblue;
     border-radius: 3px;
 }
@@ -98,8 +97,8 @@ label{
 #edit{
     
     float: right;
-    width: 15vw;
-    height: 4vh;
+    width: 15vmin;
+    height: 8vmin;
     border-radius: 5px;
     font-size: 15px;
     color: #fff;
@@ -112,7 +111,7 @@ label{
     width: 30vw;
 }
 .select{
-    display: none;
+    /* display: none; */
 }
 #delete{
     width: 100vw;

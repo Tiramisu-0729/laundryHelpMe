@@ -88,8 +88,8 @@ label{
 }
 #edit{
     float: right;
-    width: 15vw;
-    height: 4vh;
+    width: 15vmin;
+    height: 8vmin;
     border-radius: 5px;
     font-size: 15px;
     color: #fff;
