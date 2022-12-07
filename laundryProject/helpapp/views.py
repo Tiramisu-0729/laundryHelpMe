@@ -4,8 +4,10 @@ from django.shortcuts import render
 
 from .models import Cabinet, Categories, Profile
 from django.shortcuts import redirect, render, get_object_or_404
-from .forms import CabinetForm, JudgeForm, ProfileForm
+from .forms import CabinetForm, JudgeForm, ProfileForm, UpdateUserForm, UpdateProfileForm
 from django.core.files.storage import FileSystemStorage
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 import csv
 import torch
 import json
@@ -411,31 +413,48 @@ def judge_result(request):
 
     return render(request, 'laundry_tag_check/result.html', context)
 
-def profile_add(request):
-    if request.method == "POST":
-        user = request.user
-        form = ProfileForm(request.POST)
-        if form.is_valid():#formの内容が正しければ
-            #削除
-            profile = Profile.objects.filter(user=user)
-            if(profile.exists()):
-                profile.delete()
-            profileNew = Profile()
-            profileNew.user = user
-            profileNew.image = request.FILES['image']
-            profileNew.save()
-            context = {
-                'message': '追加成功',
-            }
-        return render(request, 'cabinet/index.html', context)
+# def profile_add(request):
+#     if request.method == "POST":
+#         user = request.user
+#         form = ProfileForm(request.POST)
+#         if form.is_valid():#formの内容が正しければ
+#             #削除
+#             profile = Profile.objects.filter(user=user)
+#             if(profile.exists()):
+#                 profile.delete()
+#             profileNew = Profile()
+#             profileNew.user = user
+#             profileNew.image = request.FILES['image']
+#             profileNew.save()
+#             context = {
+#                 'message': '追加成功',
+#             }
+#         return render(request, 'cabinet/index.html', context)
+#     else:
+#         user = request.user
+#         context = {
+#             'message': '追加失敗',
+#             'user': user,
+#             'cabinet_form': CabinetForm(),
+#         }
+#     return render(request, 'cabinet/add.html', context)
+
+@login_required
+def profile(request):
+    if request.method == 'POST':
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile is updated successfully')
+            return redirect(to='user')
     else:
-        user = request.user
-        context = {
-            'message': '追加失敗',
-            'user': user,
-            'cabinet_form': CabinetForm(),
-        }
-    return render(request, 'cabinet/add.html', context)
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.profile)
+
+    return render(request, 'user/edit.html', {'user_form': user_form, 'profile_form': profile_form})
 
 
 import torch
