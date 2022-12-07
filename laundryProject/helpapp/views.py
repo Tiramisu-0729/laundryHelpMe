@@ -259,7 +259,8 @@ def cabinets_delete(request):
 def user(request):
     if request.user.is_authenticated :
         #本番は消して from laundryProject.settings import *　をする ↓
-        STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
+        # STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
+        STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
 
         user = request.user
         washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, dryCleanings, wetCleanings, list = [],[],[],[],[],[],[],[]
@@ -288,7 +289,7 @@ def user(request):
         f = open(STATIC_ROOT + '/csv/list.txt', 'r', encoding='UTF-8')
         list = f.read()
         f.close
-        profile = request.get.filter(user=user)
+        profile = Profile.objects.filter(user=user).first()
         context = {
             'ON' : json.dumps('user'),
             'message': 'User',
@@ -442,20 +443,25 @@ def judge_result(request):
 
 @login_required
 def profile(request):
+    profile = Profile.objects.filter(user=request.user).first()
     if request.method == 'POST':
         user_form = UpdateUserForm(request.POST, instance=request.user)
-        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=profile)
 
         if user_form.is_valid() and profile_form.is_valid():
             user_form.save()
-            profile_form.save()
+            new_profile=Profile()
+            new_profile=profile_form.save(commit=False)
+            new_profile.user = request.user
+            new_profile.save()
             messages.success(request, 'Your profile is updated successfully')
-            return redirect(to='user')
+            return redirect('/helpapp/user')
     else:
+        profile = Profile.objects.filter(user=request.user).first()
         user_form = UpdateUserForm(instance=request.user)
-        profile_form = UpdateProfileForm(instance=request.user.profile)
+        profile_form = UpdateProfileForm(instance=profile)
 
-    return render(request, 'user/edit.html', {'user_form': user_form, 'profile_form': profile_form})
+    return render(request, 'user/edit.html', {'user_form': user_form, 'profile_form': profile_form, 'profile' : profile})
 
 
 import torch
