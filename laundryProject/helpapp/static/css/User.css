@@ -102,33 +102,33 @@ hr{
     padding: 2% 8% 2% 1%;
     margin-bottom: 3%;
 }
-summary{
-    padding: 2% 3%;
-    margin-bottom: 3%;
-}
+
 #tes {
     padding-left: 6%;
 }
-.washingProcess{
+.washingProcesses{
     background-color: #CCCBFF;
 }
-.bleachingProcess{
+.bleachingProcesses{
     background-color: #FEFFCB;
 }
-.tumbleDrying{
+.tumbleDrys{
     background-color: #FFCBFA;
 }
-.naturalDrying{
+.naturalDrys{
     background-color: #CBFFD6;
 }
-.ironFinish{
+.ironFinishs{
     background-color: #FFCBCB;
 }
-.dryCleaning{
+.dryCleanings{
     background-color: #FFEDCB;
 }
-.wetCleaning{
+.wetCleanings{
     background-color: #CBD3FF;
+}
+.info{
+    background-color: #FFABAB;
 }
 img{
     width: 15vmin;
@@ -158,9 +158,58 @@ ol{
     font-size: 4vmin;
     margin-left: 4%;
 }
-.info{
-    background-color: #FFABAB;
-}
+
 .logout{
     margin-top: 20%;
+}
+/* ↓↓↓↓↓↓↓↓↓↓↓アコーディオンアニメーション↓↓↓↓↓↓↓↓↓↓↓ */
+summary{
+    padding: 2% 3%;
+    margin-bottom: 3%;
+    list-style: none;display: list-item; /* 以外を指定してデフォルトの三角形アイコンを消す */
+    cursor: pointer;
+}
+/* Safariで表示されるデフォルトの三角形アイコンを消す */
+summary::-webkit-details-marker { 
+    display: none;
+}
+details{
+    transition: all .5s ease; 
+}
+summary{
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: #fff;
+    text-shadow: 1px 1px 1px black;
+    font-size: 1.5em;
+    font-weight: bold;
+    transition: all .3s ease;
+    cursor: pointer;
+}
+summary::after{
+    content: '+';
+    position: absolute;
+    right: 20px;
+    transition: all .3s ease;
+}
+details[open] summary::after{
+    transform: rotate(45deg);
+}
+details[open] {
+    height: auto;
+}
+details[open] .codeWrapper{
+    overflow: auto;
+    animation: ani 1s ;
+}
+@keyframes ani {
+    0%{
+    opacity: 0;
+    transform: translateY(-20px);
+    }
+    100%{
+    opacity: 1;
+    transform: none;
+    }
 }

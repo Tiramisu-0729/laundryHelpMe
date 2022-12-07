@@ -276,11 +276,20 @@ def user(request):
             user_form = UpdateUserForm(instance=request.user)
             profile_form = UpdateProfileForm(instance=profile)
         #本番は消して from laundryProject.settings import *　をする ↓
-        # STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
-        STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
-
+        STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
+        # STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
         user = request.user
-        washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, dryCleanings, wetCleanings, list = [],[],[],[],[],[],[],[]
+        tables = [
+            ['washingProcesses','洗濯処理'], 
+            ['bleachingProcesses','漂白処理'], 
+            ['tumbleDrys','タンブル乾燥'], 
+            ['naturalDrys','自然乾燥'], 
+            ['ironFinishs','アイロン仕上げ'], 
+            ['dryCleanings','ドライクリーニング'], 
+            ['wetCleanings','ウエットクリーニング'], 
+            ['info', '注意事項']
+            ]
+        washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, dryCleanings, wetCleanings, info = [],[],[],[],[],[],[],[]
         # CSV読み込み
         with open(STATIC_ROOT + '/csv/washingProcesses.csv',encoding="utf-8") as f:
             for row in csv.reader(f):
@@ -303,14 +312,16 @@ def user(request):
         with open(STATIC_ROOT + '/csv/wetCleanings.csv',encoding="utf-8") as f:
             for row in csv.reader(f):
                 wetCleanings.append(row)
-        f = open(STATIC_ROOT + '/csv/list.txt', 'r', encoding='UTF-8')
-        list = f.read()
+        f = open(STATIC_ROOT + '/csv/info.txt', 'r', encoding='UTF-8')
+        info = f.read()
         f.close
         profile = Profile.objects.filter(user=user).first()
+        sumCabinet = Cabinet.objects.filter(author=user).count()
         context = {
             'ON' : json.dumps('user'),
             'message': 'User',
             'profile' : profile,
+            'sumCabinet': sumCabinet,
             'user': user,
             'washingProcesses': washingProcesses,
             'bleachingProcesses': bleachingProcesses,
@@ -319,7 +330,8 @@ def user(request):
             'ironFinishs': ironFinishs,
             'dryCleanings': dryCleanings,
             'wetCleanings': wetCleanings,
-            'list': list,
+            'info': info,
+            'tables': tables,
             'user_form': user_form, 
             'profile_form': profile_form,
         }

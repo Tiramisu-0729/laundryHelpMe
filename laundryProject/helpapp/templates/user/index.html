@@ -67,101 +67,85 @@
         <!-- ここまで -->
         <hr>
         <div class="detail">
-            <div class="sum">服の総数：</div>
+            <div class="sum">服の総数：{{sumCabinet}}</div>
             <div class="date">　登録日：</div>
         </div>
         <div class="washingDisplay">
             ◎ 洗濯表示
         </div>
-        <details>
-            <summary id="tes" class="washingProcess">洗濯処理</summary>
-            <table>
-                {% for datas in washingProcesses %}
-                    <tr>
-                        {% for data in datas %}
-                            <td> {{data|safe}} </td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
-        </details>
-        <details>
-            <summary id="tes" class="bleachingProcess">漂白処理</summary>
-            <table>
-                {% for datas in bleachingProcesses %}
-                    <tr>
-                        {% for data in datas %}
-                            <td> {{data|safe}} </td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
-        </details>
-        <details>
-            <summary id="tes" class="tumbleDrying">タンブル乾燥</summary>
-            <table>
-                {% for datas in tumbleDrys %}
-                    <tr>
-                        {% for data in datas %}
-                            <td> {{data|safe}} </td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
-        </details>
-        <details>
-            <summary id="tes" class="naturalDrying">自然乾燥</summary>
-            <table>
-                {% for datas in naturalDrys %}
-                    <tr>
-                        {% for data in datas %}
-                            <td> {{data|safe}} </td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
-        </details>
-        <details>
-            <summary id="tes" class="ironFinish">アイロン仕上げ</summary>
-            <table>
-                {% for datas in ironFinishs %}
-                    <tr>    
-                        {% for data in datas %}
-                            <td> {{data|safe}} </td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
-        </details>
-        <details>
-            <summary id="tes" class="dryCleaning">ドライクリーニング</summary>
-            <table>
-                {% for datas in dryCleanings %}
-                    <tr>
-                        {% for data in datas %}
-                            <td> {{data|safe}} </td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
-            <p class="attention">※<font color="red">ドライクリーニング処理はタンブル乾燥を含む。</font></p>
-        </details>
-        <details>
-            <summary id="tes" class="wetCleaning">ウエットクリーニング</summary>
-            <table>
-                {% for datas in wetCleanings %}
-                    <tr>
-                        {% for data in datas %}
-                            <td> {{data|safe}} </td>
-                        {% endfor %}
-                    </tr>
-                {% endfor %}
-            </table>
-        </details>
-        <details>
-            <summary class="info">注意事項</summary>
-            {{list|safe}}
-        </details>
+        {% for table in tables %}
+            <details>
+                <summary id="tes" class="{{table.0}}" class="accordion">
+                    <span>{{table.1}}</span>
+                </summary>
+                <div class="codeWrapper">
+                    <table>
+                        {% if table.0 == "washingProcesses"%}
+                            {% for datas in washingProcesses %}
+                                <tr>
+                                    {% for data in datas %}
+                                        <td> {{data|safe}} </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        {%elif table.0 == "bleachingProcesses" %}
+                            {% for datas in bleachingProcesses %}
+                                <tr>
+                                    {% for data in datas %}
+                                        <td> {{data|safe}} </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        {%elif table.0 == "tumbleDrys" %}
+                            {% for datas in tumbleDrys %}
+                                <tr>
+                                    {% for data in datas %}
+                                        <td> {{data|safe}} </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        {%elif table.0 == "naturalDrys" %}
+                            {% for datas in naturalDrys %}
+                                <tr>
+                                    {% for data in datas %}
+                                        <td> {{data|safe}} </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        {%elif table.0 == "ironFinishs" %}
+                            {% for datas in ironFinishs %}
+                                <tr>
+                                    {% for data in datas %}
+                                        <td> {{data|safe}} </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        {%elif table.0 == "dryCleanings" %}
+                            {% for datas in dryCleanings %}
+                                <tr>
+                                    {% for data in datas %}
+                                        <td> {{data|safe}} </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        {% elif table.0 == "wetCleanings" %}
+                            {% for datas in wetCleanings %}
+                                <tr>
+                                    {% for data in datas %}
+                                        <td> {{data|safe}} </td>
+                                    {% endfor %}
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            {{info|safe}}
+                        {% endif %}
+                    </table>
+                </div>
+                {%if table.0 == "dryCleanings" %}
+                    <p class="attention">※<font color="red">ドライクリーニング処理はタンブル乾燥を含む。</font></p>
+                {% endif %} 
+            </details>
+        {% endfor %}
         <hr>
         <p class="logout"><a href='{% url "logout" %}'>ログアウト</a></p>
     </div>
