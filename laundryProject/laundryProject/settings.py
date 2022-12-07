@@ -137,7 +137,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'upload_img/')
 
 MEDIA_URL = 'upload_img/'
 
-LOGIN_URL = 'laundryProject\templates\registration\login'
+
 
 # セッションの有効期限（秒）
 

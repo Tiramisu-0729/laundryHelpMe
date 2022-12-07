@@ -26,8 +26,6 @@ urlpatterns = [
     path("laundry_tag_check",views.laundry_tag_check, name="laundry_tag_check"),
     path("cabinet_delete/<int:pk>/",views.cabinet_delete, name="cabinet_delete"),
     path("cabinets_delete",views.cabinets_delete, name="cabinets_delete"),
-    # path("profile_add",views.profile_add, name="profile_add"),
-    path("profile",views.profile, name="profile"),
     path("test",views.testYolo, name="test"),
     
 ]

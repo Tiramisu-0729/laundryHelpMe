@@ -4,15 +4,67 @@
 {% block link%}
     <title>User</title>
     <link rel="stylesheet" href="{% static 'css/User.css' %}">
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="{% static 'js/User.js' %}"></script>
 {% endblock %}
 {% block content %}
-    <div class="content">    
-        <div class="user">
-            <img class="user-pic" src="{{profile.image.url}}" alt="user_icon"> 
-            <span class="user-ID">ID：{{user}}</span>
-            <a href='{% url "helpapp:profile"%}'><button class="edit-button">編集</button></a>
+    <div class="content">
+    <div class="edit">
+        <button id="edit-button">edit</button>
+    </div>
+        
+        <div id="main">
+            <div class="user">
+                
+                <img class="user-pic" src="{{profile.image.url}}" alt="user_icon"> 
+            </div>
+            <div class="UserName">{{user}}</div>
+            <br>
+        </div>    
+        
+
+        <!-- 編集ボタンを押したら出てくる -->
+        <div id="main_edit" class="hidden">
+            <div class="img_div">
+                <label for="id_image">
+                    <img id="account_img" src="{{ profile.image.url }} ">
+                </label>
+                
+            </div>
+            {% if user_form.errors %}
+                <div class="alert alert-danger alert-dismissible" role="alert">
+                    <div id="form_errors">
+                        {% for key, value in user_form.errors.items %}
+                            <strong>{{ value }}</strong>
+                        {% endfor %}
+                    </div>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endif %}
+            <div class="form-content">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="form-row">
+                        <div class="col-md-5">
+                            <div class>
+                                <label for="id_username">Username:</label>
+                                <div class="username">{{ user_form.username }}</div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <a href="#">Change Password</a>
+                                {{ profile_form.image }}
+                            </div>
+                            <button type="submit" class="btn btn-dark btn-lg">Save Changes</button>
+                            <button type="reset" class="btn btn-dark btn-lg">Reset</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
-        <br>
+        <!-- ここまで -->
         <hr>
         <div class="detail">
             <div class="sum">服の総数：</div>

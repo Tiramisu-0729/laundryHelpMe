@@ -1,0 +1,30 @@
+.hidden{
+    display: none;
+    margin: 5%;
+}
+.img_div{
+    text-align: center;
+    margin: 5vmin;
+}
+#account_img{
+    width: 30vmin;
+    height: 30vmin;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid rgb(190, 190, 190);
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .5);
+}
+.username{
+    margin-top: 1%;
+    text-align: center;
+}
+.form-control{
+    width: 65vw;
+    height: 3vh;
+}
+.form-control-file{
+    display: none;
+}
+.form-group{
+    text-align: end;
+}

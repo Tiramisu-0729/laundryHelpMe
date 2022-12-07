@@ -2,11 +2,17 @@
 {% load static %}<!-- 必須 -->
 {% block link%}
     <title>User</title>
-    <link rel="stylesheet" href="{% static 'css/User.css' %}">
+    <link rel="stylesheet" href="{% static 'css/EditUser.css' %}">
+    <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="{% static 'js/Edit_User.js' %}"></script>
 {% endblock %}
 {% block content %}
-    <div class="row my-3 p-3">
-        <img class="rounded-circle account-img" src="{{ profile.image.url }} " style="cursor: pointer;"/>
+<div class="hidden">
+    <div class="img_div">
+        <label for="id_image">
+            <img id="account_img" src="{{ profile.image.url }} ">
+        </label>
+        
     </div>
     {% if user_form.errors %}
         <div class="alert alert-danger alert-dismissible" role="alert">
@@ -25,14 +31,14 @@
             {% csrf_token %}
             <div class="form-row">
                 <div class="col-md-5">
-                    <div class="form-group">
-                        <label class="small mb-1">Username:</label>
-                            {{ user_form.username }}
+                    <div class>
+                        <label for="id_username">Username:</label>
+                        <div class="username">{{ user_form.username }}</div>
                     </div>
+                    <br>
                     <div class="form-group">
                         <a href="#">Change Password</a>
                         <hr>
-                        <label class="small mb-1">Change image:</label>
                         {{ profile_form.image }}
                     </div>
                 </div>
@@ -42,4 +48,5 @@
             <button type="reset" class="btn btn-dark btn-lg">Reset</button>
         </form>
     </div>
+</div>
 {% endblock content %}

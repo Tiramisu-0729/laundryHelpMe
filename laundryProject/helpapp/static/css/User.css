@@ -3,30 +3,79 @@
     margin-bottom: 20vmin;
     font-size: 5vmin;
 }
+#main{
+    margin: 5vmin;
+}
 .user{
-    font-size: 6vmin;
+    margin: 3vmin;
+    text-align: center;
+
 }
 .user-pic{
-    float: left;
-    height: 25vmin;
-    width: 25vmin;
+    width: 30vmin;
+    height: 30vmin;
+    object-fit: cover;
     border-radius: 50%;
-    margin: 3% 5% 3% 3%;
+    border: 1px solid rgb(190, 190, 190);
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .5);
+    margin-bottom: 3vmin;
 }
-.user-ID{
-    float: left;
-    margin: 5% 3% 0 0;
+
+.UserName{
+    text-align: center;
 }
-.edit-button{
-    width: 40%;
-    float: right;
-    margin: 5% 10% 3%;
-    padding: 5px 0;
-    border-radius: 50px;
+.edit{
+    text-align: end;
+}
+#edit-button{
+    margin:1vmin 2vmin 0 0;
+    width: 15vw;
+    height: 5vh;
+    border-radius: 5px;
+    font-size: 15px;
+    color: #fff;
+    font-weight: bold;
     border: none;
-    background-color: #D9D9D9;
-    font-size: 4vmin;
+    background-color: #4BC9FF;
 }
+
+#main_edit{
+    margin: 5vmin;
+}
+
+.hidden{
+    display: none;
+    margin: 5vmin;
+}
+.img_div{
+    text-align: center;
+    margin: 5vmin;
+}
+#account_img{
+    width: 30vmin;
+    height: 30vmin;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid rgb(190, 190, 190);
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .5);
+}
+.username{
+    margin-top: 1%;
+    text-align: center;
+}
+.form-control{
+    width: 65vw;
+    height: 3vh;
+}
+.form-control-file{
+    display: none;
+}
+.form-group{
+    text-align: end;
+}
+
+
+
 .logout{
     text-align: center;
     font-size: 4vmin;
