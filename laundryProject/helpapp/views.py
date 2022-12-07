@@ -256,8 +256,25 @@ def cabinets_delete(request):
     else :
         return redirect('/accounts/login/')
 
+
 def user(request):
     if request.user.is_authenticated :
+        if request.method == 'POST':
+            profile = Profile.objects.filter(user=request.user).first()
+            user_form = UpdateUserForm(request.POST, instance=request.user)
+            profile_form = UpdateProfileForm(request.POST, request.FILES, instance=profile)
+            if user_form.is_valid() and profile_form.is_valid():
+                user_form.save()
+                new_profile=Profile()
+                new_profile=profile_form.save(commit=False)
+                new_profile.user = request.user
+                new_profile.save()
+                messages.success(request, 'Your profile is updated successfully')
+                return redirect('/helpapp/user')
+        else:
+            profile = Profile.objects.filter(user=request.user).first()
+            user_form = UpdateUserForm(instance=request.user)
+            profile_form = UpdateProfileForm(instance=profile)
         #本番は消して from laundryProject.settings import *　をする ↓
         STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
         # STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
@@ -315,6 +332,8 @@ def user(request):
             'wetCleanings': wetCleanings,
             'info': info,
             'tables': tables,
+            'user_form': user_form, 
+            'profile_form': profile_form,
         }
         return render(request, 'user/index.html', context)
     else :
@@ -426,55 +445,6 @@ def judge_result(request):
     
     #ディレクトリ削除os.remove('target.txt')
     return render(request, 'laundry_tag_check/result.html', context)
-
-# def profile_add(request):
-#     if request.method == "POST":
-#         user = request.user
-#         form = ProfileForm(request.POST)
-#         if form.is_valid():#formの内容が正しければ
-#             #削除
-#             profile = Profile.objects.filter(user=user)
-#             if(profile.exists()):
-#                 profile.delete()
-#             profileNew = Profile()
-#             profileNew.user = user
-#             profileNew.image = request.FILES['image']
-#             profileNew.save()
-#             context = {
-#                 'message': '追加成功',
-#             }
-#         return render(request, 'cabinet/index.html', context)
-#     else:
-#         user = request.user
-#         context = {
-#             'message': '追加失敗',
-#             'user': user,
-#             'cabinet_form': CabinetForm(),
-#         }
-#     return render(request, 'cabinet/add.html', context)
-
-@login_required
-def profile(request):
-    profile = Profile.objects.filter(user=request.user).first()
-    if request.method == 'POST':
-        user_form = UpdateUserForm(request.POST, instance=request.user)
-        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=profile)
-
-        if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            new_profile=Profile()
-            new_profile=profile_form.save(commit=False)
-            new_profile.user = request.user
-            new_profile.save()
-            messages.success(request, 'Your profile is updated successfully')
-            return redirect('/helpapp/user')
-    else:
-        profile = Profile.objects.filter(user=request.user).first()
-        user_form = UpdateUserForm(instance=request.user)
-        profile_form = UpdateProfileForm(instance=profile)
-
-    return render(request, 'user/edit.html', {'user_form': user_form, 'profile_form': profile_form, 'profile' : profile})
-
 
 import torch
 from django.shortcuts import render
