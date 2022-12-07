@@ -19,56 +19,36 @@
     <div id="content">
         <div class="main all">
             {% for cabinet in cabinets %}
-                {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
-                    <div class="item">
-                        <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
-                            <img src="{{ cabinet.image.url }}">
+                <div class="item">
+                    <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
+                        <img src="{{ cabinet.image.url }}">
+                        {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
                             <p class="how LD">手洗い</p>
-                        </a>
-                    </div>
-                {% elif cabinet.laundry_tag|stringformat:"s" in "LE" %}
-                    <div class="item">
-                        <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
-                            <img src="{{ cabinet.image.url }}">
+                        {% elif cabinet.laundry_tag|stringformat:"s" in "LE" %}
                             <p class="how LE">洗えない</p>
-                        </a>
-                    </div>
-                {% else %}
-                    <div class="item">
-                        <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
-                            <img src="{{ cabinet.image.url }}">
+                        {% else %}
                             <p class="how able">洗える</p>
-                        </a>
-                    </div>
-                {% endif %}
+                        {% endif %}
+                    </a>
+                </div>
             {% endfor %}
         </div>
         {% for category in categories%}
             <div class="main {{category}}" style="display: none;">
                 {% for cabinet in cabinets %}
                     {% if cabinet.category|stringformat:"s" == category %}
-                        {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
-                            <div class="item">
-                                <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
-                                    <img src="{{ cabinet.image.url }}">
+                        <div class="item">
+                            <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
+                                <img src="{{ cabinet.image.url }}">
+                                {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
                                     <p class="how LD">手洗い</p>
-                                </a>
-                            </div>
-                        {% elif cabinet.laundry_tag|stringformat:"s" in "LE" %}
-                            <div class="item">
-                                <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
-                                    <img src="{{ cabinet.image.url }}">
+                                {% elif cabinet.laundry_tag|stringformat:"s" in "LE" %}
                                     <p class="how LE">洗えない</p>
-                                </a>
-                            </div>
-                        {% else %}
-                            <div class="item">
-                                <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
-                                    <img src="{{ cabinet.image.url }}">
+                                {% else %}
                                     <p class="how able">洗える</p>
-                                </a>
-                            </div>
-                        {% endif %}
+                                {% endif %}
+                            </a>
+                        </div>
                     {% endif %}
                 {% endfor %}
             </div>
@@ -84,63 +64,39 @@
             {% csrf_token %}
             <div class="all main">
                 {% for cabinet in cabinets %}
-                {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
                     <div class="checkbox">
                         <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
                         <label for={{cabinet.id}}>
                             <img class="img" src="{{ cabinet.image.url }}">
-                            <p class="how LD">手洗い</p>
+                            {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
+                                <p class="how LD">手洗い</p>
+                            {% elif cabinet.laundry_tag|stringformat:"s" in "LE" %}
+                                <p class="how LE">洗えない</p>
+                            {% else %}
+                                <p class="how able">洗える</p>
+                            {% endif %}
                         </label>
                     </div>
-                {% elif cabinet.laundry_tag|stringformat:"s" in "LE" %}
-                    <div class="checkbox">
-                        <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
-                        <label for={{cabinet.id}}>
-                            <img class="img" src="{{ cabinet.image.url }}">
-                            <p class="how LE">洗えない</p>
-                        </label>
-                    </div>
-                {% else %}
-                    <div class="checkbox">
-                        <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
-                        <label for={{cabinet.id}}>
-                            <img class="img" src="{{ cabinet.image.url }}">
-                            <p class="how able">洗える</p>
-                        </label>
-                    </div>
-                {% endif %}
                 {% endfor %}
             </div>
-
+            
             {% for category in categories %}    
             <div class="main {{category}}" style="display: none;">
                 {% for cabinet in cabinets %}
                     {% if cabinet.category|stringformat:"s" == category %}
-                        {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
-                            <div class="checkbox">
-                                <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
-                                <label for={{cabinet.id}}>
-                                    <img class="img" src="{{ cabinet.image.url }}">
+                        <div class="checkbox">
+                            <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
+                            <label for={{cabinet.id}}>
+                                <img class="img" src="{{ cabinet.image.url }}">
+                                {% if cabinet.laundry_tag|stringformat:"s" in "LD" %}
                                     <p class="how LD">手洗い</p>
-                                </label>
-                            </div>
-                        {% elif cabinet.laundry_tag|stringformat:"s" in "LE" %}
-                            <div class="checkbox">
-                                <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
-                                <label for={{cabinet.id}}>
-                                    <img class="img" src="{{ cabinet.image.url }}">
+                                {% elif cabinet.laundry_tag|stringformat:"s" in "LE" %}
                                     <p class="how LE">洗えない</p>
-                                </label>
-                            </div>
-                        {% else %}
-                            <div class="checkbox">
-                                <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
-                                <label for={{cabinet.id}}>
-                                    <img class="img" src="{{ cabinet.image.url }}">
+                                {% else %}
                                     <p class="how able">洗える</p>
-                                </label>
-                            </div>
-                        {% endif %}
+                                {% endif %}
+                            </label>
+                        </div>
                     {% endif %}
                 {% endfor %}
             </div>

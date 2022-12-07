@@ -12,6 +12,7 @@ import csv
 import torch
 import json
 
+
 def helpapp(request):
     #ログインがあるか判別
     if request.user.is_authenticated :
@@ -254,36 +255,40 @@ def cabinets_delete(request):
         return redirect('/helpapp/cabinet')
     else :
         return redirect('/accounts/login/')
-    
+
 def user(request):
     if request.user.is_authenticated :
+        #本番は消して from laundryProject.settings import *　をする ↓
+        STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
+
         user = request.user
-        profile = Profile.objects.filter(user=user)
         washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, dryCleanings, wetCleanings, list = [],[],[],[],[],[],[],[]
-        with open('G:\マイドライブ\Python\laundryHelpMe\laundryProject\helpapp\static\csv\washingProcesses.csv',encoding="utf-8") as f:
+        # CSV読み込み
+        with open(STATIC_ROOT + '/csv/washingProcesses.csv',encoding="utf-8") as f:
             for row in csv.reader(f):
                 washingProcesses.append(row)
-        with open('G:\マイドライブ\Python\laundryHelpMe\laundryProject\helpapp\static\csv\\bleachingProcesses.csv',encoding="utf-8") as f:
+        with open(STATIC_ROOT + '/csv/bleachingProcesses.csv',encoding="utf-8") as f:
             for row in csv.reader(f):
                 bleachingProcesses.append(row)
-        with open('G:\マイドライブ\Python\laundryHelpMe\laundryProject\helpapp\static\csv\\tumbleDrys.csv',encoding="utf-8") as f:
+        with open(STATIC_ROOT + '/csv/tumbleDrys.csv',encoding="utf-8") as f:
             for row in csv.reader(f):
                 tumbleDrys.append(row)
-        with open('G:\マイドライブ\Python\laundryHelpMe\laundryProject\helpapp\static\csv\\naturalDrys.csv',encoding="utf-8") as f:
+        with open(STATIC_ROOT + '/csv/naturalDrys.csv',encoding="utf-8") as f:
             for row in csv.reader(f):
                 naturalDrys.append(row)
-        with open('G:\マイドライブ\Python\laundryHelpMe\laundryProject\helpapp\static\csv\ironFinishs.csv',encoding="utf-8") as f:
+        with open(STATIC_ROOT + '/csv/ironFinishs.csv',encoding="utf-8") as f:
             for row in csv.reader(f):
                 ironFinishs.append(row)
-        with open('G:\マイドライブ\Python\laundryHelpMe\laundryProject\helpapp\static\csv\dryCleanings.csv',encoding="utf-8") as f:
+        with open(STATIC_ROOT + '/csv/dryCleanings.csv',encoding="utf-8") as f:
             for row in csv.reader(f):
                 dryCleanings.append(row)
-        with open('G:\マイドライブ\Python\laundryHelpMe\laundryProject\helpapp\static\csv\wetCleanings.csv',encoding="utf-8") as f:
+        with open(STATIC_ROOT + '/csv/wetCleanings.csv',encoding="utf-8") as f:
             for row in csv.reader(f):
                 wetCleanings.append(row)
-        f = open('G:\マイドライブ\Python\laundryHelpMe\laundryProject\helpapp\static\csv\list.txt', 'r', encoding='UTF-8')
+        f = open(STATIC_ROOT + '/csv/list.txt', 'r', encoding='UTF-8')
         list = f.read()
         f.close
+        profile = request.get.filter(user=user)
         context = {
             'ON' : json.dumps('user'),
             'message': 'User',
@@ -348,9 +353,6 @@ def judge(request):
         for data in datas :
             if data[4] > 0.5:
                 result.append(data[6]) 
-        
-        # result = "L8,B3,T3,N1,I4"#ここに結果を入れる
-        # result = result.split(',') 
         redirect_url = reverse('helpapp:laundry_tag_check')
         parameters = urlencode({'file_url': file_url, 'result' : result})
         url = f'{redirect_url}?{parameters}'
@@ -410,7 +412,6 @@ def judge_result(request):
         }
     
     #ディレクトリ削除os.remove('target.txt')
-
     return render(request, 'laundry_tag_check/result.html', context)
 
 # def profile_add(request):
