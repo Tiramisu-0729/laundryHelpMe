@@ -276,7 +276,8 @@ def user(request):
             user_form = UpdateUserForm(instance=request.user)
             profile_form = UpdateProfileForm(instance=profile)
         #本番は消して from laundryProject.settings import *　をする ↓
-        STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
+        STATIC_ROOT = 'C:/Users/20jz0144/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
+        # STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
         # STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
         user = request.user
         tables = [
