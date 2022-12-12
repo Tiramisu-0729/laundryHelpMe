@@ -1,4 +1,7 @@
 /* LaundryTagCheck */
+body{
+    color: #333;
+}
 .backButton{
     width: 40%;
     border-radius: 5px;

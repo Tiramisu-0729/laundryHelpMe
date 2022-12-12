@@ -84,7 +84,6 @@ ul{
     padding: 0;
     display: flex;
     margin: 0;
-
 }
 li{
     margin-top: 1%;
@@ -93,5 +92,4 @@ li{
     list-style: none;
     width: 100%;
     margin-left: 7%;
-    
 }
