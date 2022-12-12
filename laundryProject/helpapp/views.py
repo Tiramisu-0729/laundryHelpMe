@@ -11,7 +11,7 @@ from django.contrib import messages
 import csv
 import torch
 import json
-
+from helpapp.Yolo_model import MODEL
 
 def helpapp(request):
     #ログインがあるか判別
@@ -276,7 +276,9 @@ def user(request):
             user_form = UpdateUserForm(instance=request.user)
             profile_form = UpdateProfileForm(instance=profile)
         #本番は消して from laundryProject.settings import *　をする ↓
-        #STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
+        #STATIC_ROOT = 'E:\python\laundryHelpMe\laundryProject\helpapp\static'
+        # STATIC_ROOT = 'C:/Users/20jz0144/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
+        # STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
         STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
         user = request.user
         tables = [
@@ -374,10 +376,11 @@ def judge(request):
         file_url = fs.url(file_data)
         request.session['file_url'] = file_url
         #AIで画像判定
-        path_hubconfig = "yolo"
-        path_weightfile = "yolo/729x300_yolov5m_best.pt" 
-        model = torch.hub.load(path_hubconfig, 'custom',path=path_weightfile, source='local')
-        results = model(file_url.lstrip("/"))
+        # path_hubconfig = "yolo"
+        # path_weightfile = "yolo/729x300_yolov5m_best.pt" 
+        # model = torch.hub.load(path_hubconfig, 'custom',path=path_weightfile, source='local')
+        # results = MODEL(file_url)
+        results = MODEL(file_url.lstrip("/"))
 
         #判定結果 解析
         datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
@@ -450,11 +453,11 @@ import torch
 from django.shortcuts import render
 
 def testYolo(request):
-    path_hubconfig = "yolo"
-    path_weightfile = "yolo/729x300_yolov5m_best.pt" 
-    img_path = '/upload_img/4018.jpg'
-    model = torch.hub.load(path_hubconfig, 'custom',path=path_weightfile, source='local')
-    results = model(img_path.lstrip("/"))
+    # path_hubconfig = "yolo"
+    # path_weightfile = "yolo/729x300_yolov5m_best.pt" 
+    img_path = '/upload_img/0069.png'
+    # model = torch.hub.load(path_hubconfig, 'custom',path=path_weightfile, source='local')
+    results = MODEL(img_path.lstrip("/"))
     datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
     tags=[]
     for data in datas :
@@ -462,7 +465,6 @@ def testYolo(request):
             tags.append(data[6]) 
     context = {
         'message': 'Test',
-        'model': model,
         'results': results,
         'xyxy': results.pandas().xyxy[0].to_json(orient="values"),
         'tags': tags,
