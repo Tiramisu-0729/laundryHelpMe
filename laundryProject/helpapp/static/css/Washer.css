@@ -73,8 +73,9 @@ label{
     position: absolute;
     bottom: 0;
     right: 0;
-    font: 3%;
-    color: white;
+    font-size: 5vmin;
+    text-shadow: 0.4vmin 0.4vmin 0.3vmin #111;
+    color: #fff;
     width: 100%;    
 }
 .LD{
@@ -104,7 +105,6 @@ label{
 #delete{
     width: 100vw;
     height: 15vmin;
-    border-radius: 5px;
     font-size: 32px;
     color: #6D6D6D;
     font-weight: bold;

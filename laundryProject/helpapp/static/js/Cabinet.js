@@ -11,14 +11,14 @@ window.onload = function(){
     edit.addEventListener('click', () => {  //editがクリックされたら
         check.classList.toggle('hidden');
         content.classList.toggle('hidden');
-        if (edit.innerText == 'edit'){
-            edit.innerText = 'cancel' ;
+        if (edit.innerText == '編集'){
+            edit.innerText = '戻る' ;
         }
         else{
             for (let i = 0; i < checkbox.length; i++) {
                 checkbox[i].checked = false;
             }
-            edit.innerText = 'edit' ;
+            edit.innerText = '編集' ;
         }
         
     });             
