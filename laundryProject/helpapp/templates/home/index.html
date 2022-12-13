@@ -18,7 +18,7 @@
             </form>
         </div>
     </div>
-    <style>
+    {% comment %} <style>
         .loading-icon{
             box-sizing: border-box;
             width: 15px;
@@ -50,8 +50,9 @@
             justify-content: center;
             align-items: center;
         }
-    </style>
+    </style> {% endcomment %}
     <div class="loading">
-        <p class="loading-icon"></p>
+        <div id="loading-text">LOADING</div>
+        <div id="loading-content"></div>
     </div>
 {% endblock %}
