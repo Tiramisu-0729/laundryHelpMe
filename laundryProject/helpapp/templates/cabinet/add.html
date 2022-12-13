@@ -3,7 +3,6 @@
 {% block link%}
     <title>Cabinet</title>
     <link rel="stylesheet" href="{% static 'css/AddCabinet.css' %}">
-    <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="{% static 'js/Add_cabinet.js' %}"></script>
 {% endblock %}
 {% block content %}
@@ -17,9 +16,9 @@
 <script type="text/javascript"">
     document.querySelector('[for="id_image"]').innerHTML ="<img id='image' src='{% static 'pictures/img.png' %}' alt=''>";
     document.getElementById('id_image').style.display="none"
-    document.querySelector('[for="id_name"]').innerText = 'Name';
-    document.querySelector('[for="id_category"]').innerText = 'Category';
-    document.querySelector('[for="id_memo"]').innerText = 'Memo';
+    document.querySelector('[for="id_name"]').innerText = 'NAME';
+    document.querySelector('[for="id_category"]').innerText = 'CATEGORY';
+    document.querySelector('[for="id_memo"]').innerText = 'MEMO';
     document.querySelector('[for="id_memo"]').style.float="left"
     document.querySelector('[for="id_category"]').style.float="left"
     document.querySelector('[for="id_name"]').style.float="left"

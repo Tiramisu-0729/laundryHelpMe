@@ -50,29 +50,15 @@ function viewChange(){
     categories = ['all', 'tops', 'bottoms', 'outer', 'inner', 'other'];
     if(document.getElementById('categories')){
         id = document.getElementById('categories').value;
-        for(category in categories){
+        for(let category of categories){
             if(id == category){
-                var elements = document.getElementsByClassName('all');
+                var elements = document.getElementsByClassName(category);
                 for(i=0;i<elements.length;i++){
                     elements[i].style.display = "";
                 }
-                var elements = document.getElementsByClassName('tops');
-                for(i=0;i<elements.length;i++){
-                    elements[i].style.display = "none";
-                }
-                var elements = document.getElementsByClassName('bottoms');
-                for(i=0;i<elements.length;i++){
-                    elements[i].style.display = "none";
-                }
-                var elements = document.getElementsByClassName('outer');
-                for(i=0;i<elements.length;i++){
-                    elements[i].style.display = "none";
-                }
-                var elements = document.getElementsByClassName('inner');
-                for(i=0;i<elements.length;i++){
-                    elements[i].style.display = "none";
-                }
-                var elements = document.getElementsByClassName('other');
+            }
+            else{
+                var elements = document.getElementsByClassName(category);
                 for(i=0;i<elements.length;i++){
                     elements[i].style.display = "none";
                 }
@@ -108,4 +94,8 @@ else if (ref.indexOf('helpapp/cabinets_detele') !== -1) {
         history.go(1);
     });
 }
+
+
+
+
 

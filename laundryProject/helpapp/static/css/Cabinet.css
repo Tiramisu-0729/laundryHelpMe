@@ -48,7 +48,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    box-shadow: 0 2px 2px 1px #a7a7a7;
+    box-shadow: 0 2px 5px 1px #cfcfcf;
 }
 .checkbox img{
     width: 28vmin; 
@@ -111,11 +111,11 @@ label{
     width: 30vw;
 }
 .select{
-    /* display: none; */
+    display: none;
 }
 #delete{
     width: 100vw;
-    height: 7vh;
+    height: 15vmin;
     font-size: 32px;
     color: #6D6D6D;
     font-weight: bold;

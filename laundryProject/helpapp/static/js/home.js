@@ -1,14 +1,15 @@
-$(function(){
-    $('#id_UploadImg').change(function(){
+window.onload = function(){ 
+    let id_img = document.getElementById('id_UploadImg');
+    id_img.addEventListener('change', function() {
         //画像取得
-        const img = $('#id_UploadImg').prop('files')[0];
+        const img = id_img.files[0];
         home_img.setAttribute('src', "/static/pictures/img.png");
         const type = img.type;
         
         //画像かどうかチェック
         if( !type.match(/^image/) ){
             alert('画像を選択してください');
-            $(this).val('');
+            this.val('');
             return false;
         }
 
@@ -21,7 +22,6 @@ $(function(){
         //読み込み失敗時
         reader.onerror = function(){
             alert('ファイル読み取りに失敗しました');
-            $(this).val('');
             return false;
         }
 
@@ -43,4 +43,4 @@ $(function(){
             }
     });
 
-})
+}

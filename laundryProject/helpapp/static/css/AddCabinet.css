@@ -2,7 +2,7 @@
 /* header */
 body{
     margin: 0;
-    font-size: 16px;
+    color: #333;
 }
 .content{
     text-align: center;
@@ -10,36 +10,38 @@ body{
 #image{
     width: 55vw;
     height: 55vw;
-    margin: 5% 0 0;
+    margin: 3vmin 8vw 5vmin;
 }
 p{
     margin-bottom: 7%;
 }
 label{
-    margin-left: 3%;
+    width: 100%;
+    float: left;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
 }
 #id_name{
-    width:64vw;
-    margin-left: 3vw;
+    width: 67vw;
     padding: 5px 5px;
+    font-size: 18px;
 }
 #id_category{
-    width:68vw;
-    margin-left: -3vw;
+    width:70%;
     padding: 5px 0;
+    font-size: 18px;
 }
 #id_memo{
-    width:65vw;
+    width: 67vw;
     height: 10vh;
-    margin-left: 3vw;
     padding: 5px 5px;
+    font-size: 18px;
 }
 #submit{
     width: 70%;
     padding-top: 2%;
     padding-bottom: 2%;
-    margin-top: 10%;
-    margin-bottom: 25%;
     font-size: 32px;
     color: #fff;
     font-weight: bold;
