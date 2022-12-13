@@ -23,7 +23,7 @@
 .UserName{
     margin-top: 1%;
     text-align: center;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: bold;
 }
 .edit{
@@ -58,16 +58,23 @@
     border-radius: 50%;
     border: 1px solid rgb(190, 190, 190);
     box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .5);
+    margin-top: -9vmin;
+}
+.form-row{
+    text-align: center;
+}
+.id{
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 10vmin;
 }
 .form-control{
-    width: 65vw;
-    height: 3vh;
+    padding: 5px;
+    font-size: 18px;
+    width: 60vw;
 }
 .form-control-file{
     display: none;
-}
-.form-group{
-    text-align: end;
 }
 .logout{
     text-align: center;
