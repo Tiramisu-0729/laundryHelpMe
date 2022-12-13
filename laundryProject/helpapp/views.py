@@ -278,19 +278,9 @@ def user(request):
         #本番は消して from laundryProject.settings import *　をする ↓
         #STATIC_ROOT = 'E:\python\laundryHelpMe\laundryProject\helpapp\static'
         # STATIC_ROOT = 'C:/Users/20jz0144/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
-        # STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
-        STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
+        STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
+        # STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
         user = request.user
-        tables = [
-            ['washingProcesses','洗濯処理'], 
-            ['bleachingProcesses','漂白処理'], 
-            ['tumbleDrys','タンブル乾燥'], 
-            ['naturalDrys','自然乾燥'], 
-            ['ironFinishs','アイロン仕上げ'], 
-            ['dryCleanings','ドライクリーニング'], 
-            ['wetCleanings','ウエットクリーニング'], 
-            ['info', '注意事項']
-            ]
         washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, dryCleanings, wetCleanings, info = [],[],[],[],[],[],[],[]
         # CSV読み込み
         with open(STATIC_ROOT + '/csv/washingProcesses.csv',encoding="utf-8") as f:
@@ -319,20 +309,22 @@ def user(request):
         f.close
         profile = Profile.objects.filter(user=user).first()
         sumCabinet = Cabinet.objects.filter(author=user).count()
+        tables = [
+            ['washingProcesses', '洗濯処理', washingProcesses], 
+            ['bleachingProcesses', '漂白処理', bleachingProcesses], 
+            ['tumbleDrys', 'タンブル乾燥', tumbleDrys], 
+            ['naturalDrys', '自然乾燥', naturalDrys], 
+            ['ironFinishs', 'アイロン仕上げ', ironFinishs], 
+            ['dryCleanings', 'ドライクリーニング', dryCleanings], 
+            ['wetCleanings', 'ウエットクリーニング', wetCleanings], 
+            ['info', '注意事項', info]
+            ]
         context = {
             'ON' : json.dumps('user'),
             'message': 'User',
             'profile' : profile,
             'sumCabinet': sumCabinet,
             'user': user,
-            'washingProcesses': washingProcesses,
-            'bleachingProcesses': bleachingProcesses,
-            'tumbleDrys': tumbleDrys,
-            'naturalDrys': naturalDrys,
-            'ironFinishs': ironFinishs,
-            'dryCleanings': dryCleanings,
-            'wetCleanings': wetCleanings,
-            'info': info,
             'tables': tables,
             'user_form': user_form, 
             'profile_form': profile_form,

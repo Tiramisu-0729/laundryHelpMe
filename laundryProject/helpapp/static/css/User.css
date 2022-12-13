@@ -1,6 +1,6 @@
 /* user */
 .content{
-    margin-bottom: 15vmin;
+    margin-bottom: 25vmin;
     color: #333;
 }
 #main{
@@ -94,11 +94,11 @@ hr{
     background-color: #CBF9FF;
     padding: 2% 8% 2% 1%;
     margin-bottom: 3%;
-    font-size: 22px;
+    font-size: 6vmin;
     color: #002D6B;
 }
 #tes {
-    padding-left: 6%;
+    padding-left: 8%;
 }
 .washingProcesses{
     background-color: #CCCBFF;
@@ -124,6 +124,9 @@ hr{
 .info{
     background-color: #FFABAB;
 }
+#info {
+    padding-left: -4%;
+}
 img{
     width: 15vmin;
     height: 15vmin;
@@ -145,7 +148,7 @@ td{
 }
 .attention{
     font-size: 4vmin;
-    margin-left: 3%;
+    margin-left: 5%;
 }
 ol{
     font-size: 4vmin;
@@ -153,6 +156,9 @@ ol{
 }
 .logout{
     margin-top: 20%;
+}
+summary span {
+    font-size: 5vmin;
 }
 /* ↓↓↓↓↓↓↓↓↓↓↓アコーディオンアニメーション↓↓↓↓↓↓↓↓↓↓↓ */
 summary{
@@ -172,16 +178,13 @@ summary{
     position: relative;
     display: flex;
     align-items: center;
-    color: #fff;
-    text-shadow: 1px 1px 1px black;
-    font-size: 22px;
-    font-weight: bold;
     transition: all .3s ease;
     cursor: pointer;
 }
 summary::after{
     content: '+';
     position: absolute;
+    font-size: 7vmin;
     right: 20px;
     transition: all .3s ease;
 }
@@ -194,14 +197,4 @@ details[open] {
 details[open] .codeWrapper{
     overflow: auto;
     animation: ani 1s ;
-}
-@keyframes ani {
-    0%{
-    opacity: 0;
-    transform: translateY(-20px);
-    }
-    100%{
-    opacity: 1;
-    transform: none;
-    }
 }
