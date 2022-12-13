@@ -1,7 +1,10 @@
 window.onload = function(){ 
-    const edit = document.getElementById('edit');
-    const check = document.getElementById('check');
-    const content = document.getElementById('content');
+    let edit = document.getElementById('edit');
+    let check = document.getElementById('check');
+    let content = document.getElementById('content');
+    let checkbox = document.querySelectorAll("input[type='checkbox']");
+    let btn = document.getElementsByClassName('btn')
+    
   
 
     //チェックボックス表示切替
@@ -12,37 +15,54 @@ window.onload = function(){
             edit.innerText = 'cancel' ;
         }
         else{
+            for (let i = 0; i < checkbox.length; i++) {
+                checkbox[i].checked = false;
+            }
             edit.innerText = 'edit' ;
         }
         
-    });
-
-    $("input[type='checkbox']").on('change', function(){                 //チェックボックス（type='checkbox'）の値が変更されたとき・・・
-        const check = document.form1.check;
-        cnt = 0;
-        arr=[];
-        for (let i = 0; i < check.length; i++) {
-            if (check[i].checked) {
-                arr.push(check[i].value);
+    });             
+    
+    for (let i = 0; i < checkbox.length; i++) {
+        checkbox[i].addEventListener('change', function() { //チェックボックス（type='checkbox'）の値が変更されたとき・・・
+            
+            let check = document.form1.check;
+            cnt = 0;
+            arr=[];
+            for (let i = 0; i < check.length; i++) {
+                if (check[i].checked) {
+                    arr.push(check[i].value);
+                }
             }
-        }
-        const newArr = Array.from(new Set(arr));
-        
-
-        //チェックボックスの同期
-        cbv = $(this).val();                                               //クリックされたチェックボックスのvalue値を変数に格納
-
-
-        if( $(this).prop('checked')){                                      //もしクリックされたチェックボックスがチェックされていたら・・・
-            $("input:checkbox[value='" + cbv + "']").prop('checked',true);   //同じvalueを持つチェックボックスは全部チェックを入れる
-            document.querySelector('#delete').value ='(' + newArr.length + ')' + '削除';
-        }
-        else{
-            i = newArr.length - 1;
-            $("input:checkbox[value='" + cbv + "']").prop('checked',false);  //逆にチェックが外れていたら全部チェックを外す。
-            document.querySelector('#delete').value ='(' + i + ')' + '削除';
-        }
-    });
+            let newArr = Array.from(new Set(arr));
+            //チェックボックスの同期
+            let cbv = "'" + this.value + "'";   //クリックされたチェックボックスのvalue値を変数に格納
+            let checked = document.querySelectorAll("input[type='checkbox'][value =" + cbv + "]");
+            if(this.checked){                                      //クリックされたチェックボックスがcheckedなら・・・
+                for (let i = 0; i < checked.length; i++) {
+                    checked[i].checked = true;
+                }
+                if(btn[0].classList.contains('hidden')){
+                    if(newArr.length > 0){
+                        btn[0].classList.remove('hidden');
+                    }
+                }
+                document.querySelector('#delete').value ='(' + newArr.length + ')' + '削除';
+            }
+            else{
+                for (let i = 0; i < checked.length; i++) {
+                    checked[i].checked = false;
+                }
+                i = newArr.length - 1;
+                if(i == 0){
+                    btn[0].classList.add('hidden');
+                }
+                document.querySelector('#delete').value ='(' + i + ')' + '削除';
+            }
+        });
+    }
+    
+    
 };
 
 // カテゴリー変更 

@@ -1,15 +1,14 @@
 .content{
-    text-align: center;
-    display:flex;
-    /* margin-top: 1.5%; */
-    margin-top: 3%;
+    width: 96%;
+    /* display:flex; */
+    margin: 3% 2% 0 2%;
 }
 .item{
     width: 20vmin;
     height: 20vmin;
     border: solid 1px #f0f0f0;
     border-radius: 5px;
-    margin: 2.2%;
+    margin: 1.5%;
     float: left;
     display: flex;
     align-items: center;
@@ -34,7 +33,6 @@ label{
     justify-content: center;
 }
 .item input[type="checkbox"]:checked+label {
-    /* background: rgba(60, 151, 255, 0.7); */
     border: solid 2px royalblue;
     border-radius: 5px;
 }
@@ -50,4 +48,8 @@ label{
     border: none;
     background-color: #4BC9FF;
     margin-bottom: 25%;
+}
+.btn{
+    clear: both;
+    text-align: center;
 }
