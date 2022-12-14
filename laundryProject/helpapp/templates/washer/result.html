@@ -38,8 +38,9 @@
 </div>
 
 <script type="text/javascript">
-    const comp = eval({{ comp|safe }});
-    for (const tag of comp) {
+    let comp = JSON.parse('{{ comp_json|safe }}');
+    console.log(comp);
+    for (let tag of comp) {
         let text = document.getElementById(tag); //宣言
         switch (tag){
         case 'L1':

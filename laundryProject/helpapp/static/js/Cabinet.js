@@ -68,30 +68,7 @@ window.onload = function(){
     
 };
 
-// カテゴリー変更 
-function viewChange(){
-    categories = ['all', 'tops', 'bottoms', 'outer', 'inner', 'other'];
-    if(document.getElementById('categories')){
-        id = document.getElementById('categories').value;
-        for(let category of categories){
-            if(id == category){
-                var elements = document.getElementsByClassName(category);
-                for(i=0;i<elements.length;i++){
-                    elements[i].style.display = "";
-                }
-            }
-            else{
-                var elements = document.getElementsByClassName(category);
-                for(i=0;i<elements.length;i++){
-                    elements[i].style.display = "none";
-                }
-            }
-        }
-        
-    }
 
-window.onload = viewChange;
-}
 
 // メッセージ
 var ref = document.referrer
