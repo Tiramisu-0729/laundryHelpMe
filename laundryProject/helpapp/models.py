@@ -14,7 +14,7 @@ class Categories(models.Model):
 #     def __str__(self):
 #         return self.name
 
-# class Win_Award(models.Model):
+# class Winned_Award(models.Model):
 #     user = models.ForeignKey(
 #         User,
 #         on_delete=models.CASCADE,

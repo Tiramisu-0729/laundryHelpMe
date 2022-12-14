@@ -11,6 +11,7 @@ body{
     width: 55vw;
     height: 55vw;
     margin: 3vmin 8vw 5vmin;
+    object-fit: cover;
 }
 p{
     margin-bottom: 7%;
@@ -48,4 +49,5 @@ label{
     border-radius: 5px;
     border: none;
     background-color: #4BC9FF;
+    margin-bottom: 20vmin;
 }
