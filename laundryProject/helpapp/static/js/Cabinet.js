@@ -24,17 +24,9 @@ window.onload = function(){
     });             
     
     for (let i = 0; i < checkbox.length; i++) {
-        checkbox[i].addEventListener('change', function() { //チェックボックス（type='checkbox'）の値が変更されたとき・・・
-            
+        checkbox[i].addEventListener('change', function() { //チェックボックス（type='checkbox'）の値が変更されたとき・・・ 
             let check = document.form1.check;
-            cnt = 0;
-            arr=[];
-            for (let i = 0; i < check.length; i++) {
-                if (check[i].checked) {
-                    arr.push(check[i].value);
-                }
-            }
-            let newArr = Array.from(new Set(arr));
+            let arr=[];
             //チェックボックスの同期
             let cbv = "'" + this.value + "'";   //クリックされたチェックボックスのvalue値を変数に格納
             let checked = document.querySelectorAll("input[type='checkbox'][value =" + cbv + "]");
@@ -42,6 +34,12 @@ window.onload = function(){
                 for (let i = 0; i < checked.length; i++) {
                     checked[i].checked = true;
                 }
+                for (let i = 0; i < check.length; i++) {
+                    if (check[i].checked) {
+                        arr.push(check[i].value);
+                    }
+                }
+                let newArr = Array.from(new Set(arr));
                 if(btn[0].classList.contains('hidden')){
                     if(newArr.length > 0){
                         btn[0].classList.remove('hidden');
@@ -53,11 +51,16 @@ window.onload = function(){
                 for (let i = 0; i < checked.length; i++) {
                     checked[i].checked = false;
                 }
-                i = newArr.length - 1;
-                if(i == 0){
+                for (let i = 0; i < check.length; i++) {
+                    if (check[i].checked) {
+                        arr.push(check[i].value);
+                    }
+                }
+                let newArr = Array.from(new Set(arr));
+                if(newArr.length == 0){
                     btn[0].classList.add('hidden');
                 }
-                document.querySelector('#delete').value ='(' + i + ')' + '削除';
+                document.querySelector('#delete').value ='(' + newArr.length + ')' + '削除';
             }
         });
     }

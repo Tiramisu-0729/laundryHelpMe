@@ -36,7 +36,7 @@
         {% for category in categories%}
             <div class="main {{category}}" style="display: none;">
                 {% for washer in washers %}
-                    {% if washer.category|stringformat:"s" == category %}
+                    {% if washer.category == category %}
                         <div class="item">
                             <a href='{% url "helpapp:cabinet_detail" washer.pk %}'>
                                 <img src="{{ washer.image.url }}">
@@ -83,7 +83,7 @@
             {% for category in categories %}    
             <div class="main {{category}}" style="display: none;">
                 {% for washer in washers %}
-                    {% if washer.category|stringformat:"s" == category %}
+                    {% if washer.category == category %}
                         <div class="checkbox">
                             <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
                             <label for={{washer.id}}>
@@ -101,7 +101,7 @@
                 {% endfor %}
             </div>
             {% endfor %}
-            <div class="btn">
+            <div class="btn hidden">
                 <input id="delete" type="submit" value="削除">
             </div>
         </form>

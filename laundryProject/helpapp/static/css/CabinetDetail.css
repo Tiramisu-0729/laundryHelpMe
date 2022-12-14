@@ -20,7 +20,8 @@ body{
     height: 50vmin;
     display: block;
     margin: 5% auto 5%;
-    border-radius: 5px;
+    border-radius: 5%;
+    border: solid 1px #e7e7e7;
     object-fit: cover;
 }
 .belt{
@@ -42,7 +43,8 @@ body{
     flex-wrap: wrap;
 }
 .tag div img{
-    background-color: #FFFFFF;
+    border-radius: 5%;
+    border: solid 1px #e7e7e7;
     width: 16vw;
     height: 16vw;
 }
