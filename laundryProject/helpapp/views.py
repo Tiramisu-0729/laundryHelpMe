@@ -55,7 +55,7 @@ def washer(request):
                 tags = washer.laundry_tag.split(',')
                 washers[i].laundry_tag = tags[0]
                 i+=1
-        categories=["tops", "bottoms","outer","inner","other"]
+        categories = Categories.objects.all()
         context = {
             'categories' : categories,
             'ON' : json.dumps('washer'),

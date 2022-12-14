@@ -37,7 +37,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    box-shadow: 0 2px 2px -1px #6D6D6D;
+    box-shadow: 0 2px 5px 1px #cfcfcf;
 }
 .checkbox img{
     width: 28vmin; 

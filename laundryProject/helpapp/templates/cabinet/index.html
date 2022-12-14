@@ -3,7 +3,6 @@
 {% block link%}
     <title>Cabinet</title>
     <link rel="stylesheet" href="{% static 'css/Cabinet.css' %}">
-    <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
     <script src="{% static 'js/Cabinet.js' %}"></script>
 {% endblock %}
 {% block content %}
@@ -36,7 +35,7 @@
         {% for category in categories%}
             <div class="main {{category}}" style="display: none;">
                 {% for cabinet in cabinets %}
-                    {% if cabinet.category|stringformat:"s" == category %}
+                    {% if cabinet.category == category%}
                         <div class="item">
                             <a href='{% url "helpapp:cabinet_detail" cabinet.pk %}'>
                                 <img src="{{ cabinet.image.url }}">
@@ -83,7 +82,7 @@
             {% for category in categories %}    
             <div class="main {{category}}" style="display: none;">
                 {% for cabinet in cabinets %}
-                    {% if cabinet.category|stringformat:"s" == category %}
+                    {% if cabinet.category == category%}
                         <div class="checkbox">
                             <input class="select" id={{cabinet.id}} type="checkbox" name="check" value={{cabinet.id}}>
                             <label for={{cabinet.id}}>
