@@ -19,7 +19,7 @@ def helpapp(request):
     if request.user.is_authenticated :
         return home(request)
     else :
-        return render(request, 'helpapp/index.html')
+        return redirect('/accounts/login/')
 
 def register(request):
     return render(request, 'helpapp/register.html')

@@ -7,37 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="{% static 'css/Login.css' %}">
-    <link rel="icon" type="image/png" href="{% static "pictures/icon(仮).png"%}">
+    <link rel="icon" type="image/png" href="{% static "pictures/icon.svg"%}">
 </head>
 <body>
-<h1>Login</h1>
-<section class='common-form'>
-    {% if form.errors %}
-        <p class='error-msg'>Your username and password didn't match. Please try again.</p>
-    {% endif %}
+    <div class="container">
+        <div class="title">
+            <div class="col1">ATC</div>
+            <div class="col2">AI Tag Checker</div>
+        </div>
+        <img src="{% static "pictures/icon.svg"%}" alt="">
+        <!-- login -->
+        <section class='common-form'>
+            {% if form.errors %}
+                <p class='error-msg'>Your username and password didn't match. Please try again.</p>
+            {% endif %}
 
-    {% if next %}
-        {% if user.is_authenticated %}
-            <p class='error-msg'>Your account doesn't have access to this page. To proceed,
-            please login with an account that has access.</p>
-        {% else %}
-            <p class='error-msg'>Please login to see this page.</p>
-        {% endif %}
-    {% endif %}
-    <!-- <div class="text">
-        <label for="">ID</p><br>
-        <p class="ps">PS</p>
-    </div> -->
-    <div class="form">
-        <form action='{% url "login" %}' method='post'>
-            {% csrf_token %}
-            <input type='hidden' name='next' value='{{ next }}'/>
-            {{ form.as_p }}
-            <button type='submit' class="submit">ログイン</button><br>
-            <p class="link"><a href='{% url "accounts:signup" %}'>新規登録はこちら</a></p>
-        </form>
+            {% if next %}
+                {% if user.is_authenticated %}
+                    <p class='error-msg'>Your account doesn't have access to this page. To proceed,
+                    please login with an account that has access.</p>
+                {% else %}
+                    <p class='error-msg'>Please login to see this page.</p>
+                {% endif %}
+            {% endif %}
+            <div class="form">
+                <form action='{% url "login" %}' method='post'>
+                    {% csrf_token %}
+                    <input type='hidden' name='next' value='{{ next }}'/>
+                    {{ form.as_p }}
+                    <button type='submit' class="submit">Login</button>
+                    <br><br>
+                    <p class="link">
+                        <a href='{% url "accounts:signup" %}'>Sign Up</a> | 
+                        <a href='{% url "helpapp:nologin" %}'>No Login</a>
+                    </p>
+                </form>
+            </div>
+        </section>
     </div>
-</section>
 <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
 <script type="text/javascript">
     document.querySelector('[for="id_username"]').innerText = 'ID';
