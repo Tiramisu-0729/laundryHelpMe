@@ -10,9 +10,9 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import csv
-import torch
 import json
 from helpapp.Yolo_model import MODEL
+from laundryProject.settings import *
 
 def helpapp(request):
     #ログインがあるか判別
@@ -277,11 +277,9 @@ def user(request):
             profile = Profile.objects.filter(user=request.user).first()
             user_form = UpdateUserForm(instance=request.user)
             profile_form = UpdateProfileForm(instance=profile)
-        #本番は消して from laundryProject.settings import *　をする ↓
-        #STATIC_ROOT = 'E:\python\laundryHelpMe\laundryProject\helpapp\static'
-        #STATIC_ROOT = 'C:/Users/20jz0144/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
-        # STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
-        STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
+        # 開発環境のみsetting_secret.pyにSTATIC_ROOTSを追加してくれい
+        # STATIC_ROOT = 'C:/Users/20jz0144/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
+        # STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
         user = request.user
         washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, dryCleanings, wetCleanings, info = [],[],[],[],[],[],[],[]
         # CSV読み込み
@@ -442,9 +440,6 @@ def judge_result(request):
     
     #ディレクトリ削除os.remove('target.txt')
     return render(request, 'laundry_tag_check/result.html', context)
-
-import torch
-from django.shortcuts import render
 
 def testYolo(request):
     # path_hubconfig = "yolo"
