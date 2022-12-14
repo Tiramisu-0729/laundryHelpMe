@@ -37,8 +37,8 @@ body {
     width: 100%;
 }
 .item{
-    width: 100px;
-    height: 100px;
+    width: 28vmin;
+    height: 28vmin;
     text-align: center;
     border: solid 1px black;
     margin-top: 4%;

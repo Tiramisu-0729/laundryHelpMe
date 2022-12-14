@@ -65,8 +65,8 @@
     margin-top: -70%;
 }
 label{
-    width: 27vmin;
-    height: 27vmin;
+    width: 28vmin;
+    height: 28vmin;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,7 +83,7 @@ label{
     bottom: 0;
     right: 0;
     font-size: 5vmin;
-    text-shadow: 0.5vmin 0.5vmin 0.3vmin black;
+    text-shadow: 0.4vmin 0.4vmin 0.3vmin #333;
     color: white; 
 }
 .LD{
