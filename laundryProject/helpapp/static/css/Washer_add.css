@@ -4,8 +4,8 @@
     margin: 3% 2% 0 2%;
 }
 .item{
-    width: 20vmin;
-    height: 20vmin;
+    width: 28vmin;
+    height: 28vmin;
     border: solid 1px #f0f0f0;
     border-radius: 5px;
     margin: 1.5%;
@@ -13,10 +13,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 5px 1px #cfcfcf;
 }
 .item img{
-    width: 20vmin; 
-    height: 20vmin; 
+    width: 28vmin; 
+    height: 28vmin; 
     object-fit: cover;
 }
 .check{
@@ -26,8 +27,8 @@
     display: none;
 }
 label{
-    width: 20vmin;
-    height: 20vmin;
+    width: 28vmin;
+    height: 28vmin;
     display: flex;
     align-items: center;
     justify-content: center;
