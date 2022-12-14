@@ -36,7 +36,7 @@
 
 
 <script type="text/javascript">
-    const tags = eval({{ tags|safe }});
+    let tags = JSON.parse('{{ tags_json|safe }}');
     for (const tag of tags) {
         let text = document.getElementById(tag); //宣言
         switch (tag){

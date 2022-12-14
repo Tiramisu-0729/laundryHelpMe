@@ -37,6 +37,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    /* box-shadow: 0 2px 2px -1px #6D6D6D; */
     box-shadow: 0 2px 5px 1px #cfcfcf;
 }
 .checkbox img{
@@ -74,7 +75,7 @@ label{
     bottom: 0;
     right: 0;
     font-size: 5vmin;
-    text-shadow: 0.4vmin 0.4vmin 0.3vmin #111;
+    text-shadow: 0.4vmin 0.4vmin 0.3vmin #333;
     color: #fff;
     width: 100%;    
 }

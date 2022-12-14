@@ -5,7 +5,6 @@
 }
 h2{
     margin: 2% 2% 0;
-    color: #6D6D6D;
 }
 .scroll {
     display:flex;
@@ -18,14 +17,14 @@ h2{
 }
 /*result*/
 .washer_img{
-    width: 20vw;
-    height: 20vw;
+    width: 20vmin;
+    height: 20vmin;
     border-radius: 5px;
     margin: 0;
 }
 .pictures{
-    width: 20vw;
-    height: 20vw;
+    width: 20vmin;
+    height: 20vmin;
     margin: 2.2%;
     border-radius: 5px;
     border: solid 1px #e2e2e2;

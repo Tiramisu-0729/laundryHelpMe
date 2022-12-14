@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 import csv
 import json
+from django.core import serializers
 from helpapp.Yolo_model import MODEL
 from laundryProject.settings import *
 
@@ -56,7 +57,11 @@ def washer(request):
                 washers[i].laundry_tag = tags[0]
                 i+=1
         categories = Categories.objects.all()
+        categories_json =[]
+        for category in categories:
+            categories_json.append(category.name)
         context = {
+            'categories_json' : json.dumps(categories_json), 
             'categories' : categories,
             'ON' : json.dumps('washer'),
             'message': 'Washer',
@@ -125,6 +130,7 @@ def washer_judge(request):
             context = {
                 'washers' : washers,
                 'comp' : comp,
+                'comp_json' : json.dumps(comp),
                 'ON' : json.dumps('washer'),
                 'message': 'Washer',
             }
@@ -161,6 +167,9 @@ def cabinet(request):
         cabinets = Cabinet.objects.filter(author=user)
         categories = Categories.objects.all()
         i=0
+        categories_json =[]
+        for category in categories:
+            categories_json.append(category.name)
         for cabinet in cabinets:
             tags = cabinet.laundry_tag.split(',')
             cabinets[i].laundry_tag = tags[0]
@@ -170,6 +179,7 @@ def cabinet(request):
             none = "タンスに登録してください"
         context = {
             'categories' : categories,
+            'categories_json' : json.dumps(categories_json), #serializers.serialize("json", categories),
             'ON' : json.dumps('cabinet'),
             'message': 'Cabinet',
             'cabinets' : cabinets,
@@ -396,7 +406,9 @@ def judge(request):
 
 def laundry_tag_check(request):
     file_url = request.GET.get('file_url') # param1の値を取得
-    results = request.GET.get('result') # param2の値を取得
+    res = request.GET.get('result') # param2の値を取得
+    res = res.replace("[","").replace("]","").replace("'","").replace(" ","")
+    results = res.split(',')
     context = {
         'ON' : json.dumps('home'),
         'file_url' : file_url,
@@ -435,6 +447,7 @@ def judge_result(request):
             'message': 'Result',
             'result' : result,
             'file_url' : file_url,
+            'tags_json' : json.dumps(tags),
             'tags' : tags,
         }
     
