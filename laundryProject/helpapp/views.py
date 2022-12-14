@@ -1,3 +1,4 @@
+from unicodedata import category
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render
@@ -48,7 +49,7 @@ def washer(request):
         if 'washers' in request.session:
             IDs = request.session.get('washers')
             for id in IDs:
-                if Cabinet.objects.filter(pk=id).exists():
+                if Cabinet.objects.filter(pk=id).exists():#存在確認
                     washers.append(Cabinet.objects.get(pk=id))
             for washer in washers:
                 tags = washer.laundry_tag.split(',')
@@ -158,6 +159,7 @@ def cabinet(request):
     if request.user.is_authenticated :
         user = request.user
         cabinets = Cabinet.objects.filter(author=user)
+        categories = Categories.objects.all()
         i=0
         for cabinet in cabinets:
             tags = cabinet.laundry_tag.split(',')
@@ -166,8 +168,8 @@ def cabinet(request):
         none = ""
         if not(cabinets.exists):
             none = "タンスに登録してください"
-        categories=["tops", "bottoms","outer","inner","other"]
         context = {
+            'categories' : categories,
             'ON' : json.dumps('cabinet'),
             'message': 'Cabinet',
             'cabinets' : cabinets,
@@ -277,9 +279,9 @@ def user(request):
             profile_form = UpdateProfileForm(instance=profile)
         #本番は消して from laundryProject.settings import *　をする ↓
         #STATIC_ROOT = 'E:\python\laundryHelpMe\laundryProject\helpapp\static'
-        STATIC_ROOT = 'C:/Users/20jz0144/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
+        #STATIC_ROOT = 'C:/Users/20jz0144/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
         # STATIC_ROOT = 'G:/マイドライブ/Python/laundryHelpMe/laundryProject/helpapp/static'
-        # STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
+        STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
         user = request.user
         washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, dryCleanings, wetCleanings, info = [],[],[],[],[],[],[],[]
         # CSV読み込み

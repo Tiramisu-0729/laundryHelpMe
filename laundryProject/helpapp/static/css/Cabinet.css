@@ -55,9 +55,6 @@
     height: 28vmin; 
     object-fit: cover;
 }
-.img{
-    margin: auto;
-}
 .checkbox input[type="checkbox"] {
     z-index: 1;
     float: left;
@@ -65,8 +62,8 @@
     margin-top: -70%;
 }
 label{
-    width: 27vmin;
-    height: 27vmin;
+    width: 28vmin;
+    height: 28vmin;
     display: flex;
     align-items: center;
     justify-content: center;

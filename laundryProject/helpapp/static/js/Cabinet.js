@@ -53,11 +53,10 @@ window.onload = function(){
                 for (let i = 0; i < checked.length; i++) {
                     checked[i].checked = false;
                 }
-                i = newArr.length - 1;
-                if(i == 0){
+                if(newArr.length == 0){
                     btn[0].classList.add('hidden');
                 }
-                document.querySelector('#delete').value ='(' + i + ')' + '削除';
+                document.querySelector('#delete').value ='(' + newArr.length + ')' + '削除';
             }
         });
     }
