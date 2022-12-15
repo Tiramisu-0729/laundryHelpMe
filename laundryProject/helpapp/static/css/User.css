@@ -34,7 +34,7 @@
     width: 15vmin;
     height: 8vmin;
     border-radius: 5px;
-    font-size: 15px;
+    font-size: 4vmin;
     color: #fff;
     font-weight: bold;
     border: none;
@@ -63,17 +63,20 @@
 .form-row{
     text-align: center;
 }
+label{
+    display: block;
+}
 .id{
-    font-size: 22px;
+    font-size: 6vmin;
     font-weight: bold;
-    margin-top: 10vmin;
+    margin-bottom: 0.1vmin;
 }
 .submit{
     width: 34vw;
     height: 10vmin;
     margin-right: 3vw;
     border-radius: 5px;
-    font-size: 18px;
+    font-size: 5vmin;
     color: #fff;
     font-weight: bold;
     border: none;
@@ -84,18 +87,18 @@
     height: 10vmin;
     border-radius: 5px;
     margin-bottom: 8vmin;
-    font-size: 18px;
+    font-size: 5vmin;
     color: #6D6D6D;
     font-weight: bold;
     border: none;
     background-color: #ff4b4b;
 }
 .form-group{
-    font-size: 18px;
+    font-size: 5vmin;
 }
 .form-control{
-    padding: 5px;
-    font-size: 18px;
+    padding: 1vmin;
+    font-size: 5vmin;
     width: 60vw;
 }
 .form-control-file{
@@ -109,7 +112,7 @@ hr{
     clear: both;
 }
 .detail {
-    font-size: 20px;
+    font-size: 5vmin;
     margin: 3% 5% 5%;
 }
 .sum{
@@ -119,7 +122,7 @@ hr{
     background-color: #CBF9FF;
     padding: 2% 8% 2% 1%;
     margin-bottom: 3%;
-    font-size: 22px;
+    font-size: 5.5vmin;
     color: #002D6B;
 }
 .washingProcesses{
@@ -178,11 +181,11 @@ ol{
 }
 .logout{
     text-align: right;
-    font-size: 14px;
+    font-size: 4vmin;
     margin-top: 20%;
 }
 summary span {
-    font-size: 20px;
+    font-size: 5vmin;
 }
 /* ↓↓↓↓↓↓↓↓↓↓↓アコーディオンアニメーション↓↓↓↓↓↓↓↓↓↓↓ */
 summary{
@@ -206,7 +209,7 @@ details{
 summary::after{
     content: '+';
     position: absolute;
-    font-size: 32px;
+    font-size: 8vmin;
     right: 20px;
     transition: all .3s ease;
 }

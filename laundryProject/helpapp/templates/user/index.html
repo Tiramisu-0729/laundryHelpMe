@@ -65,9 +65,6 @@
             <div class="sum">服の総数：{{sumCabinet}}</div>
             <div class="date">　登録日：</div>
         </div>
-        <div class="washingDisplay">
-            ■洗濯表示
-        </div>
         {% for table in tables %}
             <details>
                 <summary {% if table.0 == "info"%} id="info" {% endif %} id="tes" class="{{table.0}}" class="accordion">
