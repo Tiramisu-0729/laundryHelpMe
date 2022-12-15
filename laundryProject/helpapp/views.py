@@ -31,7 +31,7 @@ def nologin(request):
         'message': 'Judge',
         'form': JudgeForm(),
     }
-    return render(request, 'home/index.html', context)
+    return render(request, 'nologin/index.html', context)
 
 def home(request):
     context = {
