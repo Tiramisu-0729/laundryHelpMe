@@ -61,15 +61,22 @@ body{
 .button{
     /* margin-bottom: 90px; */
     margin-bottom: 25%;
+    font-size: 4vmin;
 }
 .msg{
     height: 30px;
-    padding: 5px;
     font-weight: bold;
     margin: 3% 0;
     text-align: center;
+    font-size: 4vmin;
 }
 hr {
     border: 1px #e2e2e2 solid;
     margin: 3%;
+}
+.red {
+    color: red;
+}
+p {
+    font-size: 4.5vmin;
 }

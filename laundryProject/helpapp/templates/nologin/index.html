@@ -15,16 +15,12 @@
                 {% csrf_token %}
                 <label for="id_UploadImg"><img src="{% static "pictures/img.png"%}" alt="" id="home_img"></label>
                 {{ form.as_p }}
-                <button id="submit" type="submit">アップロード</button>
+                <button id="submit" type="submit" disabled>アップロード</button>
             </form>
         </div>
-    </div>
-    <div class="washingDisplay">
-        ■洗濯表示
-    </div>
         {% for table in tables %}
             <details>
-                <summary {% if table.0 == "info"%} id="info" {% endif %} id="tes" class="{{table.0}}" class="accordion">
+                <summary id="tes" class="{{table.0}}" class="accordion">
                     <span>{{table.1}}</span>
                 </summary>
                 <div class="codeWrapper">

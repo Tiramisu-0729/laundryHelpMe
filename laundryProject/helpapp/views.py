@@ -12,7 +12,7 @@ from django.contrib import messages
 import csv
 import json
 from django.core import serializers
-from helpapp.Yolo_model import MODEL
+from helpapp.model_load import MODEL,tables
 from laundryProject.settings import *
 
 def helpapp(request):
@@ -30,6 +30,7 @@ def nologin(request):
         'ON' : json.dumps('home'),
         'message': 'Judge',
         'form': JudgeForm(),
+        'tables': tables,
     }
     return render(request, 'nologin/index.html', context)
 
@@ -268,7 +269,6 @@ def cabinets_delete(request):
     else :
         return redirect('/accounts/login/')
 
-
 def user(request):
     if request.user.is_authenticated :
         if request.method == 'POST':
@@ -287,59 +287,16 @@ def user(request):
             profile = Profile.objects.filter(user=request.user).first()
             user_form = UpdateUserForm(instance=request.user)
             profile_form = UpdateProfileForm(instance=profile)
-        # 開発環境のみsetting_secret.pyにSTATIC_ROOTSを追加してくれい
-        # STATIC_ROOT = 'C:/Users/20jz0144/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
-        # STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
         user = request.user
-        washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, tightens, dryCleanings, wetCleanings, info = [],[],[],[],[],[],[],[],[]
-        # CSV読み込み
-        with open(STATIC_ROOT + '/csv/washingProcesses.csv',encoding="utf-8") as f:
-            for row in csv.reader(f):
-                washingProcesses.append(row)
-        with open(STATIC_ROOT + '/csv/bleachingProcesses.csv',encoding="utf-8") as f:
-            for row in csv.reader(f):
-                bleachingProcesses.append(row)
-        with open(STATIC_ROOT + '/csv/tumbleDrys.csv',encoding="utf-8") as f:
-            for row in csv.reader(f):
-                tumbleDrys.append(row)
-        with open(STATIC_ROOT + '/csv/naturalDrys.csv',encoding="utf-8") as f:
-            for row in csv.reader(f):
-                naturalDrys.append(row)
-        with open(STATIC_ROOT + '/csv/ironFinishs.csv',encoding="utf-8") as f:
-            for row in csv.reader(f):
-                ironFinishs.append(row)
-        with open(STATIC_ROOT + '/csv/tighten.csv',encoding="utf-8") as f:
-            for row in csv.reader(f):
-                tightens.append(row)
-        with open(STATIC_ROOT + '/csv/dryCleanings.csv',encoding="utf-8") as f:
-            for row in csv.reader(f):
-                dryCleanings.append(row)
-        with open(STATIC_ROOT + '/csv/wetCleanings.csv',encoding="utf-8") as f:
-            for row in csv.reader(f):
-                wetCleanings.append(row)
-        f = open(STATIC_ROOT + '/csv/info.txt', 'r', encoding='UTF-8')
-        info = f.read()
-        f.close
         profile = Profile.objects.filter(user=user).first()
         sumCabinet = Cabinet.objects.filter(author=user).count()
-        tables = [
-            ['washingProcesses', '洗濯処理', washingProcesses], 
-            ['bleachingProcesses', '漂白処理', bleachingProcesses], 
-            ['tumbleDrys', 'タンブル乾燥', tumbleDrys], 
-            ['naturalDrys', '自然乾燥', naturalDrys], 
-            ['ironFinishs', 'アイロン仕上げ', ironFinishs],
-            ['tightens', '絞り方', tightens],
-            ['dryCleanings', 'ドライクリーニング', dryCleanings], 
-            ['wetCleanings', 'ウエットクリーニング', wetCleanings], 
-            ['info', '注意事項', info]
-            ]
         context = {
             'ON' : json.dumps('user'),
             'message': 'User',
             'profile' : profile,
             'sumCabinet': sumCabinet,
             'user': user,
-            'tables': tables,
+            'tables': tables, # model_loadからtables読み込み
             'user_form': user_form, 
             'profile_form': profile_form,
         }
@@ -382,11 +339,8 @@ def judge(request):
         file_url = fs.url(file_data)
         request.session['file_url'] = file_url
         #AIで画像判定
-        # path_hubconfig = "yolo"
-        # path_weightfile = "yolo/729x300_yolov5m_best.pt" 
-        # model = torch.hub.load(path_hubconfig, 'custom',path=path_weightfile, source='local')
         # results = MODEL(file_url)
-        results = MODEL(file_url.lstrip("/"))
+        results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
 
         #判定結果 解析
         datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))

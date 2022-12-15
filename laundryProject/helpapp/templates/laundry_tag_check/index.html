@@ -15,78 +15,79 @@
     {% csrf_token %}
     <div class="selection-group">
         {% for tag in Laundry %}
-        <input id={{tag}} type="radio" name="Laundry" value={{tag}} required>
-        <label for={{tag}}>
-            {% with img="/pictures/"|add:tag|add:".png" %}
-            <img class="radio" src="{% static img%}">
-        </label>
-        {% endwith %}
+            <input id={{tag}} type="radio" name="Laundry" value={{tag}} required>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                    <img class="radio" src="{% static img%}">
+                {% endwith %}
+            </label>
         {% endfor %}
+        <p class="red">※このタグは必ず選択してください</p>
     </div>
     <hr>
     <div class="selection-group">
         {% for tag in Bleach %}
-        <input id={{tag}} type="radio" name="Bleach" value={{tag}}>
-        <label for={{tag}}>
-            {% with img="/pictures/"|add:tag|add:".png" %}
-            <img class="radio" src="{% static img%}">
-        </label>
-        {% endwith %}
+            <input id={{tag}} type="radio" name="Bleach" value={{tag}}>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                    <img class="radio" src="{% static img%}">
+                {% endwith %}
+            </label>
         {% endfor %}
     </div>
     <hr>
     <div class="selection-group">
         {% for tag in Nature %}
-        <input id={{tag}} type="radio" name="Nature" value={{tag}}>
-        <label for={{tag}}>
-            {% with img="/pictures/"|add:tag|add:".png" %}
-            <img class="radio" src="{% static img%}">
-        </label>
-        {% endwith %}
+            <input id={{tag}} type="radio" name="Nature" value={{tag}}>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                    <img class="radio" src="{% static img%}">
+                {% endwith %}
+            </label>
         {% endfor %}
     </div>
     <hr>
     <div class="selection-group">
         {% for tag in Iron %}
-        <input id={{tag}} type="radio" name="Iron" value={{tag}}>
-        <label for={{tag}}>
-            {% with img="/pictures/"|add:tag|add:".png" %}
-            <img class="radio" src="{% static img%}">
-        </label>
-        {% endwith %}
+            <input id={{tag}} type="radio" name="Iron" value={{tag}}>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                <img class="radio" src="{% static img%}">
+                {% endwith %}
+            </label>
         {% endfor %}
     </div>
     <hr>
     <div class="selection-group">
         {% for tag in Tumble %}
-        <input id={{tag}} type="radio" name="Tumble" value={{tag}}>
-        <label for={{tag}}>
-            {% with img="/pictures/"|add:tag|add:".png" %}
-            <img class="radio" src="{% static img%}">
-        </label>
-        {% endwith %}
+            <input id={{tag}} type="radio" name="Tumble" value={{tag}}>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                    <img class="radio" src="{% static img%}">
+                {% endwith %}
+            </label>
         {% endfor %}
     </div>
     <hr>
     <div class="selection-group">
         {% for tag in Dry %}
-        <input id={{tag}} type="radio" name="Dry" value={{tag}}>
-        <label for={{tag}}>
-            {% with img="/pictures/"|add:tag|add:".png" %}
-            <img class="radio" src="{% static img%}">
-        </label>
-        {% endwith %}
+            <input id={{tag}} type="radio" name="Dry" value={{tag}}>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                    <img class="radio" src="{% static img%}">
+                {% endwith %}
+            </label>
         {% endfor %}
     </div>
     <hr>
     <div class="selection-group">
         {% for tag in Wet %}
-        <input id={{tag}} type="radio" name="Wet" value={{tag}}>
-        <label for={{tag}}>
-            {% with img="/pictures/"|add:tag|add:".png" %}
-            <img class="radio" src="{% static img%}">
-        </label>
-        {% endwith %}
+            <input id={{tag}} type="radio" name="Wet" value={{tag}}>
+            <label for={{tag}}>
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                    <img class="radio" src="{% static img%}">
+                {% endwith %}
+            </label>
         {% endfor %}
     </div>
     <div class="button">
@@ -97,7 +98,6 @@
 <script type="text/javascript">
     let results = JSON.parse('{{ results|safe }}');
     for (let tag of results) {
-        console.log(tag);
         document.getElementById(tag).checked = true;
     }
     //ラジオボタン取得

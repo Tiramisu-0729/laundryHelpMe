@@ -1,9 +1,15 @@
 {% extends '../layout.html' %}
 {% load static %}<!-- 必須 -->
 {% block link%}
-    <link rel="stylesheet" href="{% static 'css/Home.css' %}">
     <script type="text/javascript" src="//code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="{% static 'js/Home.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/Home.css' %}">
+    <script>
+        $(function(){
+            var style = '<link rel="stylesheet" type="text/css" media="all" href="{% static 'css/Animation.css' %}" />';
+            $('head link:last').after(style);
+            });
+    </script>
 {% endblock %}
 {% block content %}
     <div class="content">
@@ -13,12 +19,20 @@
                 {% csrf_token %}
                 <label for="id_UploadImg"><img src="{% static "pictures/img.png"%}" alt="" id="home_img"></label>
                 {{ form.as_p }}
-                <button id="submit" type="submit">アップロード</button>
+                <button id="submit" type="submit" disabled>アップロード</button>
             </form>
         </div>
     </div>
     <div class="loading">
-        <div id="loading-text">LOADING</div>
-        <div id="loading-content"></div>
+        <div id="cssload-pgloading">
+            <div class="cssload-loadingwrap">
+                <ul class="cssload-bokeh">
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+        </div>
     </div>
 {% endblock %}
