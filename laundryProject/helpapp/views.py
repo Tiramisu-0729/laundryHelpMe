@@ -291,7 +291,7 @@ def user(request):
         # STATIC_ROOT = 'C:/Users/20jz0144/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
         # STATIC_ROOT = 'C:/Users/20jz0107/Documents/GitHub/laundryHelpMe/laundryProject/helpapp/static'
         user = request.user
-        washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, dryCleanings, wetCleanings, info = [],[],[],[],[],[],[],[]
+        washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, tightens, dryCleanings, wetCleanings, info = [],[],[],[],[],[],[],[],[]
         # CSV読み込み
         with open(STATIC_ROOT + '/csv/washingProcesses.csv',encoding="utf-8") as f:
             for row in csv.reader(f):
@@ -308,6 +308,9 @@ def user(request):
         with open(STATIC_ROOT + '/csv/ironFinishs.csv',encoding="utf-8") as f:
             for row in csv.reader(f):
                 ironFinishs.append(row)
+        with open(STATIC_ROOT + '/csv/tighten.csv',encoding="utf-8") as f:
+            for row in csv.reader(f):
+                tightens.append(row)
         with open(STATIC_ROOT + '/csv/dryCleanings.csv',encoding="utf-8") as f:
             for row in csv.reader(f):
                 dryCleanings.append(row)
@@ -324,7 +327,8 @@ def user(request):
             ['bleachingProcesses', '漂白処理', bleachingProcesses], 
             ['tumbleDrys', 'タンブル乾燥', tumbleDrys], 
             ['naturalDrys', '自然乾燥', naturalDrys], 
-            ['ironFinishs', 'アイロン仕上げ', ironFinishs], 
+            ['ironFinishs', 'アイロン仕上げ', ironFinishs],
+            ['tightens', '絞り方', tightens],
             ['dryCleanings', 'ドライクリーニング', dryCleanings], 
             ['wetCleanings', 'ウエットクリーニング', wetCleanings], 
             ['info', '注意事項', info]
