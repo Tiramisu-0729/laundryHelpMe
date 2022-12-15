@@ -129,13 +129,16 @@ hr{
     background-color: #cbe6ff;
 }
 .tumbleDrys{
-    background-color: #CBFFD6;
+    background-color: #cbfffb;
 }
 .naturalDrys{
-    background-color: #FEFFCB;
+    background-color: #CBFFD6;
 }
 .ironFinishs{
-    background-color: #FFEDCB;
+    background-color: #FEFFCB;
+}
+.tightens{
+    background-color: #ffe0cb;
 }
 .dryCleanings{
     background-color: #FFCBCB;
