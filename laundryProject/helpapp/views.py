@@ -1,19 +1,13 @@
-from unicodedata import category
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render
-
 from .models import Cabinet, Categories, Profile
 from django.shortcuts import redirect, render, get_object_or_404
-from .forms import CabinetForm, JudgeForm, ProfileForm, UpdateUserForm, UpdateProfileForm
+from .forms import CabinetForm, JudgeForm, UpdateUserForm, UpdateProfileForm
 from django.core.files.storage import FileSystemStorage
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-import csv
 import json
-from django.core import serializers
 from helpapp.model_load import MODEL,tables
-from laundryProject.settings import *
 
 def helpapp(request):
     #ログインがあるか判別
@@ -330,7 +324,7 @@ def timeline(request):
         return render(request, 'timeline/index.html', context)
     else :
         return redirect('/accounts/login/')
-
+from time import sleep
 def judge(request):
     if request.method == "POST":
         image = request.FILES['UploadImg']#保存先はupload_imgのなか　いったん保存
@@ -341,6 +335,8 @@ def judge(request):
         #AIで画像判定
         # results = MODEL(file_url)
         results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
+
+        sleep(5) # ------------------------------ 処理を停止 ----------------------------------------------------
 
         #判定結果 解析
         datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))

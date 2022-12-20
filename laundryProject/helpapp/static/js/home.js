@@ -38,7 +38,7 @@ window.onload = function(){
             for(i=0;i<elements.length;i++){
                 elements[i].style.display = "none";
             }
-        var elements = document.getElementsByClassName('cssload-loadingwrap');
+        var elements = document.getElementsByClassName('loading');
             for(i=0;i<elements.length;i++){
                 elements[i].style.display = "flex";
             }
