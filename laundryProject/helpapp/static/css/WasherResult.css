@@ -7,6 +7,7 @@ h2{
     margin: 2% 2% 0;
 }
 .scroll {
+    margin: 0 auto;
     display:flex;
     /* overflow-x:scroll; */
     /* 横並びに表示する */
@@ -17,15 +18,16 @@ h2{
 }
 /*result*/
 .washer_img{
-    width: 20vmin;
-    height: 20vmin;
+    width: 22.2vmin;
+    height: 22.2vmin;
     border-radius: 5px;
     margin: 0;
+    object-fit: cover;
 }
 .pictures{
-    width: 20vmin;
-    height: 20vmin;
-    margin: 2.2%;
+    width: 22.2vmin;
+    height: 22.2vmin;
+    margin: 1%;
     border-radius: 5px;
     border: solid 1px #e2e2e2;
 } 

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
 
 body{
-    background-color: #FDFDFD;
+    background-color: rgb(250, 250, 250);
     margin: 0;
     padding: 0;
 }
@@ -32,12 +32,12 @@ body{
 .footer{
     height: 15vmin;
     width: 100%;
-    border-top:2px solid #e2e2e2;
     position: fixed;
     bottom: -0.5px;
     flex-direction: row;
     justify-content: space-around;
     background-color: #FFFFFF;
+    box-shadow: 20px 20px 20px 20px rgba(102, 102, 102, 0.5);
 }
 .footer ul{
     height: 100%;

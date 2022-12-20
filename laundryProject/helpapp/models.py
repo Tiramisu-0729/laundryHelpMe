@@ -51,3 +51,27 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
     )
     image = models.ImageField(upload_to='icon/', default='static/upload_img/icon/image.jpg')
+
+class Washer_log(models.Model):
+    user = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+    )
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.user)
+
+class Laundry(models.Model):
+    washer_log_id = models.ForeignKey(
+        Washer_log,
+        on_delete=models.CASCADE,
+        related_name='washer_log_id'
+    )
+    cabinet_id = models.ForeignKey(
+        Cabinet,
+        on_delete=models.CASCADE,
+        related_name='cabinet_id'
+    )
+    def __str__(self):
+        return str(self.washer_log_id)

@@ -1,0 +1,29 @@
+{% extends '../layout.html' %}
+{% load static %}<!-- 必須 -->
+    {% block link%}
+        <title>TimeLine</title>
+        <link rel="stylesheet" href="{% static 'css/Washer_log.css' %}">
+        <!-- <script src="{% static 'js/TimeLine.js' %}"></script> -->
+    {% endblock %}
+
+    {% block content %}
+        <div id="content">  
+            <div class="none">{{none}}</div>
+            {% for laundry in Laundries %}
+            <div class="item">
+            <div class="date"><a href="#"><p>{{laundry.0.washer_log_id.created_at}}</p></a>
+            </div>
+            <hr>
+                <div class="washer_log {{laundry.0.washer_log_id_id}}">
+                    {% for laund in laundry %}
+                        <div class="div_pic">
+                            <a href='{% url "helpapp:cabinet_detail" laund.cabinet_id_id %}'>
+                                <img class="washer_pic" src="{{laund.cabinet_id.image.url}}" alt="washer-pic">
+                            </a>
+                        </div>
+                    {% endfor%}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    {% endblock %}
