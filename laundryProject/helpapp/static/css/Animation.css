@@ -4,6 +4,7 @@
 	justify-content: center;
 	align-items: center;
 	animation: animateTheBodyBg 10s linear infinite;
+	-webkit-animation: animateTheBodyBg 10s linear infinite;
 }
 
 @keyframes animateTheBodyBg {
@@ -11,7 +12,15 @@
 	z-index: auto;
 	filter: hue-rotate(0deg)
 	}
-
+	to {
+	filter: hue-rotate(360deg)
+	}
+}
+@-webkit-keyframes animateTheBodyBg {
+	from {
+	z-index: auto;
+	filter: hue-rotate(0deg)
+	}
 	to {
 	filter: hue-rotate(360deg)
 	}
@@ -45,7 +54,8 @@
 	0 0 60px #00ff0a,
 	0 0 80px #00ff0a,
 	0 0 100px #00ff0a;
-animation: animateTheSpan 2s linear infinite calc(.1s * var(--i));
+	animation: animateTheSpan 2s linear infinite calc(.1s * var(--i));
+	-webkit-animation: animateTheSpan 2s linear infinite calc(.1s * var(--i));
 }
 
 @keyframes animateTheSpan {
@@ -53,7 +63,15 @@ animation: animateTheSpan 2s linear infinite calc(.1s * var(--i));
 		z-index: auto;
 		transform: scale(1)
 	}
-
+	80%,90% {
+		transform: scale(0)
+	}
+}
+@-webkit-keyframes animateTheSpan {
+	0% {
+		z-index: auto;
+		transform: scale(1)
+	}
 	80%,90% {
 		transform: scale(0)
 	}
