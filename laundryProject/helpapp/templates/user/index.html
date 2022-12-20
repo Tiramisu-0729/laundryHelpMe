@@ -2,7 +2,6 @@
 {% load static %}<!-- 必須 -->
 {% load mathfilters %}
 {% block link%}
-    <title>User</title>
     <link rel="stylesheet" href="{% static 'css/User.css' %}">
     <script src="{% static 'js/User.js' %}"></script>
 {% endblock %}
@@ -65,9 +64,6 @@
         <div class="detail">
             <div class="sum">服の総数：{{sumCabinet}}</div>
             <div class="date">　登録日：</div>
-        </div>
-        <div class="washingDisplay">
-            ■洗濯表示
         </div>
         {% for table in tables %}
             <details>
