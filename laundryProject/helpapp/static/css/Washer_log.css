@@ -1,0 +1,37 @@
+#content{
+    margin: 2%;
+}
+.date{
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+}
+p{
+    margin: 3%;
+}
+.item{
+    background-color: white;
+    width: 97%;
+    border-radius: 3vmin;
+    margin: 4.5vmin auto;
+    box-shadow: 0 5px 12px 0 rgba(102, 102, 102, 0.5);
+}
+.washer_log{
+    display:flex;
+    overflow-x:scroll;    
+}
+.div_pic{
+    width: 24vmin;
+    height: 24vmin;
+    margin: 3%;
+}
+.washer_pic{
+    width: 24vmin;
+    height: 24vmin;
+
+    object-fit: cover;
+}
+hr {
+    border: 1px #e2e2e2 solid;
+    margin: 0 3%;
+}

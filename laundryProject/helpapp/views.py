@@ -1,19 +1,13 @@
-from unicodedata import category
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render
-
-from .models import Cabinet, Categories, Profile
+from .models import Cabinet, Categories, Laundry, Profile, Washer_log
 from django.shortcuts import redirect, render, get_object_or_404
-from .forms import CabinetForm, JudgeForm, ProfileForm, UpdateUserForm, UpdateProfileForm
+from .forms import CabinetForm, JudgeForm, UpdateUserForm, UpdateProfileForm
 from django.core.files.storage import FileSystemStorage
-from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-import csv
 import json
-from django.core import serializers
 from helpapp.model_load import MODEL,tables
-from laundryProject.settings import *
 
 def helpapp(request):
     #ログインがあるか判別
@@ -142,7 +136,6 @@ def washer_judge(request):
 
 def washers_delete(request):
     if request.user.is_authenticated :
-        # del request.session['washers']
         if request.method == "POST":
             checks_value = request.POST.getlist('check')
             washers = request.session.get('washers')
@@ -151,6 +144,55 @@ def washers_delete(request):
                     washers.remove(value)
             request.session['washers'] = washers
         return redirect('/helpapp/washer')
+    else :
+        return redirect('/accounts/login/')
+
+def washer_log(request):
+    if request.user.is_authenticated :
+        user = request.user
+        laundries=[]
+        if Washer_log.objects.filter(user=user).exists():   #存在確認
+            washer_logs = Washer_log.objects.filter(user=user)
+            for washer_log in washer_logs:
+                if  Laundry.objects.filter(washer_log_id_id = washer_log.pk).exists():   #存在確認
+                    laundries.append(Laundry.objects.select_related('cabinet_id').filter(washer_log_id = washer_log.pk)) #laundry表とcabinet表を結合
+            for laundry in laundries:
+                print(laundry[0].washer_log_id_id)
+        context = {
+            'ON' : json.dumps('timeline'),
+            'message': 'washer_log',
+            'washer_logs' : washer_logs,
+            'Laundries' : laundries,
+            'user' : user,
+        }
+        return render(request, 'washer_log/index.html', context)
+    else :
+        return redirect('/accounts/login/')
+
+
+def washer_log_add(request):
+    if request.user.is_authenticated :
+        if 'washers' in request.session:
+            Laundries=[]
+            IDs = request.session.get('washers')
+            for id in IDs:#washersを取り出す
+                if Cabinet.objects.filter(pk=id).exists():
+                    Laundries.append(Cabinet.objects.get(pk=id))
+            washer_log = Washer_log()
+            washer_log.user = request.user
+            washer_log.save()
+            for Laund in Laundries:
+                laundry = Laundry()
+                laundry.washer_log_id = Washer_log(washer_log.pk)
+                laundry.cabinet_id = Cabinet(Laund.pk)
+                laundry.save()
+            context = {
+                'ON' : json.dumps('washer'),
+                'message': '追加できた',
+            }
+            return redirect('helpapp/washer_log')
+
+        return redirect('/helpapp/washer/')
     else :
         return redirect('/accounts/login/')
 
@@ -230,7 +272,6 @@ def cabinet_add(request):
             cabinet.laundry_tag = request.session.get('tags')#判定結果sessionとか
             cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
             cabinet.save()
-            
         return redirect('/helpapp/cabinet')
     else:
         user = request.user
@@ -330,7 +371,7 @@ def timeline(request):
         return render(request, 'timeline/index.html', context)
     else :
         return redirect('/accounts/login/')
-
+from time import sleep
 def judge(request):
     if request.method == "POST":
         image = request.FILES['UploadImg']#保存先はupload_imgのなか　いったん保存
@@ -341,6 +382,8 @@ def judge(request):
         #AIで画像判定
         # results = MODEL(file_url)
         results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
+
+        sleep(5) # ------------------------------ 処理を停止 ----------------------------------------------------
 
         #判定結果 解析
         datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
@@ -431,3 +474,4 @@ def testYolo(request):
         'datas': datas,
     }
     return render(request, 'testYolo/test.html', context)
+
