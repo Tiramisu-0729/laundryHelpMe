@@ -62,8 +62,9 @@
         <!-- ここまで -->
         <hr>
         <div class="detail">
-            <div class="sum">服の総数：{{sumCabinet}}</div>
-            <div class="date">　登録日：</div>
+            {% for award in awards %}
+                <div class="award">{{award.0}}{{award.1}}{{award.2|safe}}</div>
+            {% endfor %}
         </div>
         {% for table in tables %}
             <details>

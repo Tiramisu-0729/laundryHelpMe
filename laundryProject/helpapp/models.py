@@ -7,7 +7,7 @@ class Categories(models.Model):
     
     def __str__(self):
         return self.name
-#トロフィーのきのうつけるなら
+# #トロフィーのきのうつけるなら
 # class Award(models.Model):
 #     name = models.CharField(max_length=255)
 #     text = models.CharField(max_length=255)
@@ -25,8 +25,8 @@ class Categories(models.Model):
 #     )
 #     date =
 
-#     def __str__(self):
-#         return self.user
+    # def __str__(self):
+    #     return self.user
 
 class Cabinet(models.Model):
     author = models.ForeignKey(
@@ -51,6 +51,11 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
     )
     image = models.ImageField(upload_to='icon/', default='static/upload_img/icon/image.jpg')
+    judge_cnt = models.IntegerField(default=0)
+    washer_cnt = models.IntegerField(default=0)
+    
+    def __str__(self):
+        return str(self.user)
 
 class Washer_log(models.Model):
     user = models.ForeignKey(

@@ -35,8 +35,7 @@ def home(request):
         'form': JudgeForm(),
     }
     return render(request, 'home/index.html', context)
-    
-    
+
 def washer(request):
     if request.user.is_authenticated :
         washers =[]
@@ -134,6 +133,12 @@ def washer_judge(request):
     else :
         return redirect('/accounts/login/')
 
+def washer_complete(request) :
+    profile = Profile.objects.filter(user=request.user).first()
+    profile.washer_cnt += 1
+    profile.save()
+    return redirect('/helpapp/washer')
+
 def washers_delete(request):
     if request.user.is_authenticated :
         if request.method == "POST":
@@ -195,10 +200,12 @@ def washer_log_add(request):
     else :
         return redirect('/accounts/login/')
 
-
 def washer_clear(request):
     if request.user.is_authenticated :
         del request.session['washers']
+        profile = Profile.objects.filter(user=request.user).first()
+        profile.washer_cnt += 1
+        profile.save()
         return redirect('/helpapp/washer')
     else :
         return redirect('/accounts/login/')
@@ -330,11 +337,22 @@ def user(request):
         user = request.user
         profile = Profile.objects.filter(user=user).first()
         sumCabinet = Cabinet.objects.filter(author=user).count()
+        awards = [["服の総数：", sumCabinet], ["判定回数：", profile.judge_cnt], ["洗濯回数：", profile.washer_cnt]]
+        for award in awards:
+            award.append('<img src="/static/pictures/')
+            if award[1] > 100 :
+                award[2] += 'gold.png"'
+            elif award[1] > 50 :
+                award[2] += 'silver.png"'
+            elif award[1] > 20:
+                award[2] += 'bronze.png"'
+            else :
+                award[2] += 'none.png"'
         context = {
             'ON' : json.dumps('user'),
             'message': 'User',
             'profile' : profile,
-            'sumCabinet': sumCabinet,
+            'awards': awards,
             'user': user,
             'tables': tables, # model_loadからtables読み込み
             'user_form': user_form, 
@@ -393,6 +411,10 @@ def judge(request):
         redirect_url = reverse('helpapp:laundry_tag_check')
         parameters = urlencode({'file_url': file_url, 'result' : result})
         url = f'{redirect_url}?{parameters}'
+        if request.user.is_authenticated :
+            profile = Profile.objects.filter(user=request.user).first()
+            profile.judge_cnt += 1
+            profile.save()
         return redirect(url)
     else:
         user = request.user
@@ -425,6 +447,7 @@ def laundry_tag_check(request):
     return render(request, 'laundry_tag_check/index.html', context)
     
 def judge_result(request):
+    context=[]
     if request.method == "POST":
         tags = []
         names=['Laundry','Bleach','Nature','Iron','Tumble','Dry','Wet']

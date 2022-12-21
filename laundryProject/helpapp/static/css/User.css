@@ -34,7 +34,7 @@
     width: 17vmin;
     height: 8vmin;
     border-radius: 5px;
-    font-size: 4.5vmin;
+    font-size: 4vmin;
     color: #fff;
     font-weight: bold;
     border: none;
@@ -115,7 +115,7 @@ hr{
     font-size: 5vmin;
     margin: 3% 5% 5%;
 }
-.sum{
+.award{
     margin-bottom: 0.25em;
 }
 .washingDisplay{
@@ -197,29 +197,47 @@ summary{
     position: relative;
     display: flex;
     align-items: center;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
+    -webkit-transition: -webkit-transform 0.3s ease;
 }
 /* Safariで表示されるデフォルトの三角形アイコンを消す */
 summary::-webkit-details-marker { 
     display: none;
 }
 details{
-    transition: all .5s ease; 
+    transition: all 0.5s ease; 
+    -webkit-transition: -webkit-transform 0.5s ease; 
 }
+
 summary::after{
     content: '+';
     position: absolute;
     font-size: 8vmin;
     right: 20px;
-    transition: all .3s ease;
+    transition: all 0.3s ease;
+    -webkit-transition: -webkit-transform 0.3s ease;
+}
+summary::-webkit-after{
+    content: '+';
+    position: absolute;
+    font-size: 8vmin;
+    right: 20px;
+    transition: all 0.3s ease;
+    -webkit-transition: -webkit-transform 0.3s ease;
 }
 details[open] summary::after{
     transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+}
+details[open] summary::-webkit-after{
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
 }
 details[open] {
     height: auto;
 }
-details[open] .codeWrapper{
+/* details[open] .codeWrapper{
     overflow: auto;
     animation: ani 1s ;
-}
+    -webkit-animation: ani 1s ;
+} */
