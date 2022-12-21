@@ -54,7 +54,10 @@
         {% endfor %} 
     </div>
 
-    <div class="none">{{none}}</div>
+
+    {% if none == 0 %}
+    <div class="none">洗濯物を追加してください</div>
+    {% endif %}
     
     <!-- チェックボックス -->
 
@@ -109,11 +112,16 @@
         <a href="{% url 'helpapp:washer_add' %}">
             <button type="button" class="add">タンスから追加</button>
         </a>
-        <a href="{% url 'helpapp:washer_log_add' %}">
-            <button type="button" class="judge">判定</button>
+        <a href="{% url 'helpapp:washer_judge' %}">
+            <button type="button" class="judge" id="judge">判定</button>
         </a>
     </div>
     <script type="text/javascript">
+        let none = JSON.parse('{{ none|safe }}');
+        if  (none == 0 ){
+            let elements = document.getElementById('judge');
+            elements.style.display="none";
+        }
         // カテゴリー変更 
         function viewChange(){
             let categories = JSON.parse('{{ categories_json|safe }}');
@@ -122,13 +130,13 @@
                 id = document.getElementById('categories').value;
                 for(let category of categories){
                     if(id == category){
-                        var elements = document.getElementsByClassName(category);
+                        let elements = document.getElementsByClassName(category);
                         for(i=0;i<elements.length;i++){
                             elements[i].style.display = "";
                         }
                     }
                     else{
-                        var elements = document.getElementsByClassName(category);
+                        let elements = document.getElementsByClassName(category);
                         for(i=0;i<elements.length;i++){
                             elements[i].style.display = "none";
                         }

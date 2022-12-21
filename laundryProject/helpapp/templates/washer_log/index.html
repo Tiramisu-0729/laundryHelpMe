@@ -10,10 +10,14 @@
         <div id="content">  
             <div class="none">{{none}}</div>
             {% for laundry in Laundries %}
-            <div class="item">
-            <div class="date"><a href="#"><p>{{laundry.0.washer_log_id.created_at}}</p></a>
-            </div>
-            <hr>
+                <div class="item">
+                <div class="date">
+                    <a href='{% url "helpapp:washer_log_detail" laundry.0.washer_log_id_id%}'>
+
+                        <p>{{val}}{{laundry.0.washer_log_id.created_at}}</p>
+                    </a>
+                </div>
+                <hr>
                 <div class="washer_log {{laundry.0.washer_log_id_id}}">
                     {% for laund in laundry %}
                         <div class="div_pic">

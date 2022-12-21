@@ -1,6 +1,7 @@
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render
+from django.http import HttpResponse
 from .models import Cabinet, Categories, Profile, Washer_log, Laundry
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import CabinetForm, JudgeForm, UpdateUserForm, UpdateProfileForm
@@ -42,6 +43,7 @@ def washer(request):
         washers =[]
         tags=[]
         i=0
+        none=1
         if 'washers' in request.session:
             IDs = request.session.get('washers')
             for id in IDs:
@@ -55,11 +57,14 @@ def washer(request):
         categories_json =[]
         for category in categories:
             categories_json.append(category.name)
+        if len(washers) == 0:
+            none = 0
         context = {
             'categories_json' : json.dumps(categories_json), 
             'categories' : categories,
             'ON' : json.dumps('washer'),
             'message': 'Washer',
+            'none' : json.dumps(none),
             'washers' : washers
         }
         return render(request, 'washer/index.html',context)
@@ -70,11 +75,20 @@ def washer_add(request):
     if request.user.is_authenticated :
         user = request.user
         cabs = Cabinet.objects.filter(author=user)
+        IDs = request.session.get('washers')    
+        cabs = list(cabs.values())
+        for ID in IDs :
+            i=0
+            for cab in cabs :
+                if int(ID) == int(cab["id"]) :
+                    del cabs[i]
+                    break
+                i += 1
         cabinets =[]
         for cabinet in cabs :
-            tags = cabinet.laundry_tag.split(',')
+            tags = cabinet["laundry_tag"].split(',')
             if not(tags[0] == 'LD' or tags[0] == 'LE'):
-                cabinets.append(cabinet)
+                cabinets.append(Cabinet.objects.get(pk=cabinet["id"]))
         context = {
             'ON' : json.dumps('washer'),
             'message': 'Washer',
@@ -130,7 +144,7 @@ def washer_judge(request):
                 'message': 'Washer',
             }
             return render(request, 'washer/result.html', context)
-        return redirect('/helpapp/washer/')
+        return redirect('/helpapp/washer')
     else :
         return redirect('/accounts/login/')
 
@@ -159,7 +173,7 @@ def washer_log(request):
                     laundries.append(Laundry.objects.select_related('cabinet_id').filter(washer_log_id = washer_log.pk)) #laundry表とcabinet表を結合
         context = {
             'ON' : json.dumps('timeline'),
-            'message': 'washer_log',
+            'message': 'timeline',
             'washer_logs' : washer_logs,
             'Laundries' : laundries,
             'user' : user,
@@ -191,6 +205,35 @@ def washer_log_add(request):
             }
             return redirect('/helpapp/washer_judge')
 
+        return redirect('/helpapp/washer/')
+    else :
+        return redirect('/accounts/login/')
+
+def washer_log_detail(request, pk):
+    if request.user.is_authenticated :
+        if  Laundry.objects.filter(washer_log_id_id = pk).exists():   #存在確認
+            washers = Laundry.objects.select_related('cabinet_id').filter(washer_log_id = pk) #laundry表とcabinet表を結合
+            comp = ["L1", "B1", "T1"]
+            for washer in washers:
+                tags = washer.cabinet_id.laundry_tag.split(',')
+                for tag in tags:
+                    if tag[0] == "L":
+                        if int(tag[1], 16) > int(comp[0][1] ,16):#一番条件が厳しいタグの判定
+                            comp[0]=tag
+                    elif tag[0] == "B":
+                        if int(tag[1], 16) > int(comp[1][1] ,16):#一番条件が厳しいタグの判定
+                            comp[1]=tag
+                    elif tag[0] == "T":
+                        if int(tag[1], 16) > int(comp[2][1] ,16):#一番条件が厳しいタグの判定
+                            comp[2]=tag
+            context = {
+                'washers' : washers,
+                'comp' : comp,
+                'comp_json' : json.dumps(comp),
+                'ON' : json.dumps('timeline'),
+                'message': 'Washer',
+            }
+            return render(request, 'washer_log/detail.html', context) 
         return redirect('/helpapp/washer/')
     else :
         return redirect('/accounts/login/')

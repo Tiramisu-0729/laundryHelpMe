@@ -29,5 +29,7 @@ urlpatterns = [
     path("test",views.testYolo, name="test"),
     path("washer_log_add",views.washer_log_add, name="washer_log_add"),
     path("washer_log",views.washer_log, name="washer_log"),
+    path("washer_log_detail/<int:pk>/",views.washer_log_detail, name="washer_log_detail"),
+    
 
 ]
