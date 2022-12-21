@@ -173,7 +173,7 @@ def washer_log(request):
         laundries=[]
         washer_logs = []
         if Washer_log.objects.filter(user=user).exists():   #存在確認
-            washer_logs = Washer_log.objects.filter(user=user)
+            washer_logs = Washer_log.objects.filter(user=user).order_by("-created_at")
             for washer_log in washer_logs:
                 if  Laundry.objects.filter(washer_log_id_id = washer_log.pk).exists():   #存在確認
                     laundries.append(Laundry.objects.select_related('cabinet_id').filter(washer_log_id = washer_log.pk)) #laundry表とcabinet表を結合
