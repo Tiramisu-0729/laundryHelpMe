@@ -73,16 +73,17 @@ def washer(request):
 def washer_add(request):
     if request.user.is_authenticated :
         user = request.user
-        cabs = Cabinet.objects.filter(author=user)
-        IDs = request.session.get('washers')    
+        cabs = Cabinet.objects.filter(author=user)  
         cabs = list(cabs.values())
-        for ID in IDs :
-            i=0
-            for cab in cabs :
-                if int(ID) == int(cab["id"]) :
-                    del cabs[i]
-                    break
-                i += 1
+        if 'washers' in request.session:
+            IDs = request.session.get('washers')  
+            for ID in IDs :
+                i=0
+                for cab in cabs :
+                    if int(ID) == int(cab["id"]) :
+                        del cabs[i]
+                        break
+                    i += 1
         cabinets =[]
         for cabinet in cabs :
             tags = cabinet["laundry_tag"].split(',')
