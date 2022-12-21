@@ -63,7 +63,14 @@
         <hr>
         <div class="detail">
             {% for award in awards %}
-                <div class="award">{{award.0}}{{award.1}}{{award.2|safe}}</div>
+                <div class="award">
+                    {{award.0}}
+                    {{award.1}}
+                    {% with img="/pictures/"|add:award.2|add:".png" %}
+                        <img src="{% static img%}">
+                    {% endwith %}
+                    
+                </div>
             {% endfor %}
         </div>
         {% for table in tables %}

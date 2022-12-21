@@ -339,15 +339,14 @@ def user(request):
         sumCabinet = Cabinet.objects.filter(author=user).count()
         awards = [["服の総数：", sumCabinet], ["判定回数：", profile.judge_cnt], ["洗濯回数：", profile.washer_cnt]]
         for award in awards:
-            award.append('<img src="/static/pictures/')
             if award[1] > 100 :
-                award[2] += 'gold.png"'
+                award.append('gold')
             elif award[1] > 50 :
-                award[2] += 'silver.png"'
+                award.append('silver')
             elif award[1] > 20:
-                award[2] += 'bronze.png"'
+                award.append('bronze')
             else :
-                award[2] += 'none.png"'
+                award.append('none')
         context = {
             'ON' : json.dumps('user'),
             'message': 'User',
