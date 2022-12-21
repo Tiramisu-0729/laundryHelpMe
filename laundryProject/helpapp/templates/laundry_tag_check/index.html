@@ -11,139 +11,139 @@
 </div>
     
 
-<form action="{% url 'helpapp:judge_result' %}" method="POST">
-    {% csrf_token %}
-    <div class="selection-group">
-        {% for tag in Laundry %}
-            <input id={{tag}} type="radio" name="Laundry" value={{tag}} required>
-            <label for={{tag}}>
-                {% with img="/pictures/"|add:tag|add:".png" %}
+    <form action="{% url 'helpapp:judge_result' %}" method="POST">
+        {% csrf_token %}
+        <div class="selection-group">
+            {% for tag in Laundry %}
+                <input id={{tag}} type="radio" name="Laundry" value={{tag}} required>
+                <label for={{tag}}>
+                    {% with img="/pictures/"|add:tag|add:".png" %}
+                        <img class="radio" src="{% static img%}">
+                    {% endwith %}
+                </label>
+            {% endfor %}
+            <p class="red">※このタグは必ず選択してください</p>
+        </div>
+        <hr>
+        <div class="selection-group">
+            {% for tag in Bleach %}
+                <input id={{tag}} type="radio" name="Bleach" value={{tag}}>
+                <label for={{tag}}>
+                    {% with img="/pictures/"|add:tag|add:".png" %}
+                        <img class="radio" src="{% static img%}">
+                    {% endwith %}
+                </label>
+            {% endfor %}
+        </div>
+        <hr>
+        <div class="selection-group">
+            {% for tag in Nature %}
+                <input id={{tag}} type="radio" name="Nature" value={{tag}}>
+                <label for={{tag}}>
+                    {% with img="/pictures/"|add:tag|add:".png" %}
+                        <img class="radio" src="{% static img%}">
+                    {% endwith %}
+                </label>
+            {% endfor %}
+        </div>
+        <hr>
+        <div class="selection-group">
+            {% for tag in Iron %}
+                <input id={{tag}} type="radio" name="Iron" value={{tag}}>
+                <label for={{tag}}>
+                    {% with img="/pictures/"|add:tag|add:".png" %}
                     <img class="radio" src="{% static img%}">
-                {% endwith %}
-            </label>
-        {% endfor %}
-        <p class="red">※このタグは必ず選択してください</p>
-    </div>
-    <hr>
-    <div class="selection-group">
-        {% for tag in Bleach %}
-            <input id={{tag}} type="radio" name="Bleach" value={{tag}}>
-            <label for={{tag}}>
-                {% with img="/pictures/"|add:tag|add:".png" %}
-                    <img class="radio" src="{% static img%}">
-                {% endwith %}
-            </label>
-        {% endfor %}
-    </div>
-    <hr>
-    <div class="selection-group">
-        {% for tag in Nature %}
-            <input id={{tag}} type="radio" name="Nature" value={{tag}}>
-            <label for={{tag}}>
-                {% with img="/pictures/"|add:tag|add:".png" %}
-                    <img class="radio" src="{% static img%}">
-                {% endwith %}
-            </label>
-        {% endfor %}
-    </div>
-    <hr>
-    <div class="selection-group">
-        {% for tag in Iron %}
-            <input id={{tag}} type="radio" name="Iron" value={{tag}}>
-            <label for={{tag}}>
-                {% with img="/pictures/"|add:tag|add:".png" %}
-                <img class="radio" src="{% static img%}">
-                {% endwith %}
-            </label>
-        {% endfor %}
-    </div>
-    <hr>
-    <div class="selection-group">
-        {% for tag in Tumble %}
-            <input id={{tag}} type="radio" name="Tumble" value={{tag}}>
-            <label for={{tag}}>
-                {% with img="/pictures/"|add:tag|add:".png" %}
-                    <img class="radio" src="{% static img%}">
-                {% endwith %}
-            </label>
-        {% endfor %}
-    </div>
-    <hr>
-    <div class="selection-group">
-        {% for tag in Dry %}
-            <input id={{tag}} type="radio" name="Dry" value={{tag}}>
-            <label for={{tag}}>
-                {% with img="/pictures/"|add:tag|add:".png" %}
-                    <img class="radio" src="{% static img%}">
-                {% endwith %}
-            </label>
-        {% endfor %}
-    </div>
-    <hr>
-    <div class="selection-group">
-        {% for tag in Wet %}
-            <input id={{tag}} type="radio" name="Wet" value={{tag}}>
-            <label for={{tag}}>
-                {% with img="/pictures/"|add:tag|add:".png" %}
-                    <img class="radio" src="{% static img%}">
-                {% endwith %}
-            </label>
-        {% endfor %}
-    </div>
-    <div class="button">
-        <input type="submit" value="OK" class="submit"></input>
-        {% comment %} <button type="button" onclick="history.back()" class="backButton">戻る</button> {% endcomment %}
-    </div>
+                    {% endwith %}
+                </label>
+            {% endfor %}
+        </div>
+        <hr>
+        <div class="selection-group">
+            {% for tag in Tumble %}
+                <input id={{tag}} type="radio" name="Tumble" value={{tag}}>
+                <label for={{tag}}>
+                    {% with img="/pictures/"|add:tag|add:".png" %}
+                        <img class="radio" src="{% static img%}">
+                    {% endwith %}
+                </label>
+            {% endfor %}
+        </div>
+        <hr>
+        <div class="selection-group">
+            {% for tag in Dry %}
+                <input id={{tag}} type="radio" name="Dry" value={{tag}}>
+                <label for={{tag}}>
+                    {% with img="/pictures/"|add:tag|add:".png" %}
+                        <img class="radio" src="{% static img%}">
+                    {% endwith %}
+                </label>
+            {% endfor %}
+        </div>
+        <hr>
+        <div class="selection-group">
+            {% for tag in Wet %}
+                <input id={{tag}} type="radio" name="Wet" value={{tag}}>
+                <label for={{tag}}>
+                    {% with img="/pictures/"|add:tag|add:".png" %}
+                        <img class="radio" src="{% static img%}">
+                    {% endwith %}
+                </label>
+            {% endfor %}
+        </div>
+        <div class="button">
+            <input type="submit" value="OK" class="submit"></input>
+            {% comment %} <button type="button" onclick="history.back()" class="backButton">戻る</button> {% endcomment %}
+        </div>
     </form>
-<script type="text/javascript">
-    let results = JSON.parse('{{ results|safe }}');
-    for (let tag of results) {
-        document.getElementById(tag).checked = true;
-    }
-    //ラジオボタン取得
-    const radioBtns = Array.prototype.slice.call(document.querySelectorAll('input[type="radio"]'),0);
-    //ラジオボタンが存在する場合は処理する
-    if(radioBtns.length !== 0) {
-    //ラジオボタンごとの設定
-    radioBtns.forEach(function(radioBtn,index){
-        //ラジオボタン識別番号設定
-        radioBtn.radioIndex = index;
-        //チェックフラグ設定
-        if(radioBtn.checked) {
-        radioBtn.checkFlg = true;
-        } else {
-        radioBtn.checkFlg = false;
+    <script type="text/javascript">
+        let results = JSON.parse('{{ results|safe }}');
+        for (let tag of results) {
+            document.getElementById(tag).checked = true;
         }
-        //クリックイベント設定
-        radioBtn.addEventListener('click',  function() {
-        //番号を取得
-        const thisIndex = this.radioIndex;
-        //同じグループのラジオボタンを取得
-        const group = Array.prototype.slice.call(document.querySelectorAll('input[type="radio"][name="'+radioBtn.name+'"]'),0);
-        //未チェックの場合
-        if(!this.checkFlg) {
-            //チェックフラグオン（checkedはJSで書かずともtrueになるので省略）
-            this.checkFlg = true;
-            //チェックした要素以外のフラグをfalseに
-            group.forEach(function(elm){
-            if(elm.checkFlg && elm.radioIndex !== thisIndex) {
-                elm.checkFlg = false;
+        //ラジオボタン取得
+        const radioBtns = Array.prototype.slice.call(document.querySelectorAll('input[type="radio"]'),0);
+        //ラジオボタンが存在する場合は処理する
+        if(radioBtns.length !== 0) {
+        //ラジオボタンごとの設定
+        radioBtns.forEach(function(radioBtn,index){
+            //ラジオボタン識別番号設定
+            radioBtn.radioIndex = index;
+            //チェックフラグ設定
+            if(radioBtn.checked) {
+            radioBtn.checkFlg = true;
+            } else {
+            radioBtn.checkFlg = false;
+            }
+            //クリックイベント設定
+            radioBtn.addEventListener('click',  function() {
+            //番号を取得
+            const thisIndex = this.radioIndex;
+            //同じグループのラジオボタンを取得
+            const group = Array.prototype.slice.call(document.querySelectorAll('input[type="radio"][name="'+radioBtn.name+'"]'),0);
+            //未チェックの場合
+            if(!this.checkFlg) {
+                //チェックフラグオン（checkedはJSで書かずともtrueになるので省略）
+                this.checkFlg = true;
+                //チェックした要素以外のフラグをfalseに
+                group.forEach(function(elm){
+                if(elm.checkFlg && elm.radioIndex !== thisIndex) {
+                    elm.checkFlg = false;
+                }
+                });
+            } else {
+                //既にチェックしている場合（リセット処理）
+                group.forEach(function(elm){
+                //チェックフラグがtrueかつ識別番号が一致するradio要素
+                if(elm.checkFlg && elm.radioIndex === thisIndex) {
+                    //チェックフラグfalse
+                    elm.checkFlg = false;
+                    //ラジオボタンのチェック解除
+                    elm.checked = false;
+                }
+                });
             }
             });
-        } else {
-            //既にチェックしている場合（リセット処理）
-            group.forEach(function(elm){
-            //チェックフラグがtrueかつ識別番号が一致するradio要素
-            if(elm.checkFlg && elm.radioIndex === thisIndex) {
-                //チェックフラグfalse
-                elm.checkFlg = false;
-                //ラジオボタンのチェック解除
-                elm.checked = false;
-            }
-            });
-        }
         });
-    });
-    }
-</script>
+        }
+    </script>
 {% endblock %}

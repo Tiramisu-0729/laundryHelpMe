@@ -21,6 +21,7 @@ urlpatterns = [
     path("washer_add",views.washer_add, name="washer_add"),
     path("washer_add_redirect",views.washer_add_redirect, name="washer_add_redirect"),
     path("washer_judge",views.washer_judge, name="washer_judge"),
+    path("washer_complete",views.washer_complete, name="washer_complete"),
     path("washers_delete",views.washers_delete, name="washers_delete"),
     path("washer_clear",views.washer_clear, name="washer_clear"),
     path("laundry_tag_check",views.laundry_tag_check, name="laundry_tag_check"),
