@@ -159,7 +159,7 @@ img{
 table{
     border: solid 3px rgb(97, 97, 97);
     border-collapse: collapse;
-    margin: 4vmin auto;
+    margin: 2vmin auto 4vmin;
     align-content: center;
     padding: 5% 5%;
     max-width: 90%;
