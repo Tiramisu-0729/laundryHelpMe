@@ -15,7 +15,7 @@ p{
     width: 97%;
     border-radius: 3vmin;
     margin: 4.5vmin auto;
-    box-shadow: 0 5px 12px 0 rgba(102, 102, 102, 0.5);
+    box-shadow: 0 2px 10px 0 rgba(102, 102, 102, 0.5);
 }
 .washer_log{
     display:flex;
