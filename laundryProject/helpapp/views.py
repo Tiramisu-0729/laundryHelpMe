@@ -1,7 +1,7 @@
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render
-from .models import Cabinet, Categories, Laundry, Profile, Washer_log
+from .models import Cabinet, Categories, Profile, Washer_log, Laundry
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import CabinetForm, JudgeForm, UpdateUserForm, UpdateProfileForm
 from django.core.files.storage import FileSystemStorage
@@ -151,13 +151,12 @@ def washer_log(request):
     if request.user.is_authenticated :
         user = request.user
         laundries=[]
+        washer_logs = []
         if Washer_log.objects.filter(user=user).exists():   #存在確認
             washer_logs = Washer_log.objects.filter(user=user)
             for washer_log in washer_logs:
                 if  Laundry.objects.filter(washer_log_id_id = washer_log.pk).exists():   #存在確認
                     laundries.append(Laundry.objects.select_related('cabinet_id').filter(washer_log_id = washer_log.pk)) #laundry表とcabinet表を結合
-            for laundry in laundries:
-                print(laundry[0].washer_log_id_id)
         context = {
             'ON' : json.dumps('timeline'),
             'message': 'washer_log',
@@ -190,7 +189,7 @@ def washer_log_add(request):
                 'ON' : json.dumps('washer'),
                 'message': '追加できた',
             }
-            return redirect('helpapp/washer_log')
+            return redirect('/helpapp/washer_judge')
 
         return redirect('/helpapp/washer/')
     else :
