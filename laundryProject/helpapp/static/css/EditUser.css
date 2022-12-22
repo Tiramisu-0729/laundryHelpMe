@@ -1,30 +1,40 @@
-.hidden{
-    display: none;
-    margin: 5%;
-}
-.img_div{
+body{
+    background-color: #e1f5fc;
+    font-size: 24px;
     text-align: center;
-    margin: 5vmin;
+    color: #333;
 }
-#account_img{
-    width: 30vmin;
-    height: 30vmin;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 1px solid rgb(190, 190, 190);
-    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, .5);
-}
-.username{
-    margin-top: 1%;
+h1{
     text-align: center;
+    font-size: 42px;
+    font-weight: bold;
 }
-.form-control{
-    width: 65vw;
-    height: 3vh;
-}
-.form-control-file{
+.helptext{
     display: none;
 }
-.form-group{
-    text-align: end;
+li{
+    font-size: 14px;
+    text-align: left;
+    color: #585858;
+}
+input{
+    width: 75%;
+    padding: 5px;
+    font-size: 24px;
+}
+label{
+    font-weight: bold;
+    margin-right: 4%;
+}
+.button{
+    width: 70%;
+    margin-top: 10%;
+    border-radius: 5px;
+    padding-top: 3%;
+    padding-bottom: 2%;
+    font-size: 32px;
+    color: #6D6D6D;
+    font-weight: bold;
+    border: none;
+    background-color: #4BC9FF;
 }

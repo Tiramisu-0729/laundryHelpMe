@@ -33,6 +33,11 @@ label{
     align-items: center;
     justify-content: center;
 }
+
+.error{
+    text-align: center;
+    font-size: x-large;
+}
 .item input[type="checkbox"]:checked+label {
     border: solid 2px royalblue;
     border-radius: 5px;

@@ -5,6 +5,13 @@
     <script src="{% static 'js/Cabinet.js' %}"></script>
 {% endblock %}
 {% block content %}
+{% if messages %}
+	<ul class="messages_ul">
+		{% for message in messages %}
+			<li class="alert{% if message.tags %} alert-{{ message.tags }}{% endif %} alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>{{ message }}</li>
+		{% endfor %}
+	</ul>
+{% endif %}
     <div class="nuv">
         <select id="categories" onchange="viewChange();">
             <option value="all" selected>all</option>
@@ -100,7 +107,7 @@
             </div>
             {% endfor %}
             <div class="btn hidden">
-                <input id="delete" type="submit" value="削除">
+                <input id="delete" type="submit" value="削除" onclick='return confirm("本当に削除しますか？");'>削除>
             </div>
         </form>
     </div>

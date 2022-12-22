@@ -12,8 +12,12 @@
     </div>
         <div id="main">
             <div class="user">
+                {% if profile.image|stringformat:"s" == "none" %}
+                    <img class="user-pic" src="{% static 'pictures/icon.svg' %}" alt="user_icon">
+                {% else %}
+                    <img class="user-pic" src="{{profile.image.url}}" alt="user_icon"> 
+                {% endif %}
                 
-                <img class="user-pic" src="{{profile.image.url}}" alt="user_icon"> 
             </div>
             <div class="UserName">{{user}}</div>
         </div>    
@@ -22,7 +26,11 @@
         <div id="main_edit" class="hidden">
             <div class="img_div">
                 <label for="id_image">
-                    <img id="account_img" src="{{ profile.image.url }} ">
+                    {% if profile.image|stringformat:"s" == "none" %}
+                        <img class="user-pic" src="{% static 'pictures/icon.svg' %}" alt="user_icon"> 
+                    {% else %}
+                        <img class="user-pic" src="{{profile.image.url}}" alt="user_icon"> 
+                    {% endif %}
                 </label>
             </div>
             {% if user_form.errors %}
@@ -50,7 +58,7 @@
                             <button type="submit" class="submit">保存して終了</button>
                             <button type="reset" class="reset">リセット</button>
                             <div class="form-group">
-                                <a href="#">パスワード変更はこちら</a>
+                                <a href="{% url 'accounts:password_change_form'%}">パスワード変更はこちら</a>
                                 {{ profile_form.image }}
                             </div>
                         </div>

@@ -50,7 +50,7 @@ class Profile(models.Model):
         User, 
         on_delete=models.CASCADE,
     )
-    image = models.ImageField(upload_to='icon/', default='static/upload_img/icon/image.jpg')
+    image = models.ImageField(upload_to='icon/', blank=True, null=True)
     judge_cnt = models.IntegerField(default=0)
     washer_cnt = models.IntegerField(default=0)
     

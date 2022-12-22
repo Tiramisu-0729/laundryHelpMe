@@ -1,0 +1,22 @@
+{% extends '../layout.html' %}
+{% load static %}<!-- 必須 -->
+{% block link%}
+    <link rel="stylesheet" href="{% static 'css/EditUser.css' %}">
+{% endblock %}
+{% block content %}
+<div class="content">
+    <form action="{% url 'helpapp:changePass' %}" method="POST">
+        <p class="center">old:{{ pass_form.old_password }}</p>
+        <p class="center">new:{{ pass_form.new_password1 }}</p>
+        <ul>
+            <li>ご登録情報に似たパスワードにはできません。</li>
+            <li>8文字以上32文字以内で設定してください。</li>
+            <li>よく使われるパスワードにはできません。</li>
+            <li>数字だけのパスワードにはできません。</li>
+        </ul>
+        <p class="center">re:{{ pass_form.new_password2 }}</p>
+        <button class="change">パスワードを変更する</button>{% csrf_token %}
+    </form>
+</div>
+
+{% endblock content %}

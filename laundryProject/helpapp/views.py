@@ -1,14 +1,17 @@
+from distutils.log import error
+from hashlib import new
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Cabinet, Categories, Profile, Washer_log, Laundry
 from django.shortcuts import redirect, render, get_object_or_404
-from .forms import CabinetForm, JudgeForm, UpdateUserForm, UpdateProfileForm
+from .forms import CabinetForm, JudgeForm, UpdateUserForm, UpdateProfileForm, MyPasswordChangeForm
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 import json
 from helpapp.model_load import MODEL,tables
+from django.contrib import messages
 
 def helpapp(request):
     #ログインがあるか判別
@@ -89,11 +92,15 @@ def washer_add(request):
             tags = cabinet["laundry_tag"].split(',')
             if not(tags[0] == 'LD' or tags[0] == 'LE'):
                 cabinets.append(Cabinet.objects.get(pk=cabinet["id"]))
+        error=""
+        if(len(cabinets) == 0):
+            error = "追加できる洗濯物がありません"
         context = {
             'ON' : json.dumps('washer'),
             'message': 'Washer',
             'cabinets' : cabinets,
             'user' : user,
+            'error' : error
         }
         return render(request, 'washer/add.html',context)
     else :
@@ -111,6 +118,7 @@ def washer_add_redirect(request):
             else:
                 washers = checks_value
             request.session['washers'] = (washers) 
+        messages.success(request, '登録内容を保存しました。')
         return redirect('/helpapp/washer')
     else :
         return redirect('/accounts/login/')
@@ -163,6 +171,7 @@ def washers_delete(request):
                 if value in washers:
                     washers.remove(value)
             request.session['washers'] = washers
+        messages.success(request, '削除しました')
         return redirect('/helpapp/washer')
     else :
         return redirect('/accounts/login/')
@@ -251,6 +260,7 @@ def washer_clear(request):
         profile = Profile.objects.filter(user=request.user).first()
         profile.washer_cnt += 1
         profile.save()
+        messages.success(request, '洗濯物を空にしました')
         return redirect('/helpapp/washer')
     else :
         return redirect('/accounts/login/')
@@ -347,6 +357,7 @@ def cabinet_detail(request, pk):
 def cabinet_delete(request, pk):
     cabinet = Cabinet.objects.get(pk=pk)
     cabinet.delete()
+    messages.success(request, '削除しました')
     return redirect('/helpapp/cabinet')
 
 def cabinets_delete(request):
@@ -357,56 +368,82 @@ def cabinets_delete(request):
             for value in checks_value:
                 cabinet = Cabinet.objects.get(pk=value)
                 cabinet.delete()
+        messages.success(request, '削除しました')
         return redirect('/helpapp/cabinet')
     else :
         return redirect('/accounts/login/')
 
 def user(request):
     if request.user.is_authenticated :
-        if request.method == 'POST':
-            profile = Profile.objects.filter(user=request.user).first()
-            user_form = UpdateUserForm(request.POST, instance=request.user)
-            profile_form = UpdateProfileForm(request.POST, request.FILES, instance=profile)
-            if user_form.is_valid() and profile_form.is_valid():
-                user_form.save()
-                new_profile=Profile()
-                new_profile=profile_form.save(commit=False)
-                new_profile.user = request.user
-                new_profile.save()
-                messages.success(request, 'Your profile is updated successfully')
-                return redirect('/helpapp/user')
+        if Profile.objects.filter(user=request.user).exists():
+            if request.method == 'POST':
+                profile = Profile.objects.filter(user=request.user).first()
+                user_form = UpdateUserForm(request.POST, instance=request.user)
+                profile_form = UpdateProfileForm(request.POST, request.FILES, instance=profile)
+                if user_form.is_valid() and profile_form.is_valid():
+                    user_form.save()
+                    new_profile=Profile()
+                    new_profile=profile_form.save(commit=False)
+                    new_profile.user = request.user
+                    new_profile.save()
+                    messages.success(request, 'Your profile is updated successfully')
+                    return redirect('/helpapp/user')
+            else:
+                profile = Profile.objects.filter(user=request.user).first()
+                user_form = UpdateUserForm(instance=request.user)
+                profile_form = UpdateProfileForm(instance=profile)
+                user = request.user
+                profile = Profile.objects.filter(user=user).first()
+                print("==========================================")
+                print(profile.image)
+                sumCabinet = Cabinet.objects.filter(author=user).count()
+                awards = [["服の総数：", sumCabinet], ["判定回数：", profile.judge_cnt], ["洗濯回数：", profile.washer_cnt]]
+                for award in awards:
+                    if award[1] >= 200 :
+                        award.append('gold+α')
+                    elif award[1] >= 100 :
+                        award.append('gold')
+                    elif award[1] >= 50 :
+                        award.append('silver')
+                    elif award[1] >= 20:
+                        award.append('bronze')
+                    else :
+                        award.append('none')
+                context = {
+                    'ON' : json.dumps('user'),
+                    'message': 'User',
+                    'profile' : profile,
+                    'awards': awards,
+                    'user': user,
+                    'tables': tables, # model_loadからtables読み込み
+                    'user_form': user_form, 
+                    'profile_form': profile_form,
+                }
+                return render(request, 'user/index.html', context)
         else:
-            profile = Profile.objects.filter(user=request.user).first()
-            user_form = UpdateUserForm(instance=request.user)
-            profile_form = UpdateProfileForm(instance=profile)
-        user = request.user
-        profile = Profile.objects.filter(user=user).first()
-        sumCabinet = Cabinet.objects.filter(author=user).count()
-        awards = [["服の総数：", sumCabinet], ["判定回数：", profile.judge_cnt], ["洗濯回数：", profile.washer_cnt]]
-        for award in awards:
-            if award[1] >= 200 :
-                award.append('gold+α')
-            elif award[1] >= 100 :
-                award.append('gold')
-            elif award[1] >= 50 :
-                award.append('silver')
-            elif award[1] >= 20:
-                award.append('bronze')
-            else :
-                award.append('none')
-        context = {
-            'ON' : json.dumps('user'),
-            'message': 'User',
-            'profile' : profile,
-            'awards': awards,
-            'user': user,
-            'tables': tables, # model_loadからtables読み込み
-            'user_form': user_form, 
-            'profile_form': profile_form,
-        }
-        return render(request, 'user/index.html', context)
+            new_profile=Profile()
+            new_profile.user = request.user
+            new_profile.image = "none"
+            new_profile.save()
+        return redirect('/helpapp/user')
     else :
         return redirect('/accounts/login/')
+
+def changePass(request):
+    if request.user.is_authenticated :
+        if request.method == 'POST':
+            form = MyPasswordChangeForm(request.POST)
+            if form.is_valid():
+                form.save()
+            return redirect('/helpapp/user')
+        else :
+            pass_form = MyPasswordChangeForm(user=request.user)
+            context = {
+                'pass_form': pass_form,
+                'ON' : json.dumps('user'),
+                'message': 'ChangePass',
+            }
+            return render(request, 'user/change.html', context)
 
 def timeline(request):
     if request.user.is_authenticated :

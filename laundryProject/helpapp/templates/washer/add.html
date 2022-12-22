@@ -5,6 +5,7 @@
 {% endblock %}
 {% block content %}
     <div class="content">
+        <div class="error">{{error}}</div>
         <form action="{% url 'helpapp:washer_add_redirect' %}" method="POST">
             {% csrf_token %}
             {% for cabinet in cabinets %}

@@ -4,6 +4,30 @@ window.onload = function(){
     let content = document.getElementById('content');
     let checkbox = document.querySelectorAll("input[type='checkbox']");
     let btn = document.getElementsByClassName('btn')
+    // メッセージ
+    var ref = document.referrer
+    if (ref.indexOf('helpapp/cabinet_add') !== -1) {
+        alert("保存しました");
+        history.pushState(null, null, location.href);
+        window.addEventListener('popstate', (e) => {
+            history.go(1);
+        });
+    } 
+
+    else if (ref.indexOf('helpapp/cabinet_detele/*') !== -1) {
+        alert("削除しました");
+        history.pushState(null, null, location.href);
+        window.addEventListener('popstate', (e) => {
+            history.go(1);
+        });
+    }
+    else if (ref.indexOf('helpapp/cabinets_detele') !== -1) {
+        alert("削除しました");
+        history.pushState(null, null, location.href);
+        window.addEventListener('popstate', (e) => {
+            history.go(1);
+        });
+    }
     
   
 
@@ -70,30 +94,7 @@ window.onload = function(){
 
 
 
-// メッセージ
-var ref = document.referrer
-if (ref.indexOf('helpapp/cabinet_add') !== -1) {
-    alert("保存しました");
-    history.pushState(null, null, location.href);
-    window.addEventListener('popstate', (e) => {
-        history.go(1);
-    });
-} 
 
-else if (ref.indexOf('helpapp/cabinet_detele/*') !== -1) {
-    alert("削除しました");
-    history.pushState(null, null, location.href);
-    window.addEventListener('popstate', (e) => {
-        history.go(1);
-    });
-}
-else if (ref.indexOf('helpapp/cabinets_detele') !== -1) {
-    alert("削除しました");
-    history.pushState(null, null, location.href);
-    window.addEventListener('popstate', (e) => {
-        history.go(1);
-    });
-}
 
 
 
