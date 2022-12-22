@@ -430,43 +430,11 @@ def user(request):
                 }
                 return render(request, 'user/index.html', context)
         else:
-<<<<<<< HEAD
             new_profile=Profile()
             new_profile.user = request.user
             new_profile.image = "none"
             new_profile.save()
         return redirect('/helpapp/user')
-=======
-            profile = Profile.objects.filter(user=request.user).first()
-            user_form = UpdateUserForm(instance=request.user)
-            profile_form = UpdateProfileForm(instance=profile)
-        user = request.user
-        profile = Profile.objects.filter(user=user).first()
-        sumCabinet = Cabinet.objects.filter(author=user).count()
-        awards = [["服の総数", sumCabinet], ["判定回数", profile.judge_cnt], ["洗濯回数", profile.washer_cnt]]
-        for award in awards:
-            if award[1] >= 200 :
-                award.append('gold+α')
-            elif award[1] >= 100 :
-                award.append('gold')
-            elif award[1] >= 50 :
-                award.append('silver')
-            elif award[1] >= 20:
-                award.append('bronze')
-            else :
-                award.append('none')
-        context = {
-            'ON' : json.dumps('user'),
-            'message': 'User',
-            'profile' : profile,
-            'awards': awards,
-            'user': user,
-            'tables': tables, # model_loadからtables読み込み
-            'user_form': user_form, 
-            'profile_form': profile_form,
-        }
-        return render(request, 'user/index.html', context)
->>>>>>> c451ba64270fe48b5db596079b28d4e11eb66321
     else :
         return redirect('/accounts/login/')
 
