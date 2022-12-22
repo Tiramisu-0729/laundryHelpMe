@@ -1,0 +1,41 @@
+{% load static %}<!-- 必須 -->
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" href="{% static "pictures/icon.svg"%}">
+    <title>{{message}}</title>
+    <link rel="stylesheet" href="{% static 'css/result_admin.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div id="header">
+                <P id="title">{{message}}</P>
+        </div>
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>画像</th>
+                <th>AIの判定</th>
+                <th>正しい判定</th>
+            </tr>
+            {% for report in reports %}
+                <tr>
+                    <td>{{report}}</td>
+                    <td>{% with img="/upload_img/"|add:report.image %}
+                        <img src="{{ img }}">
+                    {% endwith %}</td>
+                    <td>{{report.ai_result}}</td>
+                    <td>{{report.user_result}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <div class="link">
+        <a href="{% url 'helpapp:home' %}">アプリへ戻る</a> | 
+        <a href="{% url 'admin:index' %}">Django管理者画面へ</a>
+    </div>
+</body>
+</html>

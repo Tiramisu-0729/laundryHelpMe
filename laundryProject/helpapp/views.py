@@ -190,7 +190,6 @@ def washer_log(request):
     else :
         return redirect('/accounts/login/')
 
-
 def washer_log_add(request):
     if request.user.is_authenticated :
         if 'washers' in request.session:
@@ -436,7 +435,6 @@ def timeline(request):
         return render(request, 'timeline/index.html', context)
     else :
         return redirect('/accounts/login/')
-from time import sleep
 def judge(request):
     if request.method == "POST":
         image = request.FILES['UploadImg']#保存先はupload_imgのなか　いったん保存
@@ -447,9 +445,6 @@ def judge(request):
         #AIで画像判定
         # results = MODEL(file_url)
         results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
-
-        # sleep(10) # ------------------------------ 処理を停止 ----------------------------------------------------
-
         #判定結果 解析
         datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
         result=[]
@@ -538,6 +533,23 @@ def judge_report(request):
         report.user_result = request.session['tags']
         report.save()
     return render(request, 'laundry_tag_check/result.html', request.session['context'])
+
+def report_admin(request):
+    context=[]
+    if  request.user.is_superuser :
+        reports = Report.objects.all()
+        context = {
+            'message': 'report',
+            "reports" : reports,
+        }
+        return render(request, 'report/index.html', context)
+    else:
+        context = {
+        'ON' : json.dumps('home'),
+        'message': 'Judge',
+        'form': JudgeForm(),
+        }
+        return render(request, 'home/index.html', context)
 
 def testYolo(request):
     # path_hubconfig = "yolo"
