@@ -1,14 +1,16 @@
+import os
+import shutil
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Cabinet, Categories, Profile, Washer_log, Laundry
+from laundryProject.settings import MEDIA_ROOT
+from .models import Cabinet, Categories, Profile, Washer_log, Laundry, Report
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import CabinetForm, JudgeForm, UpdateUserForm, UpdateProfileForm
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 import json
-from helpapp.model_load import MODEL,tables
+from helpapp.data_load import MODEL,tables
 
 def helpapp(request):
     #ログインがあるか判別
@@ -446,7 +448,7 @@ def judge(request):
         # results = MODEL(file_url)
         results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
 
-        sleep(5) # ------------------------------ 処理を停止 ----------------------------------------------------
+        # sleep(10) # ------------------------------ 処理を停止 ----------------------------------------------------
 
         #判定結果 解析
         datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
@@ -476,6 +478,7 @@ def laundry_tag_check(request):
     file_url = request.GET.get('file_url') # param1の値を取得
     res = request.GET.get('result') # param2の値を取得
     res = res.replace("[","").replace("]","").replace("'","").replace(" ","")
+    request.session['ai_result'] = res
     results = res.split(',')
     context = {
         'ON' : json.dumps('home'),
@@ -519,9 +522,22 @@ def judge_result(request):
             'tags_json' : json.dumps(tags),
             'tags' : tags,
         }
-    
-    #ディレクトリ削除os.remove('target.txt')
-    return render(request, 'laundry_tag_check/result.html', context)
+        request.session['context'] = context
+        #ディレクトリ削除os.remove('target.txt')
+        return render(request, 'laundry_tag_check/result.html', context)
+
+def judge_report(request):
+    # file_name = request.session['file_url'].replace("/media/", "")
+    file_name = request.session['file_url'].replace("/upload_img/", "")
+    is_file = os.path.exists(MEDIA_ROOT + 'report/' + file_name)
+    if is_file == False:
+        shutil.copy( MEDIA_ROOT + file_name, MEDIA_ROOT + 'report/' + file_name)
+        report = Report()
+        report.image = 'report/' +  file_name
+        report.ai_result  = request.session['ai_result']
+        report.user_result = request.session['tags']
+        report.save()
+    return render(request, 'laundry_tag_check/result.html', request.session['context'])
 
 def testYolo(request):
     # path_hubconfig = "yolo"

@@ -7,26 +7,14 @@ class Categories(models.Model):
     
     def __str__(self):
         return self.name
-# #トロフィーのきのうつけるなら
-# class Award(models.Model):
-#     name = models.CharField(max_length=255)
-#     text = models.CharField(max_length=255)
-#     def __str__(self):
-#         return self.name
 
-# class Winned_Award(models.Model):
-#     user = models.ForeignKey(
-#         User,
-#         on_delete=models.CASCADE,
-#     )
-#     award = models.ForeignKey(
-#         Award, 
-#         on_delete=models.PROTECT,
-#     )
-#     date =
+class Report(models.Model):
+    image = models.CharField(max_length=255)
+    ai_result = models.CharField(max_length=255)
+    user_result = models.CharField(max_length=255)
+    def __str__(self):
+        return str(self.id)
 
-    # def __str__(self):
-    #     return self.user
 
 class Cabinet(models.Model):
     author = models.ForeignKey(

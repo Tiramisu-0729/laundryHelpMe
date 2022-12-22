@@ -38,9 +38,9 @@ window.onload = function(){
             for(i=0;i<elements.length;i++){
                 elements[i].style.display = "none";
             }
-        var elements = document.getElementsByClassName('loading');
+        var elements = document.getElementsByClassName('load');
             for(i=0;i<elements.length;i++){
-                elements[i].style.display = "flex";
+                elements[i].style.display = "block";
             }
     });
 
