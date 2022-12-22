@@ -42,7 +42,7 @@ window.onload = function(){
 
         //画像を表示
         reader.onload = function() {
-            account_img.setAttribute('src', reader.result);
+            user-pic.setAttribute('src', reader.result);
         }
         
     });
