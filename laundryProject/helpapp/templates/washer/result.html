@@ -16,7 +16,6 @@
             </div>
         {% endfor %}
     </div>
-    <hr>
     <table>
         {% for tag in comp %}
             {% with img="/pictures/"|add:tag|add:".png" %}
@@ -25,18 +24,17 @@
             <td><div id="{{tag}}"></div></td></tr>
         {% endfor %}
     </table>
-</div>
-<hr>
-<div class="button">
-    <a href='{% url "helpapp:washer_complete" %}'>
-        <button type="button" class="finish">完了</button>
-    </a>
-    <a href="{% url 'helpapp:washer_clear' %}">
-        <button type="button" class="washer_clear">洗濯機を空にする</button>
-    </a>
-    <a href="{% url 'helpapp:washer_log_add' %}">
-        <button type="button" class="washer_log_add">洗濯機LOGに追加する</button>
-    </a>
+    <div class="button">
+        <a href='{% url "helpapp:washer_complete" %}'>
+            <button type="button" class="finish">完了</button>
+        </a>
+        <a href="{% url 'helpapp:washer_log_add' %}">
+            <button type="button" class="washer_log_add">履歴に追加する</button>
+        </a>
+        <a href="{% url 'helpapp:washer_clear' %}">
+            <button type="button" class="washer_clear">洗濯機を空にする</button>
+        </a>
+    </div>
 </div>
 
 <script type="text/javascript">
