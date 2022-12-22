@@ -393,8 +393,6 @@ def user(request):
                 profile_form = UpdateProfileForm(instance=profile)
                 user = request.user
                 profile = Profile.objects.filter(user=user).first()
-                print("==========================================")
-                print(profile.image)
                 sumCabinet = Cabinet.objects.filter(author=user).count()
                 awards = [["服の総数：", sumCabinet], ["判定回数：", profile.judge_cnt], ["洗濯回数：", profile.washer_cnt]]
                 for award in awards:
