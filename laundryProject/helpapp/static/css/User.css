@@ -108,20 +108,35 @@ a{
     text-decoration: none;
 }
 hr{
-    margin: 0 2% 5%;
+    margin: 0 2vmin 4vmin;
     clear: both;
 }
 .detail {
     font-size: 5vmin;
-    margin: 3% 5% 5%;
 }
 .award{
-    margin-bottom: 0.25em;
+    margin-bottom: 4vmin;
+    width: 33.3vw;
+    float: left;
+    text-align: center;
+}
+.award0{
+    margin-top: 1vmin;
+}
+.award1{
+    font-size: 8vmin;
+    font-weight: bold;
+    margin-top: 1vmin;
+    margin-bottom: 1vmin;
+}
+.award img{
+    width: 15vmin;
+    height: 15vmin;
 }
 .washingDisplay{
     background-color: #CBF9FF;
-    padding: 2% 8% 2% 1%;
-    margin-bottom: 3%;
+    padding: 2vmin 8vmin 2vmin 1vmin;
+    margin-bottom: 3vmin;
     font-size: 5.5vmin;
     color: #002D6B;
 }
@@ -161,8 +176,8 @@ table{
     border-collapse: collapse;
     margin: 2vmin auto 4vmin;
     align-content: center;
-    padding: 5% 5%;
-    max-width: 90%;
+    padding: 5vmin 5vmin;
+    max-width: 90vw;
 }
 tr,td{
     border: solid 2px rgb(201, 201, 201);
@@ -173,25 +188,25 @@ td{
 }
 .attention{
     font-size: 4vmin;
-    margin-left: 5%;
+    margin-left: 5vmin;
 }
 ol{
     font-size: 4vmin;
-    margin-left: 4%;
+    margin-left: 4vmin;
 }
 .logout{
     text-align: right;
     font-size: 4vmin;
-    margin-top: 20%;
+    margin-top: 20vmin;
 }
 summary span {
     font-size: 5vmin;
 }
 /* ↓↓↓↓↓↓↓↓↓↓↓アコーディオンアニメーション↓↓↓↓↓↓↓↓↓↓↓ */
 summary{
-    padding: 2% 3%;
-    margin-bottom: 3%;
-    padding-left: 7%;
+    padding: 2vmin 3vmin;
+    margin-bottom: 3vmin;
+    padding-left: 7vmin;
     list-style: none; /* 以外を指定してデフォルトの三角形アイコンを消す */
     cursor: pointer;
     position: relative;
