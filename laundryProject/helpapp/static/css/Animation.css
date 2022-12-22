@@ -1,10 +1,26 @@
-.loading {
-	min-height: 70vh;
+.load {
 	display: none;
+}
+.text {
+	margin-top: 5%;
+	justify-content: center;
+	display: flex;
+	font-size: 6vmin;
+}
+.loading {
+	margin-top: 10%;
 	justify-content: center;
 	align-items: center;
 	animation: animateTheBodyBg 10s linear infinite;
 	-webkit-animation: animateTheBodyBg 10s linear infinite;
+	display: flex;
+}
+
+.Advertisement {
+	margin-top: 3%;
+	justify-content: center;
+	align-items: center;
+	display: flex;
 }
 
 @keyframes animateTheBodyBg {
@@ -29,8 +45,8 @@
   /* Spans */
 .loader {
 	position: relative;
-	width: 140px;
-	height: 140px;
+	width: 100px;
+	height: 100px;
 }
 
 .loader span {
@@ -43,8 +59,8 @@
 .loader span::before {
 	content: '';
 	position: absolute;
-	width: 15px;
-	height: 15px;
+	width: 10px;
+	height: 10px;
 	border-radius: 50%;
 	background-color: #00ff0a;
 	box-shadow: 0 0 10px #00ff0a,

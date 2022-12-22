@@ -15,6 +15,7 @@ urlpatterns = [
     path("user/",views.user, name="user"),
     path("judge",views.judge, name="judge"),
     path("judge_result",views.judge_result, name="judge_result"),
+    path("judge_report",views.judge_report, name="judge_report"),
     path("cabinet_judge",views.cabinet_judge, name="cabinet_judge"),
     path("cabinet_form",views.cabinet_form, name="cabinet_form"),
     path("cabinet_add",views.cabinet_add, name="cabinet_add"),

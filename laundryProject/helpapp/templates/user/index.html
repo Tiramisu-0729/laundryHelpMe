@@ -72,8 +72,8 @@
         <div class="detail">
             {% for award in awards %}
                 <div class="award">
-                    {{award.0}}
-                    {{award.1}}
+                    <div class="award0">{{award.0}}</div>
+                    <div class="award1">{{award.1}}</div>
                     {% with img="/pictures/"|add:award.2|add:".png" %}
                         <img src="{% static img%}">
                     {% endwith %}

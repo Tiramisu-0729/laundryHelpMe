@@ -1,17 +1,26 @@
+<<<<<<< HEAD
 from distutils.log import error
 from hashlib import new
+=======
+import os
+import shutil
+>>>>>>> c451ba64270fe48b5db596079b28d4e11eb66321
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render
-from django.http import HttpResponse
-from .models import Cabinet, Categories, Profile, Washer_log, Laundry
+from laundryProject.settings import MEDIA_ROOT
+from .models import Cabinet, Categories, Profile, Washer_log, Laundry, Report
 from django.shortcuts import redirect, render, get_object_or_404
 from .forms import CabinetForm, JudgeForm, UpdateUserForm, UpdateProfileForm, MyPasswordChangeForm
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 import json
+<<<<<<< HEAD
 from helpapp.model_load import MODEL,tables
 from django.contrib import messages
+=======
+from helpapp.data_load import MODEL,tables
+>>>>>>> c451ba64270fe48b5db596079b28d4e11eb66321
 
 def helpapp(request):
     #ログインがあるか判別
@@ -421,11 +430,43 @@ def user(request):
                 }
                 return render(request, 'user/index.html', context)
         else:
+<<<<<<< HEAD
             new_profile=Profile()
             new_profile.user = request.user
             new_profile.image = "none"
             new_profile.save()
         return redirect('/helpapp/user')
+=======
+            profile = Profile.objects.filter(user=request.user).first()
+            user_form = UpdateUserForm(instance=request.user)
+            profile_form = UpdateProfileForm(instance=profile)
+        user = request.user
+        profile = Profile.objects.filter(user=user).first()
+        sumCabinet = Cabinet.objects.filter(author=user).count()
+        awards = [["服の総数", sumCabinet], ["判定回数", profile.judge_cnt], ["洗濯回数", profile.washer_cnt]]
+        for award in awards:
+            if award[1] >= 200 :
+                award.append('gold+α')
+            elif award[1] >= 100 :
+                award.append('gold')
+            elif award[1] >= 50 :
+                award.append('silver')
+            elif award[1] >= 20:
+                award.append('bronze')
+            else :
+                award.append('none')
+        context = {
+            'ON' : json.dumps('user'),
+            'message': 'User',
+            'profile' : profile,
+            'awards': awards,
+            'user': user,
+            'tables': tables, # model_loadからtables読み込み
+            'user_form': user_form, 
+            'profile_form': profile_form,
+        }
+        return render(request, 'user/index.html', context)
+>>>>>>> c451ba64270fe48b5db596079b28d4e11eb66321
     else :
         return redirect('/accounts/login/')
 
@@ -483,7 +524,7 @@ def judge(request):
         # results = MODEL(file_url)
         results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
 
-        sleep(5) # ------------------------------ 処理を停止 ----------------------------------------------------
+        # sleep(10) # ------------------------------ 処理を停止 ----------------------------------------------------
 
         #判定結果 解析
         datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
@@ -513,6 +554,7 @@ def laundry_tag_check(request):
     file_url = request.GET.get('file_url') # param1の値を取得
     res = request.GET.get('result') # param2の値を取得
     res = res.replace("[","").replace("]","").replace("'","").replace(" ","")
+    request.session['ai_result'] = res
     results = res.split(',')
     context = {
         'ON' : json.dumps('home'),
@@ -556,9 +598,22 @@ def judge_result(request):
             'tags_json' : json.dumps(tags),
             'tags' : tags,
         }
-    
-    #ディレクトリ削除os.remove('target.txt')
-    return render(request, 'laundry_tag_check/result.html', context)
+        request.session['context'] = context
+        #ディレクトリ削除os.remove('target.txt')
+        return render(request, 'laundry_tag_check/result.html', context)
+
+def judge_report(request):
+    # file_name = request.session['file_url'].replace("/media/", "")
+    file_name = request.session['file_url'].replace("/upload_img/", "")
+    is_file = os.path.exists(MEDIA_ROOT + 'report/' + file_name)
+    if is_file == False:
+        shutil.copy( MEDIA_ROOT + file_name, MEDIA_ROOT + 'report/' + file_name)
+        report = Report()
+        report.image = 'report/' +  file_name
+        report.ai_result  = request.session['ai_result']
+        report.user_result = request.session['tags']
+        report.save()
+    return render(request, 'laundry_tag_check/result.html', request.session['context'])
 
 def testYolo(request):
     # path_hubconfig = "yolo"
