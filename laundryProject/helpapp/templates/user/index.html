@@ -66,6 +66,9 @@
                 </form>
             </div>
             <p class="logout"><a href='{% url "logout" %}'>ログアウト</a></p>
+            {% if user.is_superuser %}
+                <p class="admin"><a href='{% url "helpapp:report_admin" %}'>Admin Site</a></p>
+            {% endif %}
         </div>
         <!-- ここまで -->
         <hr>
