@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-from distutils.log import error
-from hashlib import new
-=======
 import os
 import shutil
->>>>>>> c451ba64270fe48b5db596079b28d4e11eb66321
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render
@@ -15,12 +10,8 @@ from .forms import CabinetForm, JudgeForm, UpdateUserForm, UpdateProfileForm, My
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 import json
-<<<<<<< HEAD
-from helpapp.model_load import MODEL,tables
 from django.contrib import messages
-=======
 from helpapp.data_load import MODEL,tables
->>>>>>> c451ba64270fe48b5db596079b28d4e11eb66321
 
 def helpapp(request):
     #ログインがあるか判別
