@@ -382,7 +382,7 @@ def user(request):
         user = request.user
         profile = Profile.objects.filter(user=user).first()
         sumCabinet = Cabinet.objects.filter(author=user).count()
-        awards = [["服の総数：", sumCabinet], ["判定回数：", profile.judge_cnt], ["洗濯回数：", profile.washer_cnt]]
+        awards = [["服の総数", sumCabinet], ["判定回数", profile.judge_cnt], ["洗濯回数", profile.washer_cnt]]
         for award in awards:
             if award[1] >= 200 :
                 award.append('gold+α')
