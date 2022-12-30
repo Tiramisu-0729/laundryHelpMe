@@ -3,6 +3,7 @@
     margin-bottom: 15vmin;
     color: #333;
 }
+
 #main{
     margin: 5vmin;
 }
@@ -10,7 +11,7 @@
     margin: 3vmin;
     text-align: center;
 }
-.user-pic{
+.user_pic{
     width: 30vmin;
     height: 30vmin;
     object-fit: cover;
@@ -20,6 +21,17 @@
     margin-top: -9vmin;
     margin-bottom: 3vmin;
 }
+#user_pic_form{
+    width: 30vmin;
+    height: 30vmin;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #bebebe;
+    box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.5);
+    margin-top: -9vmin;
+    margin-bottom: 3vmin;
+}
+
 .UserName{
     margin-top: 1%;
     text-align: center;

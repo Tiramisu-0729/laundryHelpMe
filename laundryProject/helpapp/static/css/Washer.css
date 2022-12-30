@@ -11,14 +11,11 @@ body{
 .item{
     width: 28vmin;
     height: 28vmin;
+    margin: 1.7vmin;
     text-align: center;
     border-radius: 3px;
     border: solid 1px #f0f0f0;
-    border-radius: 3px;
-    margin: 2.2%;
-    float: left;
     position: relative;
-    /* box-shadow: 0 2px 10px 0 rgba(102, 102, 102, 0.5); */
 }
 .item img{
     width: 28vmin; 
@@ -28,23 +25,23 @@ body{
 .hidden{
     display: none;
 }
-.content{
-    text-align: center;
-    display:flex
+.main{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1.9vmin;
 }
 .checkbox{
+    margin: 1.1vmin;
     width: 28vmin;
     height: 28vmin;
-    border: solid 1px #e7e7e7;
+    text-align: center;
     border-radius: 3px;
-    margin: 2.2%;
-    float: left;
+    border: solid 3px #fff;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: relative;
-    /* box-shadow: 0 2px 2px -1px #6D6D6D; */
-    box-shadow: 0 2px 5px 1px #cfcfcf;
+    box-shadow: 1px 2px 5px 1px #cfcfcf;
 }
 .checkbox img{
     width: 28vmin; 
@@ -71,7 +68,7 @@ label{
     justify-content: center;
 }
 .checkbox input[type="checkbox"]:checked+label {
-    border: solid 2px royalblue;
+    border: solid 3px royalblue;
     border-radius: 3px;
 }
 .how{
@@ -125,27 +122,34 @@ label{
     bottom: 15vmin;
     height: 15vmin;
 }
-.add{
-    width: 70%;
-    border-radius: 5px;
-    margin: 10% 15% 10%;
-    padding-top: 2%;
-    padding-bottom: 2%;
+#add{
+    width: 16vmin;
+    height: 16vmin;
+    border-radius: 50%;
     font-size: 8vmin;
-    background-color: #4BC9FF;
     color: #fff;
     font-weight: bold;
     border: none;
+    background-color: #4BC9FF;
+    position: absolute;
+    right: 3vmin;
+    bottom: 20vmin;
+    box-shadow: 1px 2px 5px 2px #cfcfcf;
+
 }
 .finish{
     clear: both;
     background-color: #4BC9FF;
 }
+.button{
+    text-align: center;
+    margin: 20% 2%;
+
+}
 .judge{
     background-color: #fffa61;
     width: 70%;
     border-radius: 5px;
-    margin: 0 15% 25%;
     padding-top: 2%;
     padding-bottom: 2%;
     font-size: 8vmin;

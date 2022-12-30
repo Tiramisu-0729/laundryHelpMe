@@ -28,6 +28,18 @@ body{
               -1px 0 0 #FFF, 1px 0 0 #FFF;
 }
 
+/* message */
+#success{
+    width: 100%;
+    height: 2em;
+    background-color: rgba(0, 173, 115, 0.295);
+    color: rgb(0, 173, 115);
+}
+#success p{
+    line-height: 2em;
+    margin: 0;
+}
+
 /* footer */
 .footer{
     height: 15vmin;

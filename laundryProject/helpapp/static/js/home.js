@@ -1,6 +1,7 @@
 window.onload = function(){ 
     let id_img = document.getElementById('id_UploadImg');
     let submit = document.getElementById('submit');
+    
     id_img.addEventListener('change', function() {
         //画像取得
         const img = id_img.files[0];

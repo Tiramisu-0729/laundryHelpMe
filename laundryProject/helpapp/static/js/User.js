@@ -1,8 +1,10 @@
 window.onload = function(){ 
-    
     let edit = document.getElementById('edit-button');
     let main = document.getElementById('main');
     let main_edit = document.getElementById('main_edit');
+    let message = document.getElementById('success');
+
+    
 
     edit.addEventListener('click', () => {  //editがクリックされたら
         main.classList.toggle('hidden');
@@ -14,12 +16,18 @@ window.onload = function(){
             edit.innerText = '編集' ;
         }
     });
+
+    message.addEventListener('click', () => { 
+        message.classList.add('hidden');
+    });
+
     let id_img = document.getElementById('id_image');
+
     id_img.addEventListener('change', function() {
         //画像取得
-        let img = id_img.files[0];
+        const img = id_img.files[0];
         //image.setAttribute('src', "/static/pictures/img.png");
-        let type = img.type;
+        const type = img.type;
         
         //画像かどうかチェック
         if( !type.match(/^image/) ){
@@ -42,7 +50,7 @@ window.onload = function(){
 
         //画像を表示
         reader.onload = function() {
-            user-pic.setAttribute('src', reader.result);
+            user_pic_form.setAttribute('src', reader.result);
         }
         
     });

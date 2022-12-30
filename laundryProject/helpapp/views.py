@@ -332,6 +332,7 @@ def cabinet_add(request):
             cabinet.laundry_tag = request.session.get('tags')#判定結果sessionとか
             cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
             cabinet.save()
+            messages.success(request, '登録しました')
         return redirect('/helpapp/cabinet')
     else:
         user = request.user
@@ -354,8 +355,9 @@ def cabinet_detail(request, pk):
     return render(request, 'cabinet/detail.html', context)
 
 def cabinet_delete(request, pk):
-    cabinet = Cabinet.objects.get(pk=pk)
-    cabinet.delete()
+    if Cabinet.objects.filter(pk=pk).exists():#存在確認
+        cabinet = Cabinet.objects.get(pk=pk)
+        cabinet.delete()
     messages.success(request, '削除しました')
     return redirect('/helpapp/cabinet')
 
@@ -365,8 +367,9 @@ def cabinets_delete(request):
         if request.method == "POST":
             checks_value = request.POST.getlist('check')
             for value in checks_value:
-                cabinet = Cabinet.objects.get(pk=value)
-                cabinet.delete()
+                if Cabinet.objects.filter(pk=value).exists():#存在確認
+                    cabinet = Cabinet.objects.get(pk=value)
+                    cabinet.delete()
         messages.success(request, '削除しました')
         return redirect('/helpapp/cabinet')
     else :
@@ -385,7 +388,7 @@ def user(request):
                     new_profile=profile_form.save(commit=False)
                     new_profile.user = request.user
                     new_profile.save()
-                    messages.success(request, 'Your profile is updated successfully')
+                    messages.success(request, 'プロフィールが変更されました。')
                     return redirect('/helpapp/user')
             else:
                 profile = Profile.objects.filter(user=request.user).first()
@@ -394,7 +397,7 @@ def user(request):
                 user = request.user
                 profile = Profile.objects.filter(user=user).first()
                 sumCabinet = Cabinet.objects.filter(author=user).count()
-                awards = [["服の総数：", sumCabinet], ["判定回数：", profile.judge_cnt], ["洗濯回数：", profile.washer_cnt]]
+                awards = [["服の総数", sumCabinet], ["判定回数", profile.judge_cnt], ["洗濯回数", profile.washer_cnt]]
                 for award in awards:
                     if award[1] >= 200 :
                         award.append('gold+α')
@@ -551,7 +554,6 @@ def judge_result(request):
             'tags' : tags,
         }
         request.session['context'] = context
-        #ディレクトリ削除os.remove('target.txt')
         return render(request, 'laundry_tag_check/result.html', context)
 
 def judge_report(request):

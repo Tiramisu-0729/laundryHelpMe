@@ -2,8 +2,9 @@ window.onload = function(){
     let edit = document.getElementById('edit');
     let check = document.getElementById('check');
     let content = document.getElementById('content');
+    let message = document.getElementById('success');
     let checkbox = document.querySelectorAll("input[type='checkbox']");
-    let btn = document.getElementsByClassName('btn')
+    let btn = document.getElementsByClassName('btn');
     // メッセージ
     var ref = document.referrer
     if (ref.indexOf('helpapp/cabinet_add') !== -1) {
@@ -47,6 +48,7 @@ window.onload = function(){
         
     });             
     
+
     for (let i = 0; i < checkbox.length; i++) {
         checkbox[i].addEventListener('change', function() { //チェックボックス（type='checkbox'）の値が変更されたとき・・・ 
             let check = document.form1.check;
@@ -67,6 +69,7 @@ window.onload = function(){
                 if(btn[0].classList.contains('hidden')){
                     if(newArr.length > 0){
                         btn[0].classList.remove('hidden');
+                        document.getElementById('add').style.bottom = "33vmin";
                     }
                 }
                 document.querySelector('#delete').value ='(' + newArr.length + ')' + '削除';
@@ -83,11 +86,16 @@ window.onload = function(){
                 let newArr = Array.from(new Set(arr));
                 if(newArr.length == 0){
                     btn[0].classList.add('hidden');
+                    document.getElementById('add').style.bottom = "20vmin";
                 }
                 document.querySelector('#delete').value ='(' + newArr.length + ')' + '削除';
             }
         });
     }
+
+    message.addEventListener('click', () => { 
+        message.classList.add('hidden');
+    });
     
     
 };

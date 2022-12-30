@@ -6,16 +6,22 @@
     <script src="{% static 'js/User.js' %}"></script>
 {% endblock %}
 {% block content %}
+
     <div class="content">
+    {% for message in messages %}
+        <div {% if message.tags %}id="{{ message.tags }}" {% endif %}>
+            <p>　×　　{{ message }}</p>
+        </div>
+    {% endfor %}
     <div class="edit">
         <button id="edit-button">編集</button>
     </div>
         <div id="main">
             <div class="user">
                 {% if profile.image|stringformat:"s" == "none" %}
-                    <img class="user-pic" src="{% static 'pictures/icon.svg' %}" alt="user_icon">
+                    <img class="user_pic" src="{% static 'pictures/icon.svg' %}" alt="user_icon">
                 {% else %}
-                    <img class="user-pic" src="{{profile.image.url}}" alt="user_icon"> 
+                    <img class="user_pic" src="{{profile.image.url}}" alt="user_icon"> 
                 {% endif %}
                 
             </div>
@@ -27,9 +33,9 @@
             <div class="img_div">
                 <label for="id_image">
                     {% if profile.image|stringformat:"s" == "none" %}
-                        <img class="user-pic" src="{% static 'pictures/icon.svg' %}" alt="user_icon"> 
+                        <img id="user_pic_form" src="{% static 'pictures/icon.svg' %}" alt="user_icon"> 
                     {% else %}
-                        <img class="user-pic" src="{{profile.image.url}}" alt="user_icon"> 
+                        <img id="user_pic_form" src="{{profile.image.url}}" alt="user_icon"> 
                     {% endif %}
                 </label>
             </div>
