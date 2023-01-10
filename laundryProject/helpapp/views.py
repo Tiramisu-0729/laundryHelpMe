@@ -479,6 +479,8 @@ def judge(request):
         file_url = fs.url(file_data)
         request.session['file_url'] = file_url
         #AIで画像判定
+        import time
+        time.sleep(0.1)
         # results = MODEL(file_url)
         results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
         #判定結果 解析
