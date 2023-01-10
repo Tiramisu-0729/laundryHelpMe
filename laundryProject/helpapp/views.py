@@ -57,16 +57,19 @@ def washer(request):
                 i+=1
         categories = Categories.objects.all()
         categories_json =[]
+        
         for category in categories:
             categories_json.append(category.name)
         if len(washers) == 0:
             none = 0
+            print('a')
         context = {
             'categories_json' : json.dumps(categories_json), 
             'categories' : categories,
             'ON' : json.dumps('washer'),
             'message': 'Washer',
-            'none' : json.dumps(none),
+            'none' : none,
+            'none_json' : json.dumps(none),
             'washers' : washers
         }
         return render(request, 'washer/index.html',context)
