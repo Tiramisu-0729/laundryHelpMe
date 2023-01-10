@@ -474,6 +474,7 @@ def timeline(request):
         return render(request, 'timeline/index.html', context)
     else :
         return redirect('/accounts/login/')
+
 def judge(request):
     if request.method == "POST":
         image = request.FILES['UploadImg']#保存先はupload_imgのなか　いったん保存
