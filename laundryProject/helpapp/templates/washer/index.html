@@ -61,7 +61,7 @@
 
 
     {% if none == 0 %}
-    <div class="none">洗濯物を追加してください</div>
+    <div class="none"><h2>洗濯物を追加してください</h2></div>
     {% endif %}
     
     <!-- チェックボックス -->
@@ -122,7 +122,7 @@
         </a>
     </div>
     <script type="text/javascript">
-        let none = JSON.parse('{{ none|safe }}');
+        let none = JSON.parse('{{ none_json|safe }}');
         if  (none == 0 ){
             let elements = document.getElementById('judge');
             elements.style.display="none";

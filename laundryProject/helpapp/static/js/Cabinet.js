@@ -2,7 +2,7 @@ window.onload = function(){
     let edit = document.getElementById('edit');
     let check = document.getElementById('check');
     let content = document.getElementById('content');
-    let message = document.getElementById('success');
+    
     let checkbox = document.querySelectorAll("input[type='checkbox']");
     let btn = document.getElementsByClassName('btn');
     // メッセージ
@@ -92,7 +92,7 @@ window.onload = function(){
             }
         });
     }
-
+    let message = document.getElementById('success');
     message.addEventListener('click', () => { 
         message.classList.add('hidden');
     });

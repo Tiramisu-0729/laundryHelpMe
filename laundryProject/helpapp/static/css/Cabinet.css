@@ -28,6 +28,7 @@
 
 }
 .item img{
+    border-radius: 5px;
     width: 28vmin; 
     height: 28vmin; 
     object-fit: cover;
@@ -45,7 +46,7 @@
     width: 28vmin;
     height: 28vmin;
     text-align: center;
-    border-radius: 3px;
+    border-radius: 5px;
     border: solid 3px #fff;
     position: relative;
     display: flex;
@@ -54,6 +55,7 @@
     box-shadow: 1px 2px 5px 1px #cfcfcf;
 }
 .checkbox img{
+    border-radius: 5px;
     width: 28vmin; 
     height: 28vmin; 
     object-fit: cover;
@@ -67,9 +69,10 @@ label{
 }
 .checkbox input[type="checkbox"]:checked+label {
     border: solid 3px royalblue;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 .how{
+    border-radius: 0 0 5px 5px;
     width: 100%;
     text-align: center;
     margin: 0;
@@ -79,6 +82,9 @@ label{
     font-size: 5vmin;
     text-shadow: 0.4vmin 0.4vmin 0.3vmin #333;
     color: white; 
+}
+.space{
+    margin-top: 20vmin;
 }
 .LD{
     background-color: #63f70095;
