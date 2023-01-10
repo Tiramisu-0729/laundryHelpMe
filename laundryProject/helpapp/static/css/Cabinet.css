@@ -21,7 +21,7 @@
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
-    position: absolute;
+    position: fixed;
     right: 3vmin;
     bottom: 20vmin;
     box-shadow: 1px 2px 5px 2px #cfcfcf;
