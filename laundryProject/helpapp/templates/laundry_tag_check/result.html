@@ -4,7 +4,11 @@
     <link rel="stylesheet" href="{% static 'css/Result.css' %}">
 {% endblock %}
 {% block content %}
-{% comment %} <button type="button" onclick="history.back()" class="backButton">戻る</button> {% endcomment %}
+{% for message in messages %}
+        <div {% if message.tags %}id="{{ message.tags }}"{% endif %}>
+            <p>　×　　{{ message }}</p>
+        </div>
+{% endfor %}
 <img src="{{file_url}}" class="laundryTagImg">
 
 <div class="result"><p>{{result}}</p></div>
@@ -31,11 +35,15 @@
 <a href='{% url "helpapp:home" %}'>
     <button type="button" class="finish">完了</button>
 </a>
-<a href='{% url "helpapp:judge_report" %}' class="ai_report">
+<a href='{% url "helpapp:judge_report" %}' class="ai_report" onclick='return confirm("AIの判定と洗濯タグに違いがありましたか？");'>
     AIに誤判定があった場合
 </a>
 
 <script type="text/javascript">
+    let message = document.getElementById('success');
+    message.addEventListener('click', () => { 
+        message.classList.add('hidden');    
+    });
     let tags = JSON.parse('{{ tags_json|safe }}');
     for (const tag of tags) {
         let text = document.getElementById(tag); //宣言

@@ -116,4 +116,10 @@
             </details>
         {% endfor %}
     </div>
+    <script type="text/javascript">
+    let message = document.getElementById('success');
+    message.addEventListener('click', () => { 
+        message.classList.add('hidden');
+    });
+    </script>
 {% endblock %}

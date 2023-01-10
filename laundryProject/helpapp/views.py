@@ -572,6 +572,7 @@ def judge_report(request):
         report.ai_result  = request.session['ai_result']
         report.user_result = request.session['tags']
         report.save()
+        messages.success(request, '報告が完了しました。')
     return render(request, 'laundry_tag_check/result.html', request.session['context'])
 
 def report_admin(request):

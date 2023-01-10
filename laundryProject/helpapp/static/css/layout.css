@@ -51,6 +51,9 @@ body{
     background-color: #FFFFFF;
     box-shadow: 0 20px 5px 20px rgba(102, 102, 102, 0.5);
 }
+.hidden{
+    display: none;
+}
 .footer ul{
     height: 100%;
     padding: 0;
