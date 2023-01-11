@@ -69,16 +69,16 @@ p{
 .finish{
     background-color: #FFF84B;
     color: #6D6D6D;
-    margin-bottom: 3vmin;
+    margin-bottom: 5vh;
+}
+.ai_report{
+    text-decoration: none;
+    text-align: center;
+    font-size: 5vmin;
+    display: block;
+    margin-bottom: 11vh;
 }
 .red{
     color: red;
     font: bold;
-}
-
-.ai_report {
-    text-align: center;
-    display: block;
-    margin-bottom: 20vmin;
-
 }
