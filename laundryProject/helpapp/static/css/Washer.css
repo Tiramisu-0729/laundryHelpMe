@@ -13,7 +13,7 @@ body{
     height: 28vmin;
     margin: 1.7vmin;
     text-align: center;
-    border-radius: 3px;
+    border-radius: 5px;
     border: solid 1px #f0f0f0;
     position: relative;
 }
@@ -21,6 +21,7 @@ body{
     width: 28vmin; 
     height: 28vmin; 
     object-fit: cover;
+    border-radius: 5px;
 }
 .hidden{
     display: none;
@@ -35,7 +36,7 @@ body{
     width: 28vmin;
     height: 28vmin;
     text-align: center;
-    border-radius: 3px;
+    border-radius: 5px;
     border: solid 3px #fff;
     position: relative;
     display: flex;
@@ -47,6 +48,7 @@ body{
     width: 28vmin; 
     height: 28vmin; 
     object-fit: cover;
+    border-radius: 5px;
 }
 .select{
     display: none;
@@ -69,7 +71,7 @@ label{
 }
 .checkbox input[type="checkbox"]:checked+label {
     border: solid 3px royalblue;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 .how{
     text-align: center;
@@ -80,7 +82,8 @@ label{
     font-size: 5vmin;
     text-shadow: 0.4vmin 0.4vmin 0.3vmin #333;
     color: #fff;
-    width: 100%;    
+    width: 100%;
+    border-radius: 0 0 5px 5px;
 }
 .LD{
     background-color: #63f70095;

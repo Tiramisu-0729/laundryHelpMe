@@ -216,12 +216,8 @@ def washer_log_add(request):
                 laundry.washer_log_id = Washer_log(washer_log.pk)
                 laundry.cabinet_id = Cabinet(Laund.pk)
                 laundry.save()
-            context = {
-                'ON' : json.dumps('washer'),
-                'message': '追加できた',
-            }
-            return redirect('/helpapp/washer_judge')
-
+            messages.success(request, '洗濯物を保存しました')
+            return redirect('/helpapp/washer')
         return redirect('/helpapp/washer/')
     else :
         return redirect('/accounts/login/')
@@ -252,6 +248,17 @@ def washer_log_detail(request, pk):
             }
             return render(request, 'washer_log/detail.html', context) 
         return redirect('/helpapp/washer/')
+    else :
+        return redirect('/accounts/login/')
+
+def washer_log_delete(request, pk):
+    if request.user.is_authenticated :
+        if  Laundry.objects.filter(washer_log_id_id = pk).exists():   #存在確認
+            laundry = Laundry.objects.filter(washer_log_id_id = pk) #laundry表とcabinet表を結合
+            laundry.delete()
+            messages.success(request, '削除しました')
+            return redirect('/helpapp/washer_log')
+        return redirect('/helpapp/washer_log')
     else :
         return redirect('/accounts/login/')
 

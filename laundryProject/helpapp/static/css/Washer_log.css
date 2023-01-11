@@ -2,12 +2,60 @@
     margin: 2vmin;
     margin-bottom: 20vmin;
 }
-.date{
-    display: inline-block;
-    vertical-align: middle;
+.panel{
+    height: 15vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+.date{
+    margin: 5vmin;
+    width:50vmin;
+    border: 2px #e2e2e2 solid;
+    border-radius: 3px;
+    margin: 2vmin 1vmin;
+    padding: 2vmin;
+    /* box-shadow: 1px 1px 1px rgba(102, 102, 102, 0.5); */
+}
+
+.delete{
+    height: 8vmin;
+    width: 8vmin;
+    display: grid;
+    align-items: center;
+    text-align: center;
+    margin:0 3vmin;
+    background-color: rgb(255, 66, 66);
+    font-weight: bold;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px rgba(102, 102, 102, 0.5);
+}
+.delete a{
+    color: white;
+}
+
+.dummy_button1{
+    height: 5vmin;
+    width: 5vmin;
+    margin-right: 3vmin;
+    background-color: rgb(126, 255, 66);
+    font-weight: bold;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px rgba(102, 102, 102, 0.5);
+}
+.dummy_button2{
+    height: 5vmin;
+    width: 5vmin;
+    margin-right: 3vmin;
+    background-color: rgb(66, 227, 255);
+    font-weight: bold;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px rgba(102, 102, 102, 0.5);
+}
+
+
 p{
-    margin: 3vmin 3vmin 2vmin;
+    margin: 0;
 }
 a{
     text-decoration: none;
