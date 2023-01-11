@@ -5,6 +5,11 @@
         <link rel="stylesheet" href="{% static 'css/Washer_log.css' %}">
         <!-- <script src="{% static 'js/TimeLine.js' %}"></script> -->
     {% endblock %}
+    {% for message in messages %}
+        <div {% if message.tags %}id="{{ message.tags }}"{% endif %}>
+            <p>　×　　{{ message }}</p>
+        </div>
+    {% endfor %}
 
     {% block content %}
         <div id="content">  
@@ -19,23 +24,23 @@
                             
                         </span>
                         <span class="date">
-                            <a href='{% url "helpapp:washer_log_detail" laundry.0.washer_log_id_id%}'>
-                                {{val}}{{laundry.0.washer_log_id.created_at}}
+                            <a href='{% url "helpapp:washer_log_detail" laundry.0.washer_log_id%}'>
+                                {{val}}{{laundry.0.washer_log.created_at}}
                             </a>
                         </span>
                         
                         <span class="delete">
-                            <a href='{% url "helpapp:washer_log_delete" laundry.0.washer_log_id_id%}' onclick='return confirm("本当に削除しますか？");'>
+                            <a href='{% url "helpapp:washer_log_delete" laundry.0.washer_log_id%}' onclick='return confirm("本当に削除しますか？");'>
                             ×
                             </a>
                         </span>
                     </div>
                     <hr>
-                    <div class="washer_log {{laundry.0.washer_log_id_id}}">
+                    <div class="washer_log {{laundry.0.washer_log_id}}">
                         {% for laund in laundry %}
                             <div class="div_pic">
-                                <a href='{% url "helpapp:cabinet_detail" laund.cabinet_id_id %}'>
-                                    <img class="washer_pic" src="{{laund.cabinet_id.image.url}}" alt="washer-pic">
+                                <a href='{% url "helpapp:cabinet_detail" laund.cabinet_id %}'>
+                                    <img class="washer_pic" src="{{laund.cabinet.image.url}}" alt="washer-pic">
                                 </a>
                             </div>
                         {% endfor%}
@@ -44,3 +49,10 @@
             {% endfor %}
         </div>
     {% endblock %}
+
+    <script type="text/javascript">
+        let message = document.getElementById('success');
+        message.addEventListener('click', () => { 
+            message.classList.add('hidden');    
+        });
+    </script>

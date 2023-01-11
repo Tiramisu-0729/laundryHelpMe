@@ -8,10 +8,10 @@
 <div class="content">
     <h2>洗濯物</h2>
     <div class="scroll">
-        {% for washer in washers %}
+        {% for laund in laundry %}
             <div class="pictures">
-                <a href='{% url "helpapp:cabinet_detail" washer.cabinet_id_id %}'>
-                <img src="{{washer.cabinet_id.image.url}}" class="washer_img">
+                <a href='{% url "helpapp:cabinet_detail" laund.cabinet_id %}'>
+                <img src="{{laund.cabinet.image.url}}" class="laund_img">
                 </a>
             </div>
         {% endfor %}
