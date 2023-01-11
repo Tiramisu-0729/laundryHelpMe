@@ -72,11 +72,10 @@ p{
     margin-bottom: 5vh;
 }
 .ai_report{
-    text-decoration: none;
     text-align: center;
-    font-size: 5vmin;
     display: block;
-    margin-bottom: 11vh;
+    font-size: 3vmin;
+    margin-bottom: 20vmin;
 }
 .red{
     color: red;

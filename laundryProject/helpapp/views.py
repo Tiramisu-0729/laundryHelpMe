@@ -62,7 +62,6 @@ def washer(request):
             categories_json.append(category.name)
         if len(washers) == 0:
             none = 0
-            print('a')
         context = {
             'categories_json' : json.dumps(categories_json), 
             'categories' : categories,
@@ -546,9 +545,7 @@ def judge_result(request):
         tags = []
         names=['Laundry','Bleach','Nature','Iron','Tumble','Dry','Wet']
         for name in names:
-            if request.POST.get(name) == None:
-                print("none")
-            else:
+            if request.POST.get(name) != None:
                 tags.append(request.POST.get(name))
         if tags[0] == "LE":
             result = "洗えません"

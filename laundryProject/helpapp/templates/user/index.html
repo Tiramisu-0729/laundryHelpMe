@@ -61,19 +61,19 @@
                                 <div class="username">{{ user_form.username }}</div>
                             </div>
                             <br>
-                            <button type="submit" class="submit">保存して終了</button>
-                            <button type="reset" class="reset">リセット</button>
+                            <button type="submit" class="submit">Save</button>
+                            <button type="reset" class="reset">Reset</button>
                             <div class="form-group">
-                                <a href="{% url 'accounts:password_change_form'%}">パスワード変更はこちら</a>
+                                <a href="{% url 'accounts:password_change_form'%}">Password Change</a>
                                 {{ profile_form.image }}
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
-            <p class="logout"><a href='{% url "logout" %}'>ログアウト</a></p>
+            <p class="logout"><a href='{% url "logout" %}'>Logout</a></p>
             {% if user.is_superuser %}
-                <p class="admin"><a href='{% url "helpapp:report_admin" %}'>Admin Site</a></p>
+                <p class="admin"><a href='{% url "helpapp:report_admin" %}'>Admin site</a></p>
             {% endif %}
         </div>
         <!-- ここまで -->
