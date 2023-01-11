@@ -6,7 +6,6 @@
     <script src="{% static 'js/User.js' %}"></script>
 {% endblock %}
 {% block content %}
-
     <div class="content">
     {% for message in messages %}
         <div {% if message.tags %}id="{{ message.tags }}" {% endif %}>

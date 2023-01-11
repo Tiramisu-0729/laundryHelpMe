@@ -187,8 +187,8 @@ def washer_log(request):
         if Washer_log.objects.filter(user=user).exists():   #存在確認
             washer_logs = Washer_log.objects.filter(user=user).order_by("-created_at")
             for washer_log in washer_logs:
-                if  Laundry.objects.filter(washer_log_id_id = washer_log.pk).exists():   #存在確認
-                    laundries.append(Laundry.objects.select_related('cabinet_id').filter(washer_log_id = washer_log.pk)) #laundry表とcabinet表を結合
+                if  Laundry.objects.filter(washer_log_id = washer_log.pk).exists():   #存在確認
+                    laundries.append(Laundry.objects.filter(washer_log_id = washer_log.pk)) #laundry表とcabinet表を結合
         context = {
             'ON' : json.dumps('timeline'),
             'message': 'timeline',
@@ -224,11 +224,11 @@ def washer_log_add(request):
 
 def washer_log_detail(request, pk):
     if request.user.is_authenticated :
-        if  Laundry.objects.filter(washer_log_id_id = pk).exists():   #存在確認
-            washers = Laundry.objects.select_related('cabinet_id').filter(washer_log_id = pk) #laundry表とcabinet表を結合
+        if  Laundry.objects.filter(washer_log_id = pk).exists():   #存在確認
+            laundry = Laundry.objects.filter(washer_log_id = pk) #laundry表とcabinet表を結合
             comp = ["L1", "B1", "T1"]
-            for washer in washers:
-                tags = washer.cabinet_id.laundry_tag.split(',')
+            for laund in laundry:
+                tags = laund.cabinet.laundry_tag.split(',')
                 for tag in tags:
                     if tag[0] == "L":
                         if int(tag[1], 16) > int(comp[0][1] ,16):#一番条件が厳しいタグの判定
@@ -240,7 +240,7 @@ def washer_log_detail(request, pk):
                         if int(tag[1], 16) > int(comp[2][1] ,16):#一番条件が厳しいタグの判定
                             comp[2]=tag
             context = {
-                'washers' : washers,
+                'laundry' : laundry,
                 'comp' : comp,
                 'comp_json' : json.dumps(comp),
                 'ON' : json.dumps('timeline'),
@@ -253,9 +253,9 @@ def washer_log_detail(request, pk):
 
 def washer_log_delete(request, pk):
     if request.user.is_authenticated :
-        if  Laundry.objects.filter(washer_log_id_id = pk).exists():   #存在確認
-            laundry = Laundry.objects.filter(washer_log_id_id = pk) #laundry表とcabinet表を結合
-            laundry.delete()
+        if  Washer_log.objects.filter(washer_log_id = pk).exists():   #存在確認
+            washer_log = Washer_log.objects.filter(washer_log_id = pk) #Washer_log
+            washer_log.delete()
             messages.success(request, '削除しました')
             return redirect('/helpapp/washer_log')
         return redirect('/helpapp/washer_log')

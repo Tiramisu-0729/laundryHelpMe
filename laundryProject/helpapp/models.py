@@ -57,12 +57,12 @@ class Washer_log(models.Model):
         return str(self.user)
 
 class Laundry(models.Model):
-    washer_log_id = models.ForeignKey(
+    washer_log = models.ForeignKey(
         Washer_log,
         on_delete=models.CASCADE,
         related_name='washer_log_id'
     )
-    cabinet_id = models.ForeignKey(
+    cabinet = models.ForeignKey(
         Cabinet,
         on_delete=models.CASCADE,
         related_name='cabinet_id'

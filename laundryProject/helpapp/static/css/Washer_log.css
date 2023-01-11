@@ -15,7 +15,7 @@
     border-radius: 3px;
     margin: 2vmin 1vmin;
     padding: 2vmin;
-    /* box-shadow: 1px 1px 1px rgba(102, 102, 102, 0.5); */
+    box-shadow: 1px 1px 3px rgba(182, 182, 182, 0.5);
 }
 
 .delete{
