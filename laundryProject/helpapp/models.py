@@ -12,6 +12,7 @@ class Report(models.Model):
     image = models.CharField(max_length=255)
     ai_result = models.CharField(max_length=255)
     user_result = models.CharField(max_length=255)
+    annotation = models.BooleanField(default=False)
     def __str__(self):
         return str(self.id)
 

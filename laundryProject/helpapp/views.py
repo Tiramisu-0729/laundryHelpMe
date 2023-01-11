@@ -479,7 +479,8 @@ def judge(request):
     if request.method == "POST":
         image = request.FILES['UploadImg']#保存先はupload_imgのなか　いったん保存
         fs = FileSystemStorage()
-        file_data = fs.save(image.name, image)
+        ext = os.path.splitext(image.name)
+        file_data = fs.save(request.user.username + ext[1], image)
         file_url = fs.url(file_data)
         request.session['file_url'] = file_url
         #AIで画像判定
@@ -570,10 +571,12 @@ def judge_report(request):
         shutil.copy( MEDIA_ROOT + file_name, MEDIA_ROOT + 'report/' + file_name)
         report = Report()
         report.image = 'report/' +  file_name
-        report.ai_result  = request.session['ai_result']
+        report.ai_result = request.session['ai_result']
         report.user_result = request.session['tags']
         report.save()
         messages.success(request, '報告が完了しました。')
+    else :
+        messages.success(request, '報告済みです。')
     return render(request, 'laundry_tag_check/result.html', request.session['context'])
 
 def report_admin(request):

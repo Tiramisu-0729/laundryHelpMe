@@ -3,17 +3,21 @@ body {
     margin: 0;
     padding: 0;
 }
-
+.container {
+    margin-bottom: 50px;
+}
 #header{
     background-color: #97ECFC;
     width: 100%;
     height: 80px;
     text-align: center;
 }
-#header P{
-    padding-top: 20px;
+#header p{
+    float: left;
+    padding-top: 5px;
     font-size: 45px;
     margin: 0;
+    margin-left: 20px;
     font-weight: bold;
     font-family: 'Caveat', cursive;
     text-shadow:1px 1px 0 #FFF, -1px -1px 0 #FFF,
@@ -22,20 +26,72 @@ body {
               -1px 0 0 #FFF, 1px 0 0 #FFF;
 }
 .link {
+    display: inline;
+    float: right;
+    margin: 30px 10px 0 0;
+}
+a {
+    text-decoration: none;
+}
+.top {
+    margin-top: 20px;
     text-align: center;
 }
 p{
     text-align: center;
 }
-
+th {
+    min-width: 30px;
+    min-height: 30px;
+}
 table {
     margin-top: 10px;
+}
+td {
+    padding: 5px;
 }
 td img {
     width: 10vmin;
     height: 10vmin;
+    display: flex;
+    justify-content: center;
+    border-radius: 5px;
 }
 .content {
     display: flex;
     justify-content: center;
+}
+
+.edit {
+    text-align: center;
+}
+.edit button {
+    background-color: #97ECFC;
+    cursor: pointer;
+    cursor: hand;
+    width: 50px;
+    border-radius: 5px;
+}
+.annotation {
+    justify-content: center;
+}
+.green {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 85px;
+    height: 85px;
+    text-align: center;
+    background-color: rgb(83, 236, 83);
+}
+.red {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    width: 85px;
+    height: 85px;
+    text-align: center;
+    background-color: rgb(255, 73, 73);
 }

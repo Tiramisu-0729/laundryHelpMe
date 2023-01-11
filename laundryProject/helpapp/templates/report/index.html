@@ -12,34 +12,54 @@
 <body>
     <div class="container">
         <div id="header">
-                <P id="title">{{message}}</P>
+            <p id="title">{{message}}</p>
+            <div class="link">
+                <a href="{% url 'helpapp:home' %}">アプリへ戻る</a> | 
+                <a href="{% url 'admin:index' %}">Django管理者画面へ</a>
+            </div>
         </div>
         <div class="content">
             <table border="1">
                 <tr>
                     <th>ID</th>
                     <th>画像</th>
-                    <th>ファイル名</th>
+                    <th>ファイル名・ダウンロード</th>
                     <th>AIの判定</th>
-                    <th>正しい判定</th>
+                    <th>ユーザー判定</th>
+                    <th>アノテーション</th>
+                    <th>編集画面へ</th>
                 </tr>
                 {% for report in reports %}
                     <tr>
-                        <td>{{report}}</td>
-                        <td>{% with img="/upload_img/"|add:report.image %}
-                            <img src="{{ img }}">
-                        {% endwith %}</td>
-                        <td>{{report.image}}</td>
+                        <th>{{report.id}}</th>
+                        {% with img="/upload_img/"|add:report.image %}
+                            <td>
+                                <img src="{{ img }}">
+                            </td>
+                            <td>
+                                <a href="{{ img }}" download>{{report.image}}</a> </td>
+                        {% endwith %}
                         <td>{{report.ai_result}}</td>
                         <td>{{report.user_result}}</td>
+                        <td class="annotation">
+                            {% if report.annotation %}
+                                <div class="green">済</div>
+                            {% else %}
+                                <div class="red">未</div>
+                            {% endif %}
+                        </td>
+                        <td class="edit">
+                            <a href="{% url 'admin:helpapp_report_change' report.id %}">
+                                <button type="button">編集</button>
+                            </a>
+                        </td>
                     </tr>
                 {% endfor %}
             </table>
         </div>
-    </div>
-    <div class="link">
-        <a href="{% url 'helpapp:home' %}">アプリへ戻る</a> | 
-        <a href="{% url 'admin:index' %}">Django管理者画面へ</a>
+        <div class="top">
+            <a href="#">TOPへ戻る</a>
+        </div>
     </div>
 </body>
 </html>
