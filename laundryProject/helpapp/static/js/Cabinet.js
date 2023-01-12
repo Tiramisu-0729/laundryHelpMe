@@ -5,31 +5,6 @@ window.onload = function(){
     
     let checkbox = document.querySelectorAll("input[type='checkbox']");
     let btn = document.getElementsByClassName('btn');
-    // メッセージ
-    var ref = document.referrer
-    if (ref.indexOf('helpapp/cabinet_add') !== -1) {
-        alert("保存しました");
-        history.pushState(null, null, location.href);
-        window.addEventListener('popstate', (e) => {
-            history.go(1);
-        });
-    } 
-
-    else if (ref.indexOf('helpapp/cabinet_detele/*') !== -1) {
-        alert("削除しました");
-        history.pushState(null, null, location.href);
-        window.addEventListener('popstate', (e) => {
-            history.go(1);
-        });
-    }
-    else if (ref.indexOf('helpapp/cabinets_detele') !== -1) {
-        alert("削除しました");
-        history.pushState(null, null, location.href);
-        window.addEventListener('popstate', (e) => {
-            history.go(1);
-        });
-    }
-    
   
 
     //チェックボックス表示切替
@@ -53,9 +28,11 @@ window.onload = function(){
         checkbox[i].addEventListener('change', function() { //チェックボックス（type='checkbox'）の値が変更されたとき・・・ 
             let check = document.form1.check;
             let arr=[];
+
             //チェックボックスの同期
             let cbv = "'" + this.value + "'";   //クリックされたチェックボックスのvalue値を変数に格納
             let checked = document.querySelectorAll("input[type='checkbox'][value =" + cbv + "]");
+
             if(this.checked){                                      //クリックされたチェックボックスがcheckedなら・・・
                 for (let i = 0; i < checked.length; i++) {
                     checked[i].checked = true;
