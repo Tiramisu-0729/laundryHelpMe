@@ -120,7 +120,7 @@ def washer_add_redirect(request):
                     washers.append(value)
             else:
                 washers = checks_value
-            request.session['washers'] = list(set(washers))
+        request.session['washers'] = list(set(washers))
         messages.success(request, '登録内容を保存しました。')
         return redirect('/helpapp/washer')
     else :
@@ -269,9 +269,10 @@ def log_to_washer(request, id):
             IDs = request.session.get('washers')
             for laundry in laundries:
                 if IDs == None:
-                    IDs=[(laundry.cabinet_id)]
+                    IDs=[laundry.cabinet_id]
                 else:
                     IDs.append(laundry.cabinet_id)
+            IDs = [str(n) for n in IDs]#String 変換
             request.session['washers'] = list(set(IDs))#重複排除
             messages.success(request, '洗濯機に追加しました')
             return redirect('/helpapp/washer')
