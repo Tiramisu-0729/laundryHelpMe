@@ -41,9 +41,6 @@
 
 <script type="text/javascript">
     let message = document.getElementById('success');
-    message.addEventListener('click', () => { 
-        message.classList.add('hidden');    
-    });
     let tags = JSON.parse('{{ tags_json|safe }}');
     for (const tag of tags) {
         let text = document.getElementById(tag); //宣言
@@ -175,5 +172,8 @@
         default:
         }
     }
+    message.addEventListener('click', () => { 
+        message.classList.add('hidden');    
+    });
 </script>
 {% endblock %}
