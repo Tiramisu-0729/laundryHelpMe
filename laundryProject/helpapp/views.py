@@ -169,9 +169,8 @@ def washers_delete(request):
     if request.user.is_authenticated :
         if request.method == "POST":
             check_values = list(set(request.POST.getlist('check')))
-            check_values_i = [int(s) for s in check_values]#int変換
             washers = request.session.get('washers')
-            for value in check_values_i:
+            for value in check_values:
                 if value in washers:
                     washers.remove(value)
             request.session['washers'] = list(set(washers))
