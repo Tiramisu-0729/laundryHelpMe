@@ -5,13 +5,12 @@
         <link rel="stylesheet" href="{% static 'css/Washer_log.css' %}">
         <!-- <script src="{% static 'js/TimeLine.js' %}"></script> -->
     {% endblock %}
+    {% block content %}
     {% for message in messages %}
         <div {% if message.tags %}id="{{ message.tags }}"{% endif %}>
             <p>　×　　{{ message }}</p>
         </div>
     {% endfor %}
-
-    {% block content %}
         <div id="content">  
             <div class="none">{{none}}</div>
             {% for laundry in Laundries %}
@@ -20,8 +19,10 @@
                         <span class="dummy_button1">
                             
                         </span>
-                        <span class="dummy_button2">
-                            
+                        <span class="add">
+                            <a href='{% url "helpapp:log_to_washer" laundry.0.washer_log_id%}' onclick='return confirm("洗濯機に追加しますか？");'>
+                                +
+                            </a>
                         </span>
                         <span class="date">
                             <a href='{% url "helpapp:washer_log_detail" laundry.0.washer_log_id%}'>
@@ -30,7 +31,7 @@
                         </span>
                         
                         <span class="delete">
-                            <a href='{% url "helpapp:washer_log_delete" laundry.0.washer_log_id%}' onclick='return confirm("本当に削除しますか？");'>
+                            <a href='{% url "helpapp:washer_log_delete" laundry.0.washer_log_id%}' onclick='return confirm("ログを削除しますか？");'>
                             ×
                             </a>
                         </span>

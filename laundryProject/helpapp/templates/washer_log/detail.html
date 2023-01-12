@@ -11,7 +11,7 @@
         {% for laund in laundry %}
             <div class="pictures">
                 <a href='{% url "helpapp:cabinet_detail" laund.cabinet_id %}'>
-                <img src="{{laund.cabinet.image.url}}" class="laund_img">
+                <img src="{{laund.cabinet.image.url}}" class="washer_img">
                 </a>
             </div>
         {% endfor %}

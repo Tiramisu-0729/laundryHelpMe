@@ -11,10 +11,9 @@ body{
 .item{
     width: 28vmin;
     height: 28vmin;
-    margin: 1.7vmin;
+    margin: 1.9vmin;
     text-align: center;
     border-radius: 5px;
-    border: solid 1px #f0f0f0;
     position: relative;
 }
 .item img{

@@ -1,5 +1,4 @@
 .content{
-    /* margin: 3% 1% 3% 1%; */
     width: 100%;
     color: #333;
     margin-bottom: 25%;
@@ -8,17 +7,11 @@ h2{
     margin: 2vmin 3vmin 0;
 }
 .scroll {
-    margin: 0 auto;
-    display:flex;
-    /* overflow-x:scroll; */
-    /* 横並びに表示する */
-    flex-direction: row;
-    /* 画面幅に収まらない場合は折り返す */
+    display: flex;
     flex-wrap: wrap;
-    text-align:center;
 }
 /*result*/
-.laund_img{
+.washer_img{
     width: 22.2vmin;
     height: 22.2vmin;
     border-radius: 5px;
@@ -28,9 +21,9 @@ h2{
 .pictures{
     width: 22.2vmin;
     height: 22.2vmin;
-    margin: 1.1vmin;
+    margin: 1.4vmin;
     border-radius: 5px;
-    border: solid 1px #e2e2e2;
+    /* border: solid 1px #e2e2e2; */
 } 
 .details{
     background-color: #EEEEEE;

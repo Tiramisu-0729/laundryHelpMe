@@ -71,6 +71,7 @@ def washer(request):
             'none_json' : json.dumps(none),
             'washers' : washers
         }
+        IDs = request.session.get('washers')
         return render(request, 'washer/index.html',context)
     else :
         return redirect('/accounts/login/')
@@ -119,7 +120,7 @@ def washer_add_redirect(request):
                     washers.append(value)
             else:
                 washers = checks_value
-            request.session['washers'] = (washers) 
+            request.session['washers'] = list(set(washers))
         messages.success(request, '登録内容を保存しました。')
         return redirect('/helpapp/washer')
     else :
@@ -167,14 +168,15 @@ def washer_complete(request) :
 def washers_delete(request):
     if request.user.is_authenticated :
         if request.method == "POST":
-            checks_value = request.POST.getlist('check')
+            check_values = list(set(request.POST.getlist('check')))
+            check_values_i = [int(s) for s in check_values]#int変換
             washers = request.session.get('washers')
-            for value in checks_value:
+            for value in check_values_i:
                 if value in washers:
                     washers.remove(value)
-            request.session['washers'] = washers
-        messages.success(request, '削除しました')
-        return redirect('/helpapp/washer')
+            request.session['washers'] = list(set(washers))
+            messages.success(request, '削除しました')
+            return redirect('/helpapp/washer')
     else :
         return redirect('/accounts/login/')
 
@@ -204,7 +206,7 @@ def washer_log_add(request):
         if 'washers' in request.session:
             Laundries=[]
             IDs = request.session.get('washers')
-            for id in IDs:#washersを取り出す
+            for id in IDs:
                 if Cabinet.objects.filter(pk=id).exists():
                     Laundries.append(Cabinet.objects.get(pk=id))
             washer_log = Washer_log()
@@ -212,8 +214,8 @@ def washer_log_add(request):
             washer_log.save()
             for Laund in Laundries:
                 laundry = Laundry()
-                laundry.washer_log_id = Washer_log(washer_log.pk)
-                laundry.cabinet_id = Cabinet(Laund.pk)
+                laundry.washer_log = Washer_log(washer_log.pk)
+                laundry.cabinet = Cabinet(Laund.pk)
                 laundry.save()
             messages.success(request, '洗濯物を保存しました')
             return redirect('/helpapp/washer')
@@ -252,8 +254,8 @@ def washer_log_detail(request, pk):
 
 def washer_log_delete(request, pk):
     if request.user.is_authenticated :
-        if  Washer_log.objects.filter(washer_log_id = pk).exists():   #存在確認
-            washer_log = Washer_log.objects.filter(washer_log_id = pk) #Washer_log
+        if  Washer_log.objects.filter(pk = pk).exists():   #存在確認
+            washer_log = Washer_log.objects.filter(pk = pk) #Washer_log
             washer_log.delete()
             messages.success(request, '削除しました')
             return redirect('/helpapp/washer_log')
@@ -261,6 +263,22 @@ def washer_log_delete(request, pk):
     else :
         return redirect('/accounts/login/')
 
+def log_to_washer(request, id):
+    if request.user.is_authenticated :
+        if  Laundry.objects.filter(washer_log_id = id).exists():   #存在確認
+            laundries = Laundry.objects.filter(washer_log_id = id) #Washer_log
+            IDs = request.session.get('washers')
+            for laundry in laundries:
+                if IDs == None:
+                    IDs=[(laundry.cabinet_id)]
+                else:
+                    IDs.append(laundry.cabinet_id)
+            request.session['washers'] = list(set(IDs))#重複排除
+            messages.success(request, '洗濯機に追加しました')
+            return redirect('/helpapp/washer')
+        return redirect('/helpapp/washer_log')
+    else :
+        return redirect('/accounts/login/')
 
 def washer_clear(request):
     if request.user.is_authenticated :
