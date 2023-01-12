@@ -491,7 +491,7 @@ def judge(request):
         request.session['file_url'] = file_url
         #AIで画像判定
         import time
-        time.sleep(0.1)
+        time.sleep(7)
         # results = MODEL(file_url)
         results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
         #判定結果 解析
@@ -592,6 +592,27 @@ def report_admin(request):
             "reports" : reports,
         }
         return render(request, 'report/index.html', context)
+    else:
+        context = {
+        'ON' : json.dumps('home'),
+        'message': 'Judge',
+        'form': JudgeForm(),
+        }
+        return render(request, 'home/index.html', context)
+
+def report_commit(request):
+    context=[]
+    if  request.user.is_superuser :
+        checks = Report.objects.all()# いったんすべてFalseにする
+        for check in checks :
+            check.annotation = False
+            check.save()
+        checked = request.POST.getlist("annotation")
+        checks = Report.objects.filter(id__in=checked)# チェックされているところだけTrueにする
+        for check in checks :
+            check.annotation = True
+            check.save()
+        return redirect('/helpapp/report_admin')
     else:
         context = {
         'ON' : json.dumps('home'),

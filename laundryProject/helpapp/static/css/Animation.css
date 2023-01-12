@@ -1,5 +1,6 @@
 .load {
 	display: none;
+	/* margin-bottom: 400px; */
 }
 .text {
 	margin-top: 5%;
@@ -8,16 +9,19 @@
 	font-size: 6vmin;
 }
 .loading {
-	margin-top: 10%;
-	justify-content: center;
+	margin-left: 3vmin;
+	justify-content: right;
 	align-items: center;
 	animation: animateTheBodyBg 10s linear infinite;
 	-webkit-animation: animateTheBodyBg 10s linear infinite;
 	display: flex;
 }
-
+img {
+	width: 80vmin;
+	height: 65vmin;
+}
 .Advertisement {
-	margin-top: 3%;
+	margin-top: 15%;
 	justify-content: center;
 	align-items: center;
 	display: flex;
@@ -45,8 +49,8 @@
   /* Spans */
 .loader {
 	position: relative;
-	width: 100px;
-	height: 100px;
+	width: 7vmin;
+	height: 7vmin;
 }
 
 .loader span {
@@ -59,11 +63,11 @@
 .loader span::before {
 	content: '';
 	position: absolute;
-	width: 10px;
-	height: 10px;
+	width: 1vmin;
+	height: 1vmin;
 	border-radius: 50%;
 	background-color: #00ff0a;
-	box-shadow: 0 0 10px #00ff0a,
+	box-shadow: 0 0 3px #00ff0a,
 	0 0 20px #00ff0a,
 	0 0 30px #00ff0a,
 	0 0 40px #00ff0a,

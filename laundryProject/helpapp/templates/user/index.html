@@ -63,16 +63,16 @@
                             <button type="submit" class="submit">Save</button>
                             <button type="reset" class="reset">Reset</button>
                             <div class="form-group">
-                                <a href="{% url 'accounts:password_change_form'%}">Password Change</a>
+                                <a href="{% url 'accounts:password_change_form'%}"><b>Password Change</b></a>
                                 {{ profile_form.image }}
                             </div>
                         </div>
                     </div>
                 </form>
             </div>
-            <p class="logout"><a href='{% url "logout" %}'>Logout</a></p>
+            <p class="logout"><a href='{% url "logout" %}'><b>Logout</b></a></p>
             {% if user.is_superuser %}
-                <p class="admin"><a href='{% url "helpapp:report_admin" %}'>Admin site</a></p>
+                <p class="admin"><a href='{% url "helpapp:report_admin" %}'><b>Admin site</b></a></p>
             {% endif %}
         </div>
         <!-- ここまで -->
