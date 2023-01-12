@@ -36,4 +36,5 @@ urlpatterns = [
     path("washer_log_delete/<int:pk>/",views.washer_log_delete, name="washer_log_delete"),
     path("log_to_washer/<int:id>/",views.log_to_washer, name="log_to_washer"),
     path("report_admin",views.report_admin, name="report_admin"),
+    path("report_commit",views.report_commit, name="report_commit"),
 ]

@@ -19,43 +19,49 @@
             </div>
         </div>
         <div class="content">
-            <table border="1">
-                <tr>
-                    <th>ID</th>
-                    <th>画像</th>
-                    <th>ファイル名・ダウンロード</th>
-                    <th>AIの判定</th>
-                    <th>ユーザー判定</th>
-                    <th>アノテーション</th>
-                    <th>編集画面へ</th>
-                </tr>
-                {% for report in reports %}
+            <form method="post" action="{% url "helpapp:report_commit" %}">
+                {% csrf_token %}
+                <div class="commit"><input type="submit" value="保存する" ></div>
+                <table border="1">
                     <tr>
-                        <th>{{report.id}}</th>
-                        {% with img="/upload_img/"|add:report.image %}
-                            <td>
-                                <img src="{{ img }}">
-                            </td>
-                            <td>
-                                <a href="{{ img }}" download>{{report.image}}</a> </td>
-                        {% endwith %}
-                        <td>{{report.ai_result}}</td>
-                        <td>{{report.user_result}}</td>
-                        <td class="annotation">
-                            {% if report.annotation %}
-                                <div class="green">済</div>
-                            {% else %}
-                                <div class="red">未</div>
-                            {% endif %}
-                        </td>
-                        <td class="edit">
-                            <a href="{% url 'admin:helpapp_report_change' report.id %}">
-                                <button type="button">編集</button>
-                            </a>
-                        </td>
+                        <th>ID</th>
+                        <th>画像</th>
+                        <th>ファイル名・ダウンロード</th>
+                        <th>AIの判定</th>
+                        <th>ユーザー判定</th>
+                        <th>アノテーション</th>
+                        <th>編集画面へ</th>
                     </tr>
-                {% endfor %}
-            </table>
+                    {% for report in reports %}
+                        <tr>
+                            <th>{{report.id}}</th>
+                            {% with img="/upload_img/"|add:report.image %}
+                                <td>
+                                    <img src="{{ img }}">
+                                </td>
+                                <td>
+                                    <a href="{{ img }}" download>{{report.image}}</a> </td>
+                            {% endwith %}
+                            <td>{{report.ai_result}}</td>
+                            <td>{{report.user_result}}</td>
+                            <td class="annotation">
+                                {% if report.annotation %}
+                                    <input type="checkbox" name="annotation" value="{{report.id}}" checked>
+                                    <div class="green">済</div>
+                                {% else %}
+                                    <input type="checkbox" name="annotation" value="{{report.id}}">
+                                    <div class="red">未</div>
+                                {% endif %}
+                            </td>
+                            <td class="edit">
+                                <a href="{% url 'admin:helpapp_report_change' report.id %}">
+                                    <button type="button">編集</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </from>
         </div>
         <div class="top">
             <a href="#">TOPへ戻る</a>

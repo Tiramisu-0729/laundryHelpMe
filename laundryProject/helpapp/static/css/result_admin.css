@@ -62,6 +62,11 @@ td img {
     justify-content: center;
 }
 
+.commit input {
+    float: right;
+    margin: 10px 5px;
+    background-color: pink;
+}
 .edit {
     text-align: center;
 }
