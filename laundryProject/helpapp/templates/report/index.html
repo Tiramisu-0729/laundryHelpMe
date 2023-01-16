@@ -22,8 +22,16 @@
         <div class="content">
             <form method="post" action="{% url "helpapp:report_commit" %}">
                 {% csrf_token %}
-                <div class="commit"><input type="submit" value="保存する" ></div>
-                <table border="1">
+                <div class="nuv">
+                    <select id="categories" onchange="viewChange();">
+                        <option value="all" selected>すべて表示</option>
+                        <option value="finished" >完了済</option>
+                        <option value="unfinished" >未完</option>
+                    </select>
+                    <span class="commit"><input type="submit" value="保存する" ></span>
+                </div>
+                
+                <table id="all" border="1">
                     <tr>
                         <th>ID</th>
                         <th>画像</th>
@@ -35,7 +43,49 @@
                     </tr>
                     {% for report in reports %}
                         <tr>
-                            <th>{{report.id}}</th>
+                            <td>{{report.id}}</td>
+                            {% with img="/upload_img/"|add:report.image %}
+                                <td>
+                                    <img src="{{ img }}">
+                                </td>
+                                <td>
+                                    <a href="{{ img }}" download>{{report.image}}</a> 
+                                </td>
+                            {% endwith %}
+                            <td>{{report.ai_result}}</td>
+                            <td>{{report.user_result}}</td>
+                            <td class="annotation">
+                                {% if report.annotation %}
+                                    <input type="checkbox" name="annotation" value="{{report.id}}" id="check{{report.id}}" class="check" checked>
+                                    <label for="check{{report.id}}"><div class="{{report.id}} green">済</div></label>
+                                {% else %}
+                                    <input type="checkbox" name="annotation" value="{{report.id}}" id="check{{report.id}}" class="check">
+                                    <label for="check{{report.id}}"><div class="{{report.id}} red">未</div></label>
+                                {% endif %}
+                            </td>
+                            <td class="edit">
+                                <a href="{% url 'admin:helpapp_report_change' report.id %}">
+                                    <button type="button">編集</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+
+                <table id="finished" border="1" style="display: none;">
+                    <tr>
+                        <th>ID</th>
+                        <th>画像</th>
+                        <th>ファイル名・ダウンロード</th>
+                        <th>AIの判定</th>
+                        <th>ユーザー判定</th>
+                        <th>アノテーション</th>
+                        <th>編集画面へ</th>
+                    </tr>
+                    {% for report in reports %}
+                    {% if report.annotation %}
+                        <tr>
+                            <td>{{report.id}}</td>
                             {% with img="/upload_img/"|add:report.image %}
                                 <td>
                                     <img src="{{ img }}">
@@ -47,11 +97,11 @@
                             <td>{{report.user_result}}</td>
                             <td class="annotation">
                                 {% if report.annotation %}
-                                    <input type="checkbox" name="annotation" value="{{report.id}}" checked>
-                                    <div class="green">済</div>
+                                    <input type="checkbox" name="annotation" value="{{report.id}}" id="check{{report.id}}" class="check" checked>
+                                    <label for="check{{report.id}}"><div class="{{report.id}} green">済</div></label>
                                 {% else %}
-                                    <input type="checkbox" name="annotation" value="{{report.id}}">
-                                    <div class="red">未</div>
+                                    <input type="checkbox" name="annotation" value="{{report.id}}" id="check{{report.id}}" class="check">
+                                    <label for="check{{report.id}}"><div class="{{report.id}} red">未</div></label>
                                 {% endif %}
                             </td>
                             <td class="edit">
@@ -60,6 +110,49 @@
                                 </a>
                             </td>
                         </tr>
+                    {% endif %}
+                    {% endfor %}
+                </table>
+
+                <table id="unfinished" border="1" style="display: none;">
+                    <tr>
+                        <th>ID</th>
+                        <th>画像</th>
+                        <th>ファイル名・ダウンロード</th>
+                        <th>AIの判定</th>
+                        <th>ユーザー判定</th>
+                        <th>アノテーション</th>
+                        <th>編集画面へ</th>
+                    </tr>
+                    {% for report in reports %}
+                    {% if not report.annotation %}
+                        <tr>
+                            <td>{{report.id}}</td>
+                            {% with img="/upload_img/"|add:report.image %}
+                                <td>
+                                    <img src="{{ img }}">
+                                </td>
+                                <td>
+                                    <a href="{{ img }}" download>{{report.image}}</a> </td>
+                            {% endwith %}
+                            <td>{{report.ai_result}}</td>
+                            <td>{{report.user_result}}</td>
+                            <td class="annotation">
+                                {% if report.annotation %}
+                                    <input type="checkbox" name="annotation" value="{{report.id}}" id="check{{report.id}}" class="check" checked>
+                                    <label for="check{{report.id}}"><div class="{{report.id}} green">済</div></label>
+                                {% else %}
+                                    <input type="checkbox" name="annotation" value="{{report.id}}" id="check{{report.id}}" class="check">
+                                    <label for="check{{report.id}}"><div class="{{report.id}} red">未</div></label>
+                                {% endif %}
+                            </td>
+                            <td class="edit">
+                                <a href="{% url 'admin:helpapp_report_change' report.id %}">
+                                    <button type="button">編集</button>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endif %}
                     {% endfor %}
                 </table>
             </from>
@@ -68,5 +161,29 @@
             <a href="#">TOPへ戻る</a>
         </div>
     </div>
+    <script>
+        function viewChange(){
+        let categories = ["all", "finished", "unfinished"] 
+        if(document.getElementById('categories')){
+            id = document.getElementById('categories').value;
+            for(let category of categories){
+                if(id == category){
+                    let elements = document.getElementById(category);
+                    elements.style.display = "";
+                    console.log(elements)
+
+                }
+                else{
+                    let elements = document.getElementById(category);
+                    elements.style.display = "none";
+
+                }
+            }
+            
+        }
+    
+        window.onload = viewChange;
+    }
+    </script>
 </body>
 </html>

@@ -60,10 +60,6 @@
     </div>
 
 
-    {% if none == 0 %}
-    <div class="none"><h2>洗濯物を追加してください</h2></div>
-    {% endif %}
-    
     <!-- チェックボックス -->
 
     <div id="check" class="hidden">
@@ -112,7 +108,11 @@
                 <input id="delete" type="submit" value="削除" onclick='return confirm("本当に削除しますか？");'>
             </div>
         </form>
+    
     </div>
+    {% if none == 0 %}
+    <div class="none"><h2>洗濯物を追加してください</h2></div>
+    {% endif %}
     <a href="{% url 'helpapp:washer_add' %}">
         <button type="button" id="add">＋</button>
     </a>
