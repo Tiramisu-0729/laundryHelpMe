@@ -13,12 +13,12 @@ body{
 }
 .title{
     margin-top: 8vmin;
-    margin-bottom: 10vmin;
-    font-size:15vmin;	
+    margin-bottom: 5vmin;
+    font-size:18vmin;	
     font-family: 'Candara','Calibri','Segoe','Segoe UI','Optima','Arial','sans-serif';
 }
 .col2 {
-    font-size: 8vmin;
+    font-size: 6vmin;
 }
 img{
     width: 65vmin;

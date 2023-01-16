@@ -82,6 +82,9 @@ label{
     text-shadow: 0.4vmin 0.4vmin 0.3vmin #333;
     color: white; 
 }
+.none{
+    text-align: center;
+}
 .space{
     margin-top: 20vmin;
 }
@@ -115,7 +118,7 @@ label{
 }
 #delete{
     width: 100vw;
-    height: 15vmin;
+    height: 16vmin;
     font-size: 8vmin;
     color: #fff;
     font-weight: bold;

@@ -2,7 +2,6 @@ window.onload = function(){
     let edit = document.getElementById('edit-button');
     let main = document.getElementById('main');
     let main_edit = document.getElementById('main_edit');
-    let message = document.getElementById('success');
 
     
 
@@ -15,10 +14,6 @@ window.onload = function(){
         else{
             edit.innerText = '編集' ;
         }
-    });
-
-    message.addEventListener('click', () => { 
-        message.classList.add('hidden');
     });
 
     let id_img = document.getElementById('id_image');

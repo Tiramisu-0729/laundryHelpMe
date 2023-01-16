@@ -76,6 +76,13 @@ p{
     display: block;
     font-size: 3vmin;
     margin-bottom: 20vmin;
+    background-color: #ccc;
+    text-decoration: none;
+    width: 50%;
+    margin: 0 auto;
+    padding: 1%;
+    border-radius: 5px;
+    color: #333;
 }
 .red{
     color: red;

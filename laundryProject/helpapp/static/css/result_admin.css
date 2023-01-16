@@ -77,6 +77,9 @@ td img {
     width: 50px;
     border-radius: 5px;
 }
+.check{
+    display: none;
+}
 .annotation {
     justify-content: center;
 }

@@ -5,6 +5,7 @@ window.onload = function(){
     
     let checkbox = document.querySelectorAll("input[type='checkbox']");
     let btn = document.getElementsByClassName('btn');
+    let space = document.getElementsByClassName('space');
   
 
     //チェックボックス表示切替
@@ -13,12 +14,18 @@ window.onload = function(){
         content.classList.toggle('hidden');
         if (edit.innerText == '編集'){
             edit.innerText = '戻る' ;
+            btn[0].classList.add('hidden');
+            space[0].style.margin = "20vmin";
+            document.getElementById('add').style.bottom = "20vmin";
         }
         else{
             for (let i = 0; i < checkbox.length; i++) {
                 checkbox[i].checked = false;
             }
             edit.innerText = '編集' ;
+            btn[0].classList.add('hidden');
+            space[0].style.margin = "20vmin";
+            document.getElementById('add').style.bottom = "20vmin";
         }
         
     });             
@@ -46,6 +53,7 @@ window.onload = function(){
                 if(btn[0].classList.contains('hidden')){
                     if(newArr.length > 0){
                         btn[0].classList.remove('hidden');
+                        space[0].style.margin = "35vmin";
                         document.getElementById('add').style.bottom = "33vmin";
                     }
                 }
@@ -63,18 +71,14 @@ window.onload = function(){
                 let newArr = Array.from(new Set(arr));
                 if(newArr.length == 0){
                     btn[0].classList.add('hidden');
+                    space[0].style.margin = "20vmin";
                     document.getElementById('add').style.bottom = "20vmin";
                 }
                 document.querySelector('#delete').value ='(' + newArr.length + ')' + '削除';
             }
         });
     }
-    let message = document.getElementById('success');
-    message.addEventListener('click', () => { 
-        message.classList.add('hidden');
-    });
-    
-    
+
 };
 
 

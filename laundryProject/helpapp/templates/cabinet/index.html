@@ -58,8 +58,6 @@
         {% endfor %} 
     </div>
 
-    <div class="none">{{none}}</div>
-
     <!-- チェックボックス -->
 
     <div id="check" class="hidden">
@@ -109,6 +107,9 @@
             </div>
         </form>
     </div>
+    {% if none == 0 %}
+    <div class="none"><h2>洗濯物を追加してください</h2></div>
+    {% endif %}
     <a href="{% url 'helpapp:cabinet_judge'%}">
         
         <button type="button" id="add">＋</button>

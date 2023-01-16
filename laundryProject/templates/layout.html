@@ -32,8 +32,13 @@
             </ul>
         </footer>
     </div>
-    <script>
-        
+    <script>        
+        let message = document.getElementById('success');
+        if(message) {
+            message.addEventListener('click', () => { 
+                message.classList.add('hidden');  
+            }) 
+        };
         const ON = JSON.parse('{{ ON|safe }}');
         var id = document.getElementById(ON);
         id.classList.add("ON");

@@ -58,10 +58,6 @@
             </div>
         {% endfor %} 
     </div>
-
-    {% if none == 0 %}
-        <h2>洗濯物を追加してください</h2>
-    {% endif %}
     
     <!-- チェックボックス -->
 
@@ -111,7 +107,11 @@
                 <input id="delete" type="submit" value="削除" onclick='return confirm("本当に削除しますか？");'>
             </div>
         </form>
+    
     </div>
+    {% if none == 0 %}
+    <div class="none"><h2>洗濯物を追加してください</h2></div>
+    {% endif %}
     <a href="{% url 'helpapp:washer_add' %}">
         <button type="button" id="add">＋</button>
     </a>
@@ -120,6 +120,7 @@
             <button type="button" class="judge" id="judge">判定</button>
         </a>
     </div>
+    <div class="space"></div>
     <script type="text/javascript">
         let none = JSON.parse('{{ none_json|safe }}');
         if  (none == 0 ){

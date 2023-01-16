@@ -1,5 +1,6 @@
 import os
 import shutil
+from warnings import catch_warnings
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render
@@ -189,9 +190,13 @@ def washer_log(request):
             for washer_log in washer_logs:
                 if  Laundry.objects.filter(washer_log_id = washer_log.pk).exists():   #存在確認
                     laundries.append(Laundry.objects.filter(washer_log_id = washer_log.pk)) #laundry表とcabinet表を結合
+        none = ""
+        if len(washer_logs) == 0:
+            none = 0
         context = {
             'ON' : json.dumps('timeline'),
-            'message': 'timeline',
+            'message': 'TimeLine',
+            'none': none,
             'washer_logs' : washer_logs,
             'Laundries' : laundries,
             'user' : user,
@@ -305,8 +310,8 @@ def cabinet(request):
             cabinets[i].laundry_tag = tags[0]
             i+=1
         none = ""
-        if not(cabinets.exists):
-            none = "タンスに登録してください"
+        if len(cabinets) == 0:
+            none = 0
         context = {
             'categories' : categories,
             'categories_json' : json.dumps(categories_json), #serializers.serialize("json", categories),
@@ -376,7 +381,7 @@ def cabinet_detail(request, pk):
     context = {
         'ON' : json.dumps('cabinet'),
         'tags' : tags,
-        'message': cabinet.name,
+        'message': 'cabinet',
         'cabinet' : cabinet,
     }
     return render(request, 'cabinet/detail.html', context)
@@ -500,40 +505,40 @@ def timeline(request):
         return redirect('/accounts/login/')
 
 def judge(request):
-    if request.method == "POST":
-        image = request.FILES['UploadImg']#保存先はupload_imgのなか　いったん保存
-        fs = FileSystemStorage()
-        ext = os.path.splitext(image.name)
-        file_data = fs.save(request.user.username + ext[1], image)
-        file_url = fs.url(file_data)
-        request.session['file_url'] = file_url
-        #AIで画像判定
-        import time
-        time.sleep(7)
-        # results = MODEL(file_url)
-        results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
-        #判定結果 解析
-        datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
-        result=[]
-        for data in datas :
-            if data[4] > 0.5:
-                result.append(data[6]) 
-        redirect_url = reverse('helpapp:laundry_tag_check')
-        parameters = urlencode({'file_url': file_url, 'result' : result})
-        url = f'{redirect_url}?{parameters}'
-        if request.user.is_authenticated :
-            profile = Profile.objects.filter(user=request.user).first()
-            profile.judge_cnt += 1
-            profile.save()
-        return redirect(url)
-    else:
-        user = request.user
-        context = {
-            'ON' : json.dumps('home'),
-            'message': 'judge',
-            'user': user,
-            'form': JudgeForm(),
-        }
+    try :
+        if request.method == "POST":
+            image = request.FILES['UploadImg']#保存先はupload_imgのなか　いったん保存
+            fs = FileSystemStorage()
+            ext = os.path.splitext(image.name)
+            file_data = fs.save(request.user.username + ext[1], image)
+            file_url = fs.url(file_data)
+            request.session['file_url'] = file_url
+            #AIで画像判定
+            import time
+            time.sleep(0) #デバッグ用：処理を(秒数)分止める
+            # results = MODEL(file_url)
+            results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
+            #判定結果 解析
+            datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
+            result=[]
+            for data in datas :
+                if data[4] > 0.5:
+                    result.append(data[6]) 
+            redirect_url = reverse('helpapp:laundry_tag_check')
+            parameters = urlencode({'file_url': file_url, 'result' : result})
+            url = f'{redirect_url}?{parameters}'
+            if request.user.is_authenticated :
+                profile = Profile.objects.filter(user=request.user).first()
+                profile.judge_cnt += 1
+                profile.save()
+            return redirect(url)
+    except :
+        messages.success(request, 'エラーが発生しました')
+    context = {
+        'ON' : json.dumps('home'),
+        'message': 'judge',
+        'form': JudgeForm(),
+    }
     return render(request, 'home/index.html', context)
 
 def laundry_tag_check(request):
