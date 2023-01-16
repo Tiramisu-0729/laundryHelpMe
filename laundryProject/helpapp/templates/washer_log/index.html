@@ -16,9 +16,9 @@
             {% for laundry in Laundries %}
                 <div class="item">
                     <div class="panel">
-                        <span class="dummy_button1">
+                        {% comment %} <span class="dummy_button1">
                             
-                        </span>
+                        </span> {% endcomment %}
                         <span class="add">
                             <a href='{% url "helpapp:log_to_washer" laundry.0.washer_log_id%}' onclick='return confirm("洗濯機に追加しますか？");'>
                                 +
@@ -36,8 +36,7 @@
                             </a>
                         </span>
                     </div>
-                    <hr>
-                    <div class="washer_log {{laundry.0.washer_log_id}}">
+                    <div class="washer_log ">
                         {% for laund in laundry %}
                             <div class="div_pic">
                                 <a href='{% url "helpapp:cabinet_detail" laund.cabinet_id %}'>

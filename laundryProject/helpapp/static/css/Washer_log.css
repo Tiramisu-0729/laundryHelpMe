@@ -7,24 +7,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #999;
+    border-radius: 10px 10px 0 0;
 }
 .date{
     margin: 5vmin;
     width:50vmin;
-    border: 1px #e2e2e2 solid;
     border-radius: 3px;
-    margin: 2vmin 1vmin;
+    margin: 2vmin 7vmin;
     padding: 2vmin;
     /* box-shadow: 1px 1px 3px rgba(182, 182, 182, 0.5); */
-}
+    background-color: #fff;
+    font-size: 4vmin;
+    }
 
+.date a {
+    /* border-bottom: #333 solid 0.5px; */
+    color: #6cc4ff;
+    text-shadow: 0.4vmin 0.4vmin 0.3vmin #ddd;
+}
 .delete{
     height: 7vmin;
     width: 7vmin;
     display: grid;
     align-items: center;
     text-align: center;
-    margin:0 3vmin;
     background-color: rgb(255, 66, 66);
     font-weight: bold;
     border-radius: 50%;
@@ -32,19 +39,10 @@
 }
 .delete a{
     color: white;
+    font-size: 3.8vmin;
 }
 
 .dummy_button1{
-    height: 7vmin;
-    width: 7vmin;
-    margin-right: 3vmin;
-    background-color: rgb(126, 255, 66);
-    font-weight: bold;
-    border-radius: 50%;
-    box-shadow: 1px 1px 1px rgba(102, 102, 102, 0.5);
-}
-.add{
-    
     height: 7vmin;
     width: 7vmin;
     margin-right: 3vmin;
@@ -53,9 +51,21 @@
     border-radius: 50%;
     box-shadow: 1px 1px 1px rgba(102, 102, 102, 0.5);
 }
+.add{
+    height: 7vmin;
+    width: 7vmin;
+    background-color: rgb(126, 230, 66);
+    font-weight: bold;
+    border-radius: 50%;
+    box-shadow: 1px 1px 1px rgba(102, 102, 102, 0.5);
+    justify-content: center;
+    text-align: center;
+    display: grid;
+}
 
 .add a{
     color: white;
+    font-size: 4.5vmin;
 }
 
 p{
@@ -63,6 +73,7 @@ p{
 }
 a{
     text-decoration: none;
+    font-weight: bold;
 }
 .item{
     background-color: white;
@@ -75,12 +86,17 @@ a{
 }
 .washer_log{
     display:flex;
-    overflow-x:scroll;    
+    overflow-x:scroll;   
+    background-color: #efefef;
+    border-radius: 0 0 10px 10px;
+    padding-bottom: 1vmin;
 }
 .div_pic{
     width: 22vmin;
     height: 22vmin;
     margin: 2vmin;
+    background-color: #fff;
+    border-radius: 3vmin;
 }
 .washer_pic{
     width: 22vmin;

@@ -6,9 +6,10 @@ body{
 .backButton{
     margin-top: 2%;
     margin-left: 2%;
+    width: 17vmin;
+    height: 8vmin;
     border-radius: 5px;
-    font-size: 20px;
-    padding: 2px 10px;
+    font-size: 4vmin;
     color: #fff;
     font-weight: bold;
     border: none;
@@ -31,7 +32,7 @@ body{
     padding-top: 2%;
     padding-bottom: 2%;
     padding-left: 4%;
-    font-size: 16px;
+    font-size: 5vmin;
 }
 .tag{
     display: flex;
@@ -54,6 +55,7 @@ body{
 .memo{
     margin: 3% 3%;
     overflow-wrap: break-word;
+    font-size: 4vmin;
 }
 .delete{
     text-align: center;
@@ -63,8 +65,8 @@ body{
     width: 30vw;
     height: 13vmin;
     border-radius: 5px;
-    font-size: 20px;
-    color: #6D6D6D;
+    font-size: 7vmin;
+    color: #fff;
     font-weight: bold;
     border: none;
     background-color: #ff4b4b;
