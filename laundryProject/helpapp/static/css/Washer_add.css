@@ -35,10 +35,10 @@ label{
     align-items: center;
     justify-content: center;
 }
-
 .error{
     text-align: center;
     font-size: x-large;
+    margin: 10vmin auto 15vmin;
 }
 .item input[type="checkbox"]:checked+label {
     border: solid 3px royalblue;
@@ -47,7 +47,6 @@ label{
 .add{
     width: 70%;
     border-radius: 5px;
-    margin-top: 10%;
     padding-top: 2%;
     padding-bottom: 2%;
     font-size: 32px;

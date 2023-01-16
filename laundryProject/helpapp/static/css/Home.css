@@ -6,9 +6,9 @@
     display: none;
 }
 #home_img{
-    width: 250px;
-    height: 250px;
-    margin: 13% auto 5%;
+    width: 60vmin;
+    height: 60vmin;
+    margin: 13vmin auto 5vmin;
     object-fit: cover;
 }
 .content{
@@ -17,7 +17,7 @@
     bottom: 20vmin;
 }
 .cabinet{
-    margin-top: 5%;
+    margin-top: 10vmin;
     text-align: center;
     font: 6.5vmin bold;
 }
@@ -36,4 +36,3 @@ button{
     border: none;
     background-color: #4BC9FF;
 }
-

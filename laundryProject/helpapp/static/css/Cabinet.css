@@ -1,7 +1,7 @@
 /* cabinet */
 .nuv{
     height: 5.5vh;
-    margin: 1.9%;
+    margin: 2%;
 }
 .item{
     width: 28vmin;
@@ -117,7 +117,7 @@ label{
     width: 100vw;
     height: 15vmin;
     font-size: 8vmin;
-    color: #6D6D6D;
+    color: #fff;
     font-weight: bold;
     border: none;
     background-color: #ff4b4b;

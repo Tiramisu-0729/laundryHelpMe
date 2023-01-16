@@ -113,7 +113,7 @@ label{
     width: 100vw;
     height: 15vmin;
     font-size: 32px;
-    color: #6D6D6D;
+    color: #fff;
     font-weight: bold;
     border: none;
     background-color: #ff4b4b;
@@ -137,25 +137,19 @@ label{
     right: 3vmin;
     bottom: 20vmin;
     box-shadow: 1px 2px 5px 2px #cfcfcf;
-
-}
-.finish{
-    clear: both;
-    background-color: #4BC9FF;
 }
 .button{
     text-align: center;
     margin: 20% 2%;
-
 }
 .judge{
-    background-color: #fffa61;
+    background-color: #4BC9FF;
     width: 70%;
     border-radius: 5px;
     padding-top: 2%;
     padding-bottom: 2%;
     font-size: 8vmin;
-    color: #6D6D6D;
+    color: #fff;
     font-weight: bold;
     border: none;
     clear: both;
