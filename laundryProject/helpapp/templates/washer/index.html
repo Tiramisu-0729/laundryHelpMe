@@ -58,11 +58,6 @@
             </div>
         {% endfor %} 
     </div>
-
-
-    {% if none == 0 %}
-        <h2>洗濯物を追加してください</h2>
-    {% endif %}
     
     <!-- チェックボックス -->
 
@@ -125,6 +120,7 @@
             <button type="button" class="judge" id="judge">判定</button>
         </a>
     </div>
+    <div class="space"></div>
     <script type="text/javascript">
         let none = JSON.parse('{{ none_json|safe }}');
         if  (none == 0 ){

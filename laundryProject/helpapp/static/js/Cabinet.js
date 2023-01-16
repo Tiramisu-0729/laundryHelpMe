@@ -78,12 +78,7 @@ window.onload = function(){
             }
         });
     }
-    let message = document.getElementById('success');
-    message.addEventListener('click', () => { 
-        message.classList.add('hidden');
-    });
-    
-    
+
 };
 
 
