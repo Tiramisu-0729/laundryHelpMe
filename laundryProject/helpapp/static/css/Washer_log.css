@@ -98,6 +98,9 @@ a{
     background-color: #fff;
     border-radius: 3vmin;
 }
+.none{
+    text-align: center;
+}
 .washer_pic{
     width: 22vmin;
     height: 22vmin;

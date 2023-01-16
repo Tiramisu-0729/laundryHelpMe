@@ -1,17 +1,34 @@
 window.onload = function(){ 
     
     let checkbox = document.querySelectorAll("input[type='checkbox']");
-    let annotation =  document.getElementsByClassName("red");
-
+    
 
     for (let i = 0; i < checkbox.length; i++) {
         checkbox[i].addEventListener('change', function() { //チェックボックス（type='checkbox'）の値が変更されたとき・・・ 
-            if(this.checked){                                      //クリックされたチェックボックスがcheckedなら・・・
-                annotation.classList.replace('green', 'red');
+            let cbv = "'" + this.value + "'";  
+            let checked = document.querySelectorAll("input[type='checkbox'][value =" + cbv + "]");
+
+            if(this.checked){   
+                for (let i = 0; i < checked.length; i++) {
+                    checked[i].checked = true;
+                }                                   //クリックされたチェックボックスがcheckedなら・・・
+                let id = document.getElementsByClassName(this.value)
+                for (let i = 0; i < id.length; i++) {
+                    id[i].classList.replace('red', 'green');
+                    id[i].innerText = ('済');
+                }
             }
             else{
-                annotation.classList.replace('red', 'green');
+                for (let i = 0; i < checked.length; i++) {
+                    checked[i].checked = false;
+                } 
+                let id = document.getElementsByClassName(this.value)
+                for (let i = 0; i < id.length; i++) {
+                    id[i].classList.replace('green', 'red');
+                    id[i].innerText = ('未');
+                }
             }
         });
     }
+    
 }

@@ -190,9 +190,13 @@ def washer_log(request):
             for washer_log in washer_logs:
                 if  Laundry.objects.filter(washer_log_id = washer_log.pk).exists():   #存在確認
                     laundries.append(Laundry.objects.filter(washer_log_id = washer_log.pk)) #laundry表とcabinet表を結合
+        none = ""
+        if len(washer_logs) == 0:
+            none = 0
         context = {
             'ON' : json.dumps('timeline'),
             'message': 'TimeLine',
+            'none': none,
             'washer_logs' : washer_logs,
             'Laundries' : laundries,
             'user' : user,
@@ -306,8 +310,8 @@ def cabinet(request):
             cabinets[i].laundry_tag = tags[0]
             i+=1
         none = ""
-        if not(cabinets.exists):
-            none = "タンスに登録してください"
+        if len(cabinets) == 0:
+            none = 0
         context = {
             'categories' : categories,
             'categories_json' : json.dumps(categories_json), #serializers.serialize("json", categories),
