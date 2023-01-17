@@ -1,7 +1,7 @@
 .content{
     width: 96%;
     /* display:flex; */
-    margin: 3% 2% 0 2%;
+    margin: 5vmin 2vmin 20vmin;
 }
 .item{
     width: 28vmin;
@@ -23,7 +23,6 @@
 .check{
     margin: auto;
     border-radius: 5px;
-    
 }
 .item input[type="checkbox"] {
     display: none;
@@ -38,7 +37,6 @@ label{
 .error{
     text-align: center;
     font-size: x-large;
-    margin: 10vmin auto 15vmin;
 }
 .item input[type="checkbox"]:checked+label {
     border: solid 3px royalblue;
@@ -54,7 +52,7 @@ label{
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
-    margin-bottom: 25%;
+    margin-top: 15vmin;
 }
 .btn{
     clear: both;

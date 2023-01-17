@@ -2,6 +2,9 @@
 body{
     color: #333;
 }
+.content {
+    margin-bottom: 20vmin;
+}
 .laundryTagImg{
     width: 220px;
     height: 220px;
