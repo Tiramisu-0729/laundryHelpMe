@@ -1,5 +1,6 @@
 import os
 import shutil
+from turtle import color
 from warnings import catch_warnings
 from django.urls import reverse
 from urllib.parse import urlencode
@@ -378,11 +379,24 @@ def cabinet_add(request):
 def cabinet_detail(request, pk):
     cabinet = Cabinet.objects.get(pk=pk)
     tags = cabinet.laundry_tag.split(',')
+    if tags[0] == "LD":
+        whether = "手洗い"
+        color = "green"
+    elif tags[0] == "LE":
+        whether = "洗えない"
+        color = "red"
+    else:
+        whether = "洗える"
+        color = "blue"
     context = {
         'ON' : json.dumps('cabinet'),
         'tags' : tags,
         'message': 'cabinet',
         'cabinet' : cabinet,
+        'whether' : whether,
+        'tags_json' : json.dumps(tags),
+        'color' : color,
+
     }
     return render(request, 'cabinet/detail.html', context)
 
