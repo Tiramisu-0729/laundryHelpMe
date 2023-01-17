@@ -4,40 +4,42 @@
     <link rel="stylesheet" href="{% static 'css/Result.css' %}">
 {% endblock %}
 {% block content %}
-{% for message in messages %}
-        <div {% if message.tags %}id="{{ message.tags }}"{% endif %}>
-            <p>　×　　{{ message }}</p>
-        </div>
-{% endfor %}
-<img src="{{file_url}}" class="laundryTagImg">
-
-<div class="result"><p>{{result}}</p></div>
-<div class="details">
-    <details>
-        <summary class="belt">詳細</summary>
-            {% for tag in tags %}
-            <div class="tag">
-                <div class="tag_img">
-                    {% with img="/pictures/"|add:tag|add:".png" %}
-                    <img class="img" src="{% static img%}">
-                    {% endwith %}
-                </div>
-                <div class="text"><div id="{{tag}}"></div></div>
+<div class="content">
+    {% for message in messages %}
+            <div {% if message.tags %}id="{{ message.tags }}"{% endif %}>
+                <p>　×　　{{ message }}</p>
             </div>
-            {% endfor %}
-    </details>
+    {% endfor %}
+    <img src="{{file_url}}" class="laundryTagImg">
+
+    <div class="result"><p>{{result}}</p></div>
+    <div class="details">
+        <details>
+            <summary class="belt">詳細</summary>
+                {% for tag in tags %}
+                <div class="tag">
+                    <div class="tag_img">
+                        {% with img="/pictures/"|add:tag|add:".png" %}
+                        <img class="img" src="{% static img%}">
+                        {% endwith %}
+                    </div>
+                    <div class="text"><div id="{{tag}}"></div></div>
+                </div>
+                {% endfor %}
+        </details>
+    </div>
+
+
+    <a href="{% url 'helpapp:cabinet_form' %}">
+        <button type="button" class="add_cabinet">タンスに追加</button>
+    </a>
+    <a href='{% url "helpapp:home" %}'>
+        <button type="button" class="finish">完了</button>
+    </a>
+    <a href='{% url "helpapp:judge_report" %}' class="ai_report" onclick='return confirm("AIの判定と洗濯タグに違いがありましたか？\n報告によりAIの性能向上に役立ちます");'>
+        判定結果が違っていた場合
+    </a>
 </div>
-
-
-<a href="{% url 'helpapp:cabinet_form' %}">
-    <button type="button" class="add_cabinet">タンスに追加</button>
-</a>
-<a href='{% url "helpapp:home" %}'>
-    <button type="button" class="finish">完了</button>
-</a>
-<a href='{% url "helpapp:judge_report" %}' class="ai_report" onclick='return confirm("AIの判定と洗濯タグに違いがありましたか？\n報告によりAIの性能向上に役立ちます");'>
-    判定結果が違っていた場合
-</a>
 
 <script type="text/javascript">
     let tags = JSON.parse('{{ tags_json|safe }}');
@@ -66,7 +68,6 @@
             text.innerHTML=('温度は<span class="red">40度</span>を限度とし、<br>洗濯機で洗濯ができる');
             break;
         case 'L8':
-            console.log("でた")
             text.innerHTML=('温度は<span class="red">40度</span>を限度とし、<br>洗濯機で<span class="red">弱い</span>洗濯ができる');
             break;
         case 'L9':
