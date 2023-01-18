@@ -35,11 +35,18 @@ def nologin(request):
     return render(request, 'nologin/index.html', context)
 
 def home(request):
-    context = {
-        'ON' : json.dumps('home'),
-        'message': 'Judge',
-        'form': JudgeForm(),
-    }
+    if Profile.objects.filter(user=request.user).exists():
+        context = {
+            'ON' : json.dumps('home'),
+            'message': 'Judge',
+            'form': JudgeForm(),
+        } 
+    else:
+        new_profile=Profile()
+        new_profile.user = request.user
+        new_profile.image = "none"
+        new_profile.save()
+        return redirect('/helpapp/home')
     return render(request, 'home/index.html', context)
 
 def washer(request):
