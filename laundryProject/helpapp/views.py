@@ -205,8 +205,8 @@ def washer_log(request):
         if len(washer_logs) == 0:
             none = 0
         context = {
-            'ON' : json.dumps('timeline'),
-            'message': 'TimeLine',
+            'ON' : json.dumps('bookmark'),
+            'message': 'Bookmark',
             'none': none,
             'washer_logs' : washer_logs,
             'Laundries' : laundries,
@@ -508,33 +508,6 @@ def changePass(request):
                 'message': 'ChangePass',
             }
             return render(request, 'user/change.html', context)
-
-def timeline(request):
-    if request.user.is_authenticated :
-        user = request.user
-        cabinets = Cabinet.objects.filter(author=user).order_by('-id')
-        cnt = 0
-        TimeLineCab = []
-        tag_list = []
-        for cab in cabinets :
-            if 19 < cnt:
-                break
-            cab.laundry_tag = cab.laundry_tag.split(',') #cabinetのlaundry_tagを「，」で区切って配列化
-            cnt += 1
-            TimeLineCab.append(cab)
-        none=""
-        if not(cabinets.exists):
-            none = "タンスに登録してください"
-        context = {
-            'ON' : json.dumps('timeline'),
-            'tag_list': tag_list,
-            'message': 'TimeLine',
-            'cabinets' : TimeLineCab,
-            'none' : none
-        }
-        return render(request, 'timeline/index.html', context)
-    else :
-        return redirect('/accounts/login/')
 
 def judge(request):
     if request.user.is_authenticated :
