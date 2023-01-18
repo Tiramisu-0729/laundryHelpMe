@@ -3,34 +3,21 @@ body{
     font-size: 18px;
     color: #333;
 }
-.backButton{
-    margin-top: 2%;
-    margin-left: 2%;
-    width: 17vmin;
-    height: 8vmin;
-    border-radius: 5px;
-    font-size: 4vmin;
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    background-color: #4BC9FF;
-}
+
 .laundryTagImg{
     width: 100vmin;
     height: 100vmin;
     object-fit: cover;
 }
 .name{    
-    font-size: 9vmin;
+    font-size: 8vmin;
     font-weight: bold;
-    margin-bottom: 5vmin;
 }
 .explanation{
     margin: 2vmin 6vmin;
 }
 .whether{
     font-size: 7vmin;
-    margin-bottom: 10vmin;
     font-weight: bold;
 }
 
@@ -48,6 +35,14 @@ body{
     font-weight: bold;
     margin-top: 11vmin
 }
+.category{
+    float: right;
+    width: 20vmin;
+    text-align: center;
+    background-color: #fff;
+    border-radius: 20px;
+    border: 1px solid #aaa;
+}
 .belt{
     background-color: #CBF9FF;
     padding-top: 2%;
@@ -55,11 +50,15 @@ body{
     padding-left: 4%;
     border-radius: 5px;
 }
+hr{
+    margin: 3vmin 0;
+    border: solid 1px #ccc;
+}
 .summary{
     background-color: #fff;
     border-radius:5px;
     padding: 1vmin ;
-    box-shadow: 3px 3px 8px rgba(102, 102, 102, 0.5);
+    /* box-shadow: 3px 3px 8px rgba(102, 102, 102, 0.5); */
 }
 .tag{
     display: flex;
@@ -75,10 +74,14 @@ body{
     background-color: #fff;
 }
 .memo{
-    border-radius: 5px;
+    margin: 2vmin;
     min-height: 20vmin;
-    overflow-wrap: break-word;
     font-size: 4vmin;
+}
+.text{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .delete{
     text-align: center;
@@ -97,7 +100,6 @@ body{
 }
 p{
     margin: 0;
-    padding: 4vmin;
 }
 .space{
     margin: 20vmin;

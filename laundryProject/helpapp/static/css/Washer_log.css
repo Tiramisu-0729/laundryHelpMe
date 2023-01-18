@@ -24,7 +24,7 @@
 .date a {
     /* border-bottom: #333 solid 0.5px; */
     color: #6cc4ff;
-    text-shadow: 0.4vmin 0.4vmin 0.3vmin #ddd;
+    /* text-shadow: 0.4vmin 0.4vmin 0.3vmin #ddd; */
 }
 .delete{
     height: 7vmin;

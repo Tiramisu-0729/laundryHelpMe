@@ -7,14 +7,16 @@
 {% block content %}
 <div class="content">
     <div class="main">
+        <div class="name">{{cabinet.name}}</div>
         <div><img src="{{ cabinet.image.url }}" class="laundryTagImg"></div>
         <div class="explanation">
-            <div class="name">{{cabinet.name}}</div>
-            <div class="{{color}} whether"><p>{{whether}}</p></div>
+            <span class="{{color}} whether">{{whether}}</span>
+            <div class="category">{{cabinet.category}}</div>
             <div class="details">
             <div class="title">
                 詳細
             </div>
+            <hr>
                 <div class="summary">
                     {% for tag in tags %}
                     <div class="tag">
@@ -31,7 +33,7 @@
             <div class="title">
                 メモ
             </div>
-
+            <hr>
             <div class="memo">
                 <p>{{cabinet.memo}}</p>
             </div>
