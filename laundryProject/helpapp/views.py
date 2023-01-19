@@ -36,19 +36,22 @@ def nologin(request):
     return render(request, 'nologin/index.html', context)
 
 def home(request):
-    if Profile.objects.filter(user=request.user).exists():
-        context = {
-            'ON' : json.dumps('home'),
-            'message': 'Judge',
-            'form': JudgeForm(),
-        } 
-    else:
-        new_profile=Profile()
-        new_profile.user = request.user
-        new_profile.image = "none"
-        new_profile.save()
-        return redirect('/helpapp/home')
-    return render(request, 'home/index.html', context)
+    if request.user.is_authenticated :
+        if Profile.objects.filter(user=request.user).exists():
+            context = {
+                'ON' : json.dumps('home'),
+                'message': 'Judge',
+                'form': JudgeForm(),
+            } 
+        else:
+            new_profile=Profile()
+            new_profile.user = request.user
+            new_profile.image = "none"
+            new_profile.save()
+            return redirect('/helpapp/home')
+        return render(request, 'home/index.html', context)
+    else :
+        return redirect('/helpapp/nologin')
 
 def washer(request):
     if request.user.is_authenticated :
@@ -543,39 +546,36 @@ def changePass(request):
             return render(request, 'user/change.html', context)
 
 def judge(request):
-    if request.user.is_authenticated :
-        try :
-            if request.method == "POST":
-                image = request.FILES['UploadImg']#保存先はupload_imgのなか　いったん保存
-                fs = FileSystemStorage()
-                ext = os.path.splitext(image.name)
-                file_data = fs.save(request.user.username + ext[1], image)
-                file_url = fs.url(file_data)
-                request.session['file_url'] = file_url
-                #AIで画像判定
-                import time
-                time.sleep(0) #デバッグ用：処理を(秒数)分止める
-                # results = MODEL(file_url)
-                results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
-                #判定結果 解析
-                datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
-                result=[]
-                for data in datas :
-                    if data[4] > 0.5:
-                        result.append(data[6]) 
-                redirect_url = reverse('helpapp:laundry_tag_check')
-                parameters = urlencode({'file_url': file_url, 'result' : result})
-                url = f'{redirect_url}?{parameters}'
-                if request.user.is_authenticated :
-                    profile = Profile.objects.filter(user=request.user).first()
-                    profile.judge_cnt += 1
-                    profile.save()
-                return redirect(url)
-        except :
-            messages.success(request, 'エラーが発生しました')
-        return redirect('/helpapp/home')
-    else :
-        return redirect('/accounts/login/')
+    try :
+        if request.method == "POST":
+            image = request.FILES['UploadImg']#保存先はupload_imgのなか　いったん保存
+            fs = FileSystemStorage()
+            ext = os.path.splitext(image.name)
+            file_data = fs.save(request.user.username + ext[1], image)
+            file_url = fs.url(file_data)
+            request.session['file_url'] = file_url
+            #AIで画像判定
+            import time
+            time.sleep(0) #デバッグ用：処理を(秒数)分止める
+            # results = MODEL(file_url)
+            results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
+            #判定結果 解析
+            datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
+            result=[]
+            for data in datas :
+                if data[4] > 0.5:
+                    result.append(data[6]) 
+            redirect_url = reverse('helpapp:laundry_tag_check')
+            parameters = urlencode({'file_url': file_url, 'result' : result})
+            url = f'{redirect_url}?{parameters}'
+            if request.user.is_authenticated :
+                profile = Profile.objects.filter(user=request.user).first()
+                profile.judge_cnt += 1
+                profile.save()
+            return redirect(url)
+    except :
+        messages.success(request, 'エラーが発生しました')
+    return redirect('/helpapp/home')
 
 def laundry_tag_check(request):
     file_url = request.GET.get('file_url') # param1の値を取得
