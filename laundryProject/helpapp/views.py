@@ -36,11 +36,18 @@ def nologin(request):
     return render(request, 'nologin/index.html', context)
 
 def home(request):
-    context = {
-        'ON' : json.dumps('home'),
-        'message': 'Judge',
-        'form': JudgeForm(),
-    }
+    if Profile.objects.filter(user=request.user).exists():
+        context = {
+            'ON' : json.dumps('home'),
+            'message': 'Judge',
+            'form': JudgeForm(),
+        } 
+    else:
+        new_profile=Profile()
+        new_profile.user = request.user
+        new_profile.image = "none"
+        new_profile.save()
+        return redirect('/helpapp/home')
     return render(request, 'home/index.html', context)
 
 def washer(request):
@@ -163,10 +170,13 @@ def washer_judge(request):
         return redirect('/accounts/login/')
 
 def washer_complete(request) :
-    profile = Profile.objects.filter(user=request.user).first()
-    profile.washer_cnt += 1
-    profile.save()
-    return redirect('/helpapp/washer')
+    if request.user.is_authenticated :
+        profile = Profile.objects.filter(user=request.user).first()
+        profile.washer_cnt += 1
+        profile.save()
+        return redirect('/helpapp/washer')
+    else :
+        return redirect('/accounts/login/')
 
 def washers_delete(request):
     if request.user.is_authenticated :
@@ -196,8 +206,8 @@ def washer_log(request):
         if len(washer_logs) == 0:
             none = 0
         context = {
-            'ON' : json.dumps('timeline'),
-            'message': 'TimeLine',
+            'ON' : json.dumps('bookmark'),
+            'message': 'Bookmark',
             'none': none,
             'washer_logs' : washer_logs,
             'Laundries' : laundries,
@@ -355,90 +365,98 @@ def cabinet_form(request):
         return redirect('/accounts/login/')
 
 def cabinet_add(request):
-    if request.method == "POST":
-        form = CabinetForm(request.POST)
-        if form.is_valid():#formの内容が正しければ
-            cabinet = Cabinet()
-            cabinet.author = request.user
-            cabinet.name = request.POST['name']
-            cabinet.memo = request.POST['memo']
-            cabinet.category = Categories(request.POST['category'])#category型じゃないと怒られた
-            cabinet.laundry_tag = request.session.get('tags')#判定結果sessionとか
-            cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
-            cabinet.save()
-            messages.success(request, '登録しました')
-        return redirect('/helpapp/cabinet')
-    else:
-        user = request.user
-        context = {
-            'message': 'Error',
-            'user': user,
-            'cabinet_form': CabinetForm(),
-        }
-    return render(request, 'cabinet/add.html', context)
+    if request.user.is_authenticated :
+        if request.method == "POST":
+            form = CabinetForm(request.POST)
+            if form.is_valid():#formの内容が正しければ
+                cabinet = Cabinet()
+                cabinet.author = request.user
+                cabinet.name = request.POST['name']
+                cabinet.memo = request.POST['memo']
+                cabinet.category = Categories(request.POST['category'])#category型じゃないと怒られた
+                cabinet.laundry_tag = request.session.get('tags')#判定結果sessionとか
+                cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
+                cabinet.save()
+                messages.success(request, '登録しました')
+            return redirect('/helpapp/cabinet')
+        else:
+            user = request.user
+            context = {
+                'message': 'Error',
+                'user': user,
+                'cabinet_form': CabinetForm(),
+            }
+        return render(request, 'cabinet/add.html', context)
+    else :
+        return redirect('/accounts/login/')
 
 def cabinet_detail(request, pk):
-    if request.method == "POST":
-        form = CabinetCategoryFrom(request.POST)
-        if form.is_valid():#formの内容が正しければ
-            tags = []
-            names=['Laundry','Bleach','Nature','Iron','Tumble','Dry','Wet']
-            for name in names:
-                if request.POST.get(name) != None:
-                    tags.append(request.POST.get(name))
-            dbtag = ",".join(tags)
-            cabinet = Cabinet.objects.get(pk=pk)
-            if request.POST.get('name') != None:
-                cabinet.name = request.POST['name']
-            if request.POST.get('memo') != None:
-                cabinet.memo = request.POST['memo']
-            if request.POST.get('category') != None:
-                cabinet.category = Categories(request.POST['category'])#category型じゃないと怒られた
-            cabinet.laundry_tag = dbtag
-            if request.FILES.get('file') != None:
-                cabinet.image = request.FILES['file']#保存先はupload_img＞upload_img>imgのなか
-            cabinet.save()
-            messages.success(request, '変更しました')
+    if request.user.is_authenticated :
+        if request.method == "POST":
+            form = CabinetCategoryFrom(request.POST)
+            if form.is_valid():#formの内容が正しければ
+                tags = []
+                names=['Laundry','Bleach','Nature','Iron','Tumble','Dry','Wet']
+                for name in names:
+                    if request.POST.get(name) != None:
+                        tags.append(request.POST.get(name))
+                dbtag = ",".join(tags)
+                cabinet = Cabinet.objects.get(pk=pk)
+                if request.POST.get('name') != None:
+                    cabinet.name = request.POST['name']
+                if request.POST.get('memo') != None:
+                    cabinet.memo = request.POST['memo']
+                if request.POST.get('category') != None:
+                    cabinet.category = Categories(request.POST['category'])#category型じゃないと怒られた
+                cabinet.laundry_tag = dbtag
+                if request.FILES.get('file') != None:
+                    cabinet.image = request.FILES['file']#保存先はupload_img＞upload_img>imgのなか
+                cabinet.save()
+                messages.success(request, '変更しました')
             return redirect('/helpapp/cabinet')
-    else:
-        cabinet = Cabinet.objects.get(pk=pk)
-        tags = cabinet.laundry_tag.split(',')
-        if tags[0] == "LD":
-            whether = "手洗い"
-            color = "green"
-        elif tags[0] == "LE":
-            whether = "洗えない"
-            color = "red"
         else:
-            whether = "洗える"
-            color = "blue"
-        context = {
-            'form' : CabinetCategoryFrom,
-            'ON' : json.dumps('cabinet'),
-            'tags' : tags,
-            'message': 'cabinet',
-            'cabinet' : cabinet,
-            'whether' : whether,
-            'tags_json' : json.dumps(tags),
-            'category_json': json.dumps(cabinet.category_id),
-            'color' : color,
-            'Laundry': ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'LA', 'LB', 'LC', 'LD', 'LE'],
-            'Bleach' : ['B1', 'B2', 'B3'],
-            'Nature' : ['N1', 'N2', 'N3', 'N4', 'N6', 'N5', 'N7', 'N8'],
-            'Iron' : ['I1', 'I2', 'I3', 'I4'],
-            'Tumble' : ['T1', 'T2', 'T3'],
-            'Dry' : ['D1', 'D2', 'D3', 'D4', 'D5'],
-            'Wet' : ['W1', 'W2', 'W3', 'W4' ],
-
-        }
-        return render(request, 'cabinet/detail.html', context)
+            cabinet = Cabinet.objects.get(pk=pk)
+            tags = cabinet.laundry_tag.split(',')
+            if tags[0] == "LD":
+                whether = "手洗い"
+                color = "green"
+            elif tags[0] == "LE":
+                whether = "洗えない"
+                color = "red"
+            else:
+                whether = "洗える"
+                color = "blue"
+            context = {
+                'form' : CabinetCategoryFrom,
+                'ON' : json.dumps('cabinet'),
+                'tags' : tags,
+                'message': 'cabinet',
+                'cabinet' : cabinet,
+                'whether' : whether,
+                'tags_json' : json.dumps(tags),
+                'category_json': json.dumps(cabinet.category_id),
+                'color' : color,
+                'Laundry': ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'LA', 'LB', 'LC', 'LD', 'LE'],
+                'Bleach' : ['B1', 'B2', 'B3'],
+                'Nature' : ['N1', 'N2', 'N3', 'N4', 'N6', 'N5', 'N7', 'N8'],
+                'Iron' : ['I1', 'I2', 'I3', 'I4'],
+                'Tumble' : ['T1', 'T2', 'T3'],
+                'Dry' : ['D1', 'D2', 'D3', 'D4', 'D5'],
+                'Wet' : ['W1', 'W2', 'W3', 'W4' ],
+            }
+            return render(request, 'cabinet/detail.html', context)
+    else :
+        return redirect('/accounts/login/')
 
 def cabinet_delete(request, pk):
-    if Cabinet.objects.filter(pk=pk).exists():#存在確認
-        cabinet = Cabinet.objects.get(pk=pk)
-        cabinet.delete()
-    messages.success(request, '削除しました')
-    return redirect('/helpapp/cabinet')
+    if request.user.is_authenticated :
+        if Cabinet.objects.filter(pk=pk).exists():#存在確認
+            cabinet = Cabinet.objects.get(pk=pk)
+            cabinet.delete()
+        messages.success(request, '削除しました')
+        return redirect('/helpapp/cabinet')
+    else :
+        return redirect('/accounts/login/')
 
 def cabinets_delete(request):
     if request.user.is_authenticated :
@@ -524,69 +542,40 @@ def changePass(request):
             }
             return render(request, 'user/change.html', context)
 
-def timeline(request):
+def judge(request):
     if request.user.is_authenticated :
-        user = request.user
-        cabinets = Cabinet.objects.filter(author=user).order_by('-id')
-        cnt = 0
-        TimeLineCab = []
-        tag_list = []
-        for cab in cabinets :
-            if 19 < cnt:
-                break
-            cab.laundry_tag = cab.laundry_tag.split(',') #cabinetのlaundry_tagを「，」で区切って配列化
-            cnt += 1
-            TimeLineCab.append(cab)
-        none=""
-        if not(cabinets.exists):
-            none = "タンスに登録してください"
-        context = {
-            'ON' : json.dumps('timeline'),
-            'tag_list': tag_list,
-            'message': 'TimeLine',
-            'cabinets' : TimeLineCab,
-            'none' : none
-        }
-        return render(request, 'timeline/index.html', context)
+        try :
+            if request.method == "POST":
+                image = request.FILES['UploadImg']#保存先はupload_imgのなか　いったん保存
+                fs = FileSystemStorage()
+                ext = os.path.splitext(image.name)
+                file_data = fs.save(request.user.username + ext[1], image)
+                file_url = fs.url(file_data)
+                request.session['file_url'] = file_url
+                #AIで画像判定
+                import time
+                time.sleep(0) #デバッグ用：処理を(秒数)分止める
+                # results = MODEL(file_url)
+                results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
+                #判定結果 解析
+                datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
+                result=[]
+                for data in datas :
+                    if data[4] > 0.5:
+                        result.append(data[6]) 
+                redirect_url = reverse('helpapp:laundry_tag_check')
+                parameters = urlencode({'file_url': file_url, 'result' : result})
+                url = f'{redirect_url}?{parameters}'
+                if request.user.is_authenticated :
+                    profile = Profile.objects.filter(user=request.user).first()
+                    profile.judge_cnt += 1
+                    profile.save()
+                return redirect(url)
+        except :
+            messages.success(request, 'エラーが発生しました')
+        return redirect('/helpapp/home')
     else :
         return redirect('/accounts/login/')
-
-def judge(request):
-    try :
-        if request.method == "POST":
-            image = request.FILES['UploadImg']#保存先はupload_imgのなか　いったん保存
-            fs = FileSystemStorage()
-            ext = os.path.splitext(image.name)
-            file_data = fs.save(request.user.username + ext[1], image)
-            file_url = fs.url(file_data)
-            request.session['file_url'] = file_url
-            #AIで画像判定
-            import time
-            time.sleep(0) #デバッグ用：処理を(秒数)分止める
-            # results = MODEL(file_url)
-            results = MODEL(file_url.lstrip("/")) # model_loadからMODEL読み込み
-            #判定結果 解析
-            datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
-            result=[]
-            for data in datas :
-                if data[4] > 0.5:
-                    result.append(data[6]) 
-            redirect_url = reverse('helpapp:laundry_tag_check')
-            parameters = urlencode({'file_url': file_url, 'result' : result})
-            url = f'{redirect_url}?{parameters}'
-            if request.user.is_authenticated :
-                profile = Profile.objects.filter(user=request.user).first()
-                profile.judge_cnt += 1
-                profile.save()
-            return redirect(url)
-    except :
-        messages.success(request, 'エラーが発生しました')
-    context = {
-        'ON' : json.dumps('home'),
-        'message': 'judge',
-        'form': JudgeForm(),
-    }
-    return render(request, 'home/index.html', context)
 
 def laundry_tag_check(request):
     file_url = request.GET.get('file_url') # param1の値を取得
@@ -608,7 +597,7 @@ def laundry_tag_check(request):
         'results': json.dumps(results),
     }
     return render(request, 'laundry_tag_check/index.html', context)
-    
+        
 def judge_result(request):
     context=[]
     if request.method == "POST":
@@ -639,61 +628,60 @@ def judge_result(request):
             'tags' : tags,
         }
         request.session['context'] = context
-        return render(request, 'laundry_tag_check/result.html', context)
+    return render(request, 'laundry_tag_check/result.html', context)
+
+    
 
 def judge_report(request):
-    # file_name = request.session['file_url'].replace("/media/", "")
-    file_name = request.session['file_url'].replace("/upload_img/", "")
-    is_file = os.path.exists(MEDIA_ROOT + 'report/' + file_name)
-    if is_file == False:
-        shutil.copy( MEDIA_ROOT + file_name, MEDIA_ROOT + 'report/' + file_name)
-        report = Report()
-        report.image = 'report/' +  file_name
-        report.ai_result = request.session['ai_result']
-        report.user_result = request.session['tags']
-        report.save()
-        messages.success(request, '報告が完了しました。')
+    if request.user.is_authenticated :
+        # file_name = request.session['file_url'].replace("/media/", "")
+        file_name = request.session['file_url'].replace("/upload_img/", "")
+        is_file = os.path.exists(MEDIA_ROOT + 'report/' + file_name)
+        if is_file == False:
+            shutil.copy( MEDIA_ROOT + file_name, MEDIA_ROOT + 'report/' + file_name)
+            report = Report()
+            report.image = 'report/' +  file_name
+            report.ai_result = request.session['ai_result']
+            report.user_result = request.session['tags']
+            report.save()
+            messages.success(request, '報告が完了しました。')
+        else :
+            messages.success(request, '報告済みです。')
+        return render(request, 'laundry_tag_check/result.html', request.session['context'])
     else :
-        messages.success(request, '報告済みです。')
-    return render(request, 'laundry_tag_check/result.html', request.session['context'])
+        return redirect('/accounts/login/')
 
 def report_admin(request):
-    context=[]
-    if  request.user.is_superuser :
-        reports = Report.objects.all()
-        context = {
-            'message': 'report',
-            "reports" : reports,
-        }
-        return render(request, 'report/index.html', context)
-    else:
-        context = {
-        'ON' : json.dumps('home'),
-        'message': 'Judge',
-        'form': JudgeForm(),
-        }
-        return render(request, 'home/index.html', context)
+    if request.user.is_authenticated :
+        if  request.user.is_superuser :
+            reports = Report.objects.all()
+            context = {
+                'message': 'report',
+                "reports" : reports,
+            }
+            return render(request, 'report/index.html', context)
+        else:
+            return redirect('/helpapp/home')
+    else :
+        return redirect('/accounts/login/')
 
 def report_commit(request):
-    context=[]
-    if  request.user.is_superuser :
-        checks = Report.objects.all()# いったんすべてFalseにする
-        for check in checks :
-            check.annotation = False
-            check.save()
-        checked = request.POST.getlist("annotation")
-        checks = Report.objects.filter(id__in=checked)# チェックされているところだけTrueにする
-        for check in checks :
-            check.annotation = True
-            check.save()
-        return redirect('/helpapp/report_admin')
-    else:
-        context = {
-        'ON' : json.dumps('home'),
-        'message': 'Judge',
-        'form': JudgeForm(),
-        }
-        return render(request, 'home/index.html', context)
+    if request.user.is_authenticated :
+        if  request.user.is_superuser :
+            checks = Report.objects.all()# いったんすべてFalseにする
+            for check in checks :
+                check.annotation = False
+                check.save()
+            checked = request.POST.getlist("annotation")
+            checks = Report.objects.filter(id__in=checked)# チェックされているところだけTrueにする
+            for check in checks :
+                check.annotation = True
+                check.save()
+            return redirect('/helpapp/report_admin')
+        else:
+            return redirect('/helpapp/home')
+    else :
+        return redirect('/accounts/login/')
 
 def testYolo(request):
     # path_hubconfig = "yolo"

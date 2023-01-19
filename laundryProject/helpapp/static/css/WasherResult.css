@@ -72,7 +72,7 @@ tr td:nth-of-type(1){
     margin-top: 5%;
     width: 70vw;
     border-radius: 5px;
-    font-size: 32px;
+    font-size: 7vmin;
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
@@ -86,7 +86,7 @@ tr td:nth-of-type(1){
     margin: 10% auto 10%;
     padding-top: 2%;
     padding-bottom: 2%;
-    font-size: 8vmin;
+    font-size: 7vmin;
     color: #6D6D6D;
     font-weight: bold;
     border: none;
@@ -107,7 +107,7 @@ hr {
 .washer_clear{
     width: 70vw;
     border-radius: 5px;
-    font-size: 32px;
+    font-size: 7vmin;
     color: #fff;
     font-weight: bold;
     border: none;
