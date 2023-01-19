@@ -1,10 +1,7 @@
 .content{
-    width: 100%;
     color: #333;
-    margin-bottom: 25%;
-}
-h2{
-    margin: 2vmin 3vmin 0;
+    margin: 2vmin;
+    width: 96%;
 }
 .scroll {
     display: flex;
@@ -13,15 +10,15 @@ h2{
 }
 /*result*/
 .washer_img{
-    width: 22.2vmin;
-    height: 22.2vmin;
+    width: 21.2vmin;
+    height: 21.2vmin;
     border-radius: 5px;
     margin: 0;
     object-fit: cover;
 }
 .pictures{
-    width: 22.2vmin;
-    height: 22.2vmin;
+    width: 21.2vmin;
+    height: 21.2vmin;
     margin: 1.4vmin;
     border-radius: 5px;
     /* border: solid 1px #e2e2e2; */
@@ -52,13 +49,13 @@ h2{
     vertical-align: middle;
 }
 table{
-    width: 94%;
-    border: solid 3px rgb(180, 180, 180);
+    box-shadow: 1px 1px 2px #ccc;
     border-collapse: collapse;
-    margin: 4% 3%;
+    background-color: #fff;
+    margin:0 3vmin 10vmin 3vmin;
 }
 tr,td{
-    border: solid 2px rgb(200, 200, 200);
+    border: none;
 }
 td{
     font-size: 18px;
@@ -94,6 +91,11 @@ tr td:nth-of-type(1){
     font-weight: bold;
     border: none;
 }
+.title{
+    margin-top: 10vmin;
+    font-size: 5vmin;
+    font-weight: bold;
+}
 .red{
     color: red;
     font: bold;
@@ -112,4 +114,7 @@ hr {
     background-color: #ff4b4b;
     clear: both;
     padding: 2% 0 2%;
+}
+.space{
+    margin: 20vmin;
 }

@@ -1,31 +1,35 @@
 {% extends '../layout.html' %}
-{% load static %}<!-- 必須 -->
+{% load static %}
+<!-- 必須 -->
 {% block link%}
-    <link rel="stylesheet" href="{% static 'css/CabinetDetail.css' %}">
-    <!-- <script src="{% static 'js/TimeLine.js' %}"></script> -->
+<link rel="stylesheet" href="{% static 'css/CabinetDetail.css' %}">
+<script src="{% static 'js/cabinet_detail.js' %}"></script>
 {% endblock %}
 {% block content %}
 <div class="content">
-    <div class="main">
+    <div id="main">
         <div class="name">{{cabinet.name}}</div>
         <div><img src="{{ cabinet.image.url }}" class="laundryTagImg"></div>
         <div class="explanation">
             <span class="{{color}} whether">{{whether}}</span>
+            <img src="{% static "pictures/edit-button.png" %}" class="edit-button">
             <div class="category">{{cabinet.category}}</div>
+
             <div class="details">
-            <div class="title">
-                詳細
-            </div>
-            <hr>
+                <div class="title">
+                    詳細
+                </div>
                 <div class="summary">
                     {% for tag in tags %}
                     <div class="tag">
                         <div class="tag_img">
                             {% with img="/pictures/"|add:tag|add:".png" %}
-                            <img class="radio" src="{% static img%}">
+                            <img src="{% static img%}">
                             {% endwith %}
                         </div>
-                        <div class="text"><div id="{{tag}}"></div></div>
+                        <div class="text">
+                            <div class="{{tag}}"></div>
+                        </div>
                     </div>
                     {% endfor %}
                 </div>
@@ -44,162 +48,275 @@
             </div>
         </div>
     </div>
-    <div class="edit" style="display: none;">
-        <div><img src="{{ cabinet.image.url }}" class="laundryTagImg"></div>
-        <div class="explanation">
-            <div class="name">{{cabinet.name}}</div>
-            <div class="tag">
-                {% for tag in tags %}
-                    {% with img="/pictures/"|add:tag|add:".png" %}
-                        <img class="radio" src="{% static img%}">
-                    {% endwith %}
-                {% endfor %}
+
+
+    <div id="edit" class="hidden">
+        <form action="{% url 'helpapp:cabinet_detail' cabinet.pk%}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="name"><input type="text" value="{{cabinet.name}}" name="name" class="name"></div>
+            <div class="ssss">
+                <label for="file">
+                    <div class="on_img"><img src="{% static "pictures/camera_skeleton.svg" %}" class="laundryTagImg">
+                    </div>
+                </label>
+                <img src="{{ cabinet.image.url }}" class="laundryTagImg" id="upload_img">
+                <input type="file" name="file" id="file">
             </div>
-            <div class="title">
-                メモ
+            <div class="explanation">
+                <span class="{{color}} whether">{{whether}}</span>
+                <img src="{% static "pictures/edit-button.png" %}" class="edit-button">
+                <div class="category">{{ form.as_p }}</div>
+                <!-- <select name="category" class="category">
+                    <option value="">--Please choose an option--</option>
+                    <option value="2">tops</option>
+                    <option value="3">bottoms</option>
+                    <option value="4">inner</option>
+                    <option value="5">outer</option>
+                    <option value="6">other</option>
+                </select> -->
+                <div class="details">
+                    <div class="title">
+                        洗濯タグ
+                    </div>
+                    <div class="selection-group">
+                        {% for tag in Laundry %}
+                        <input id={{tag}} type="radio" name="Laundry" value={{tag}} required>
+                        <label for={{tag}}>
+                            {% with img="/pictures/"|add:tag|add:".png" %}
+                            <img class="radio" src="{% static img%}">
+                            {% endwith %}
+                        </label>
+                        {% endfor %}
+                        <p class="red">※このタグは必ず選択してください</p>
+                    </div>
+                    <hr>
+                    <div class="selection-group">
+                        {% for tag in Bleach %}
+                        <input id={{tag}} type="radio" name="Bleach" value={{tag}}>
+                        <label for={{tag}}>
+                            {% with img="/pictures/"|add:tag|add:".png" %}
+                            <img class="radio" src="{% static img%}">
+                            {% endwith %}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="selection-group">
+                        {% for tag in Nature %}
+                        <input id={{tag}} type="radio" name="Nature" value={{tag}}>
+                        <label for={{tag}}>
+                            {% with img="/pictures/"|add:tag|add:".png" %}
+                            <img class="radio" src="{% static img%}">
+                            {% endwith %}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="selection-group">
+                        {% for tag in Iron %}
+                        <input id={{tag}} type="radio" name="Iron" value={{tag}}>
+                        <label for={{tag}}>
+                            {% with img="/pictures/"|add:tag|add:".png" %}
+                            <img class="radio" src="{% static img%}">
+                            {% endwith %}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="selection-group">
+                        {% for tag in Tumble %}
+                        <input id={{tag}} type="radio" name="Tumble" value={{tag}}>
+                        <label for={{tag}}>
+                            {% with img="/pictures/"|add:tag|add:".png" %}
+                            <img class="radio" src="{% static img%}">
+                            {% endwith %}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="selection-group">
+                        {% for tag in Dry %}
+                        <input id={{tag}} type="radio" name="Dry" value={{tag}}>
+                        <label for={{tag}}>
+                            {% with img="/pictures/"|add:tag|add:".png" %}
+                            <img class="radio" src="{% static img%}">
+                            {% endwith %}
+                        </label>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="selection-group">
+                        {% for tag in Wet %}
+                        <input id={{tag}} type="radio" name="Wet" value={{tag}}>
+                        <label for={{tag}}>
+                            {% with img="/pictures/"|add:tag|add:".png" %}
+                            <img class="radio" src="{% static img%}">
+                            {% endwith %}
+                        </label>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="title">
+                    メモ
+                </div>
+                <hr>
+                <div class="memo">
+                    <textarea name="memo" rows="5" cols="48">
+                    {{cabinet.memo}}
+                    </textarea>
+                </div>
+                <div class="delete">
+                    <a href="{% url 'helpapp:cabinet_delete' cabinet.pk%}">
+                        <button type="button" class="delete_button" onclick='return confirm("本当に削除しますか？");'>削除</button>
+                    </a>
+                </div>
             </div>
-            <div class="memo">
-                <p>{{cabinet.memo}}</p>
+            <div id="submit">
+                <input type="submit" class="submit-button" value="保存">
             </div>
-            <div class="delete">
-                <a href="{% url 'helpapp:cabinet_delete' cabinet.pk%}">
-                    <button type="button" class="delete_button" onclick='return confirm("本当に削除しますか？");'>削除</button>
-                </a>
-            </div>
-        </div>
-    </div>
-    <div class="space"></div>
-        
+        </form>
+    </div>    
+</div>
+<div class="space"></div>
+
 </div>
 <script type="text/javascript">
+    
+    
+    let select = document.getElementById('id_category')
+    let category = JSON.parse('{{ category_json|safe }}');
+    select.options[category-1].selected = true;
+
+    //tagsの説明挿入
     let tags = JSON.parse('{{ tags_json|safe }}');
     for (const tag of tags) {
-        let text = document.getElementById(tag); //宣言
-        switch (tag){
-        case 'L1':
-            text.innerHTML=('温度は<span class="red">95度</span>を限度とし、洗濯機で洗濯ができる');
-            break;
-        case 'L2':
-            text.innerHTML=('温度は<span class="red">70度</span>を限度とし、洗濯機で洗濯ができる');
-            break;
-        case 'L3':
-            text.innerHTML=('温度は<span class="red">60度</span>を限度とし、洗濯機で洗濯ができる');
-            break;
-        case 'L4':
-            text.innerHTML=('温度は<span class="red">60度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる');
-            break;
-        case 'L5':
-            text.innerHTML=('温度は<span class="red">50度</span>を限度とし、洗濯機で洗濯ができる');
-            break;
-        case 'L6':
-            text.innerHTML=('温度は<span class="red">50度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる');
-            break;
-        case 'L7':
-            text.innerHTML=('温度は<span class="red">40度</span>を限度とし、洗濯機で洗濯ができる');
-            break;
-        case 'L8':
-            text.innerHTML=('温度は<span class="red">40度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる');
-            break;
-        case 'L9':
-            text.innerHTML=('温度は<span class="red">40度</span>を限度とし、洗濯機で<span class="red">非常に弱い</span>洗濯ができる');
-            break;
-        case 'LA':
-            text.innerHTML=('温度は<span class="red">30度</span>を限度とし、洗濯機で洗濯ができる');
-            break;
-        case 'LB':
-            text.innerHTML=('温度は<span class="red">30度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる');
-            break;
-        case 'LC':
-            text.innerHTML=('温度は<span class="red">30度</span>を限度とし、洗濯機で<span class="red">非常に弱い</span>洗濯ができる');
-            break;
-        case 'LD':
-            text.innerHTML=('温度は<span class="red">40度</span>を限度とし手洗いができる');
-            break;
-        case 'LE':
-            text.innerHTML=('家庭での<span class="red">洗濯禁止</span>');
-            break;
-        case 'B1':
-            text.innerHTML=('塩素系及び酸素系の漂白剤を使用して漂白ができる');
-            break;
-        case 'B2':
-            text.innerHTML=('酸素系漂白剤の使用はできるが、塩素系漂白剤は<span class="red">使用禁止</span>');
-            break;
-        case 'B3':
-            text.innerHTML=('塩素系および酸素系漂白剤の<span class="red">使用禁止</span>');
-            break;
-        case 'T1':
-            text.innerHTML=('タンブル乾燥ができる(排気温度上限<span class="red">80度</span>)');
-            break;
-        case 'T2':
-            text.innerHTML=('低い温度でタンブル乾燥ができる(排気温度上限<span class="red">60度</span>)');
-            break;
-        case 'T3':
-            text.innerHTML=('タンブル乾燥<span class="red">禁止</span>');
-            break;
-        case 'I1':
-            text.innerHTML=('底面温度<span class="red">200度</span>を限度としてアイロン仕上げができる');
-            break;
-        case 'I2':
-            text.innerHTML=('底面温度<span class="red">150度</span>を限度としてアイロン仕上げができる');
-            break;
-        case 'I3':
-            text.innerHTML=('底面温度<span class="red">110度</span>を限度として<span class="red">スチームなし</span>でアイロン仕上げができる');
-            break;
-        case 'I4':
-            text.innerHTML=('アイロン仕上げが<span class="red">禁止</span>');
-            break;
-        case 'N1':
-            text.innerHTML=('つり干しが良い');
-            break;
-        case 'N2':
-            text.innerHTML=('ぬれつり干しが良い');
-            break;
-        case 'N3':
-            text.innerHTML=('平干しが良い');
-            break;
-        case 'N4':
-            text.innerHTML=('ぬれ平干しが良い');
-            break;
-        case 'N5':
-            text.innerHTML=('日陰のぬれつり干しが良い');
-            break;
-        case 'N6':
-            text.innerHTML=('日陰のつり干しが良い');
-            break;
-        case 'N7':
-            text.innerHTML=('日陰の平干しが良い');
-            break;
-        case 'N8':
-            text.innerHTML=('日陰のぬれ平干しが良い');
-            break;
-        case 'D1':
-            text.innerHTML=('バークロロエチレン及び石油系洗剤によるドライクリーニングができる');
-            break;
-        case 'D2':
-            text.innerHTML=('バークロロエチレン及び石油系洗剤による<span class="red">弱い</span>ドライクリーニングができる');
-            break;
-        case 'D3':
-            text.innerHTML=('石油系洗剤によるドライクリーニングができる');
-            break;
-        case 'D4':
-            text.innerHTML=('石油系洗剤による<span class="red">弱い</span>ドライクリーニングができる');
-            break;
-        case 'D5':
-            text.innerHTML=('ドライクリーニング<span class="red">禁止</span>');
-            break;
-        case 'W1':
-            text.innerHTML=('ウェットクリーニングができる');
-            break;
-        case 'W2':
-            text.innerHTML=('<span class="red">弱い</span>操作によるウェットクリーニングができる');
-            break;
-        case 'W3':
-            text.innerHTML=('<span class="red">非常に弱い</span>操作によるウェットクリーニングができる');
-            break;
-        case 'W4':
-            text.innerHTML=('ウェットクリーニング<span class="red">禁止</span>');
-            break;
-        default:
+        document.querySelector("input[value=" + tag + "]").checked = true;//初期値のチェック
+        let text = document.querySelector("div[class =" + tag + "]"); //宣言
+        switch (tag) {
+            case 'L1':
+                text.innerHTML = ('温度は<span class="red">95度</span>を限度とし、洗濯機で洗濯ができる');
+                break;
+            case 'L2':
+                text.innerHTML = ('温度は<span class="red">70度</span>を限度とし、洗濯機で洗濯ができる');
+                break;
+            case 'L3':
+                text.innerHTML = ('温度は<span class="red">60度</span>を限度とし、洗濯機で洗濯ができる');
+                break;
+            case 'L4':
+                text.innerHTML = ('温度は<span class="red">60度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる');
+                break;
+            case 'L5':
+                text.innerHTML = ('温度は<span class="red">50度</span>を限度とし、洗濯機で洗濯ができる');
+                break;
+            case 'L6':
+                text.innerHTML = ('温度は<span class="red">50度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる');
+                break;
+            case 'L7':
+                text.innerHTML = ('温度は<span class="red">40度</span>を限度とし、洗濯機で洗濯ができる');
+                break;
+            case 'L8':
+                text.innerHTML = ('温度は<span class="red">40度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる');
+                break;
+            case 'L9':
+                text.innerHTML = ('温度は<span class="red">40度</span>を限度とし、洗濯機で<span class="red">非常に弱い</span>洗濯ができる');
+                break;
+            case 'LA':
+                text.innerHTML = ('温度は<span class="red">30度</span>を限度とし、洗濯機で洗濯ができる');
+                break;
+            case 'LB':
+                text.innerHTML = ('温度は<span class="red">30度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる');
+                break;
+            case 'LC':
+                text.innerHTML = ('温度は<span class="red">30度</span>を限度とし、洗濯機で<span class="red">非常に弱い</span>洗濯ができる');
+                break;
+            case 'LD':
+                text.innerHTML = ('温度は<span class="red">40度</span>を限度とし手洗いができる');
+                break;
+            case 'LE':
+                text.innerHTML = ('家庭での<span class="red">洗濯禁止</span>');
+                break;
+            case 'B1':
+                text.innerHTML = ('塩素系及び酸素系の漂白剤を使用して漂白ができる');
+                break;
+            case 'B2':
+                text.innerHTML = ('酸素系漂白剤の使用はできるが、塩素系漂白剤は<span class="red">使用禁止</span>');
+                break;
+            case 'B3':
+                text.innerHTML = ('塩素系および酸素系漂白剤の<span class="red">使用禁止</span>');
+                break;
+            case 'T1':
+                text.innerHTML = ('タンブル乾燥ができる(排気温度上限<span class="red">80度</span>)');
+                break;
+            case 'T2':
+                text.innerHTML = ('低い温度でタンブル乾燥ができる(排気温度上限<span class="red">60度</span>)');
+                break;
+            case 'T3':
+                text.innerHTML = ('タンブル乾燥<span class="red">禁止</span>');
+                break;
+            case 'I1':
+                text.innerHTML = ('底面温度<span class="red">200度</span>を限度としてアイロン仕上げができる');
+                break;
+            case 'I2':
+                text.innerHTML = ('底面温度<span class="red">150度</span>を限度としてアイロン仕上げができる');
+                break;
+            case 'I3':
+                text.innerHTML = ('底面温度<span class="red">110度</span>を限度として<span class="red">スチームなし</span>でアイロン仕上げができる');
+                break;
+            case 'I4':
+                text.innerHTML = ('アイロン仕上げが<span class="red">禁止</span>');
+                break;
+            case 'N1':
+                text.innerHTML = ('つり干しが良い');
+                break;
+            case 'N2':
+                text.innerHTML = ('ぬれつり干しが良い');
+                break;
+            case 'N3':
+                text.innerHTML = ('平干しが良い');
+                break;
+            case 'N4':
+                text.innerHTML = ('ぬれ平干しが良い');
+                break;
+            case 'N5':
+                text.innerHTML = ('日陰のぬれつり干しが良い');
+                break;
+            case 'N6':
+                text.innerHTML = ('日陰のつり干しが良い');
+                break;
+            case 'N7':
+                text.innerHTML = ('日陰の平干しが良い');
+                break;
+            case 'N8':
+                text.innerHTML = ('日陰のぬれ平干しが良い');
+                break;
+            case 'D1':
+                text.innerHTML = ('バークロロエチレン及び石油系洗剤によるドライクリーニングができる');
+                break;
+            case 'D2':
+                text.innerHTML = ('バークロロエチレン及び石油系洗剤による<span class="red">弱い</span>ドライクリーニングができる');
+                break;
+            case 'D3':
+                text.innerHTML = ('石油系洗剤によるドライクリーニングができる');
+                break;
+            case 'D4':
+                text.innerHTML = ('石油系洗剤による<span class="red">弱い</span>ドライクリーニングができる');
+                break;
+            case 'D5':
+                text.innerHTML = ('ドライクリーニング<span class="red">禁止</span>');
+                break;
+            case 'W1':
+                text.innerHTML = ('ウェットクリーニングができる');
+                break;
+            case 'W2':
+                text.innerHTML = ('<span class="red">弱い</span>操作によるウェットクリーニングができる');
+                break;
+            case 'W3':
+                text.innerHTML = ('<span class="red">非常に弱い</span>操作によるウェットクリーニングができる');
+                break;
+            case 'W4':
+                text.innerHTML = ('ウェットクリーニング<span class="red">禁止</span>');
+                break;
+            default:
         }
     }
 

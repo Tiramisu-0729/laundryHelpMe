@@ -10,6 +10,7 @@ body{
     object-fit: cover;
 }
 .name{    
+    margin: 1px;
     font-size: 8vmin;
     font-weight: bold;
 }
@@ -17,6 +18,7 @@ body{
     margin: 2vmin 6vmin;
 }
 .whether{
+    text-shadow: 1px 1px 1px #aaa;
     font-size: 7vmin;
     font-weight: bold;
 }
@@ -35,13 +37,21 @@ body{
     font-weight: bold;
     margin-top: 11vmin
 }
+
 .category{
     float: right;
     width: 20vmin;
+    height: 8vmin;
     text-align: center;
     background-color: #fff;
     border-radius: 20px;
     border: 1px solid #aaa;
+}
+.edit-button{
+    margin-left: 2vmin;
+    float: right;
+    width: 7vmin;
+    height: 7vmin;
 }
 .belt{
     background-color: #CBF9FF;
@@ -58,7 +68,7 @@ hr{
     background-color: #fff;
     border-radius:5px;
     padding: 1vmin ;
-    /* box-shadow: 3px 3px 8px rgba(102, 102, 102, 0.5); */
+    box-shadow: 4px 4px 0px #ccc;
 }
 .tag{
     display: flex;
@@ -66,13 +76,11 @@ hr{
     flex-direction: row;
     margin-bottom: 3vmin;
 }
-.radio{
-    border-radius: 5%;
+.tag_img img{
     width: 19vmin;
     height: 19vmin;
-    margin-right: 2vmin;
-    background-color: #fff;
 }
+
 .memo{
     margin: 2vmin;
     min-height: 20vmin;
@@ -98,9 +106,89 @@ hr{
     background-color: #ff4b4b;
     clear: both;
 }
+.hidden{
+    display: none;
+}
 p{
     margin: 0;
 }
 .space{
     margin: 20vmin;
+}
+
+
+/* edit */
+input[type="text"]{
+    width: 99%;
+    padding: 0;
+    margin-bottom: 1vmin;
+    padding-top: 1vmin;
+    border: solid 1px #ccc;
+}
+label[for="id_category"]{
+    display: none;
+}
+#id_category{
+    border: none;
+}
+#file{
+    display: none;
+}
+input[type="textarea"]{
+    width: 100%;
+    min-height: 20vmin;
+    padding: 0;
+    margin-bottom: 1vmin;
+}
+.on_img{
+    background-color: rgba(85, 85, 85, 0.418);
+    width: 100vmin;
+    height: 100vmin;
+    position: absolute;
+    float: left;
+}
+#submit{
+    text-align: center;
+    position: fixed;
+    bottom: 15.5vmin;
+    height: 15vmin;
+}
+.submit-button{
+    width: 100vmin;
+    height: 16vmin;
+    font-size: 8vmin;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    background-color: #4BC9FF;
+    
+}
+.radio{
+    box-shadow: 1px 1px 1px 0px #999;
+    background-color: #FFFFFF;
+    width: 13.5vmin;
+    height: 13.5vmin;
+    margin: 1vmin;
+    padding: 1vmin;
+    border: solid 1px #f5f5f5;
+    border-radius: 3px;
+    box-shadow: 0 2px 2px -1px #6D6D6D;
+}
+.selection-group input[type="radio"] {
+    display: none;
+}
+.selection-group input[type="radio"]:checked + label img {
+    background: rgba(65, 105, 225, 0.726);
+    border-radius: 3px;
+}
+.selection-group{
+    text-align: center;
+    padding: 0 1.5%;
+}
+.radio{
+    border-radius: 5%;
+    width: 15vmin;
+    height: 15vmin;
+    margin-right: 2vmin;
+    background-color: #fff;
 }

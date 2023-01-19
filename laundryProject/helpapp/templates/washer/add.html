@@ -5,7 +5,9 @@
 {% endblock %}
 {% block content %}
     <div class="content">
-        <div class="error">{{error}}</div>
+        {% if error == 1 %}
+            <div class="error">追加できる洗濯物がありません</div>
+        {% endif %}
         <form action="{% url 'helpapp:washer_add_redirect' %}" method="POST">
             {% csrf_token %}
             {% for cabinet in cabinets %}
@@ -16,9 +18,12 @@
                 </label>
             </div>
             {% endfor %}
+            {% if error == 0 %}
             <div class="btn">
                 <input type="submit" class="add" value="追加">
             </div>
+            {% endif %}
+            
         </form>
     </div>
 {% endblock %}

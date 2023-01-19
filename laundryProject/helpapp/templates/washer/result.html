@@ -6,7 +6,6 @@
 {% endblock %}
 {% block content %}
 <div class="content">
-    <h2>洗濯物</h2>
     <div class="scroll">
         {% for washer in washers %}
             <div class="pictures">
@@ -16,7 +15,7 @@
             </div>
         {% endfor %}
     </div>
-    <div class="belt">洗濯表示</div>
+    <div class="title">洗濯方法</div>
     <table>
         {% for tag in comp %}
             {% with img="/pictures/"|add:tag|add:".png" %}
@@ -37,7 +36,7 @@
         </a>
     </div>
 </div>
-
+<div class="space"></div>
 <script type="text/javascript">
     let comp = JSON.parse('{{ comp_json|safe }}');
     console.log(comp);

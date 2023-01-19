@@ -20,10 +20,21 @@ body{
     margin-bottom: 5%;
 }
 .result{
-    font-size: 45px;
-    font-weight: bold;
-    color: #4BC9FF;
     text-align: center;
+    text-shadow: 1px 1px 1px #aaa;
+    font-size: 15vmin;
+    font-weight: bold;
+}
+
+.red{
+    color: rgb(255, 0, 0);
+}
+.green{
+    color: rgb(0, 255, 0);
+}
+
+.blue{
+    color: #4BC9FF;
 }
 p{
     margin: 5% 0;

@@ -136,7 +136,7 @@ label{
     position: fixed;
     right: 3vmin;
     bottom: 20vmin;
-    box-shadow: 1px 2px 5px 2px #cfcfcf;
+    box-shadow: 1px 2px 3px #5c5c5c;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -147,7 +147,7 @@ label{
 }
 .judge{
     background-color: #4BC9FF;
-    width: 70%;
+    width: 53%;
     border-radius: 5px;
     padding-top: 2%;
     padding-bottom: 2%;

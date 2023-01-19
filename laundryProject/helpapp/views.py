@@ -1,6 +1,7 @@
 import os
 import shutil
 from turtle import color
+from unicodedata import category
 from warnings import catch_warnings
 from django.urls import reverse
 from urllib.parse import urlencode
@@ -8,7 +9,7 @@ from django.shortcuts import render
 from laundryProject.settings import MEDIA_ROOT
 from .models import Cabinet, Categories, Profile, Washer_log, Laundry, Report
 from django.shortcuts import redirect, render, get_object_or_404
-from .forms import CabinetForm, JudgeForm, UpdateUserForm, UpdateProfileForm, MyPasswordChangeForm
+from .forms import CabinetForm, JudgeForm, UpdateUserForm, UpdateProfileForm, MyPasswordChangeForm,CabinetCategoryFrom
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 import json
@@ -97,9 +98,9 @@ def washer_add(request):
             tags = cabinet["laundry_tag"].split(',')
             if not(tags[0] == 'LD' or tags[0] == 'LE'):
                 cabinets.append(Cabinet.objects.get(pk=cabinet["id"]))
-        error=""
+        error=0
         if(len(cabinets) == 0):
-            error = "追加できる洗濯物がありません"
+            error = 1
         context = {
             'ON' : json.dumps('washer'),
             'message': 'Washer',
@@ -377,28 +378,60 @@ def cabinet_add(request):
     return render(request, 'cabinet/add.html', context)
 
 def cabinet_detail(request, pk):
-    cabinet = Cabinet.objects.get(pk=pk)
-    tags = cabinet.laundry_tag.split(',')
-    if tags[0] == "LD":
-        whether = "手洗い"
-        color = "green"
-    elif tags[0] == "LE":
-        whether = "洗えない"
-        color = "red"
+    if request.method == "POST":
+        form = CabinetCategoryFrom(request.POST)
+        if form.is_valid():#formの内容が正しければ
+            tags = []
+            names=['Laundry','Bleach','Nature','Iron','Tumble','Dry','Wet']
+            for name in names:
+                if request.POST.get(name) != None:
+                    tags.append(request.POST.get(name))
+            dbtag = ",".join(tags)
+            cabinet = Cabinet.objects.get(pk=pk)
+            if request.POST.get('name') != None:
+                cabinet.name = request.POST['name']
+            if request.POST.get('memo') != None:
+                cabinet.memo = request.POST['memo']
+            if request.POST.get('category') != None:
+                cabinet.category = Categories(request.POST['category'])#category型じゃないと怒られた
+            cabinet.laundry_tag = dbtag
+            if request.FILES.get('file') != None:
+                cabinet.image = request.FILES['file']#保存先はupload_img＞upload_img>imgのなか
+            cabinet.save()
+            messages.success(request, '変更しました')
+            return redirect('/helpapp/cabinet')
     else:
-        whether = "洗える"
-        color = "blue"
-    context = {
-        'ON' : json.dumps('cabinet'),
-        'tags' : tags,
-        'message': 'cabinet',
-        'cabinet' : cabinet,
-        'whether' : whether,
-        'tags_json' : json.dumps(tags),
-        'color' : color,
+        cabinet = Cabinet.objects.get(pk=pk)
+        tags = cabinet.laundry_tag.split(',')
+        if tags[0] == "LD":
+            whether = "手洗い"
+            color = "green"
+        elif tags[0] == "LE":
+            whether = "洗えない"
+            color = "red"
+        else:
+            whether = "洗える"
+            color = "blue"
+        context = {
+            'form' : CabinetCategoryFrom,
+            'ON' : json.dumps('cabinet'),
+            'tags' : tags,
+            'message': 'cabinet',
+            'cabinet' : cabinet,
+            'whether' : whether,
+            'tags_json' : json.dumps(tags),
+            'category_json': json.dumps(cabinet.category_id),
+            'color' : color,
+            'Laundry': ['L1', 'L2', 'L3', 'L4', 'L5', 'L6', 'L7', 'L8', 'L9', 'LA', 'LB', 'LC', 'LD', 'LE'],
+            'Bleach' : ['B1', 'B2', 'B3'],
+            'Nature' : ['N1', 'N2', 'N3', 'N4', 'N6', 'N5', 'N7', 'N8'],
+            'Iron' : ['I1', 'I2', 'I3', 'I4'],
+            'Tumble' : ['T1', 'T2', 'T3'],
+            'Dry' : ['D1', 'D2', 'D3', 'D4', 'D5'],
+            'Wet' : ['W1', 'W2', 'W3', 'W4' ],
 
-    }
-    return render(request, 'cabinet/detail.html', context)
+        }
+        return render(request, 'cabinet/detail.html', context)
 
 def cabinet_delete(request, pk):
     if Cabinet.objects.filter(pk=pk).exists():#存在確認
@@ -586,10 +619,13 @@ def judge_result(request):
                 tags.append(request.POST.get(name))
         if tags[0] == "LE":
             result = "洗えません"
+            color = "red"
         elif tags[0] == "LD":
             result = "手洗い"
+            color = "green"
         else:
             result ="洗えます"
+            color = "blue"
         dbtag = ",".join(tags)
         request.session['tags'] = dbtag
         file_url = request.session.get('file_url')
@@ -597,6 +633,7 @@ def judge_result(request):
             'ON' : json.dumps('home'),
             'message': 'Result',
             'result' : result,
+            'color' : color,
             'file_url' : file_url,
             'tags_json' : json.dumps(tags),
             'tags' : tags,

@@ -106,9 +106,10 @@ label{
     background-color: #ff4b4b;
 }
 .passchange {
-    border: 0.5px solid;
-    border-radius: 10px;
+    border-radius: 20px;
     padding: 0 5%;
+    background-color: #FFF;
+    box-shadow: 1px 1px 2px #ccc;
 }
 .form-group{
     font-size: 5vmin;

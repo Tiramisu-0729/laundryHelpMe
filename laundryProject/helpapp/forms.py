@@ -18,6 +18,11 @@ class ProfileForm(forms.ModelForm):
         model = Profile
         fields = ['image']
 
+class CabinetCategoryFrom(forms.ModelForm):
+    class Meta:
+        model = Cabinet
+        fields = ['category']
+
 class UpdateUserForm(forms.ModelForm):
     username = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'class': 'form-control' }))
 
