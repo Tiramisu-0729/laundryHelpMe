@@ -10,7 +10,7 @@ body{
 #image{
     width: 55vw;
     height: 55vw;
-    margin: 3vmin 8vw 5vmin;
+    margin: 3vmin 3vmin 0 3vmin;
     object-fit: cover;
 }
 p{
@@ -49,5 +49,10 @@ label{
     border-radius: 5px;
     border: none;
     background-color: #4BC9FF;
-    margin-bottom: 20vmin;
+    margin: 10vmin 0 20vmin 0;
+}
+#id_image{
+    width: 1vmin;
+    height: 1vmin;
+    opacity: 0;
 }

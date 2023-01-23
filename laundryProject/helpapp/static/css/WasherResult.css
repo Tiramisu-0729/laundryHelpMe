@@ -10,18 +10,15 @@
 }
 /*result*/
 .washer_img{
-    width: 21.2vmin;
-    height: 21.2vmin;
-    border-radius: 5px;
+    width: 22vmin;
+    height: 22vmin;
     margin: 0;
     object-fit: cover;
 }
 .pictures{
-    width: 21.2vmin;
-    height: 21.2vmin;
-    margin: 1.4vmin;
-    border-radius: 5px;
-    /* border: solid 1px #e2e2e2; */
+    width: 22vmin;
+    height: 22vmin;
+    margin: 1vmin;
 } 
 .details{
     background-color: #EEEEEE;

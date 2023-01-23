@@ -264,7 +264,7 @@ def washer_log_detail(request, pk):
                 'laundry' : laundry,
                 'comp' : comp,
                 'comp_json' : json.dumps(comp),
-                'ON' : json.dumps('timeline'),
+                'ON' : json.dumps('bookmark'),
                 'message': 'Washer',
                 'taginfos' : taginfo,
             }
@@ -585,7 +585,7 @@ def laundry_tag_check(request):
     file_url = request.GET.get('file_url') # param1の値を取得
     res = request.GET.get('result') # param2の値を取得
     res = res.replace("[","").replace("]","").replace("'","").replace(" ","")
-    request.session['ai_result'] = res
+    request.session['ai_result'] = res 
     results = res.split(',')
     context = {
         'ON' : json.dumps('home'),
