@@ -161,9 +161,7 @@
                 </div>
                 <hr>
                 <div class="memo">
-                    <textarea name="memo" rows="5" cols="48">
-                    {{cabinet.memo}}
-                    </textarea>
+                    <textarea name="memo" rows="5" cols="48">{{cabinet.memo}}</textarea>
                 </div>
                 <div class="delete">
                     <a href="{% url 'helpapp:cabinet_delete' cabinet.pk%}">

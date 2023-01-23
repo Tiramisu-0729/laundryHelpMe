@@ -22,5 +22,16 @@
     document.querySelector('[for="id_category"]').style.float="left";
     document.querySelector('[for="id_name"]').style.float="left";
     document.getElementById("id_name").maxLength = 20;
+    let img = document.querySelector('input[type="file"]');
+    img.required = true;
+    //メッセージ出ない
+    // img.addEventListener("invalid", function(e) {
+    //     if(img.validity.valueMissing){
+    //         e.target.setCustomValidity("この項目は入力必須です。");
+    //     } 
+    //     else {
+    //         e.target.setCustomValidity("");
+    //     }
+    // });
 </script>
 {% endblock %}
