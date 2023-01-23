@@ -9,7 +9,7 @@
 <div class="content">
     <div id="main">
         <div class="name">{{cabinet.name}}</div>
-        <div><img src="{{ cabinet.image.url }}" class="laundryTagImg"></div>
+        <div class="image_field"><img src="{{ cabinet.image.url }}" class="laundryTagImg"></div>
         <div class="explanation">
             <span class="{{color}} whether">{{whether}}</span>
             <img src="{% static "pictures/edit-button.png" %}" class="edit-button">
@@ -53,7 +53,7 @@
         <form action="{% url 'helpapp:cabinet_detail' cabinet.pk%}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="name"><input type="text" value="{{cabinet.name}}" name="name" class="name"></div>
-            <div class="ssss">
+            <div class="image_field">
                 <label for="file">
                     <div class="on_img"><img src="{% static "pictures/camera_skeleton.svg" %}" class="laundryTagImg">
                     </div>
