@@ -1,47 +1,45 @@
 /*cabinet_detail*/
 body{
-    font-size: 18px;
     color: #333;
 }
-
 .laundryTagImg{
     width: 100vmin;
     height: 100vmin;
     object-fit: cover;
 }
 .name{    
-    margin: 1px;
     font-size: 8vmin;
+    margin: 1vmin 3vw;
     font-weight: bold;
 }
 .explanation{
-    margin: 2vmin 6vmin;
+    margin: 0 4vmin 2vmin;
 }
 .whether{
     text-shadow: 1px 1px 1px #aaa;
-    font-size: 7vmin;
+    font-size: 10vmin;
     font-weight: bold;
+    margin-left: 2vmin;
 }
-
 .red{
     color: rgb(255, 0, 0);
 }
 .green{
     color: rgb(0, 255, 0);
 }
-
 .blue{
     color: rgb(0, 0, 255);
 }
 .title{
+    font-size: 4vmin;
     font-weight: bold;
-    margin-top: 11vmin
+    margin-top: 6vmin
 }
-
 .category{
     float: right;
     width: 20vmin;
     height: 8vmin;
+    margin-top: 2vmin;
     text-align: center;
     background-color: #fff;
     border-radius: 20px;
@@ -49,6 +47,7 @@ body{
 }
 .edit-button{
     margin-left: 2vmin;
+    margin-top: 2vmin;
     float: right;
     width: 7vmin;
     height: 7vmin;
@@ -80,7 +79,6 @@ hr{
     width: 19vmin;
     height: 19vmin;
 }
-
 .memo{
     margin: 2vmin;
     min-height: 20vmin;
@@ -112,17 +110,13 @@ hr{
 p{
     margin: 0;
 }
-.space{
-    margin: 20vmin;
-}
 
 
 /* edit */
 input[type="text"]{
-    width: 99%;
-    padding: 0;
-    margin-bottom: 1vmin;
-    padding-top: 1vmin;
+    width: 92vw;
+    margin: 0;
+    padding: 1vmin;
     border: solid 1px #ccc;
 }
 label[for="id_category"]{
@@ -130,6 +124,7 @@ label[for="id_category"]{
 }
 #id_category{
     border: none;
+    text-align: center;
 }
 #file{
     display: none;
@@ -161,7 +156,6 @@ input[type="textarea"]{
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
-    
 }
 .radio{
     box-shadow: 1px 1px 1px 0px #999;
