@@ -13,7 +13,7 @@
         <div class="explanation">
             <span class="{{color}} whether">{{whether}}</span>
             <img src="{% static "pictures/edit-button.png" %}" class="edit-button">
-            <div class="category">{{cabinet.category}}</div>
+            <div class="category"><p>{{cabinet.category}}</p></div>
 
             <div class="details">
                 <div class="title">
@@ -49,7 +49,6 @@
         </div>
     </div>
 
-
     <div id="edit" class="hidden">
         <form action="{% url 'helpapp:cabinet_detail' cabinet.pk%}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
@@ -66,14 +65,6 @@
                 <span class="{{color}} whether">{{whether}}</span>
                 <img src="{% static "pictures/edit-button.png" %}" class="edit-button">
                 <div class="category">{{ form.as_p }}</div>
-                <!-- <select name="category" class="category">
-                    <option value="">--Please choose an option--</option>
-                    <option value="2">tops</option>
-                    <option value="3">bottoms</option>
-                    <option value="4">inner</option>
-                    <option value="5">outer</option>
-                    <option value="6">other</option>
-                </select> -->
                 <div class="details">
                     <div class="title">
                         洗濯タグ
@@ -87,7 +78,7 @@
                             {% endwith %}
                         </label>
                         {% endfor %}
-                        <p class="red">※このタグは必ず選択してください</p>
+                        <p class="red" id="required">※このタグは必ず選択してください</p>
                     </div>
                     <hr>
                     <div class="selection-group">

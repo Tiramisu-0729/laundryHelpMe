@@ -21,6 +21,9 @@ body{
     font-weight: bold;
     margin-left: 2vmin;
 }
+#required {
+    font-size: 4vmin;
+}
 .red{
     color: rgb(255, 0, 0);
 }
@@ -37,14 +40,19 @@ body{
 }
 .category{
     float: right;
-    width: 20vmin;
-    height: 8vmin;
+    width: 23vmin;
+    height: 7vmin;
     margin-top: 2vmin;
     text-align: center;
     background-color: #fff;
     border-radius: 20px;
     border: 1px solid #aaa;
+    font-size: 4vmin;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 .edit-button{
     margin-left: 2vmin;
     margin-top: 2vmin;
@@ -84,10 +92,14 @@ hr{
     min-height: 20vmin;
     font-size: 4vmin;
 }
+.memo textarea {
+    font-size: 4vmin;
+}
 .text{
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 4vmin;
 }
 .delete{
     text-align: center;
@@ -121,10 +133,12 @@ input[type="text"]{
 }
 label[for="id_category"]{
     display: none;
+    font-size: 4vmin;
 }
 #id_category{
     border: none;
     text-align: center;
+    font-size: 4vmin;
 }
 #file{
     display: none;
@@ -178,6 +192,14 @@ input[type="textarea"]{
 .selection-group{
     text-align: center;
     padding: 0 1.5%;
+}
+select, option{
+    -webkit-appearance: none;
+    appearance: none;
+    border: none;
+    -moz-appearance: menulist-button;
+    -webkit-appearance: menulist-button;
+    appearance: menulist-button;
 }
 .radio{
     border-radius: 5%;
