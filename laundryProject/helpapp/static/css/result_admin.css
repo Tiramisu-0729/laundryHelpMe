@@ -92,6 +92,7 @@ td img {
     height: 85px;
     text-align: center;
     background-color: rgb(83, 236, 83);
+    box-shadow: 2px 2px 2px rgb(112, 112, 112);
 }
 .red {
     display: flex;
@@ -102,4 +103,5 @@ td img {
     height: 85px;
     text-align: center;
     background-color: rgb(255, 73, 73);
+    box-shadow: 2px 2px 2px rgb(112, 112, 112);
 }
