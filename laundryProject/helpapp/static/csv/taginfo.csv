@@ -1,0 +1,41 @@
+L1,温度は<span class="red">95度</span>を限度とし、洗濯機で洗濯ができる
+L2,温度は<span class="red">70度</span>を限度とし、洗濯機で洗濯ができる
+L3,温度は<span class="red">60度</span>を限度とし、洗濯機で洗濯ができる
+L4,温度は<span class="red">60度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる
+L5,温度は<span class="red">50度</span>を限度とし、洗濯機で洗濯ができる
+L6,温度は<span class="red">50度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる
+L7,温度は<span class="red">40度</span>を限度とし、洗濯機で洗濯ができる
+L8,温度は<span class="red">40度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる
+L9,温度は<span class="red">40度</span>を限度とし、洗濯機で<span class="red">非常に弱い</span>洗濯ができる
+LA,温度は<span class="red">30度</span>を限度とし、洗濯機で洗濯ができる
+LB,温度は<span class="red">30度</span>を限度とし、洗濯機で<span class="red">弱い</span>洗濯ができる
+LC,温度は<span class="red">30度</span>を限度とし、洗濯機で<span class="red">非常に弱い</span>洗濯ができる
+LD,温度は<span class="red">40度</span>を限度とし、手洗いができる
+LE,家庭での<span class="red">洗濯禁止</span>
+B1,塩素系及び酸素系の漂白剤を使用して漂白ができる
+B2,酸素系漂白剤の使用はできるが、塩素系漂白剤は<span class="red">使用禁止</span>
+B3,塩素系および酸素系漂白剤の<span class="red">使用禁止</span>
+T1,タンブル乾燥ができる(排気温度上限<span class="red">80度</span>)
+T2,低い温度でタンブル乾燥ができる(排気温度上限<span class="red">60度</span>)
+T3,タンブル乾燥<span class="red">禁止</span>)
+I1,底面温度<span class="red">200度</span>を限度としてアイロン仕上げができる
+I2,底面温度<span class="red">150度</span>を限度としてアイロン仕上げができる
+I3,底面温度<span class="red">110度</span>を限度として<span class="red">スチームなし</span>でアイロン仕上げができる
+I4,アイロン仕上げが<span class="red">禁止</span>
+N1,つり干しが良い
+N2,ぬれつり干しが良い
+N3,平干しが良い
+N4,ぬれ平干しが良い
+N5,日陰のぬれつり干しが良い
+N6,日陰のつり干しが良い
+N7,日陰の平干しが良い
+N8,日陰のぬれ平干しが良い
+D1,バークロロエチレン及び石油系洗剤によるドライクリーニングができる
+D2,バークロロエチレン及び石油系洗剤による<span class="red">弱い</span>ドライクリーニングができる
+D3,石油系洗剤によるドライクリーニングができる
+D4,石油系洗剤による<span class="red">弱い</span>ドライクリーニングができる
+D5,ドライクリーニング<span class="red">禁止</span>
+W1,ウェットクリーニングができる
+W2,<span class="red">弱い</span>操作によるウェットクリーニングができる
+W3,<span class="red">非常に弱い</span>操作によるウェットクリーニングができる
+W4,ウェットクリーニング<span class="red">禁止</span>

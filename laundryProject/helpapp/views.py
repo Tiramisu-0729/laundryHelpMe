@@ -14,7 +14,7 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 import json
 from django.contrib import messages
-from helpapp.data_load import MODEL,tables
+from helpapp.data_load import MODEL,tables,taginfo
 
 def helpapp(request):
     #ログインがあるか判別
@@ -166,6 +166,7 @@ def washer_judge(request):
                 'comp_json' : json.dumps(comp),
                 'ON' : json.dumps('washer'),
                 'message': 'Washer',
+                'taginfos' : taginfo,
             }
             return render(request, 'washer/result.html', context)
         return redirect('/helpapp/washer')
@@ -265,6 +266,7 @@ def washer_log_detail(request, pk):
                 'comp_json' : json.dumps(comp),
                 'ON' : json.dumps('timeline'),
                 'message': 'Washer',
+                'taginfos' : taginfo,
             }
             return render(request, 'washer_log/detail.html', context) 
         return redirect('/helpapp/washer/')
@@ -446,8 +448,10 @@ def cabinet_detail(request, pk):
                 'Tumble' : ['T1', 'T2', 'T3'],
                 'Dry' : ['D1', 'D2', 'D3', 'D4', 'D5'],
                 'Wet' : ['W1', 'W2', 'W3', 'W4' ],
+                'taginfos': taginfo,
             }
             return render(request, 'cabinet/detail.html', context)
+            
     else :
         return redirect('/accounts/login/')
 
@@ -626,6 +630,7 @@ def judge_result(request):
             'file_url' : file_url,
             'tags_json' : json.dumps(tags),
             'tags' : tags,
+            'taginfos': taginfo,
         }
         request.session['context'] = context
     return render(request, 'laundry_tag_check/result.html', context)

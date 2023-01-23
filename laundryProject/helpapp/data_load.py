@@ -6,8 +6,14 @@ path_hubconfig = "yolo"
 path_weightfile = "yolo/729x300_yolov5m_best.pt" 
 MODEL = torch.hub.load(path_hubconfig, 'custom',path=path_weightfile, source='local')
 
-washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, tightens, dryCleanings, wetCleanings, info = [],[],[],[],[],[],[],[],[]
-# CSV読み込み
+washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, tightens, dryCleanings, wetCleanings, info, taginfo = [],[],[],[],[],[],[],[],[],[]
+### CSV読み込み
+# Cabinet用
+with open(STATIC_ROOT + '/csv/taginfo.csv',encoding="utf-8") as f:
+    for row in csv.reader(f):
+        taginfo.append(row)
+
+# User用
 with open(STATIC_ROOT + '/csv/washingProcesses.csv',encoding="utf-8") as f:
     for row in csv.reader(f):
         washingProcesses.append(row)
