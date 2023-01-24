@@ -98,6 +98,7 @@ hr{
 }
 .memo textarea {
     font-size: 4vmin;
+    width: 87vmin;
 }
 .text{
     display: flex;
