@@ -1,12 +1,14 @@
 .content{
     color: #333;
     margin: 2vmin;
-    width: 96%;
 }
 .scroll {
     display: flex;
     flex-wrap: wrap;
     margin-bottom: 3vmin;
+    justify-content: center;
+    align-items: center;
+    max-width: 100vmin;
 }
 /*result*/
 .washer_img{
@@ -31,15 +33,6 @@
     color: #4BC9FF;
     text-align: center;
 }
-.belt{
-    background-color: #CBF9FF;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    padding-left: 4%;
-    font-size: 18px;
-}
 .tag_img{   
     width: 14vmin;
     height: 14vmin;
@@ -55,7 +48,7 @@ tr,td{
     border: none;
 }
 td{
-    font-size: 18px;
+    font-size: 4vmin;
     padding: 5px 10px;
 }
 tr td:nth-of-type(1){
@@ -83,7 +76,7 @@ tr td:nth-of-type(1){
     margin: 10% auto 10%;
     padding-top: 2%;
     padding-bottom: 2%;
-    font-size: 7vmin;
+    font-size: 6.5vmin;
     color: #6D6D6D;
     font-weight: bold;
     border: none;
@@ -114,4 +107,10 @@ hr {
 }
 .space{
     margin: 20vmin;
+}
+
+.result_tag {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

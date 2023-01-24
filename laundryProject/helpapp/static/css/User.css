@@ -62,6 +62,8 @@
 .img_div{
     text-align: center;
     margin: 5vmin;
+    display: flex;
+    justify-content: center;
 }
 #account_img{
     width: 30vmin;
@@ -184,7 +186,7 @@ hr{
 .info{
     background-color: #FFABAB;
 }
-img{
+table img{
     width: 15vmin;
     height: 15vmin;
 }
@@ -223,6 +225,27 @@ ol{
 summary span {
     font-size: 5vmin;
 }
+
+.on_img{
+    background-color: rgba(85, 85, 85, 0.418);
+    position: absolute;
+    float: left;
+    width: 30vmin;
+    height: 30vmin;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid #bebebe;
+    margin-top: -9vmin;
+    margin-bottom: 3vmin;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.on_img img{
+    width: 20vmin;
+    height: 20vmin;
+}
+
 /* ↓↓↓↓↓↓↓↓↓↓↓アコーディオンアニメーション↓↓↓↓↓↓↓↓↓↓↓ */
 summary{
     padding: 2vmin 3vmin;
