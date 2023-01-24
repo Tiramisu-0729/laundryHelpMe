@@ -16,14 +16,16 @@
         {% endfor %}
     </div>
     <div class="title">洗濯方法</div>
-    <table>
-        {% for tag in comp %}
-            {% with img="/pictures/"|add:tag|add:".png" %}
-                <tr><td><img class="tag_img" src="{% static img%}"></td>
-            {% endwith %}
-            <td><div id="{{tag}}"></div></td></tr>
-        {% endfor %}
-    </table>
+    <div class="result_tag">
+        <table>
+            {% for tag in comp %}
+                {% with img="/pictures/"|add:tag|add:".png" %}
+                    <tr><td><img class="tag_img" src="{% static img%}"></td>
+                {% endwith %}
+                <td><div id="{{tag}}"></div></td></tr>
+            {% endfor %}
+        </table>
+    </div>
     <div class="button">
         <a href='{% url "helpapp:washer_complete" %}'>
             <button type="button" class="finish">完了</button>

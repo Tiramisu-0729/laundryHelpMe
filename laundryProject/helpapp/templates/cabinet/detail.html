@@ -48,7 +48,7 @@
             </div>
         </div>
     </div>
-
+    <!-- 編集ボタンを押したら出てくる -->
     <div id="edit" class="hidden">
         <form action="{% url 'helpapp:cabinet_detail' cabinet.pk%}" method="post" enctype="multipart/form-data">
             {% csrf_token %}

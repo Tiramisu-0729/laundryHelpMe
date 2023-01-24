@@ -30,7 +30,10 @@
         <!-- 編集ボタンを押したら出てくる -->
         <div id="main_edit" class="hidden">
             <div class="img_div">
-                <label for="id_image">
+                <label for="file">
+                    <div class="on_img">
+                        <img src="{% static "pictures/camera_skeleton.svg" %}" class="laundryTagImg">
+                    </div>
                     {% if profile.image|stringformat:"s" == "none" %}
                         <img id="user_pic_form" src="{% static 'pictures/icon.svg' %}" alt="user_icon"> 
                     {% else %}
