@@ -206,6 +206,8 @@ def washer_log(request):
             for washer_log in washer_logs:
                 if  Laundry.objects.filter(washer_log_id = washer_log.pk).exists():   #存在確認
                     laundries.append(Laundry.objects.filter(washer_log_id = washer_log.pk)) #laundry表とcabinet表を結合
+                else :
+                    washer_log.delete()
         none = ""
         if len(washer_logs) == 0:
             none = 0
