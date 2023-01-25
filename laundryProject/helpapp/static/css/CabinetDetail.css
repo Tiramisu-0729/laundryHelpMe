@@ -108,6 +108,7 @@ hr{
 }
 .delete{
     text-align: center;
+    margin-bottom: 20vmin;
 }
 .delete_button{
     margin: 20% 2%;
