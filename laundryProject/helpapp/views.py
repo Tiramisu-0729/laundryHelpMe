@@ -134,7 +134,7 @@ def washer_add_redirect(request):
             else:
                 washers = checks_value
         request.session['washers'] = list(set(washers))
-        messages.success(request, '登録内容を保存しました。')
+        messages.success(request, '追加しました。')
         return redirect('/helpapp/washer')
     else :
         return redirect('/accounts/login/')
@@ -239,8 +239,8 @@ def washer_log_add(request):
                 laundry.washer_log = Washer_log(washer_log.pk)
                 laundry.cabinet = Cabinet(Laund.pk)
                 laundry.save()
-            messages.success(request, '洗濯物を保存しました')
-            return redirect('/helpapp/washer')
+            messages.success(request, 'ブックマークに保存しました')
+            return redirect('/helpapp/washer_log')
         return redirect('/helpapp/washer/')
     else :
         return redirect('/accounts/login/')
@@ -267,7 +267,7 @@ def washer_log_detail(request, pk):
                 'comp' : comp,
                 'comp_json' : json.dumps(comp),
                 'ON' : json.dumps('bookmark'),
-                'message': 'Washer',
+                'message': 'Bookmark',
                 'taginfos' : taginfo,
             }
             return render(request, 'washer_log/detail.html', context) 
@@ -495,6 +495,9 @@ def user(request):
                     new_profile.user = request.user
                     new_profile.save()
                     messages.success(request, 'プロフィールが変更されました。')
+                    return redirect('/helpapp/user')
+                else:
+                    messages.error(request, 'プロフィールが変更できませんでした。')
                     return redirect('/helpapp/user')
             else:
                 profile = Profile.objects.filter(user=request.user).first()

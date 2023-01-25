@@ -32,10 +32,16 @@
         </footer>
     </div>
     <script>        
-        let message = document.getElementById('success');
-        if(message) {
-            message.addEventListener('click', () => { 
-                message.classList.add('hidden');  
+        let success = document.getElementById('success');
+        let error = document.getElementById('error');
+        if(success) {
+            success.addEventListener('click', () => { 
+                success.classList.add('hidden');  
+            }) 
+        };
+        if(error) {
+            error.addEventListener('click', () => { 
+                error.classList.add('hidden');  
             }) 
         };
         const ON = JSON.parse('{{ ON|safe }}');
