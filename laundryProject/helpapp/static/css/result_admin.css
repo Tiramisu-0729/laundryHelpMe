@@ -49,6 +49,8 @@ table {
 }
 td {
     padding: 5px;
+    max-width: 230px;
+    word-wrap: break-word;
 }
 td img {
     width: 10vmin;
