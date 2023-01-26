@@ -1,6 +1,5 @@
 
 window.onload = function(){ 
-    document.querySelector('[for="id_image"]').innerHTML ="<img id='image' src='{% static 'pictures/img.png' %}' alt=''>";
     document.querySelector('[for="id_name"]').innerText = 'NAME';
     document.querySelector('[for="id_category"]').innerText = 'CATEGORY';
     document.querySelector('[for="id_memo"]').innerText = 'MEMO';
@@ -14,7 +13,7 @@ window.onload = function(){
 
 
     id_img.addEventListener('change', function() {
-        
+
         //画像取得
         const img = id_img.files[0];
 
@@ -43,6 +42,7 @@ window.onload = function(){
         //画像を表示
         reader.onload = function() {
             image.setAttribute('src', reader.result);
+            
         }
         
     });
