@@ -1,9 +1,23 @@
 
 window.onload = function(){ 
+    document.querySelector('[for="id_image"]').innerHTML ="<img id='image' src='{% static 'pictures/img.png' %}' alt=''>";
+    document.querySelector('[for="id_name"]').innerText = 'NAME';
+    document.querySelector('[for="id_category"]').innerText = 'CATEGORY';
+    document.querySelector('[for="id_memo"]').innerText = 'MEMO';
+    document.querySelector('[for="id_memo"]').style.float="left";
+    document.querySelector('[for="id_category"]').style.float="left";
+    document.querySelector('[for="id_name"]').style.float="left";
+    document.getElementById("id_name").maxLength = 20;
+    let img = document.querySelector('input[type="file"]');
+    img.required = true;
     let id_img = document.getElementById('id_image');
+
+
     id_img.addEventListener('change', function() {
+        
         //画像取得
         const img = id_img.files[0];
+
         image.setAttribute('src', "/static/pictures/img.png");
         const type = img.type;
         
