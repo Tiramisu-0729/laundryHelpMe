@@ -13,24 +13,6 @@
     </form>
 </div>
 <script type="text/javascript"">
-    document.querySelector('[for="id_image"]').innerHTML ="<img id='image' src='{% static 'pictures/img.png' %}' alt=''>";
-    document.querySelector('[for="id_name"]').innerText = 'NAME';
-    document.querySelector('[for="id_category"]').innerText = 'CATEGORY';
-    document.querySelector('[for="id_memo"]').innerText = 'MEMO';
-    document.querySelector('[for="id_memo"]').style.float="left";
-    document.querySelector('[for="id_category"]').style.float="left";
-    document.querySelector('[for="id_name"]').style.float="left";
-    document.getElementById("id_name").maxLength = 20;
-    let img = document.querySelector('input[type="file"]');
-    img.required = true;
-    //メッセージ出ない
-    // img.addEventListener("invalid", function(e) {
-    //     if(img.validity.valueMissing){
-    //         e.target.setCustomValidity("この項目は入力必須です。");
-    //     } 
-    //     else {
-    //         e.target.setCustomValidity("");
-    //     }
-    // });
+    
 </script>
 {% endblock %}

@@ -9,7 +9,11 @@
 {% endblock %}
 {% block content %}
     <div class="content">
-        <div class="cabinet">{{cabinet_message}}</div>
+        {% for message in messages %}
+            <div {% if message.tags %}id="{{ message.tags }}"{% endif %}>
+                <p>　×　　{{ message }}</p>
+            </div>
+        {% endfor %}
         <div class="upload">
             <form action="{% url 'helpapp:judge' %}" method="post" enctype="multipart/form-data">
                 {% csrf_token %}
