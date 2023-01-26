@@ -580,7 +580,7 @@ def judge(request):
                 profile.save()
             return redirect(url)
     except :
-        messages.success(request, 'エラーが発生しました')
+        messages.error(request, 'エラーが発生しました')
     return redirect('/helpapp/home')
 
 def laundry_tag_check(request):
@@ -653,7 +653,7 @@ def judge_report(request):
             report.save()
             messages.success(request, '報告が完了しました。')
         else :
-            messages.success(request, '報告済みです。')
+            messages.error(request, '報告済みです。')
         return render(request, 'laundry_tag_check/result.html', request.session['context'])
     else :
         return redirect('/accounts/login/')
