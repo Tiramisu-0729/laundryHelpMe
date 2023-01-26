@@ -1,8 +1,5 @@
 import os
 import shutil
-from turtle import color
-from unicodedata import category
-from warnings import catch_warnings
 from django.urls import reverse
 from urllib.parse import urlencode
 from django.shortcuts import render
