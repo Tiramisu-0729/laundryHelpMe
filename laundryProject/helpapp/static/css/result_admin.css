@@ -84,6 +84,8 @@ td img {
 }
 .annotation {
     justify-content: center;
+    font-size: 30px;
+    font-weight: 500;
 }
 .green {
     display: flex;

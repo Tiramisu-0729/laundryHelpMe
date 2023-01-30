@@ -660,7 +660,7 @@ def judge_report(request):
 
 def report_admin(request):
     if request.user.is_authenticated :
-        if  request.user.is_superuser :
+        if  request.user.is_staff :
             reports = Report.objects.all()
             context = {
                 'message': 'report',
@@ -674,7 +674,7 @@ def report_admin(request):
 
 def report_commit(request):
     if request.user.is_authenticated :
-        if  request.user.is_superuser :
+        if  request.user.is_staff :
             checks = Report.objects.all()# いったんすべてFalseにする
             for check in checks :
                 check.annotation = False

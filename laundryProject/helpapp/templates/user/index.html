@@ -74,7 +74,7 @@
                 </form>
             </div>
             <p class="logout"><a href='{% url "logout" %}'><b>Logout</b></a></p>
-            {% if user.is_superuser %}
+            {% if user.is_staff %}
                 <p class="admin"><a href='{% url "helpapp:report_admin" %}'><b>Admin site</b></a></p>
             {% endif %}
         </div>
