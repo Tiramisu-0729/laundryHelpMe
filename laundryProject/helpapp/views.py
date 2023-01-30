@@ -10,7 +10,7 @@ from .forms import CabinetForm, JudgeForm, UpdateUserForm, UpdateProfileForm, My
 from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 import json
-from django.contrib import messages
+from PIL import Image
 from helpapp.data_load import MODEL,tables,taginfo
 
 def helpapp(request):
@@ -381,6 +381,19 @@ def cabinet_add(request):
                 cabinet.laundry_tag = request.session.get('tags')#判定結果sessionとか
                 cabinet.image = request.FILES['image']#保存先はupload_img＞upload_img>imgのなか
                 cabinet.save()
+
+                # 画像サイズ圧縮プログラム
+                print(cabinet.image)
+                img_file = MEDIA_ROOT + str(cabinet.image)
+                # リサイズ前の画像を読み込み
+                img = Image.open(img_file)
+                # 読み込んだ画像の幅、高さを取得し1/4に
+                (width, height) = (img.width // 4, img.height // 4)
+                # 画像をリサイズする
+                img_resized = img.resize((width, height))
+                # ファイルを保存
+                os.remove(img_file)
+                img_resized.save(img_file, quality=90)
                 messages.success(request, '登録しました')
             return redirect('/helpapp/cabinet')
         else:
