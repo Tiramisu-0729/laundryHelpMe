@@ -11,6 +11,7 @@ from django.core.files.storage import FileSystemStorage
 from django.contrib import messages
 import json
 from PIL import Image
+from PIL.ExifTags import TAGS
 from helpapp.data_load import MODEL,tables,taginfo
 
 def helpapp(request):
@@ -390,6 +391,23 @@ def cabinet_add(request):
                 (width, height) = (img.width // 4, img.height // 4)
                 # 画像をリサイズする
                 img_resized = img.resize((width, height))
+                # スマホ用画像回転
+                exif = img._getexif()
+                exif_data=[]
+                if exif is not None :
+                    for id, value in exif.items():
+                        if TAGS.get(id) == 'Orientation':
+                            tag = TAGS.get(id, id),value
+                            exif_data.extend(tag)
+                    if exif_data[1] == 3:
+                        #180度回転
+                        img_resized = img_resized.transpose(Image.ROTATE_180)
+                    elif exif_data[1] == 6:
+                        #270度回転
+                        img_resized = img_resized.transpose(Image.ROTATE_270)
+                    elif exif_data[1] == 8:
+                        #90度回転
+                        img_resized = img_resized.transpose(Image.ROTATE_90)
                 # ファイルを保存
                 os.remove(img_file)
                 img_resized.save(img_file, quality=90)
@@ -428,6 +446,34 @@ def cabinet_detail(request, pk):
                 if request.FILES.get('file') != None:
                     cabinet.image = request.FILES['file']#保存先はupload_img＞upload_img>imgのなか
                 cabinet.save()
+                # 画像サイズ圧縮プログラム
+                img_file = MEDIA_ROOT + str(cabinet.image)
+                # リサイズ前の画像を読み込み
+                img = Image.open(img_file)
+                # 読み込んだ画像の幅、高さを取得し1/4に
+                (width, height) = (img.width // 4, img.height // 4)
+                # 画像をリサイズする
+                img_resized = img.resize((width, height))
+                # スマホ用画像回転
+                exif = img._getexif()
+                exif_data=[]
+                if exif is not None :
+                    for id, value in exif.items():
+                        if TAGS.get(id) == 'Orientation':
+                            tag = TAGS.get(id, id),value
+                            exif_data.extend(tag)
+                    if exif_data[1] == 3:
+                        #180度回転
+                        img_resized = img_resized.transpose(Image.ROTATE_180)
+                    elif exif_data[1] == 6:
+                        #270度回転
+                        img_resized = img_resized.transpose(Image.ROTATE_270)
+                    elif exif_data[1] == 8:
+                        #90度回転
+                        img_resized = img_resized.transpose(Image.ROTATE_90)
+                # ファイルを保存
+                os.remove(img_file)
+                img_resized.save(img_file, quality=90)
                 messages.success(request, '変更しました')
             return redirect('/helpapp/cabinet')
         else:
