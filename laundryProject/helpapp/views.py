@@ -383,7 +383,6 @@ def cabinet_add(request):
                 cabinet.save()
 
                 # 画像サイズ圧縮プログラム
-                print(cabinet.image)
                 img_file = MEDIA_ROOT + str(cabinet.image)
                 # リサイズ前の画像を読み込み
                 img = Image.open(img_file)
