@@ -80,9 +80,9 @@ def judge(request):
 def judge_report(request):
     if request.user.is_authenticated :
         file_name = request.session['file_url'].replace("/media/", "")
-        is_file = os.path.exists(MEDIA_ROOT + '/report/' + file_name)
+        is_file = os.path.exists(MEDIA_ROOT + 'report/' + file_name)
         if is_file == False:
-            shutil.copy( MEDIA_ROOT + '/' + file_name, MEDIA_ROOT + '/report/' + file_name)
+            shutil.copy( MEDIA_ROOT + file_name, MEDIA_ROOT + 'report/' + file_name)
             report = Report()
             report.image = 'report/' +  file_name
             report.ai_result = request.session['ai_result']
