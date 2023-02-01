@@ -8,6 +8,10 @@ body{
     height: 5.5vh;
     margin: 2%;
 }
+input[type="submit"] {
+    appearance: none;
+    -webkit-appearance: none;
+}
 .item{
     width: 28vmin;
     height: 28vmin;
