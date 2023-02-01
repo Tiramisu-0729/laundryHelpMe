@@ -132,7 +132,9 @@ hr{
 p{
     margin: 0;
 }
-
+.space{
+    margin: 20vmin;
+}
 
 /* edit */
 input[type="text"]{
