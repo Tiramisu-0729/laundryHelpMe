@@ -64,7 +64,7 @@
     <div id="check" class="hidden">
         <form name="form1" action="{% url 'helpapp:washers_delete'%}" method="POST">
             {% csrf_token %}
-            <div class="all main">
+            <div class="all edit">
                 {% for washer in washers %}
                     <div class="checkbox">
                         <input class="select" id={{washer.id}} type="checkbox" name="check" value={{washer.id}}>
@@ -83,7 +83,7 @@
             </div>
 
             {% for category in categories %}    
-            <div class="main {{category}}" style="display: none;">
+            <div class="edit {{category}}" style="display: none;">
                 {% for washer in washers %}
                     {% if washer.category == category %}
                         <div class="checkbox">
