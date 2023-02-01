@@ -25,12 +25,12 @@
                         </span>
                         <span class="date">
                             <a href='{% url "helpapp:washer_log_detail" laundry.0.washer_log_id%}'>
-                                {{val}}{{laundry.0.washer_log.created_at}}
+                                {{val}}{{laundry.0.washer_log.created_at|date:"Y年m月j日 H:i" }}
                             </a>
                         </span>
                         
                         <span class="delete">
-                            <a href='{% url "helpapp:washer_log_delete" laundry.0.washer_log_id%}' onclick='return confirm("ログを削除しますか？");'>
+                            <a href='{% url "helpapp:washer_log_delete" laundry.0.washer_log_id%}' onclick='return confirm("ブックマークを削除しますか？");'>
                             ×
                             </a>
                         </span>
@@ -48,7 +48,7 @@
             {% endfor %}
         </div>
     {% if none == 0 %}
-    <div class="none"><h2>洗濯機のログがありません。</h2></div>
+        <div class="none"><h2>ブックマークがありません。</h2></div>
     {% endif %}
     {% endblock %}
 

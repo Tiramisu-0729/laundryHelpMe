@@ -2,6 +2,10 @@
 body{
     color: #333;
 }
+input[type="submit"] {
+    appearance: none;
+    -webkit-appearance: none;
+    }
 .image_field {
     display: flex;
     justify-content: center;
@@ -177,6 +181,7 @@ input[type="textarea"]{
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
+    border-radius: 0%;
 }
 .radio{
     box-shadow: 1px 1px 1px 0px #999;
