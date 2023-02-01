@@ -30,11 +30,6 @@ body{
     flex-wrap: wrap;
     margin: 1.9vmin;
 }
-.edit{
-    display: flex;
-    flex-wrap: wrap;
-    margin: 1.9vmin;
-}
 .checkbox{
     margin: 1.1vmin;
     width: 28vmin;
@@ -168,22 +163,3 @@ h2{
 .space{
     margin: 20vmin;
 }
-
-/* animation */
-.main{
-    animation: fadeup 1s cubic-bezier(0.33, 1, 0.68, 1) 1 forwards;
-  }
-  
-  @keyframes fadeup {
-    0% {
-      transform: translateY(30px);
-      opacity: 0;
-    }
-    80% {
-      opacity: 1;
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
