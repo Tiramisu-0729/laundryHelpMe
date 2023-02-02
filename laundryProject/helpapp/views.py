@@ -146,18 +146,53 @@ def washer_judge(request):
                 if Cabinet.objects.filter(pk=id).exists():
                     washers.append(Cabinet.objects.get(pk=id))
             comp = ["L1", "B1", "T1"]
+            L=[]
+            L_washer=[]
+            B=[]
+            B_washer=[]
+            T=[]
+            T_washer=[]
             for washer in washers:
                 tags = washer.laundry_tag.split(',')
                 for tag in tags:
                     if tag[0] == "L":
+                        L.append(tag[1])
+                        L_washer.append(washer.id)
                         if int(tag[1], 16) > int(comp[0][1] ,16):#一番条件が厳しいタグの判定
                             comp[0]=tag
                     elif tag[0] == "B":
+                        B.append(tag[1])
+                        B_washer.append(washer.id)
                         if int(tag[1], 16) > int(comp[1][1] ,16):#一番条件が厳しいタグの判定
                             comp[1]=tag
+                            
                     elif tag[0] == "T":
+                        T.append(tag[1])
+                        T_washer.append(washer.id)
                         if int(tag[1], 16) > int(comp[2][1] ,16):#一番条件が厳しいタグの判定
                             comp[2]=tag
+
+            # zipで一つの変数"zip_lists"にまとめる
+            # ソートの基準としたいリストを一番左においてzip
+            zip_lists = zip(L, L_washer)
+            # 昇順でソート
+            zip_sort = sorted(zip_lists)
+            # zipを解除
+            L, L_washer = zip(*zip_sort)
+
+            zip_lists = zip(B, B_washer)
+            zip_sort = sorted(zip_lists)
+            B, B_washer = zip(*zip_sort)
+            
+            zip_lists = zip(T, T_washer)
+            zip_sort = sorted(zip_lists)
+            T, T_washer = zip(*zip_sort)          
+            print(L)
+            print(L_washer)
+            print(B)
+            print(B_washer)
+            print(T)
+            print(T_washer)
             context = {
                 'washers' : washers,
                 'comp' : comp,

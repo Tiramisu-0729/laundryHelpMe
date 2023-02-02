@@ -26,6 +26,45 @@
             {% endfor %}
         </table>
     </div>
+    <section class="tab_contents">
+        <div class="tab_wrap">
+            <input id="tab1" type="radio" name="check" checked>
+            <label for="tab1" class="tab_lab1">洗濯</label>
+            <input id="tab2" type="radio" name="check">
+            <label for="tab2" class="tab_lab2">漂白</label>
+            <input id="tab3" type="radio" name="check">
+            <label for="tab3" class="tab_lab3">乾燥</label>
+            <div class="panels">
+                <div id="area1" class="panel">
+                    <ul class="panel_content">
+                        <li>ボックス内コンテンツ</li>
+                        <li>ボックス内コンテンツ</li>
+                        <li>ボックス内コンテンツ</li>
+                        <li>ボックス内コンテンツ</li>
+                        <li>ボックス内コンテンツ</li>
+                        <li>ボックス内コンテンツ</li>
+                        <li>ボックス内コンテンツ</li>
+                        <li>ボックス内コンテンツ</li>
+                        <li>ボックス内コンテンツ</li>
+                    </ul>
+                </div>
+                <div id="area2" class="panel">
+                    <ul class="panel_content">
+                        <li>ボックス内コンテンツ</li>
+                        <li>ボックス内コンテンツ</li>
+                        <li>ボックス内コンテンツ</li>
+                    </ul>
+                </div>
+                <div id="area3" class="panel">
+                    <ul class="panel_content">
+                        <li>ボックス内コンテンツ</li>
+                        <li>ボックス内コンテンツ</li>
+                        <li>ボックス内コンテンツ</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="button">
         <a href='{% url "helpapp:washer_complete" %}'>
             <button type="button" class="finish">完了</button>

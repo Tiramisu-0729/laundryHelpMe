@@ -6,7 +6,7 @@ window.onload = function(){
     for (let i = 0; i < checkbox.length; i++) {
         checkbox[i].addEventListener('change', function() { //チェックボックス（type='checkbox'）の値が変更されたとき・・・ 
             let cbv = "'" + this.value + "'";  
-            let checked = document.querySelectorAll("input[type='checkbox'][value =" + cbv + "]");
+            let checked = document.querySelectorAll("input[class='check'][value =" + cbv + "]");
 
             if(this.checked){   
                 for (let i = 0; i < checked.length; i++) {

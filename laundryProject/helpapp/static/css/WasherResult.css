@@ -114,3 +114,70 @@ hr {
     justify-content: center;
     align-items: center;
 }
+
+
+
+/* tab */
+.tab_contents {
+	width: 100%;
+	margin: 10vmin auto;
+}
+
+.tab_wrap {
+	opacity: 0.8;
+}
+
+
+/*タブボタンデザイン*/
+.tab_lab1, .tab_lab2, .tab_lab3 {
+	background: #242424;
+	color: #fff;
+	padding: 4vmin;
+}
+
+/*タブにチェック入ったとき*/
+#tab1:checked~.tab_lab1 {
+    background-color: #97ECFC;
+	color: #242424;
+    border-radius: 2vmin;
+}
+#tab2:checked~.tab_lab2 {
+	background: #3ddcb1;
+	color: #242424;
+    border-radius: 2vmin;
+}
+#tab3:checked~.tab_lab3 {
+	background: #ff8b8b;
+	color: #242424;
+    border-radius: 2vmin;
+}
+
+/*タブボタンとボックス連動*/
+#tab1:checked~.panels #area1 {
+	display: block;
+    background-color: #97ECFC;
+}
+#tab2:checked~.panels #area2 {
+	display: block;
+	background: #3ddcb1;
+}
+#tab3:checked~.panels #area3 {
+	display: block;
+	background: #ff8b8b;
+}
+
+/*チェックボックスとボックス非表示*/
+input[name="check"] {
+	display: none;
+}
+.panel {
+	padding: 1vmin;
+	display: none;
+    text-align: center;
+    border-radius: 2vmin;
+}
+
+/*ボックスを下から上へ*/
+.panel_content {
+	background-color: #fff;
+}
