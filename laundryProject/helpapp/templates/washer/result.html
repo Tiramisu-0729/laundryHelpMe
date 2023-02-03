@@ -15,7 +15,7 @@
             </div>
         {% endfor %}
     </div>
-    <div class="title">洗濯方法</div>
+    <div class="title"></div>
     <div class="result_tag">
         <table>
             {% for tag in comp %}
@@ -37,29 +37,95 @@
             <div class="panels">
                 <div id="area1" class="panel">
                     <ul class="panel_content">
-                        <li>ボックス内コンテンツ</li>
-                        <li>ボックス内コンテンツ</li>
-                        <li>ボックス内コンテンツ</li>
-                        <li>ボックス内コンテンツ</li>
-                        <li>ボックス内コンテンツ</li>
-                        <li>ボックス内コンテンツ</li>
-                        <li>ボックス内コンテンツ</li>
-                        <li>ボックス内コンテンツ</li>
-                        <li>ボックス内コンテンツ</li>
+                        {% for l_washer in L_washer %}
+                            {% for washer in washers %}
+                                {% if washer.id == l_washer %}
+                                    <li class="panel_li">
+                                        <div class="panel_img">
+                                            <img src="{{washer.image.url}}" class="panel_washer">
+                                        </div>
+                                        <div class="panel_space"></div>
+                                    <div class="panel_tags">
+                                        {% for tag in washer.laundry_tag %}
+                                            {% if tag.0 == "L"%}
+                                                {% with img="/pictures/"|add:tag|add:".png" %}
+                                                    <img class="tag_img L" src="{% static img%}">
+                                                {% endwith %}
+
+                                            {% else %}
+                                                {% with img="/pictures/"|add:tag|add:".png" %}
+                                                        <img class="tag_img" src="{% static img%}">
+                                                {% endwith %}
+                                            {% endif %}
+                                            <div id="{{tag}}"></div>
+                                        {% endfor %}
+                                    </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
                     </ul>
                 </div>
                 <div id="area2" class="panel">
                     <ul class="panel_content">
-                        <li>ボックス内コンテンツ</li>
-                        <li>ボックス内コンテンツ</li>
-                        <li>ボックス内コンテンツ</li>
+                        {% for b_washer in B_washer %}
+                            {% for washer in washers %}
+                                {% if washer.id == b_washer %}
+                                    <li class="panel_li">
+                                        <div class="panel_img">
+                                            <img src="{{washer.image.url}}" class="panel_washer">
+                                        </div>
+                                        <div class="panel_space"></div>
+                                    <div class="panel_tags">
+                                        {% for tag in washer.laundry_tag %}
+                                            {% if tag.0 == "B"%}
+                                                {% with img="/pictures/"|add:tag|add:".png" %}
+                                                    <img class="tag_img B" src="{% static img%}">
+                                                {% endwith %}
+
+                                            {% else %}
+                                                {% with img="/pictures/"|add:tag|add:".png" %}
+                                                        <img class="tag_img" src="{% static img%}">
+                                                {% endwith %}
+                                            {% endif %}
+                                            <div id="{{tag}}"></div>
+                                        {% endfor %}
+                                    </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
                     </ul>
                 </div>
                 <div id="area3" class="panel">
                     <ul class="panel_content">
-                        <li>ボックス内コンテンツ</li>
-                        <li>ボックス内コンテンツ</li>
-                        <li>ボックス内コンテンツ</li>
+                        {% for t_washer in T_washer %}
+                            {% for washer in washers %}
+                                {% if washer.id == t_washer %}
+                                    <li class="panel_li">
+                                        <div class="panel_img">
+                                            <img src="{{washer.image.url}}" class="panel_washer">
+                                        </div>
+                                        <div class="panel_space"></div>
+                                    <div class="panel_tags">
+                                        {% for tag in washer.laundry_tag %}
+                                            {% if tag.0 == "T"%}
+                                                {% with img="/pictures/"|add:tag|add:".png" %}
+                                                    <img class="tag_img T" src="{% static img%}">
+                                                {% endwith %}
+
+                                            {% else %}
+                                                {% with img="/pictures/"|add:tag|add:".png" %}
+                                                        <img class="tag_img" src="{% static img%}">
+                                                {% endwith %}
+                                            {% endif %}
+                                            <div id="{{tag}}"></div>
+                                        {% endfor %}
+                                    </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

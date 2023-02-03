@@ -152,8 +152,10 @@ def washer_judge(request):
             B_washer=[]
             T=[]
             T_washer=[]
+            
             for washer in washers:
                 tags = washer.laundry_tag.split(',')
+                washer.laundry_tag = washer.laundry_tag.split(',')
                 for tag in tags:
                     if tag[0] == "L":
                         L.append(tag[1])
@@ -186,18 +188,16 @@ def washer_judge(request):
             
             zip_lists = zip(T, T_washer)
             zip_sort = sorted(zip_lists)
-            T, T_washer = zip(*zip_sort)          
-            print(L)
-            print(L_washer)
-            print(B)
-            print(B_washer)
-            print(T)
-            print(T_washer)
+            T, T_washer = zip(*zip_sort)        
+
             context = {
                 'washers' : washers,
                 'comp' : comp,
                 'comp_json' : json.dumps(comp),
                 'ON' : json.dumps('washer'),
+                'L_washer' : L_washer,
+                'B_washer' : B_washer,
+                'T_washer' : T_washer,
                 'message': 'Washer',
                 'taginfos' : taginfo,
             }
