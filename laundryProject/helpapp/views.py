@@ -283,22 +283,60 @@ def washer_log_detail(request, pk):
         if  Laundry.objects.filter(washer_log_id = pk).exists():   #存在確認
             laundry = Laundry.objects.filter(washer_log_id = pk) #laundry表とcabinet表を結合
             comp = ["L1", "B1", "T1"]
+            L=[]
+            L_washer=[]
+            B=[]
+            B_washer=[]
+            T=[]
+            T_washer=[]
+
             for laund in laundry:
                 tags = laund.cabinet.laundry_tag.split(',')
+                laund.cabinet.laundry_tag = laund.cabinet.laundry_tag.split(',')
                 for tag in tags:
                     if tag[0] == "L":
+                        L.append(tag[1])
+                        L_washer.append(laund.id)
                         if int(tag[1], 16) > int(comp[0][1] ,16):#一番条件が厳しいタグの判定
                             comp[0]=tag
                     elif tag[0] == "B":
+                        B.append(tag[1])
+                        B_washer.append(laund.id)
                         if int(tag[1], 16) > int(comp[1][1] ,16):#一番条件が厳しいタグの判定
                             comp[1]=tag
                     elif tag[0] == "T":
+                        T.append(tag[1])
+                        T_washer.append(laund.id)
                         if int(tag[1], 16) > int(comp[2][1] ,16):#一番条件が厳しいタグの判定
                             comp[2]=tag
+
+            # zipで一つの変数"zip_lists"にまとめる
+            # ソートの基準としたいリストを一番左においてzip
+            zip_lists = zip(L, L_washer)
+            # 昇順でソート
+            zip_sort = sorted(zip_lists)
+            # zipを解除
+            L, L_washer = zip(*zip_sort)
+
+            zip_lists = zip(B, B_washer)
+            zip_sort = sorted(zip_lists)
+            B, B_washer = zip(*zip_sort)
+            
+            zip_lists = zip(T, T_washer)
+            zip_sort = sorted(zip_lists)
+            T, T_washer = zip(*zip_sort)
+
+            print(L_washer)
+            print(B_washer)
+            print(T_washer)
+
             context = {
                 'laundry' : laundry,
                 'comp' : comp,
                 'comp_json' : json.dumps(comp),
+                'L_washer' : L_washer,
+                'B_washer' : B_washer,
+                'T_washer' : T_washer,
                 'ON' : json.dumps('bookmark'),
                 'message': 'Bookmark',
                 'taginfos' : taginfo,
