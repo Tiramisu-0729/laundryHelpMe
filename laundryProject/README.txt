@@ -8,16 +8,21 @@
     ローカルのYoloV5で追加学習させる
     重みファイルはサーバーの「/home/opc/laundryProject/yolo/729x300_yolov5m_best.pt」
 
+#### クラウドサーバー再起動したら絶対する！！！####
+# SELinuxを無効化
+# 一時的な無効化なので再起動で設定リセットされます。恒久的に無効化したい場合はググってください、すぐ出てきます。
+setenforce 0
 
-### サーバー設定
-# サーバー再起動
-sudo systemctl restart project
 
+### 設定
 # StaticファイルをSTATIC_ROOTにあつめる
 sudo python3.7 manage.py collectstatic
 
-#プロジェクト起動サービス設定(Gunicorn)
+#システム起動サービス設定(Gunicorn)
 sudo vim /etc/systemd/system/project.service
+
+# システム再起動
+sudo systemctl restart project
 
 # nginxの設定ファイル
 /etc/nginx/conf.d/laundryhelpme.0g0.jp.conf
@@ -39,7 +44,7 @@ sudo crontab -l　#このコマンドで確認できる
 0 * * * * tmpwatch -m 24 -d /usr/share/nginx/html/media/ -x /usr/share/nginx/html/media/icon/ -x /usr/share/nginx/html/media/img/ -x /usr/share/nginx/html/media/report/
 
 # Let'ｓ Encrypt証明書の場所
-/etc/letsencrypt/live/laundryhelpme.0g0.jp/
+/etc/letsencrypt/live/atc.0g0.jp/
 
 
 #/report/index.htmlのサーバーとローカルで変えるとこ
@@ -58,7 +63,7 @@ def judge(request):
             file_url = fs.url(file_data)
             request.session['file_url'] = file_url
             #AIで画像判定
-            results = MODEL('/usr/share/nginx/html'+file_url) # model_loadからMODEL読み込み
+            results = MODEL('/usr/share/nginx/html'+file_url)
             #判定結果 解析
             datas = json.loads(results.pandas().xyxy[0].to_json(orient="values"))
             result=[]
@@ -74,7 +79,7 @@ def judge(request):
                 profile.save()
             return redirect(url)
     except :
-        messages.success(request, 'エラーが発生しました')    
+        messages.error(request, 'エラーが発生しました')    
     return redirect('/helpapp/home')
 
 def judge_report(request):
@@ -90,7 +95,7 @@ def judge_report(request):
             report.save()
             messages.success(request, '報告が完了しました。')
         else :
-            messages.success(request, '報告済みです。')
+            messages.error(request, '報告済みです。')
         return render(request, 'laundry_tag_check/result.html', request.session['context'])
     else :
         return redirect('/accounts/login/')
