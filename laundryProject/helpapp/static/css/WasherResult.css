@@ -182,7 +182,7 @@ input[name="check"] {
     border-radius: 1vmin;
     background-color: rgb(255, 255, 255);
     margin: 3vmin 1vmin;
-    box-shadow: 1px 1px 2px #ccc;
+    
 }
 .panel_img{
 
@@ -191,11 +191,22 @@ input[name="check"] {
     align-items: center;
 }
 .panel_tags{
+
     overflow-x :scroll;
     display: flex;
     margin: 1vmin;
     align-items: center;
+
+    /* Firefox */
+    scrollbar-width: none;
+    /* IE */
+    -ms-overflow-style: none;
 }
+.panel_tags::-webkit-scrollbar {
+    /* Chrome */
+    display: none;
+}
+
 .panel_washer{
     width: 20vmin;
     height: 20vmin;
@@ -216,5 +227,5 @@ input[name="check"] {
 /*ボックスを下から上へ*/
 .panel_content {
     padding: 1vmin;
-	background-color: rgb(250, 250, 250);
+	background-color: rgb(255, 255, 255);
 }

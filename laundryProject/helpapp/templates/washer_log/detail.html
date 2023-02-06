@@ -81,10 +81,13 @@
                                                 {% with img="/pictures/"|add:tag|add:".png" %}
                                                     <img class="tag_img B" src="{% static img%}">
                                                 {% endwith %}
-
-                                            {% else %}
+                                            {% endif %}
+                                            <div id="{{tag}}"></div>
+                                        {% endfor %}
+                                        {% for tag in laund.cabinet.laundry_tag %}
+                                            {% if tag.0 != "B"%}
                                                 {% with img="/pictures/"|add:tag|add:".png" %}
-                                                        <img class="tag_img" src="{% static img%}">
+                                                    <img class="tag_img" src="{% static img%}">
                                                 {% endwith %}
                                             {% endif %}
                                             <div id="{{tag}}"></div>
@@ -112,10 +115,13 @@
                                                 {% with img="/pictures/"|add:tag|add:".png" %}
                                                     <img class="tag_img T" src="{% static img%}">
                                                 {% endwith %}
-
-                                            {% else %}
+                                            {% endif %}
+                                            <div id="{{tag}}"></div>
+                                        {% endfor %}
+                                        {% for tag in laund.cabinet.laundry_tag %}
+                                            {% if tag.0 != "T"%}
                                                 {% with img="/pictures/"|add:tag|add:".png" %}
-                                                        <img class="tag_img" src="{% static img%}">
+                                                    <img class="tag_img" src="{% static img%}">
                                                 {% endwith %}
                                             {% endif %}
                                             <div id="{{tag}}"></div>
