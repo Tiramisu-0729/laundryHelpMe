@@ -3,7 +3,7 @@ import torch
 from laundryProject.settings import *
 # Yoloの重みファイルをロード ＞ 呼び出し毎にロードされないようにすることでメモリがパンクしない
 path_hubconfig = "yolo"
-path_weightfile = "yolo/729x300_yolov5m_best.pt" 
+path_weightfile = "yolo/yolov5m_best.pt" 
 MODEL = torch.hub.load(path_hubconfig, 'custom',path=path_weightfile, source='local')
 
 washingProcesses, bleachingProcesses, tumbleDrys, naturalDrys, ironFinishs, tightens, dryCleanings, wetCleanings, info, taginfo = [],[],[],[],[],[],[],[],[],[]
