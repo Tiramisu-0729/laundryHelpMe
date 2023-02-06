@@ -22,10 +22,10 @@
                 {% endif %}
             </p>
             <div class="link">
-            <a href="{% url 'helpapp:home' %}">アプリへ戻る</a>
-                {% if user.is_superuser %} | 
-                    <a href="{% url 'admin:index' %}">Django管理者画面へ</a> | 
-                    <a href="{% static 'pictures/第4回授業課題1.pdf' %}">アノテーション等のやり方</a>
+            <a href="{% url 'helpapp:home' %}">アプリへ戻る</a> | 
+            <a href="{% static 'pictures/アノテーション・AIの追加学習.pdf' %}" target="_blank">アノテーション・AIの追加学習</a>
+                {% if user.is_superuser %}
+                     | <a href="{% url 'admin:index' %}">Django管理者画面へ</a>
                 {% endif %}
             </div>
         </div>
