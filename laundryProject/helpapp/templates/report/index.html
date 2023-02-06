@@ -13,7 +13,14 @@
 <body>
     <div class="container">
         <div id="header">
-            <p id="title">{{message}}</p>
+            <p id="title">
+                {{message}}
+                {% if user.is_superuser %}
+                    　＜ 管理者 ＞
+                {% else %}
+                    　＜ スタッフ ＞
+                {% endif %}
+            </p>
             <div class="link">
                 <a href="{% url 'helpapp:home' %}">アプリへ戻る</a> | 
                 <a href="{% url 'admin:index' %}">Django管理者画面へ</a>
@@ -28,7 +35,12 @@
                         <option value="finished" >完了済</option>
                         <option value="unfinished" >未完</option>
                     </select>
-                    <span class="commit"><input type="submit" value="保存する" ></span>
+                    <span class="button">
+                        <input type="submit" name="commit" value="保存する" class="commit_button">
+                        {% if user.is_superuser %}
+                            <input type="submit" name="delete" value="削除" class="delete_button" onclick='return confirm("本当に削除しますか？\nこの操作は取り消せません。");'>
+                        {% endif %}
+                    </span>
                 </div>
                 
                 <table id="all" border="1">
@@ -39,11 +51,14 @@
                         <th>AIの判定</th>
                         <th>ユーザー判定</th>
                         <th>アノテーション</th>
-                        <th>編集画面へ</th>
+                        {% if user.is_superuser %}
+                            <th>編集画面へ</th>
+                            <th>削除</th>
+                        {% endif %}
                     </tr>
                     {% for report in reports %}
                         <tr>
-                            <td>{{report.id}}</td>
+                            <th>{{report.id}}</td>
                             {% with img="/upload_img/"|add:report.image %}
                                 <td>
                                     <img src="{{ img }}">
@@ -63,11 +78,16 @@
                                     <label for="check{{report.id}}"><div class="{{report.id}} red">未</div></label>
                                 {% endif %}
                             </td>
-                            <td class="edit">
-                                <a href="{% url 'admin:helpapp_report_change' report.id %}">
-                                    <button type="button">編集</button>
-                                </a>
-                            </td>
+                            {% if user.is_superuser %}
+                                <td class="edit">
+                                    <a href="{% url 'admin:helpapp_report_change' report.id %}">
+                                        <button type="button">編集</button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="delete" value="d{{report.id}}" class="delete">
+                                </td>
+                            {% endif %}
                         </tr>
                     {% endfor %}
                 </table>
@@ -80,12 +100,15 @@
                         <th>AIの判定</th>
                         <th>ユーザー判定</th>
                         <th>アノテーション</th>
-                        <th>編集画面へ</th>
+                        {% if user.is_superuser %}
+                            <th>編集画面へ</th>
+                            <th>削除</th>
+                        {% endif %}
                     </tr>
                     {% for report in reports %}
                     {% if report.annotation %}
                         <tr>
-                            <td>{{report.id}}</td>
+                            <th>{{report.id}}</td>
                             {% with img="/upload_img/"|add:report.image %}
                                 <td>
                                     <img src="{{ img }}">
@@ -104,11 +127,16 @@
                                     <label for="check{{report.id}}"><div class="{{report.id}} red">未</div></label>
                                 {% endif %}
                             </td>
-                            <td class="edit">
-                                <a href="{% url 'admin:helpapp_report_change' report.id %}">
-                                    <button type="button">編集</button>
-                                </a>
-                            </td>
+                            {% if user.is_superuser %}
+                                <td class="edit">
+                                    <a href="{% url 'admin:helpapp_report_change' report.id %}">
+                                        <button type="button">編集</button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="delete" value="d{{report.id}}" class="delete">
+                                </td>
+                            {% endif %}
                         </tr>
                     {% endif %}
                     {% endfor %}
@@ -122,12 +150,15 @@
                         <th>AIの判定</th>
                         <th>ユーザー判定</th>
                         <th>アノテーション</th>
-                        <th>編集画面へ</th>
+                        {% if user.is_superuser %}
+                            <th>編集画面へ</th>
+                            <th>削除</th>
+                        {% endif %}
                     </tr>
                     {% for report in reports %}
                     {% if not report.annotation %}
                         <tr>
-                            <td>{{report.id}}</td>
+                            <th>{{report.id}}</td>
                             {% with img="/upload_img/"|add:report.image %}
                                 <td>
                                     <img src="{{ img }}">
@@ -146,13 +177,18 @@
                                     <label for="check{{report.id}}"><div class="{{report.id}} red">未</div></label>
                                 {% endif %}
                             </td>
-                            <td class="edit">
-                                <a href="{% url 'admin:helpapp_report_change' report.id %}">
-                                    <button type="button">編集</button>
-                                </a>
-                            </td>
+                            {% if user.is_superuser %}
+                                <td class="edit">
+                                    <a href="{% url 'admin:helpapp_report_change' report.id %}">
+                                        <button type="button">編集</button>
+                                    </a>
+                                </td>
+                                <td>
+                                    <input type="checkbox" name="delete" value="d{{report.id}}" class="delete">
+                                </td>
+                            {% endif %}
                         </tr>
-                    {% endif %}
+                        {% endif %}
                     {% endfor %}
                 </table>
             </from>

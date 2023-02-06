@@ -25,6 +25,10 @@ body {
               0px 1px 0 #FFF,  0-1px 0 #FFF,
               -1px 0 0 #FFF, 1px 0 0 #FFF;
 }
+#categories {
+    font-size: 20px;
+    margin: 10px;
+}
 .link {
     display: inline;
     float: right;
@@ -49,7 +53,7 @@ table {
 }
 td {
     padding: 5px;
-    max-width: 230px;
+    max-width: 200px;
     word-wrap: break-word;
 }
 td img {
@@ -64,10 +68,18 @@ td img {
     justify-content: center;
 }
 
-.commit input {
+.button {
     float: right;
+}
+.commit_button {
     margin: 10px 5px;
     background-color: pink;
+    font-size: 20px;
+}
+.delete_button {
+    margin: 10px 5px;
+    background-color: red;
+    color: white;
 }
 .edit {
     text-align: center;
@@ -108,4 +120,8 @@ td img {
     text-align: center;
     background-color: rgb(255, 73, 73);
     box-shadow: 2px 2px 2px rgb(112, 112, 112);
+}
+.delete {
+    width: 25px;
+    height: 25px;
 }

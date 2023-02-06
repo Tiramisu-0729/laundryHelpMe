@@ -15,9 +15,9 @@ LE,家庭での<span class="red">洗濯禁止</span>
 B1,塩素系及び酸素系の漂白剤を使用して漂白ができる
 B2,酸素系漂白剤の使用はできるが、塩素系漂白剤は<span class="red">使用禁止</span>
 B3,塩素系および酸素系漂白剤の<span class="red">使用禁止</span>
-T1,タンブル乾燥ができる(排気温度上限<span class="red">80度</span>)
-T2,低い温度でタンブル乾燥ができる(排気温度上限<span class="red">60度</span>)
-T3,タンブル乾燥<span class="red">禁止</span>)
+T1,タンブル乾燥ができる(排気温度上限<span class="red">80度</span>
+T2,低い温度でタンブル乾燥ができる(排気温度上限<span class="red">60度</span>
+T3,タンブル乾燥<span class="red">禁止</span>
 I1,底面温度<span class="red">200度</span>を限度としてアイロン仕上げができる
 I2,底面温度<span class="red">150度</span>を限度としてアイロン仕上げができる
 I3,底面温度<span class="red">110度</span>を限度として<span class="red">スチームなし</span>でアイロン仕上げができる

@@ -158,6 +158,7 @@ def washer_judge(request):
                     elif tag[0] == "T":
                         if int(tag[1], 16) > int(comp[2][1] ,16):#一番条件が厳しいタグの判定
                             comp[2]=tag
+            
             context = {
                 'washers' : washers,
                 'comp' : comp,
@@ -387,10 +388,11 @@ def cabinet_add(request):
                 img_file = MEDIA_ROOT + str(cabinet.image)
                 # リサイズ前の画像を読み込み
                 img = Image.open(img_file)
-                # 読み込んだ画像の幅、高さを取得し1/4に
-                (width, height) = (img.width // 4, img.height // 4)
-                # 画像をリサイズする
-                img_resized = img.resize((width, height))
+                if (os.path.getsize(img_file) >= 500000):
+                    # 読み込んだ画像の幅、高さを取得し1/4に
+                    (width, height) = (img.width // 4, img.height // 4)
+                    # 画像をリサイズする
+                    img = img.resize((width, height))
                 # スマホ用画像回転
                 exif = img._getexif()
                 exif_data=[]
@@ -401,16 +403,16 @@ def cabinet_add(request):
                             exif_data.extend(tag)
                     if exif_data[1] == 3:
                         #180度回転
-                        img_resized = img_resized.transpose(Image.ROTATE_180)
+                        img = img.transpose(Image.ROTATE_180)
                     elif exif_data[1] == 6:
                         #270度回転
-                        img_resized = img_resized.transpose(Image.ROTATE_270)
+                        img = img.transpose(Image.ROTATE_270)
                     elif exif_data[1] == 8:
                         #90度回転
-                        img_resized = img_resized.transpose(Image.ROTATE_90)
+                        img = img.transpose(Image.ROTATE_90)
                 # ファイルを保存
                 os.remove(img_file)
-                img_resized.save(img_file, quality=90)
+                img.save(img_file, quality=90)
                 messages.success(request, '登録しました')
             return redirect('/helpapp/cabinet')
         else:
@@ -450,10 +452,11 @@ def cabinet_detail(request, pk):
                 img_file = MEDIA_ROOT + str(cabinet.image)
                 # リサイズ前の画像を読み込み
                 img = Image.open(img_file)
-                # 読み込んだ画像の幅、高さを取得し1/4に
-                (width, height) = (img.width // 4, img.height // 4)
-                # 画像をリサイズする
-                img_resized = img.resize((width, height))
+                if (os.path.getsize(img_file) >= 500000):
+                    # 読み込んだ画像の幅、高さを取得し1/4に
+                    (width, height) = (img.width // 4, img.height // 4)
+                    # 画像をリサイズする
+                    img = img.resize((width, height))
                 # スマホ用画像回転
                 exif = img._getexif()
                 exif_data=[]
@@ -464,16 +467,16 @@ def cabinet_detail(request, pk):
                             exif_data.extend(tag)
                     if exif_data[1] == 3:
                         #180度回転
-                        img_resized = img_resized.transpose(Image.ROTATE_180)
+                        img = img.transpose(Image.ROTATE_180)
                     elif exif_data[1] == 6:
                         #270度回転
-                        img_resized = img_resized.transpose(Image.ROTATE_270)
+                        img = img.transpose(Image.ROTATE_270)
                     elif exif_data[1] == 8:
                         #90度回転
-                        img_resized = img_resized.transpose(Image.ROTATE_90)
+                        img = img.transpose(Image.ROTATE_90)
                 # ファイルを保存
                 os.remove(img_file)
-                img_resized.save(img_file, quality=90)
+                img.save(img_file, quality=90)
                 messages.success(request, '変更しました')
             return redirect('/helpapp/cabinet')
         else:
@@ -731,8 +734,8 @@ def report_admin(request):
         return redirect('/accounts/login/')
 
 def report_commit(request):
-    if request.user.is_authenticated :
-        if  request.user.is_staff :
+    if request.user.is_staff :
+        if "commit" in request.POST:
             checks = Report.objects.all()# いったんすべてFalseにする
             for check in checks :
                 check.annotation = False
@@ -742,11 +745,17 @@ def report_commit(request):
             for check in checks :
                 check.annotation = True
                 check.save()
-            return redirect('/helpapp/report_admin')
-        else:
-            return redirect('/helpapp/home')
-    else :
-        return redirect('/accounts/login/')
+        elif "delete" in request.POST:
+            checked = request.POST.getlist("delete")
+            delete_list=[]
+            for check in checked :
+                delete_list.append(check.lstrip("d"))
+            delete_list.pop(0)
+            reports = Report.objects.filter(id__in=delete_list) # 条件を設定してから
+            reports.delete() 
+        return redirect('/helpapp/report_admin')
+    else:
+        return redirect('/helpapp/home')
 
 def testYolo(request):
     # path_hubconfig = "yolo"
