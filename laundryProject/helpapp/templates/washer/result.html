@@ -15,7 +15,7 @@
             </div>
         {% endfor %}
     </div>
-    <div class="title">洗濯方法</div>
+    <div class="title"></div>
     <div class="result_tag">
         <table>
             {% for tag in comp %}
@@ -26,6 +26,111 @@
             {% endfor %}
         </table>
     </div>
+    <section class="tab_contents">
+        <div class="tab_wrap">
+            <input id="tab1" type="radio" name="check" checked>
+            <label for="tab1" class="tab_lab1">洗濯</label>
+            <input id="tab2" type="radio" name="check">
+            <label for="tab2" class="tab_lab2">漂白</label>
+            <input id="tab3" type="radio" name="check">
+            <label for="tab3" class="tab_lab3">乾燥</label>
+            <div class="panels">
+                <div id="area1" class="panel">
+                    <ul class="panel_content">
+                        {% for l_washer in L_washer %}
+                            {% for washer in washers %}
+                                {% if washer.id == l_washer %}
+                                    <li class="panel_li">
+                                        <div class="panel_img">
+                                            <img src="{{washer.image.url}}" class="panel_washer">
+                                        </div>
+                                        <div class="panel_space"></div>
+                                    <div class="panel_tags">
+                                        {% for tag in washer.laundry_tag %}
+                                            {% if tag.0 == "L"%}
+                                                {% with img="/pictures/"|add:tag|add:".png" %}
+                                                    <img class="tag_img L" src="{% static img%}">
+                                                {% endwith %}
+
+                                            {% else %}
+                                                {% with img="/pictures/"|add:tag|add:".png" %}
+                                                        <img class="tag_img" src="{% static img%}">
+                                                {% endwith %}
+                                            {% endif %}
+                                            <div id="{{tag}}"></div>
+                                        {% endfor %}
+                                    </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="area2" class="panel">
+                    <ul class="panel_content">
+                        {% for b_washer in B_washer %}
+                            {% for washer in washers %}
+                                {% if washer.id == b_washer %}
+                                    <li class="panel_li">
+                                        <div class="panel_img">
+                                            <img src="{{washer.image.url}}" class="panel_washer">
+                                        </div>
+                                        <div class="panel_space"></div>
+                                    <div class="panel_tags">
+                                        {% for tag in washer.laundry_tag %}
+                                            {% if tag.0 == "B"%}
+                                                {% with img="/pictures/"|add:tag|add:".png" %}
+                                                    <img class="tag_img B" src="{% static img%}">
+                                                {% endwith %}
+
+                                            {% else %}
+                                                {% with img="/pictures/"|add:tag|add:".png" %}
+                                                        <img class="tag_img" src="{% static img%}">
+                                                {% endwith %}
+                                            {% endif %}
+                                            <div id="{{tag}}"></div>
+                                        {% endfor %}
+                                    </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div id="area3" class="panel">
+                    <ul class="panel_content">
+                        {% for t_washer in T_washer %}
+                            {% for washer in washers %}
+                                {% if washer.id == t_washer %}
+                                    <li class="panel_li">
+                                        <div class="panel_img">
+                                            <img src="{{washer.image.url}}" class="panel_washer">
+                                        </div>
+                                        <div class="panel_space"></div>
+                                    <div class="panel_tags">
+                                        {% for tag in washer.laundry_tag %}
+                                            {% if tag.0 == "T"%}
+                                                {% with img="/pictures/"|add:tag|add:".png" %}
+                                                    <img class="tag_img T" src="{% static img%}">
+                                                {% endwith %}
+
+                                            {% else %}
+                                                {% with img="/pictures/"|add:tag|add:".png" %}
+                                                        <img class="tag_img" src="{% static img%}">
+                                                {% endwith %}
+                                            {% endif %}
+                                            <div id="{{tag}}"></div>
+                                        {% endfor %}
+                                    </div>
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
     <div class="button">
         <a href='{% url "helpapp:washer_complete" %}'>
             <button type="button" class="finish">完了</button>

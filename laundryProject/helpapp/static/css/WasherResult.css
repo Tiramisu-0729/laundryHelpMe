@@ -114,3 +114,107 @@ hr {
     justify-content: center;
     align-items: center;
 }
+
+
+
+/* tab */
+.tab_contents {
+	margin: 10vmin 5vmin;
+}
+
+.tab_wrap {
+	opacity: 0.8;
+}
+
+
+/*タブボタンデザイン*/
+.tab_lab1, .tab_lab2, .tab_lab3 {
+	background: #242424;
+	color: #fff;
+	padding: 4vmin;
+}
+
+/*タブにチェック入ったとき*/
+#tab1:checked~.tab_lab1 {
+    background-color: #97ECFC;
+	color: #242424;
+    border-radius: 2vmin;
+}
+#tab2:checked~.tab_lab2 {
+	background: #3ddcb1;
+	color: #242424;
+    border-radius: 2vmin;
+}
+#tab3:checked~.tab_lab3 {
+	background: #ff8b8b;
+	color: #242424;
+    border-radius: 2vmin;
+}
+
+/*タブボタンとボックス連動*/
+#tab1:checked~.panels #area1 {
+	display: block;
+    background-color: #97ECFC;
+}
+#tab2:checked~.panels #area2 {
+	display: block;
+	background: #3ddcb1;
+}
+#tab3:checked~.panels #area3 {
+	display: block;
+	background: #ff8b8b;
+}
+
+/*チェックボックスとボックス非表示*/
+input[name="check"] {
+	display: none;
+}
+.panel {
+	padding: 2vmin;
+	display: none;
+
+    border-radius: 2vmin;
+}
+/* tabの中 */
+.panel_li{
+    list-style:none;
+    display: flex;
+    border-radius: 1vmin;
+    background-color: rgb(255, 255, 255);
+    margin: 3vmin 1vmin;
+    box-shadow: 1px 1px 2px #ccc;
+}
+.panel_img{
+
+    display: flex;
+    margin: 1vmin;
+    align-items: center;
+}
+.panel_tags{
+    overflow-x :scroll;
+    display: flex;
+    margin: 1vmin;
+    align-items: center;
+}
+.panel_washer{
+    width: 20vmin;
+    height: 20vmin;
+    object-fit: cover;
+}
+.panel_space{
+    margin: 2vmin;
+}
+.L{
+    background-color: #97ebfc7a;
+}
+.B{
+    background-color: #3ddcb17a;
+}
+.T{
+    background-color: #ff8b8b7a;
+}
+/*ボックスを下から上へ*/
+.panel_content {
+    padding: 1vmin;
+	background-color: rgb(250, 250, 250);
+}
