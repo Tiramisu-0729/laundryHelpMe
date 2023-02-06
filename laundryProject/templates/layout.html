@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" href="{% static "pictures/icon.svg"%}">
     
     <link rel="stylesheet" href="{% static 'css/layout.css' %}">
-    <title>{{message}}</title>
+    <title>{{message}} - AI Tag Checker</title>
     {% block link %}
     
     {% endblock %}
@@ -18,7 +18,7 @@
 <body>
     <div class="container">
         <div id="header">
-                <P id="title">{{message}}</P>
+                <img class="header_icon" src="{% static "pictures/wave.png"%}" alt="">
         </div>
         {% block content %}
         {% endblock %}

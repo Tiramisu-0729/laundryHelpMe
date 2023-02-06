@@ -107,6 +107,7 @@ label{
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
+    box-shadow: 0 0.8vmin 0 #369ada;
 }
 #categories{
     height: 6vmin;
@@ -140,7 +141,8 @@ label{
     position: fixed;
     right: 3vmin;
     bottom: 20vmin;
-    box-shadow: 2px 3px 3px #5c5c5c;
+    /* box-shadow: 2px 3px 3px #5c5c5c; */
+    box-shadow: 0 1vmin 0 #369ada;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -150,6 +152,7 @@ label{
     margin: 20% 2%;
 }
 .judge{
+    box-shadow: 0 1vmin 0 #369ada;
     background-color: #4BC9FF;
     width: 53%;
     border-radius: 5px;
@@ -165,5 +168,21 @@ h2{
     text-align: center;
 }
 .space{
-    margin: 20vmin;
+    margin: 37vmin;
+}
+
+/* クリック時 */
+.judge:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+}
+/* クリック時 */
+#add:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+}
+/* クリック時 */
+#edit:active {
+    box-shadow: none;
+    transform: translateY(0.8vmin);
 }

@@ -32,10 +32,19 @@
     display: grid;
     align-items: center;
     text-align: center;
-    background-color: rgb(255, 66, 66);
+    background-color: rgb(255 74 74);
     font-weight: bold;
     border-radius: 50%;
-    box-shadow: 1px 1px 1px rgba(102, 102, 102, 0.5);
+    box-shadow: 0 1vmin 0 #d54040;
+}
+/* クリック時 */
+.delete:active {
+    box-shadow: none;
+    transform: translateY(5px);
+}
+.add:active {
+    box-shadow: none;
+    transform: translateY(5px);
 }
 .delete a{
     color: white;
@@ -55,9 +64,9 @@
     height: 7vmin;
     width: 7vmin;
     background-color: rgb(126, 230, 66);
+    box-shadow: 0 1vmin 0 #44da36;
     font-weight: bold;
     border-radius: 50%;
-    box-shadow: 1px 1px 1px rgba(102, 102, 102, 0.5);
     justify-content: center;
     text-align: center;
     display: grid;
