@@ -26,7 +26,6 @@
 }
 button{
     width: 70%;
-    border-radius: 5px;
     margin: 5% 15% 10%;
     padding-top: 2%;
     padding-bottom: 2%;
@@ -35,4 +34,12 @@ button{
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
+    box-shadow: 0 5px 0 #369ada;
+    border-radius: 50vmin;
 }
+    
+/* クリック時 */
+button:active {
+    box-shadow: none;
+    transform: translateY(5px);
+  }
