@@ -2,42 +2,40 @@
 body{
     color: #333;
 }
-.backButton{
-    width: 40%;
-    border-radius: 5px;
-    font-size: 32px;
-    padding: 2px 10px;
-    color: #6D6D6D;
-    font-weight: bold;
-    border: none;
-    background-color: #FFF84B;
-}
+
 .laundryTagImg{
-    width: 220px;
-    height: 220px;
+    width: 60vmin;
+    height: 60vmin;
     display: block;
     margin: 2% auto;
     border-radius: 5px;
     object-fit: cover;
 }
 .radio{
-    box-shadow: 1px 1px 1px 0px #999;
     background-color: #FFFFFF;
     width: 13.5vmin;
     height: 13.5vmin;
     margin: 1vmin;
     padding: 1vmin;
-    border: solid 1px #f5f5f5;
     border-radius: 3px;
-    box-shadow: 0 2px 2px -1px #6D6D6D;
+    box-shadow: 0 1vmin 0 #dadada;
 }
 .selection-group input[type="radio"] {
     display: none;
 }
+
 .selection-group input[type="radio"]:checked + label img {
     background: rgba(65, 105, 225, 0.726);
     border-radius: 3px;
+    box-shadow: 0 1vmin 0 #6577dd;
 }
+/* クリック時 */
+.radio:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
+}
+
 .selection-group{
     text-align: center;
     padding: 0 1.5%;
@@ -46,21 +44,24 @@ body{
     bottom: 0;
     clear: both;
     width: 70%;
-    border-radius: 5px;
-    margin-top: 10%;
-    margin-left: 15%;
-    /* margin-right: 5%; */
-    padding-top: 2%;
-    padding-bottom: 2%;
-    font-size: 32px;
+    height: 15vmin;
+    font-size: 8vmin;
     color: #fff;
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
+    box-shadow: 0 1.7vmin 0 #369ada;
+    border-radius: 50vmin;
+}
+/* クリック時 */
+.submit:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
 }
 .button{
-    /* margin-bottom: 90px; */
-    margin-bottom: 25%;
+    text-align: center;
+    margin: 10vmin 0 20vmin 0;
     font-size: 4vmin;
 }
 .msg{
@@ -79,4 +80,12 @@ hr {
 }
 p {
     font-size: 4.5vmin;
+}
+.progress{
+    margin: 2vmin 0;
+    text-align: center;
+}
+.progress_img{
+    height: auto;
+    width: 95vmin;
 }

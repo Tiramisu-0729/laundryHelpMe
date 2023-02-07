@@ -143,3 +143,12 @@ td{
     width: 38px;
     height: 38px;
 } 
+
+.progress{
+    margin: 2vmin 0;
+    text-align: center;
+}
+.progress_img{
+    height: auto;
+    width: 95vmin;
+}
