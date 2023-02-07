@@ -22,8 +22,7 @@
                 {% endif %}
             </p>
             <div class="link">
-            <a href="{% url 'helpapp:home' %}">アプリへ戻る</a> | 
-            <a href="{% static 'pictures/アノテーション・AIの追加学習.pdf' %}" target="_blank">アノテーション・AIの追加学習</a>
+            <a href="{% url 'helpapp:home' %}">アプリへ戻る</a>
                 {% if user.is_superuser %}
                      | <a href="{% url 'admin:index' %}">Django管理者画面へ</a>
                 {% endif %}
@@ -38,6 +37,10 @@
                         <option value="finished" >完了済</option>
                         <option value="unfinished" >未完</option>
                     </select>
+                    <div class="media">
+                        <a href="{% static 'pictures/info.pdf' %}" target="_blank">アノテーション・AIの追加学習方法についてのPDF</a> | 
+                        <a href="{% static 'pictures/annotation_label.jpg' %}" target="_blank">アノテーションラベル見本</a>
+                    </div>
                     <span class="button">
                         <input type="submit" name="commit" value="保存する" class="commit_button">
                         {% if user.is_superuser %}
