@@ -49,10 +49,33 @@ label{
     border-radius: 5px;
     border: none;
     background-color: #4BC9FF;
+    box-shadow: 0 1vmin 0 #369ada;
+    border-radius: 50vmin;
     margin: 10vmin 0 20vmin 0;
 }
 #id_image{
     width: 1vmin;
     height: 1vmin;
     opacity: 0;
+}
+/* クリック時 */
+#submit:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
+}
+.progress{
+    margin: 2vmin 0;
+    text-align: center;
+}
+.progress_img{
+    height: auto;
+    width: 95vmin;
+}
+
+/* クリック時 */
+button:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
 }

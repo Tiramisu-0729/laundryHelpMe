@@ -51,6 +51,7 @@
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
+    box-shadow: 0 1vmin 0 #369ada;
 }
 #main_edit{
     margin: 5vmin;
@@ -95,6 +96,7 @@ label{
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
+    box-shadow: 0 1vmin 0 #369ada;
 }
 .reset{
     width: 25vw;
@@ -106,13 +108,9 @@ label{
     font-weight: bold;
     border: none;
     background-color: #ff4b4b;
+    box-shadow: 0 1vmin 0 #da3636;
 }
-.passchange {
-    border-radius: 20px;
-    padding: 0 5%;
-    background-color: #FFF;
-    box-shadow: 1px 1px 2px #ccc;
-}
+
 .form-group{
     font-size: 5vmin;
 }
@@ -128,6 +126,13 @@ label{
     text-decoration: none;
     color: #555;
     border-bottom: #333 solid 1px;
+}
+.passchange {
+    border-radius: 20px;
+    padding: 0 5%;
+    background-color: #FFF;
+    box-shadow: 1px 1px 2px #ccc;
+    border: none;
 }
 hr{
     margin: 0 2vmin 4vmin;
@@ -300,3 +305,22 @@ details[open] {
     animation: ani 1s ;
     -webkit-animation: ani 1s ;
 } */
+
+/* クリック時 */
+#edit-button:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
+}
+
+.submit:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
+}
+
+.reset:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
+}

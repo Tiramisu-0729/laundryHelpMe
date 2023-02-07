@@ -6,6 +6,9 @@
 {% endblock %}
 {% block content %}
 <div class="content">
+    <div class="progress">
+        <img class="progress_img" src="{% static "pictures/progress_cabinet.svg"%}" alt="">
+    </div>
     <form action="{% url 'helpapp:cabinet_add' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {{ cabinet_form.as_p }}

@@ -15,7 +15,7 @@ window.onload = function(){
         if (edit.innerText == '編集'){
             edit.innerText = '戻る' ;
             btn[0].classList.add('hidden');
-            space[0].style.margin = "20vmin";
+            space[0].style.margin = "37vmin";
             document.getElementById('add').style.bottom = "20vmin";
         }
         else{
@@ -24,7 +24,7 @@ window.onload = function(){
             }
             edit.innerText = '編集' ;
             btn[0].classList.add('hidden');
-            space[0].style.margin = "20vmin";
+            space[0].style.margin = "37vmin";
             document.getElementById('add').style.bottom = "20vmin";
         }
         
@@ -71,7 +71,7 @@ window.onload = function(){
                 let newArr = Array.from(new Set(arr));
                 if(newArr.length == 0){
                     btn[0].classList.add('hidden');
-                    space[0].style.margin = "20vmin";
+                    space[0].style.margin = "37vmin";
                     document.getElementById('add').style.bottom = "20vmin";
                 }
                 document.querySelector('#delete').value ='(' + newArr.length + ')' + '削除';

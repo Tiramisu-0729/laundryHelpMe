@@ -138,14 +138,14 @@
         </div>
     </section>
     <div class="button">
-        <a href='{% url "helpapp:washer_complete" %}'>
-            <button type="button" class="finish">完了</button>
-        </a>
         <a href="{% url 'helpapp:washer_log_add' %}">
-            <button type="button" class="washer_log_add">ブックマークに追加</button>
+            <button type="button" class="washer_log_add">登録する</button>
+        </a>
+        <a href='{% url "helpapp:washer_complete" %}'>
+            <button type="button" class="finish">戻る</button>
         </a>
         <a href="{% url 'helpapp:washer_clear' %}">
-            <button type="button" class="washer_clear">洗濯機をクリア</button>
+            <button type="button" class="washer_clear">空にする</button>
         </a>
     </div>
 </div>

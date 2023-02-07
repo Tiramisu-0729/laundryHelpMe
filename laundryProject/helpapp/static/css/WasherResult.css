@@ -59,25 +59,28 @@ tr td:nth-of-type(1){
     text-align: center;
 }
 .finish{
-    margin-top: 5%;
-    width: 70vw;
+    margin: 10% auto 10%;
+    width: 35vw;
     border-radius: 5px;
     font-size: 7vmin;
     font-weight: bold;
     border: none;
-    background-color: #4BC9FF;
+    background-color: #c4c4c4;
+    box-shadow: 0 1vmin 0 #9e9e9e;
     color: #fff;
     padding: 2% 0;
 }
 .washer_log_add{
-    background-color: #fffa61;
+    background-color: #4BC9FF;
+    box-shadow: 0 1.7vmin 0 #369ada;
     width: 70vw;
-    border-radius: 5px;
+    height: 15vmin;
+    border-radius: 50vmin;
     margin: 10% auto 10%;
     padding-top: 2%;
     padding-bottom: 2%;
     font-size: 6.5vmin;
-    color: #6D6D6D;
+    color: #fff;
     font-weight: bold;
     border: none;
 }
@@ -95,15 +98,35 @@ hr {
     margin: 3%;
 }
 .washer_clear{
-    width: 70vw;
+    width: 35vw;
     border-radius: 5px;
     font-size: 7vmin;
     color: #fff;
     font-weight: bold;
     border: none;
     background-color: #ff4b4b;
+    box-shadow: 0 1vmin 0 #da3636;
     clear: both;
     padding: 2% 0 2%;
+}
+
+/* クリック時 */
+.washer_log_add:active {
+    box-shadow: none;
+    transform: translateY(1.7vmin);
+    -webkit-transform: translateY(1.7vmin);
+}
+
+.washer_clear:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
+}
+
+.finish:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
 }
 .space{
     margin: 20vmin;
@@ -115,40 +138,43 @@ hr {
     align-items: center;
 }
 
-
+a{
+    text-decoration: none;
+}
 
 /* tab */
 .tab_contents {
 	margin: 10vmin 5vmin;
 }
-
 .tab_wrap {
 	opacity: 0.8;
 }
-
-
 /*タブボタンデザイン*/
 .tab_lab1, .tab_lab2, .tab_lab3 {
 	background: #242424;
 	color: #fff;
-	padding: 4vmin;
+	padding: 3vmin 4vmin;
+    box-shadow: 0 2vmin 0 #000;
 }
 
 /*タブにチェック入ったとき*/
 #tab1:checked~.tab_lab1 {
     background-color: #97ECFC;
 	color: #242424;
-    border-radius: 2vmin;
+    border-radius: 1vmin;
+    box-shadow:none;
 }
 #tab2:checked~.tab_lab2 {
 	background: #3ddcb1;
 	color: #242424;
-    border-radius: 2vmin;
+    border-radius: 1vmin;
+    box-shadow:none;
 }
 #tab3:checked~.tab_lab3 {
 	background: #ff8b8b;
 	color: #242424;
-    border-radius: 2vmin;
+    border-radius: 1vmin;
+    box-shadow:none;
 }
 
 /*タブボタンとボックス連動*/
@@ -172,7 +198,6 @@ input[name="check"] {
 .panel {
 	padding: 2vmin;
 	display: none;
-
     border-radius: 2vmin;
 }
 /* tabの中 */

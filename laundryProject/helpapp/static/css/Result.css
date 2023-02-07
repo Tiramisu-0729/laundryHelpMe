@@ -6,8 +6,8 @@ body{
     margin-bottom: 20vmin;
 }
 .laundryTagImg{
-    width: 220px;
-    height: 220px;
+    width: 60vmin;
+    height: 60vmin;
     display: block;
     margin: 5% auto 0;
     border-radius: 5px;
@@ -65,40 +65,70 @@ p{
     margin: 1.5% 3% 0 2%;
 }
 .add_cabinet, .finish{
-    width: 70%;
+    width: 70vw;
     border-radius: 5px;
-    margin-left: 15%;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    font-size: 32px;
+    margin: 5vmin;
+    height: 15vmin;
+    font-size: 8vmin;
     font-weight: bold;
     border: none;
+}
+.button{
+    text-align: center;
+    margin: 10vmin 0 20vmin 0;
 }
 .add_cabinet{
     background-color: #4BC9FF;
     color: #fff;
-    margin-top: 10%;
-    margin-bottom: 10%;
+    box-shadow: 0 1vmin 0 #369ada;
+    border-radius: 50vmin;
+    width: 70vw;
+    margin: 5vmin;
+    height: 15vmin;
+    font-size: 8vmin;
+    font-weight: bold;
+    border: none;
 }
 .finish{
     background-color: #FFF84B;
+    box-shadow: 0 1vmin 0 #dacf36;
     color: #6D6D6D;
-    margin-bottom: 5vh;
+    width: 50vw;
+    border-radius: 5px;
+    margin: 10vmin;
+    height: 15vmin;
+    font-size: 8vmin;
+    font-weight: bold;
+    border: none;
+}
+/* クリック時 */
+.add_cabinet:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
 }
 .ai_report{
     text-align: center;
     display: block;
     font-size: 3vmin;
-    margin-bottom: 20vmin;
-    background-color: #ccc;
+    background-color: rgb(255, 255, 255);
+    border: solid 1px rgb(255, 97, 97);
     text-decoration: none;
-    width: 50%;
-    margin: 0 auto;
+    width: 40%;
+    margin: 3vmin auto;
     padding: 1%;
     border-radius: 5px;
-    color: #333;
+    color: rgb(255, 97, 97);
 }
 .red{
     color: red;
     font: bold;
+}
+.progress{
+    margin: 2vmin 0;
+    text-align: center;
+}
+.progress_img{
+    height: auto;
+    width: 95vmin;
 }
