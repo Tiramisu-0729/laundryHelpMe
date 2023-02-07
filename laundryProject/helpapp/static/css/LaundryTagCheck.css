@@ -86,6 +86,6 @@ p {
     text-align: center;
 }
 .progress_img{
-    height: auto;
-    width: 95vmin;
+    max-height: 40px;
+    margin: 0 3vmin;
 }
