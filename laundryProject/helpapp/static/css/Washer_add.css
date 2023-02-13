@@ -52,7 +52,15 @@ label{
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
+    box-shadow: 0 1.7vmin 0 #369ada;
+    border-radius: 50vmin;
     margin-top: 15vmin;
+}
+/* クリック時 */
+.add:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
 }
 .btn{
     clear: both;
