@@ -33,8 +33,15 @@ label{
     padding-top: 3%;
     padding-bottom: 2%;
     font-size: 32px;
-    color: #6D6D6D;
+    color: #fff;
     font-weight: bold;
     border: none;
     background-color: #4BC9FF;
+    box-shadow: 0 1vmin 0 #369ada;
+}
+/* クリック時 */
+.button:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
 }

@@ -53,6 +53,13 @@ button{
 .submit{
     margin-top: 8%;
     background-color: #4BC9FF;
+    box-shadow: 0 1vmin 0 #369ada;
+}
+/* クリック時 */
+.submit:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
 }
 .errorlist{
     display: none;
