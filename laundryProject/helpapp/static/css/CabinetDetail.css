@@ -103,6 +103,8 @@ hr{
 .memo textarea {
     font-size: 4vmin;
     width: 87vmin;
+    border: #333 solid 1px;
+    border-radius: 5px;
 }
 .text{
     display: flex;

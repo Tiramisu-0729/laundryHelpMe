@@ -251,6 +251,11 @@ summary span {
     height: 20vmin;
 }
 
+#id_username {
+    border: 1px solid #333;
+    border-radius: 5px;
+}
+
 /* ↓↓↓↓↓↓↓↓↓↓↓アコーディオンアニメーション↓↓↓↓↓↓↓↓↓↓↓ */
 summary{
     padding: 2vmin 3vmin;
