@@ -16,7 +16,7 @@
 	-webkit-animation: animateTheBodyBg 10s linear infinite;
 	display: flex;
 }
-img {
+.advertisement img {
 	width: 80vmin;
 	height: 65vmin;
 }

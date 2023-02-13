@@ -125,3 +125,8 @@ td img {
     width: 25px;
     height: 25px;
 }
+
+.media {
+    margin-top: -40px;
+    text-align: right;
+}
