@@ -107,6 +107,12 @@ p{
     transform: translateY(1vmin);
     -webkit-transform: translateY(1vmin);
 }
+/* クリック時 */
+.finish:active {
+    box-shadow: none;
+    transform: translateY(1vmin);
+    -webkit-transform: translateY(1vmin);
+}
 .ai_report{
     text-align: center;
     display: block;
